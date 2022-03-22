@@ -67,8 +67,15 @@ Here's a brief list of the notebooks and main ideas in each:
    - convert "long" data to "wide" data
    - use `pandas` `pivot()` function
    - load our custom data saved as .csv from the file system (to avoid long-running code)
- 7. [demo-data](https://github.com/adelphi-ed-tech/school-data-portal/blob/main/nb/ela-pivot.ipynb)
+ 7. [school-demographics](https://github.com/adelphi-ed-tech/school-data-portal/blob/main/nb/school-demographics.ipynb)
+    - loading .py files with autoreload
+    - schools.py updates
+    - ui.py utility package
     - aggregate functions
-    - data dictionary example
+      - appending a row of totals/sub-totals
+    - data dictionary example (reading from csv)
     - formatting output of dataframes
+      - using `display()`
+      - mixing markdown and code by importing `Markdown`
+      - using f-strings with format strings for numbers (rounding floats, commas for large numbers, as percentages)
     - complex `apply()` functions that track changes across rows
