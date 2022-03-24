@@ -29,7 +29,7 @@ Open data sets:
 
 Notebook files
 --------------
-These Jupyter Notebooks demonstrate core `pandas` and data analaysis
+These Jupyter Notebooks demonstrate core `pandas` and data analysis
 approaches, and model some possible uses for the key school data
 that's released as part of the New York City Open Data Portal.
 
@@ -79,3 +79,10 @@ Here's a brief list of the notebooks and main ideas in each:
       - mixing markdown and code by importing `Markdown`
       - using f-strings with format strings for numbers (rounding floats, commas for large numbers, as percentages)
     - complex `apply()` functions that track changes across rows
+ 8. [anova](https://github.com/adelphi-ed-tech/school-data-portal/blob/main/nb/anova.ipynb)
+    - t-test
+    - anova
+    - OLS regression
+    - categorical data (dummies)
+    - aggregates for mean and standard deviation
+    - reporting results in markdown
