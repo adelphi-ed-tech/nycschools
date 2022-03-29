@@ -35,7 +35,7 @@ def fmt_table(df, col_map=None, pct_cols=[], num_cols=[]):
         result[col] = result[col].apply(commas)
 
     if col_map:
-        result = result.rename(columns=demo.col_map)
+        result = result.rename(columns=col_map)
     return result
 
 
