@@ -1,5 +1,6 @@
 import pandas as pd
 from IPython.display import Markdown as md
+from decimal import *
 
 def ul(t):
 
@@ -49,3 +50,24 @@ def infinite():
 def counter():
     x = infinite()
     return x.__next__
+
+# strips the leading zero from a rounded float
+def round_f(f, places):
+
+    s = str(round(f, places))
+    whole, frac = s.split(".")
+    if whole == "0":
+        whole = ""
+    frac = frac.ljust(places, "0")
+    return f"{whole}.{frac}"
+
+
+def fmt_pearson(r):
+    """Formats the Pearson's R correlation table returned
+    from `pengouin.corr` in the format r(df)={r}, p={p}.
+    The r is rounded to 2 decimals, and p is rounded to 3 decimals.
+    """
+    df = r.n[0] - 2
+    p = round_f(r['p-val'][0], 3)
+    r_val = round_f(r['r'][0], 2)
+    return f"r({df})={r_val}, p={p}"
