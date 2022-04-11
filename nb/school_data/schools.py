@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy
 import math
-
+import re
+from thefuzz import fuzz
 
 
 class demo():
@@ -24,6 +25,8 @@ class demo():
         'district',
         'boro',
         'school_name',
+        'short_name',
+        'ay',
         'year',
         'total_enrollment',
         'grade_3k_pk_half_day_full',
@@ -64,16 +67,17 @@ class demo():
         'ell_pct',
         'poverty_n',
         'poverty_pct',
-        'eni_pct'
+        'eni_pct',
+        'clean_name'
     ]
 
-    core_cols = ['dbn', 'district', 'boro', 'school_name', 'year', 'total_enrollment',
+    core_cols = ['dbn', 'district', 'boro', 'school_name', 'ay', 'total_enrollment',
        'asian_n', 'asian_pct', 'black_n', 'black_pct',
        'hispanic_n', 'hispanic_pct','white_n', 'white_pct',
        'swd_n', 'swd_pct', 'ell_n', 'ell_pct', 'poverty_n', 'poverty_pct',
        'eni_pct']
 
-
+    short_cols = ["dbn", "school_name", "short_name", "clean_name", "ay"]
 
     default_map = {
         'female':'female_n',
@@ -157,13 +161,83 @@ def boro(dbn): return boros[dbn[2]]
 # convert academic year spring to an integer with the year in the Fall
 def ay(year): return int(year.split("-")[0])
 
+
+def school_type(school):
+    """
+        Any school that serves middle school kids
+        is considered a middle school here.
+    """
+
+    if school["middle"]:
+        return "MS"
+    if school["elementary"]:
+        return "PS"
+    if school["hs"]:
+        return "HS"
+    return "NA"
+
+
+def clean_name(sn):
+    """creates a simplified school name that is easier to search/index"""
+    sn = sn.lower()
+    sn = sn.strip()
+    sn = sn.replace(".", "")
+    clean = []
+    for word in sn.split(" "):
+        try:
+            n = int(word)
+            clean.append(str(n))
+        except:
+            clean.append(word)
+
+    sn = " ".join(clean)
+
+    # ms, is, ps followed by a number
+    p = re.compile(r"\b([m|p|i]s [0-9]*)")
+    m = p.search(sn)
+    if m:
+        sn = sn.replace(m.group(0), "")
+    sn = sn.strip()
+    # if the only thing left is the boro, short name will be school num + boro
+    if sn in ["bronx", "brooklyn", "manhattan", "queens", "staten island"]:
+        sn = f"{m.group(0)} {sn}"
+    return sn
+
+
+def short_name(row):
+    """Attempts to guess the common "short name" for a school.
+For example, the full name might be "P.S. 015 Roberto Clemente".
+This school is probably commonly referred to as PS 15."""
+    sn = row.school_name.upper()
+    if "P.S." in sn or "P. S." in sn:
+        return f"PS {row.school_num}"
+    if "M.S." in sn or "M. S." in sn:
+        return f"MS {row.school_num}"
+    if "I. S." in sn or "I.S." in sn:
+        return f"IS {row.school_num}"
+
+    return f"{row.school_type} {row.school_num}"
+
+
 def load_school_demographics():
     demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
     df = pd.read_csv(demo_url)
 
-    df["year"] = df["year"].apply(ay)
+    df["ay"] = df["year"].apply(ay)
+
     df["district"] = df["dbn"].apply(district)
     df["boro"] = df["dbn"].apply(boro)
+
+    # figure out what grades they teach
+    df["pk"] = df["grade_3k_pk_half_day_full"] > 0
+    df["elementary"] = df["grade_2"] > 0
+    df["middle"] = df["grade_7"] > 0
+    df["hs"] = df["grade_10"] > 0
+
+    # make it easier to look up schools
+    df["school_type"] = df.apply(school_type, axis=1)
+    df["clean_name"] = df.apply(lambda row: clean_name(row.school_name), axis=1)
+    df["short_name"] = df.apply(short_name, axis=1)
 
     df["poverty"] = df.apply(lambda row: str_count(row, "poverty", "total_enrollment"), axis = 1)
     df["poverty_1"] = df.apply(lambda row: str_pct(row, "poverty_1", "total_enrollment"), axis = 1)
@@ -171,6 +245,35 @@ def load_school_demographics():
     df = df.rename(columns=demo.default_map)
     df = df[demo.default_cols]
     return df
+
+def search(df, qry):
+    t = df.copy(deep=False)
+    latest = t.ay.max()
+    # just check the lastest year
+    t = t[t["ay"] == latest]
+
+    # see if there's an exact name match
+    q = clean_name(qry)
+    results = t.query(f"clean_name == '{q}'")
+    if len(q) > 0 and len(results) > 0:
+        return results
+
+    # look it up by number
+    results = t.query(f"short_name == '{qry.upper()}'")
+    if len(results) > 0:
+        return results
+
+    # fuzzy search -- add a fuzzy search match column
+    t["match"] = t.school_name.apply(lambda sn: fuzz.token_set_ratio(qry, sn))
+    t = t.query("match > 80")
+    t = pd.DataFrame(t)
+    # now sort the results based on the ratio match
+    t["match"] = t.clean_name.apply(lambda sn: fuzz.ratio(qry, sn))
+    results = t.sort_values(by=["match"], ascending=False)
+
+    return results
+
+
 
 # ------------------------------------------------------------------------------
 
