@@ -125,7 +125,8 @@ def draw_model(nodes, node_size, edges, labels, edge_labels, colors, cmap):
     G.add_weighted_edges_from(edges)
     fig, ax = plt.subplots(figsize=(16,9))
 
-    pos = nx.spring_layout(G, k=3)
+    # pos = nx.spring_layout(G, k=3)
+    pos = nx.circular_layout(G)
 
     nx.draw(G, pos=pos, ax = ax, with_labels=True,
             labels=labels, node_color=colors, cmap=cmap, node_size=node_size,

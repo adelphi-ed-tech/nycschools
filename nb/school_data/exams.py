@@ -5,6 +5,24 @@ import requests
 # import math
 
 
+# convert these to numbers or coerce to NaN
+numeric_cols = [
+    'number_tested',
+    "mean_scale_score",
+    "level_1_n",
+    "level_1_pct",
+    "level_2_n",
+    "level_2_pct",
+    "level_3_n",
+    "level_3_pct",
+    "level_4_n",
+    "level_4_pct",
+    "level_3_4_n",
+    "level_3_4_pct"
+]
+
+
+
 def load_charter_ela():
     url = "https://data.cityofnewyork.us/resource/sgjd-xi99.csv?$limit=1000000"
     df = pd.read_csv(url)
@@ -17,7 +35,8 @@ def load_charter_math():
     df = pd.read_csv(url)
     return charter_cols(df)
 
-def charter_cols(df):
+def charter_cols(data):
+    df = data.copy()
     df["test_year"] = df["year"]
     df["ay"] = df["test_year"] - 1
     new_cols = ['drop', 'dbn', 'school_name', 'grade', 'year', 'category',
@@ -33,6 +52,9 @@ def charter_cols(df):
     'level_3_4_n', 'level_3_4_pct', 'year']
     df = df[core_cols]
     df["charter"] = True
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
     return df
 
 
@@ -80,22 +102,6 @@ def read_excel(url):
                 'level_3_4_pct']
     df = df[cols]
     df.columns = new_cols
-
-    # convert these to numbers or coerce to NaN
-    numeric_cols = [
-        'number_tested',
-        "mean_scale_score",
-        "level_1_n",
-        "level_1_pct",
-        "level_2_n",
-        "level_2_pct",
-        "level_3_n",
-        "level_3_pct",
-        "level_4_n",
-        "level_4_pct",
-        "level_3_4_n",
-        "level_3_4_pct"
-    ]
 
     for col in numeric_cols:
         df[col] = pd.to_numeric(df[col], errors='coerce')

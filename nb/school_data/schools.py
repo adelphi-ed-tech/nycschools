@@ -227,6 +227,7 @@ def load_school_demographics():
 
     df["district"] = df["dbn"].apply(district)
     df["boro"] = df["dbn"].apply(boro)
+    df["school_num"] = df.dbn.apply(lambda dbn: int(dbn[3:]))
 
     # figure out what grades they teach
     df["pk"] = df["grade_3k_pk_half_day_full"] > 0
