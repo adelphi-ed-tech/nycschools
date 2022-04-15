@@ -49,7 +49,7 @@ Here's a brief list of the notebooks and main ideas in each:
 3. [math-ela-merge](https://github.com/adelphi-ed-tech/school-data-portal/blob/main/nb/math-ela-merge.ipynb)
    - (more) cleaning data
    - renaming columns
-   - combinging `DataFrames` by joining them with `merge()`
+   - combining `DataFrames` by joining them with `merge()`
    - dropping columns with `del`
 4. [correlations](https://github.com/adelphi-ed-tech/school-data-portal/blob/main/nb/correlations.ipynb)
    - Pearson correlation with `numpy`, `scipy`, and `pingouin`
