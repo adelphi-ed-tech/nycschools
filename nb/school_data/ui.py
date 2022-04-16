@@ -29,7 +29,7 @@ def pct(n):
 def commas(n):
     try:
         float(n)
-        return f"{n:,}"
+        return f"{round(n, 3):,}"
     except:
         return "-"
 

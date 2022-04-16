@@ -237,15 +237,18 @@ def load_school_demographics(refresh=False):
      black_hispanic: total number of black and hispanic students
     return the dataframe
     """
-    if refresh:
-        return save_demographics()
-    else:
-        try:
-            # try to load it locally to save time
-            df = pd.read_csv("school-demographics.csv")
-            return df
-        except FileNotFoundError:
-            return save_demographics()
+    return pd.read_csv("school-demographics.csv")
+    #
+    #
+    # if refresh:
+    #     return save_demographics()
+    # else:
+    #     try:
+    #         # try to load it locally to save time
+    #         df = pd.read_csv("school-demographics.csv")
+    #         return df
+    #     except FileNotFoundError:
+    #         return save_demographics()
 
 def save_demographics():
     demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
