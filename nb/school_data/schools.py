@@ -219,7 +219,35 @@ This school is probably commonly referred to as PS 15."""
     return f"{row.school_type} {row.school_num}"
 
 
-def load_school_demographics():
+def load_school_demographics(refresh=False):
+    """
+    Loads the NYC school-level demographic data from the
+    open data portal and create a dataframe., ascending=False
+    Adds new columns to the dataframe:
+         short_name: the best guess at the nuload_ELAtestmerical name of the school (e.g. PS 9)
+                     or "" if none exists
+           district: the school district number [1..32, 75, 79, 84]
+               boro: borough code string ["M","B","X","Q","R"]
+          boro_name: string of the full borough name
+               year: the academic year as an integer representing the calendar
+                     year in the fall of the school year
+        white_asian: combined number of white and asian students
+          non_white: total number of non white students
+    non_white_asian: total number of non white or asian students
+     black_hispanic: total number of black and hispanic students
+    return the dataframe
+    """
+    if refresh:
+        return save_demographics()
+    else:
+        try:
+            # try to load it locally to save time
+            df = pd.read_csv("school-demographics.csv")
+            return df
+        except FileNotFoundError:
+            return save_demographics()
+
+def save_demographics():
     demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
     df = pd.read_csv(demo_url)
 
@@ -245,6 +273,7 @@ def load_school_demographics():
     df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
     df = df.rename(columns=demo.default_map)
     df = df[demo.default_cols]
+    df.to_csv("school-demographics.csv", index=False)
     return df
 
 def search(df, qry):
