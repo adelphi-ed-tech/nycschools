@@ -100,6 +100,9 @@ def plot_model(model):
     pvalues = list(model.pvalues.round(3).values[1:])
 
     nodes =  params + [dv]
+    plabels = [f"p={p}" for p in pvalues]
+    pnodes = list(zip(plabels, params))
+
     # all targets point to the dv
     targets =  [dv for _ in range(len(params))]
     edges = list(zip(params, targets))
@@ -116,13 +119,14 @@ def plot_model(model):
     labels =  dict([(n, nice_name(n)) for n in nodes])
 
     edge_labels = dict([(x, edge_label(x[0], y)) for x, y in zip(edges, coefs)])
-    draw_model(nodes, node_size, weighted_edges, labels, edge_labels, colors, cmap)
+    draw_model(nodes, pnodes, node_size, weighted_edges, labels, edge_labels, colors, cmap)
 
-def draw_model(nodes, node_size, edges, labels, edge_labels, colors, cmap):
+def draw_model(nodes, pnodes, node_size, edges, labels, edge_labels, colors, cmap):
 
     G = nx.DiGraph()
     G.add_nodes_from(nodes)
     G.add_weighted_edges_from(edges)
+
     fig, ax = plt.subplots(figsize=(16,9))
 
     # pos = nx.spring_layout(G, k=3)
@@ -133,6 +137,14 @@ def draw_model(nodes, node_size, edges, labels, edge_labels, colors, cmap):
             linewidths=2, min_source_margin=2, min_target_margin=2, font_size=14)
 
     nx.draw_networkx_edge_labels(G,pos, ax=ax, edge_labels=edge_labels, label_pos=.5, font_size=12)
+
+    # adding p-values as node
+    # G.add_nodes_from(pnodes,{"pvalue":True})
+    # nx.draw_networkx_nodes(G, pos, ax=ax, nodelist=G.nodes(data=True))
+
+
+
+
     plt.tight_layout()
     plt.margins(0.05)
     plt.show()

@@ -23,25 +23,38 @@ numeric_cols = [
 
 
 
-def load_charter_ela():
+
+def load_charter_ela(refresh=False):
     """
     Loads the charter school ELA exam results for the "All Students"
     category from the NYC Open Data Portal. Columns are re-named for consistency.
     """
     url = "https://data.cityofnewyork.us/resource/sgjd-xi99.csv?$limit=1000000"
-    df = pd.read_csv(url)
-    return charter_cols(df)
+    filename = "charter-ela.csv"
+    return load_charter_test(url, filename, refresh)
 
-
-def load_charter_math():
+def load_charter_math(refresh=False):
     """
     Loads the charter school Math exam results for the "All Students"
     category from the NYC Open Data Portal. Columns are re-named for consistency.
     """
+    filename = "charter-math.csv"
     url = "https://data.cityofnewyork.us/resource/3xsw-bpuy.csv?$limit=1000000"
+    return load_charter_test(url, filename, refresh)
+
+def load_charter_test(url, filename, refresh=False):
+
+    if not refresh:
+        try:
+            return pd.read_csv(filename)
+        except FileNotFoundError:
+            pass
 
     df = pd.read_csv(url)
-    return charter_cols(df)
+    df = charter_cols(df)
+    df.to_csv(filename, index=False)
+
+    return df
 
 def load_math_ela_wide():
     """
