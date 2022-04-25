@@ -91,7 +91,7 @@ def nice_name(n):
 
 def plot_model(model):
 
-    cmap = mpl.cm.coolwarm
+    cmap = mpl.cm.seismic
     # get the data we need from model
     dv = model.model.endog_names
 
