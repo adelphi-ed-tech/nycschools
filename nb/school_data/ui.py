@@ -16,6 +16,13 @@ def ul(t):
 
 
 
+def hexmap(cmap):
+
+    def f(color):
+        return mpl.colors.rgb2hex(cmap(color))
+
+    return f
+
 def pct(n):
     try:
         whole = int(n)
