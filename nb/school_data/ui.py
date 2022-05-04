@@ -135,12 +135,23 @@ def network_map(dv, params, coefs, pvalues):
     labels =  dict([(n, nice_name(n)) for n in nodes])
 
     edge_labels = dict([(x, edge_label(x[0], y)) for x, y in zip(edges, coefs)])
-    draw_model(nodes, pnodes, node_size, weighted_edges, labels, edge_labels, colors, cmap)
+    node_dict = {}
+    for i, n in enumerate(nodes):
+        node_dict[n] = {
+            "node_size": node_size[i],
+            "color": colors[i],
+            "pvalue": pvalues[i] if i < len(pvalues) - 1 else 0,
+            "weight": weights[i] if i < len(weights) - 1 else 0,
+            "scale": node_size[i] / node_size[i],
+            "label": nice_name(n)
+        }
 
-def draw_model(nodes, pnodes, node_size, edges, labels, edge_labels, colors, cmap):
+    draw_model(nodes, pnodes, node_size, weighted_edges, labels, edge_labels, colors, cmap, node_dict)
+
+def draw_model(nodes, pnodes, node_size, edges, labels, edge_labels, colors, cmap, node_dict):
 
     G = nx.DiGraph()
-    G.add_nodes_from(nodes)
+    G.add_nodes_from(node_dict)
     G.add_weighted_edges_from(edges)
 
     fig, ax = plt.subplots(figsize=(16,9))
@@ -148,11 +159,21 @@ def draw_model(nodes, pnodes, node_size, edges, labels, edge_labels, colors, cma
     # pos = nx.spring_layout(G, k=3)
     pos = nx.circular_layout(G)
 
-    nx.draw(G, pos=pos, ax = ax, with_labels=True,
-            labels=labels, node_color=colors, cmap=cmap, node_size=node_size,
+    nx.draw(G, pos=pos, ax = ax, with_labels=False, node_color=colors, cmap=cmap, node_size=node_size,
             linewidths=2, min_source_margin=2, min_target_margin=2, font_size=14)
 
+
     nx.draw_networkx_edge_labels(G,pos, ax=ax, edge_labels=edge_labels, label_pos=.5, font_size=12)
+
+    # draw the node labels separately to put below the nodes
+    pos_attrs = {}
+    for node, coords in pos.items():
+
+        x, y = coords
+        pos_attrs[node] = (x, y - .1)
+
+    nx.draw_networkx_labels(G, pos_attrs, labels=labels)
+
 
     # adding p-values as node
     # G.add_nodes_from(pnodes,{"pvalue":True})
