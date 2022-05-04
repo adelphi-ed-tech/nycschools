@@ -98,7 +98,7 @@ def nice_name(n):
 
 def plot_model(model):
 
-    cmap = mpl.cm.seismic
+
     # get the data we need from model
     dv = model.model.endog_names
 
@@ -106,6 +106,15 @@ def plot_model(model):
     coefs = list(model.params.values[1:],)
     pvalues = list(model.pvalues.round(3).values[1:])
 
+
+    network_map(dv, params, coefs, pvalues=None)
+
+def network_map(dv, params, coefs, pvalues):
+
+    if not pvalues:
+        pvalues = [0 for i in coefs]
+
+    cmap = mpl.cm.seismic
     nodes =  params + [dv]
     plabels = [f"p={p}" for p in pvalues]
     pnodes = list(zip(plabels, params))
