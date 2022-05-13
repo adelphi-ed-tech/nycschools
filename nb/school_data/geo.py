@@ -2,6 +2,8 @@ import pandas as pd
 import geopandas as gpd
 import folium
 
+# school data points
+# https://data.cityofnewyork.us/Education/2019-2020-School-Point-Locations/a3nt-yts4
 
 def load_school_locations(refresh=False):
 
@@ -12,7 +14,7 @@ def load_school_locations(refresh=False):
         except FileNotFoundError:
             url = "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000"
             df = pd.read_csv(url)
-            df.to_csv(filename)
+            df.to_csv(filename, index=False)
 
     # duplicate some cols for aliases
     df["dbn"] = df.system_code
