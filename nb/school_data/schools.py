@@ -4,6 +4,21 @@ import math
 import re
 from thefuzz import fuzz
 
+from . import geo
+
+
+# average class size by school
+# https://data.cityofnewyork.us/resource/sgr7-hhwp.csv
+
+
+# school diversity report
+# https://data.cityofnewyork.us/resource/8vk5-fzts.csv
+
+# bilinugal program list
+# https://data.cityofnewyork.us/resource/6iwb-7euj.csv
+
+# school quality reports
+# https://data.cityofnewyork.us/Education/2020-2021-School-Quality-Reports-Early-Childhood-S/ks4m-pn8b
 
 class demo():
     raw_cols = [
@@ -22,6 +37,7 @@ class demo():
 
     default_cols = [
         'dbn',
+        'beds',
         'district',
         'boro',
         'school_name',
@@ -68,16 +84,40 @@ class demo():
         'poverty_n',
         'poverty_pct',
         'eni_pct',
-        'clean_name'
+        'clean_name',
+        'zip'
     ]
 
-    core_cols = ['dbn', 'district', 'boro', 'school_name', 'ay', 'total_enrollment',
-       'asian_n', 'asian_pct', 'black_n', 'black_pct',
-       'hispanic_n', 'hispanic_pct','white_n', 'white_pct',
-       'swd_n', 'swd_pct', 'ell_n', 'ell_pct', 'poverty_n', 'poverty_pct',
-       'eni_pct']
+    core_cols = [
+        'dbn',
+        'beds',
+        'district',
+        'boro',
+        'school_name',
+        'ay',
+        'total_enrollment',
+        'female_n',
+        'female_pct',
+        'male_n',
+        'male_pct',
+        'asian_n',
+        'asian_pct',
+        'black_n',
+        'black_pct',
+        'hispanic_n',
+        'hispanic_pct',
+        'white_n',
+        'white_pct',
+        'swd_n',
+        'swd_pct',
+        'ell_n',
+        'ell_pct',
+        'poverty_n',
+        'poverty_pct',
+        'eni_pct'
+    ]
 
-    short_cols = ["dbn", "school_name", "short_name", "clean_name", "ay"]
+    short_cols = ["dbn","school_name", "short_name", "clean_name", "ay"]
 
     default_map = {
         'female':'female_n',
@@ -237,18 +277,16 @@ def load_school_demographics(refresh=False):
      black_hispanic: total number of black and hispanic students
     return the dataframe
     """
-    return pd.read_csv("school-demographics.csv")
-    #
-    #
-    # if refresh:
-    #     return save_demographics()
-    # else:
-    #     try:
-    #         # try to load it locally to save time
-    #         df = pd.read_csv("school-demographics.csv")
-    #         return df
-    #     except FileNotFoundError:
-    #         return save_demographics()
+
+    if refresh:
+        return save_demographics()
+    else:
+        try:
+            # try to load it locally to save time
+            df = pd.read_csv("school-demographics.csv")
+            return df
+        except FileNotFoundError:
+            return save_demographics()
 
 def save_demographics():
     demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
@@ -275,9 +313,18 @@ def save_demographics():
     df["poverty_1"] = df.apply(lambda row: str_pct(row, "poverty_1", "total_enrollment"), axis = 1)
     df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
     df = df.rename(columns=demo.default_map)
+
+    df = join_loc_data(df, refresh=refresh)
     df = df[demo.default_cols]
     df.to_csv("school-demographics.csv", index=False)
+
     return df
+
+
+def join_loc_data(df, refresh=False):
+    """Join NYS BEDS id, zip code, and other location data."""
+    school_loc = geo.load_school_locations(refresh=refresh)
+    return df.merge(school_loc[["dbn", "beds", "zip"]], on="dbn", how="left")
 
 def search(df, qry):
     t = df.copy(deep=False)

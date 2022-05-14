@@ -7,28 +7,68 @@ import folium
 
 def load_school_locations(refresh=False):
 
-    filename = "school_locations.csv"
+    filename = "school_locations.geojson"
     if not refresh:
         try:
-            df =  pd.read_csv(filename)
+            df =  gpd.read_file(filename)
         except FileNotFoundError:
+            geojsonurl = "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000"
+            df = gpd.read_file(geojsonurl)
+
+            df = df.rename(columns={"xcoordinat":"x","ycoordinat":"y",})
+            df.x = pd.to_numeric(df.x, errors='coerce')
+            df.y = pd.to_numeric(df.y, errors='coerce')
+            df = df[df.x > 0]
+            df["dbn"] = df.ats_code
+
+            df = df[["x","y","dbn","zip","loc_name"]]
+
             url = "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000"
-            df = pd.read_csv(url)
-            df.to_csv(filename, index=False)
+            loc2 = pd.read_csv(url)
+            loc2["dbn"] = loc2.system_code
+            cols = [
+                'dbn',
+                'administrative_district_code',
+                'administrative_district_name',
+                'beds',
+                'borough_block_lot',
+                'census_tract',
+                'community_district',
+                'community_district_1',
+                'community_school_sup_name',
+                'council_district',
+                'fax_number',
+                'fiscal_year',
+                'geographical_district_code',
+                'grades_final_text',
+                'grades_text',
+                'highschool_network',
+                'highschool_network_location',
+                'highschool_network_name',
+                'latitude',
+                'location_category_description',
+                'location_code',
+                'location_name',
+                'location_type_description',
+                'longitude',
+                'managed_by_name',
+                'nta',
+                'nta_name',
+                'open_date',
+                'police_precinct',
+                'primary_building_code',
+                'principal_name',
+                'principal_phone_number',
+                'principal_title',
+                'state_code',
+                'status_descriptions']
 
-    # duplicate some cols for aliases
-    df["dbn"] = df.system_code
-    df["x"] = df.longitude
-    df["y"] = df.latitude
+            loc2 = loc2[cols]
 
-    # drop rows that might be missing geolocation data or have bad data
-    df = df[df.x.notnull() & df.y.notnull()]
-    df = df[df.y > 0]
+            df = df.merge(loc2, on="dbn", how="left")
+            df.to_json(filename, index=False)
 
-    geo = gpd.points_from_xy(x=df.x,y=df.y)
-    districts = gpd.GeoDataFrame(df, geometry=geo, crs="EPSG:4326")
-
-    return districts
+    return df
 
 
 def load_districts(refresh=False):
