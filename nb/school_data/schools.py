@@ -39,6 +39,7 @@ class demo():
         'dbn',
         'beds',
         'district',
+        "geo_district",
         'boro',
         'school_name',
         'short_name',
@@ -92,6 +93,7 @@ class demo():
         'dbn',
         'beds',
         'district',
+        "geo_district",
         'boro',
         'school_name',
         'ay',
@@ -154,7 +156,6 @@ def str_pct(row, pct_col, enroll_col):
     generic function to take percents as Strings and convert to real
     expects data to look like '84.33%', 'Above 95%', 'Below 5%'
     Example: df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
-
     """
     pct = row[pct_col][:-1]
     # just call the population size `n`
@@ -176,7 +177,6 @@ def str_count(row, col, enroll_col):
     generic function to take percents as Strings and convert to integers
     expects data to look like '246', 'Above 95%', 'Below 5%'
     Example: df["poverty"] = df.apply(lambda row: str_count(row, "poverty", "total_enrollment"), axis = 1)
-
     """
     count = row[col]
     # just call the population size `n`
@@ -275,20 +275,28 @@ def load_school_demographics(refresh=False):
           non_white: total number of non white students
     non_white_asian: total number of non white or asian students
      black_hispanic: total number of black and hispanic students
-    return the dataframe
+            charter: 1 for charter schools, 0 for community public schools
+               beds: the New York State BEDS code for the school
+                zip: school zip code
+       geo_district: the geographic school district where the school is located
+                     will differ for schools where district is > 32
+    return the DataFrame
     """
 
     if refresh:
-        return save_demographics()
+        return save_demographics(refresh=refresh)
     else:
         try:
             # try to load it locally to save time
             df = pd.read_csv("school-demographics.csv")
+            df.zip = df.zip.fillna(0).astype("int32")
+            df.beds = df.beds.fillna(0).astype("int64")
+
             return df
         except FileNotFoundError:
             return save_demographics()
 
-def save_demographics():
+def save_demographics(refresh=False):
     demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
     df = pd.read_csv(demo_url)
 
@@ -297,6 +305,7 @@ def save_demographics():
     df["district"] = df["dbn"].apply(district)
     df["boro"] = df["dbn"].apply(boro)
     df["school_num"] = df.dbn.apply(lambda dbn: int(dbn[3:]))
+    df["charter"] = df.district.apply(lambda x: 1 if x == 84 else 0)
 
     # figure out what grades they teach
     df["pk"] = df["grade_3k_pk_half_day_full"] > 0
@@ -324,7 +333,26 @@ def save_demographics():
 def join_loc_data(df, refresh=False):
     """Join NYS BEDS id, zip code, and other location data."""
     school_loc = geo.load_school_locations(refresh=refresh)
-    return df.merge(school_loc[["dbn", "beds", "zip"]], on="dbn", how="left")
+    # with the left join, we might be missing zip and beds for some schools
+    df = df.merge(school_loc[["dbn", "beds", "zip", "geo_district"]], on="dbn", how="left")
+    # df.beds = df.beds.fillna(0)
+    df.geo_district = df.geo_district.fillna(0)
+    df.geo_district = df.geo_district.astype(int)
+    # df.zip = df.zip.fillna(0).astype("int32")
+    df.beds = pd.to_numeric(df.beds , downcast='integer', errors='coerce')
+    df.beds = df.beds.fillna(0).astype("int64")
+
+    # df.beds = df.beds.fillna(0).astype("int64")
+
+    def get_geo(row):
+        d = row.district
+        if row.geo_district > 0:
+            return row.geo_district
+        if d > 0 and d <=32:
+            return d
+        return 0
+    df.geo_district = df.apply(get_geo, axis=1)
+    return df
 
 def search(df, qry):
     t = df.copy(deep=False)

@@ -1,5 +1,6 @@
 import pandas as pd
-import requests
+import numpy as np
+
 
 # import numpy
 # import math
@@ -81,6 +82,9 @@ def load_math_ela_long():
     ela_df["exam"] = "ela"
     return pd.concat([math_df, ela_df])
 
+def load_nyc_nysed():
+    return pd.read_csv("nysed-nyc-exams.csv")
+
 def load_ela(refresh=False):
     """
     Loads the New York State ELA grades 3-8 ELA exam results for all categories.
@@ -139,18 +143,247 @@ def load_regents(refresh=False):
     """
     if refresh:
         return load_regents_excel()
-    else:
-        try:
-            # try to load it locally to save time
-            return pd.read_csv("regents-exams.csv")
-        except FileNotFoundError:
-            return load_regents_excel()
+
+    try:
+        # try to load it locally to save time
+        return pd.read_csv("regents-exams.csv")
+    except FileNotFoundError:
+        return load_regents_excel()
+
+def load_nysed_exams(refresh=False):
+    """
+    Load the grades 3-8 math and ela exam results for all schools and distrcicts
+    in New York State, in a long data format. This is the only data set that has
+    demographic test results for charter schools in NYC. This data has all of
+    the same columns as the NYC `load_math_ela_long`. Note that NYS does not report the same
+    demographic categories as New York City. In particular, the two groups
+    handle ENL students differently. NYC has 3 categories (current ell, ever
+    ell, never ell) where NYS only has ELL and Non-ELL.
+
+    The NYS data includes categories that are not part of the NYC data
+    such as homelessness, foster care, and parents in armed services.
+    """
+    if refresh:
+        return read_nysed_exam_excel()
+    try:
+        # try to load it locally to save time
+        return pd.read_feather("nysed-exams.feather")
+    except FileNotFoundError:
+        return read_nysed_exam_excel()
+
+
+def load_nysed_nyc_exams():
+    """
+    Loads the New York State version of grades 3-8 Math and ELA exams
+    which includes charter and community schools.
+    """
+    return pd.read_feather("nyc-nysed-exams.feather")
+
 # ==============================================================================
+# filename = "3-8_ELA_AND_MATH_RESEARCHER_FILE_2021.xlsx"
+
+def read_all_nysed_data():
+    files = [
+        "3-8_ELA_AND_MATH_RESEARCHER_FILE_2021.csv",
+        "3-8_ELA_AND_MATH_RESEARCHER_FILE_2019.csv",
+        "3-8_ELA_AND_MATH_RESEARCHER_FILE_2018.csv"
+    ]
+    nysed = pd.concat([read_nysed_exam_excel(f) for f in files])
+    return nysed
+
+
+def read_nysed_exam_excel(filename):
+    """
+    Read the Excel file that has all test scores for all schools and districts
+    in New York State.
+    """
+
+    nysed = pd.read_csv(filename)
+    nysed.columns = [c.upper() for c in nysed.columns]
+    print(filename)
+    print(nysed.columns)
+    col_map = {
+        'NAME': 'school_name',
+        "BEDSCODE":"beds",
+        "SUBGROUP_NAME":"category",
+        "ITEM_SUBJECT_AREA":"exam",
+        "ITEM_DESC":"grade",
+        "SY_END_DATE":"test_year",
+        "TOTAL_TESTED":"number_tested",
+        'TOTAL_ENROLLED': 'total_enrollment',
+        'TOTAL_NOT_TESTED': 'number_not_tested',
+        'L1_COUNT':"level_1_n",
+        'L1_PCT':"level_1_pct",
+        'L2_COUNT':"level_2_n",
+        'L2_PCT':"level_2_pct",
+        'L3_COUNT':"level_3_n",
+        'L3_PCT':"level_3_pct",
+        'L4_COUNT':"level_4_n",
+        'L4_PCT':"level_4_pct",
+        'L3-L4_PCT':"level_3_4_pct",
+        'MEAN_SCALE_SCORE':"mean_scale_score",
+        'SUBGROUP_CODE': 'subgroup_code'
+    }
+
+    def map_col(col):
+        if col in col_map:
+            return col_map[col]
+        else:
+            return col
+    nysed = nysed.rename(columns=map_col)
+
+
+    print(nysed.columns)
+
+    # nysed.test_year = nysed.test_year.apply(lambda x: x.date().year)
+    nysed.test_year = nysed.test_year.apply(lambda x: int(x.split("/")[-1]))
+    nysed["ay"] = nysed.test_year - 1
+    nysed["level_3_4_n"] = nysed.level_3_n + nysed.level_4_n
+    nysed.grade = nysed.grade.apply(lambda x: int(x[6]))
+    cat_map = {
+        'English Language Learner': "Current ELL",
+        'Asian or Native Hawaiian/Other Pacific Islander': 'Asian',
+        'Hispanic or Latino': 'Hispanic',
+        'Black or African American': 'Black',
+        'Not Economically Disadvantaged': 'Not Econ Disadv',
+        'Economically Disadvantaged': 'Econ Disadv',
+        'Students with Disabilities': 'SWD',
+        'General Education Students': 'Not SWD',
+        'Non-English Language Learner': 'Never ELL'
+
+    }
+
+    def map_cats(cat):
+        if cat in cat_map:
+            return cat_map[cat]
+        return cat
+
+
+
+    nysed.category = nysed.category.apply(map_cats)
+
+    nysed.exam = nysed.exam.map({"ELA":"ela","Mathematics":"math"})
+
+    for col in numeric_cols:
+        nysed[col] = pd.to_numeric(nysed[col], errors='coerce')
+
+    cols = [
+        'beds',
+        'ay',
+        'exam',
+        'grade',
+        'category',
+        'test_year',
+        'mean_scale_score',
+        'number_tested',
+        'number_not_tested',
+        'level_1_n',
+        'level_1_pct',
+        'level_2_n',
+        'level_2_pct',
+        'level_3_n',
+        'level_3_pct',
+        'level_4_n',
+        'level_4_pct',
+        'level_3_4_n',
+        'level_3_4_pct'
+
+    ]
+
+    missing_cols = set(cols).difference(set(nysed.columns))
+    print(missing_cols)
+    for c in missing_cols:
+        nysed[c] = None
+
+    #
+    # all_grades = calc_all_grades(nysed.sample(500))
+    # nysed = nysed[cols]
+    # all_grades = all_grades[cols]
+    # nysed = nysed.append(all_grades, ignore_index=True)
+
+    # convert percents from 0-100 to 0-1 to match other data
+    pct_cols = [c for c in cols if c.endswith("pct")]
+    for c in pct_cols:
+        # nysed[c] = nysed[c].fillna(0)
+        nysed[c] = nysed[c] / 100
+
+
+    nysed = nysed[cols]
+    # save as csv for outside use
+    nysed.to_csv("nysed-exams.csv", index=False)
+    # this is a big file, so save as feather for internal use
+    nysed.to_feather("nysed-exams.feather")
+
+    return nysed
+
+
+
+def map_nysed_nyc(nysed):
+    dbn_list = pd.read_feather("dbn-beds-list.feather", columns=["dbn","beds"])
+    dbn_list[dbn_list.beds.isin(nysed.beds)].drop_duplicates()
+    cols = list(nysed.columns)
+    # add dbn to nysed
+    combined = nysed.merge(dbn_list, on="beds", how="inner")
+    cols = ["dbn"] + cols
+    combined = combined[cols]
+    combined.to_feather("nyc-nysed-exams.feather")
+
+    return combined
+
+
+
+def calc_all_grades(nysed):
+    # add all students category to nysed
+    def all_grades_for_school(row):
+        qry = f"beds == '{row.beds}' and ay == {row.ay} and category == '{row.category}' and exam=='{row.exam}'"
+        data = nysed.query(qry)
+
+        mean_scale_score = np.average(data.mean_scale_score, weights=data.total_enrollment)
+        num_tested = data.number_tested.sum()
+        levels = ["1","2","3","4","3_4"]
+        if num_tested == 0:
+            levels_n = [0] * len(levels)
+            levels_pct = [0] * len(levels)
+        else:
+            levels_n = [data[f"level_{i}_n"].sum() for i in levels]
+            levels_pct = [n / num_tested for n in levels_n ]
+        result = {
+              'ay': row.ay,
+              'exam': row.exam,
+              'grade': "All Grades",
+              'category': row.category,
+              'test_year': data.test_year.max(),
+              'mean_scale_score': mean_scale_score,
+              'number_tested': num_tested,
+              'number_not_tested': data.number_not_tested.sum(),
+              'level_1_n': levels_n[0],
+              'level_1_pct': levels_pct[0],
+              'level_2_n': levels_n[1],
+              'level_2_pct': levels_pct[1],
+              'level_3_n': levels_n[2],
+              'level_3_pct': levels_pct[2],
+              'level_4_n': levels_n[3],
+              'level_4_pct': levels_pct[3],
+              'level_3_4_n': levels_n[4],
+              'level_3_4_pct': levels_pct[2],
+              'beds': data.beds.max()
+        }
+        rows.append(result)
+    rows = []
+    cols = ["beds","ay","exam","category","test_year"]
+    t = nysed[cols]
+
+    t = t.drop_duplicates()
+    t.apply(all_grades_for_school, axis=1)
+
+    return pd.DataFrame(rows)
+
+
 def charter_cols(data):
     df = data.copy()
     df["test_year"] = df["year"]
     df["ay"] = df["test_year"] - 1
-    new_cols = ['drop', 'dbn', 'school_name', 'grade', 'year', 'category',
+    new_cols = ['drop', 'dbn', 'school_name', 'grade', 'category',
     'number_tested', 'mean_scale_score', 'level_1_n', 'level_1_pct', 'level_2_n',
     'level_2_pct', 'level_3_n', 'level_3_pct', 'level_4_n', 'level_4_pct',
     'level_3_4_n', 'level_3_4_pct', 'test_year', 'ay']
@@ -162,7 +395,7 @@ def charter_cols(data):
     'level_2_pct', 'level_3_n', 'level_3_pct', 'level_4_n', 'level_4_pct',
     'level_3_4_n', 'level_3_4_pct', 'year']
     df = df[core_cols]
-    df["charter"] = True
+    df["charter"] = 1
     for col in numeric_cols:
         df[col] = pd.to_numeric(df[col], errors='coerce')
 
@@ -252,7 +485,7 @@ def read_nys_exam_excel(url):
 
     df["test_year"] = df["year"]
     df["ay"] = df["year"] - 1
-    df["charter"] = False
+    df["charter"] = 0
     return df
 
 def load_math_excel():

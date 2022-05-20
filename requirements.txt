@@ -19,6 +19,7 @@ debugpy==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1
 entrypoints==0.4
+et-xmlfile==1.1.0
 executing==0.8.3
 fastjsonschema==2.15.3
 Fiona==1.8.21
@@ -58,6 +59,7 @@ networkx==2.8
 notebook==6.4.11
 notebook-shim==0.1.0
 numpy==1.22.3
+openpyxl==3.0.9
 outdated==0.2.1
 packaging==21.3
 pandas==1.4.2
@@ -74,6 +76,7 @@ prompt-toolkit==3.0.29
 psutil==5.9.0
 ptyprocess==0.7.0
 pure-eval==0.2.2
+pyarrow==8.0.0
 pycparser==2.21
 Pygments==2.12.0
 pyparsing==3.0.8
