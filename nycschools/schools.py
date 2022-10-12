@@ -7,19 +7,6 @@ from thefuzz import fuzz
 from . import geo
 
 
-# average class size by school
-# https://data.cityofnewyork.us/resource/sgr7-hhwp.csv
-
-
-# school diversity report
-# https://data.cityofnewyork.us/resource/8vk5-fzts.csv
-
-# bilinugal program list
-# https://data.cityofnewyork.us/resource/6iwb-7euj.csv
-
-# school quality reports
-# https://data.cityofnewyork.us/Education/2020-2021-School-Quality-Reports-Early-Childhood-S/ks4m-pn8b
-
 class demo():
     raw_cols = [
        'dbn', 'school_name', 'year', 'total_enrollment',
