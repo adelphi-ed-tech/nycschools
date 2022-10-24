@@ -1,5 +1,22 @@
+# NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# ==============================================================================
 import os
 import os.path
+import importlib.resources
 import json
 from types import SimpleNamespace
 
@@ -19,14 +36,21 @@ data_paths = [
 
 
 
-def get_config():
+def read_urls():
+    data = importlib.resources.read_text("nycschools", "dataurls.json")
+    urls = json.loads(data)
+    for k,v in urls.items():
+        urls[k] = SimpleNamespace(**v)
+    return urls
 
-    print("loading config from file system")
+
+def get_config():
 
     for path in config_paths:
         if os.path.exists(path):
             with open(path,"r") as f:
                 config = json.loads(f.read())
+                config["urls"] = read_urls()
                 return SimpleNamespace(**config)
 
     # create a new config in the user space
@@ -39,21 +63,33 @@ def get_config():
     with open(path,"w") as f:
         f.write(json.dumps(config, indent=2))
 
+    config["urls"] = read_urls()
     return SimpleNamespace(**config)
-
-
-
 
 
 def find_data_dir():
     """Finds a writeable data directory"""
+    # if ther's a local data dir with data files in it
+    # use that first
+    local = os.path.join(".", "school-data")
+    if os.path.exists(local):
+        files = os.listdir(path)
+        # there must be at least one data file already in our list
+        if len(files) > 0:
+            urls = read_urls()
+            datafiles = [url.filename for url in urls]
+            for f in datafiles:
+                if f in files:
+                    return local
+
     for path in data_paths:
         if check_write_edit_delete(path):
             return path
-    # raise Exception(f"No valid data dir found in: {data_paths}")
+
+    if check_write_edit_delete(local):
+        return local
+
     return None
-
-
 
 
 def check_write_edit_delete(path):
@@ -73,23 +109,23 @@ def check_write_edit_delete(path):
             return False
 
 
-    f = os.path.join(path, ".temp")
+    f = os.path.join(path, ".tmp")
     msg = "testing data dir"
-    with open(f, "w") as temp:
+    with open(f, "w") as tmp:
         try:
-            temp.write(msg)
+            tmp.write(msg)
         except:
             return False
 
-    with open(f, "r") as temp:
+    with open(f, "r") as tmp:
         try:
-            assert temp.read() == msg
+            assert tmp.read() == msg
         except:
             return False
 
-    with open(f, "a") as temp:
+    with open(f, "a") as tmp:
         try:
-            temp.write("\nmore data")
+            tmp.write("\nmore data")
         except:
             return False
     try:

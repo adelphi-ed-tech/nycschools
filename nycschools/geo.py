@@ -1,25 +1,42 @@
+# NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the "License") as
+# published by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the License for more details.
+#
+# You should have received a copy of the License along with this program.
+# If not, see <http://www.gnu.org/licenses/>.
+# ==============================================================================
 import pandas as pd
 import geopandas as gpd
 import folium
 import os
+import os.path
 
-# school data points
-# https://data.cityofnewyork.us/Education/2019-2020-School-Point-Locations/a3nt-yts4
+from . import config
+urls = config.urls
+school_location_file = os.path.join(config.data_dir, "school_locations.geojson")
 
-def load_school_locations(refresh=False):
+def load_school_locations():
+    """Returns a GeoDataFrame with the school locations and location meta-data"""
 
-    filename = "school_locations.geojson"
-    if not refresh:
-        try:
-            df =  gpd.read_file(filename)
-            return df
-        except: # geopandas throws DriveError, but I don't know hwere to import it to catch it
-            pass
-    return get_and_save_locations(filename)
+    try:
+        df =  gpd.read_file(school_location_file)
+        return df
+    except Exception as e: # geopandas throws DriveError, but I don't know where to import it to catch it
+        if e.type != "<class 'fiona.errors.DriverError'>":
+            raise e
+
+    return get_and_save_locations()
 
 
-
-def get_and_save_locations(filename):
+def get_and_save_locations(filename=school_location_file):
     points = get_points()
     locations = get_locations()
     points = points.merge(locations, on="dbn", how="left")
@@ -27,10 +44,11 @@ def get_and_save_locations(filename):
     df.to_file(filename, driver="GeoJSON")
     return df
 
-def get_points():
+def get_points(geojsonurl=urls["school_geo"].url):
+    """Read the school location points and zipcodes from an Open Data Portal GeoJSON URL"""
     # this is the API feed for the location points
     # it's the best place to get zip codes
-    geojsonurl = "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000"
+
     df = gpd.read_file(geojsonurl)
 
     df = df.rename(columns={"xcoordinat":"x","ycoordinat":"y",})
@@ -46,12 +64,13 @@ def get_points():
     df.zip = df.zip.astype("string")
     return df
 
-def get_locations():
-    # this is the API feed for the school locations
-    # in addition to x,y coords, it has a lot of meta-info
-    # about the school locations, including NYS BEDS ids
+def get_locations(url=urls["school_locations"].url):
+    """
+       Read school level data with many location-related columns: school x,y
+       coords, and data about the school locations including NYS BEDS ids,
+       census tract, and police precinct.
+    """
 
-    url = "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000"
     locations = pd.read_csv(url)
     locations["dbn"] = locations.system_code
     cols = [
@@ -96,8 +115,9 @@ def get_locations():
     return locations
 
 
-def load_districts(refresh=False):
-    districts = gpd.read_file("https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&format=GeoJSON")
+def load_districts(url=urls["district_geo"].url):
+    """Get geo shape file for NYC school districts, indexed by district number."""
+    districts = gpd.read_file(url)
     # rename the columns
     districts.columns = ['district', 'area', 'length', 'geometry']
     districts.district = pd.to_numeric(districts.district, downcast='integer', errors='coerce')

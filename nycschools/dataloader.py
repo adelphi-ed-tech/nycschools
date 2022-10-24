@@ -1,18 +1,27 @@
+# NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the "License") as
+# published by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the License for more details.
+#
+# You should have received a copy of the License along with this program.
+# If not, see <http://www.gnu.org/licenses/>.
+# ==============================================================================
 import os
 import os.path
-import importlib.resources
+from types import SimpleNamespace
 import json
+
 import wget
 import arrow
 
-from . import dirs, get_config
-
-def read_urls():
-    data = importlib.resources.read_text("nycschools", "dataurls.json")
-    urls = json.loads(data)
-    return urls
-
-
+from . import config
 
 
 def load_data_files(data_dir=""):
@@ -20,10 +29,8 @@ def load_data_files(data_dir=""):
     drive and saves them into `platformdirs.site_data_dir`
     for this application."""
 
-
     if not data_dir.strip():
-        config = get_config()
-        data_dir = config["data_dir"]
+        data_dir = config.data_dir
 
     data_dir = os.path.abspath(data_dir)
 
@@ -36,14 +43,14 @@ saving files to:
     urls = read_urls()
     start = arrow.utcnow()
     for key, link in urls.items():
-        url = link["url"]
+        url = link.url
         print(f"""
 downloading {key} from:
 {url}""")
 
         filename = url.split("/")[-1].split("?")[0]
-        if link["filename"]:
-            filename = link["filename"]
+        if link.filename:
+            filename = link.filename
         wget.download(url, out=os.path.join(data_dir, filename))
 
     end = arrow.utcnow()

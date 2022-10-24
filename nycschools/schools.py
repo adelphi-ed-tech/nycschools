@@ -1,11 +1,31 @@
-import pandas as pd
-import numpy
+# NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the "License") as
+# published by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the License for more details.
+#
+# You should have received a copy of the License along with this program.
+# If not, see <http://www.gnu.org/licenses/>.
+# ==============================================================================
+import os.path
 import math
 import re
+
+import pandas as pd
+import numpy
 from thefuzz import fuzz
 
 from . import geo
+from . import config
 
+
+demo_filename = os.path.join(config.data_dir, "school-demographics.csv")
 
 class demo():
     raw_cols = [
@@ -138,9 +158,7 @@ class demo():
 
 
 def str_pct(row, pct_col, enroll_col):
-    """
-    load and prep the school demographics data
-    generic function to take percents as Strings and convert to real
+    """generic function to take percentages represented as Strings and convert to real
     expects data to look like '84.33%', 'Above 95%', 'Below 5%'
     Example: df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
     """
@@ -159,9 +177,7 @@ def str_pct(row, pct_col, enroll_col):
     return float(pct)
 
 def str_count(row, col, enroll_col):
-    """
-    load and prep the school demographics data
-    generic function to take percents as Strings and convert to integers
+    """generic function to take whole number counts represented as Strings and convert to integers
     expects data to look like '246', 'Above 95%', 'Below 5%'
     Example: df["poverty"] = df.apply(lambda row: str_count(row, "poverty", "total_enrollment"), axis = 1)
     """
@@ -190,10 +206,7 @@ def ay(year): return int(year.split("-")[0])
 
 
 def school_type(school):
-    """
-        Any school that serves middle school kids
-        is considered a middle school here.
-    """
+    """Any school that serves middle school kids is considered a middle school here."""
 
     if school["middle"]:
         return "MS"
@@ -246,7 +259,7 @@ This school is probably commonly referred to as PS 15."""
     return f"{row.school_type} {row.school_num}"
 
 
-def load_school_demographics(refresh=False):
+def load_school_demographics():
     """
     Loads the NYC school-level demographic data from the
     open data portal and create a dataframe., ascending=False
@@ -270,22 +283,15 @@ def load_school_demographics(refresh=False):
     return the DataFrame
     """
 
-    if refresh:
-        return save_demographics(refresh=refresh)
-    else:
-        try:
-            # try to load it locally to save time
-            df = pd.read_csv("school-demographics.csv")
-            df.zip = df.zip.fillna(0).astype("int32")
-            df.beds = df.beds.fillna(0).astype("int64")
+    # try to load it locally to save time
+    df = pd.read_csv(demo_filename)
+    df.zip = df.zip.fillna(0).astype("int32")
+    df.beds = df.beds.fillna(0).astype("int64")
 
-            return df
-        except FileNotFoundError:
-            return save_demographics()
+    return df
 
-def save_demographics(refresh=False):
-    demo_url = "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000"
-    df = pd.read_csv(demo_url)
+def save_demographics(url=config.urls["demographics"].url):
+    df = pd.read_csv(url)
 
     df["ay"] = df["year"].apply(ay)
 
@@ -310,16 +316,16 @@ def save_demographics(refresh=False):
     df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
     df = df.rename(columns=demo.default_map)
 
-    df = join_loc_data(df, refresh=refresh)
+    df = join_loc_data(df)
     df = df[demo.default_cols]
-    df.to_csv("school-demographics.csv", index=False)
+    df.to_csv(demo_filename, index=False)
 
     return df
 
 
-def join_loc_data(df, refresh=False):
+def join_loc_data(df):
     """Join NYS BEDS id, zip code, and other location data."""
-    school_loc = geo.load_school_locations(refresh=refresh)
+    school_loc = geo.load_school_locations()
     # with the left join, we might be missing zip and beds for some schools
     df = df.merge(school_loc[["dbn", "beds", "zip", "geo_district"]], on="dbn", how="left")
     # df.beds = df.beds.fillna(0)
@@ -372,41 +378,41 @@ def search(df, qry):
 
 # ------------------------------------------------------------------------------
 
-def load_ela_exam_spreadsheet():
-    """
-    Load ELA exam information from the Excel workbook downloaded from the Open Data
-    Portal. The workbook has different sheets for each demographic
-    category of students. Each sheet has the same columns.
-    """
-    sheet_names = ["all", "swd", "ethnicity", "gender", "econ_status", "ell"]
-    # open the Excel workbook
-    xls = pd.ExcelFile('ela.xlsx')
-    # read each sheet into a list of DataFrames
-    data = [pd.read_excel(xls, sheet) for sheet in sheet_names]
-    # combine them into a single dataframe
-    ela_df = pd.concat(data, ignore_index=True)
-
-
-    # convert these to numbers or coerce to NaN
-    cols = [
-        "mean_scale_score",
-        "level_1",
-        "level_1_pct",
-        "level_2",
-        "level_2_pct",
-        "level_3",
-        "level_3_pct",
-        "level_4",
-        "level_4_pct",
-        "level_3_4",
-        "level_3_4_pct"
-    ]
-    for col in cols:
-        if col.endswith("pct"):
-            ela_df[col] = pd.to_numeric(ela_df[col], downcast='float', errors='coerce')
-        else:
-            ela_df[col] = pd.to_numeric(ela_df[col], downcast='integer', errors='coerce')
-
-
-
-    ela_df.to_csv("ela-combined.csv", index=False)
+# def load_ela_exam_spreadsheet():
+#     """
+#     Load ELA exam information from the Excel workbook downloaded from the Open Data
+#     Portal. The workbook has different sheets for each demographic
+#     category of students. Each sheet has the same columns.
+#     """
+#     sheet_names = ["all", "swd", "ethnicity", "gender", "econ_status", "ell"]
+#     # open the Excel workbook
+#     xls = pd.ExcelFile('ela.xlsx')
+#     # read each sheet into a list of DataFrames
+#     data = [pd.read_excel(xls, sheet) for sheet in sheet_names]
+#     # combine them into a single dataframe
+#     ela_df = pd.concat(data, ignore_index=True)
+#
+#
+#     # convert these to numbers or coerce to NaN
+#     cols = [
+#         "mean_scale_score",
+#         "level_1",
+#         "level_1_pct",
+#         "level_2",
+#         "level_2_pct",
+#         "level_3",
+#         "level_3_pct",
+#         "level_4",
+#         "level_4_pct",
+#         "level_3_4",
+#         "level_3_4_pct"
+#     ]
+#     for col in cols:
+#         if col.endswith("pct"):
+#             ela_df[col] = pd.to_numeric(ela_df[col], downcast='float', errors='coerce')
+#         else:
+#             ela_df[col] = pd.to_numeric(ela_df[col], downcast='integer', errors='coerce')
+#
+#
+#
+#     ela_df.to_csv("ela-combined.csv", index=False)
