@@ -20,9 +20,22 @@ import wget
 import os.path
 import zipfile
 
+from . import schools
 from . import config
+import shutil
+
 urls = config.urls
 
+
+def load_nyc_nysed():
+    """
+    Load the subset set of the `load_nys_nysed` data for schools in the
+    New York City Department of Education school demographics data set.
+    """
+    df = load_nys_nysed()
+    nyc = schools.load_school_demographics()
+    beds = nyc.beds.unique()
+    return df[df.beds.isin(beds)]
 
 def load_nys_nysed():
     """
@@ -65,7 +78,7 @@ def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
     data = []
 
     for f in files:
-        if f.endswith("mdb") or "RESEARCHER_FILE" not in f:
+        if f.endswith("mdb") or "RESEARCHER_FILE" not in f or f.startswith("."):
             os.remove(os.path.join(tmp, f))
         else:
             data.append(os.path.join(tmp, f))
@@ -80,6 +93,9 @@ def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
     # this is a big file, so save as feather for internal use
     out = os.path.join(config.data_dir, "nysed-exams.feather")
     df.to_feather(out)
+    # delete the temp folder
+    shutil.rmtree(tmp, ignore_errors=True)
+
     return df
 
 
