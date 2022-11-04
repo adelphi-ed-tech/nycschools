@@ -24,7 +24,7 @@ from . import config
 urls = config.urls
 
 
-def load_nysed_exams(refresh=False):
+def load_nys_nysed():
     """
     Load the grades 3-8 math and ela exam results for all schools and distrcicts
     in New York State, in a long data format. This is the only data set that has
@@ -40,9 +40,10 @@ def load_nysed_exams(refresh=False):
 
     try:
         # try to load it locally to save time
-        return pd.read_feather("nysed-exams.feather")
+        feather = os.path.join(config.data_dir, "nysed-exams.feather")
+        return pd.read_feather(feather)
     except FileNotFoundError:
-        return read_nysed_exam_excel()
+        return load_nysed_ela_math_archives()
 
 def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
     """
@@ -69,7 +70,17 @@ def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
         else:
             data.append(os.path.join(tmp, f))
 
-    return pd.concat([read_nysed_exam(d) for d in data])
+    df = pd.concat([read_nysed_exam(d) for d in data])
+    df = df.reset_index()
+
+    # save as csv for outside/generic use
+    out = os.path.join(config.data_dir, "nysed-exams.csv")
+    df.to_csv(out, index=False)
+
+    # this is a big file, so save as feather for internal use
+    out = os.path.join(config.data_dir, "nysed-exams.feather")
+    df.to_feather(out)
+    return df
 
 
 def download_and_extract(url, tmp):
@@ -88,6 +99,9 @@ def fix_cols(df):
     columns in the data portal.
     """
     nysed = df.copy()
+
+    # make sure capitalization is consistent
+    nysed.columns = [c.upper() for c in nysed.columns]
 
     col_map = {
         'NAME': 'school_name',
@@ -111,6 +125,7 @@ def fix_cols(df):
         'MEAN_SCALE_SCORE':"mean_scale_score",
         'SUBGROUP_CODE': 'subgroup_code'
     }
+
 
     # rename columns to match NYC cols
     def map_col(col):
@@ -195,10 +210,10 @@ def fix_data(df):
         if hasattr(x, "endswith") and x.endswith("%"):
             x = x[:-1]
 
-        if 0 <= x <= 1:
-            return x
         try:
             x = float(x)
+            if 0 <= x <= 1:
+                return x
             x /= 100
             return x
         except:
@@ -208,6 +223,9 @@ def fix_data(df):
     pct_cols = [c for c in nysed.columns if c.endswith("pct")]
     for c in pct_cols:
         nysed[c] = nysed[c].apply(fix_pct)
+        # nysed[c] = nysed[c].astype("float")
+
+    nysed["mean_scale_score"] = pd.to_numeric(nysed["mean_scale_score"], downcast='integer', errors='coerce')
 
     return nysed
 
@@ -225,25 +243,11 @@ def read_nysed_exam(filename):
 
     nysed = fix_cols(nysed)
     nysed = fix_data(nysed)
-    
 
-
-
-    #
     # all_grades = calc_all_grades(nysed.sample(500))
     # nysed = nysed[cols]
     # all_grades = all_grades[cols]
     # nysed = nysed.append(all_grades, ignore_index=True)
-
-
-
-
-    # nysed = nysed[cols]
-    # save as csv for outside use
-    # nysed.to_csv("nysed-exams.csv", index=False)
-
-    # this is a big file, so save as feather for internal use
-    # nysed.to_feather("nysed-exams.feather")
 
     return nysed
 
@@ -315,35 +319,3 @@ def calc_all_grades(nysed):
     t.apply(all_grades_for_school, axis=1)
 
     return pd.DataFrame(rows)
-
-
-def read_nys_exam_excel(url):
-    xls = pd.read_excel(url, sheet_name=None)
-    sheet_names = ['All', 'SWD', 'Ethnicity', 'Gender', 'Econ Status', 'ELL']
-
-    data = [xls[sheet] for sheet in sheet_names]
-    df = pd.concat(data, ignore_index=True)
-
-    cols = ['DBN', 'Grade', 'Year', 'Category', 'Number Tested', 'Mean Scale Score',
-            '# Level 1', '% Level 1', '# Level 2', '% Level 2', '# Level 3',
-            '% Level 3', '# Level 4', '% Level 4', '# Level 3+4', '% Level 3+4']
-
-    new_cols = ['dbn', 'grade', 'year', 'category', 'number_tested',
-                'mean_scale_score', 'level_1_n', 'level_1_pct', 'level_2_n', 'level_2_pct',
-                'level_3_n', 'level_3_pct', 'level_4_n', 'level_4_pct', 'level_3_4_n',
-                'level_3_4_pct']
-
-    df = df[cols]
-
-    df.columns = new_cols
-
-    for col in numeric_cols:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
-        if col.endswith("pct"):
-            df[col] = df[col] / 100
-
-    df["test_year"] = df["year"]
-    df["ay"] = df["year"] - 1
-    del df["year"]
-    df["charter"] = 0
-    return df
