@@ -243,37 +243,6 @@ def load_regents_excel():
     return df
 
 
-def read_nys_exam_excel(url):
-    xls = pd.read_excel(url, sheet_name=None)
-    sheet_names = ['All', 'SWD', 'Ethnicity', 'Gender', 'Econ Status', 'ELL']
-
-    data = [xls[sheet] for sheet in sheet_names]
-    df = pd.concat(data, ignore_index=True)
-
-    cols = ['DBN', 'Grade', 'Year', 'Category', 'Number Tested', 'Mean Scale Score',
-            '# Level 1', '% Level 1', '# Level 2', '% Level 2', '# Level 3',
-            '% Level 3', '# Level 4', '% Level 4', '# Level 3+4', '% Level 3+4']
-
-    new_cols = ['dbn', 'grade', 'year', 'category', 'number_tested',
-                'mean_scale_score', 'level_1_n', 'level_1_pct', 'level_2_n', 'level_2_pct',
-                'level_3_n', 'level_3_pct', 'level_4_n', 'level_4_pct', 'level_3_4_n',
-                'level_3_4_pct']
-
-    df = df[cols]
-
-    df.columns = new_cols
-
-    for col in numeric_cols:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
-        if col.endswith("pct"):
-            df[col] = df[col] / 100
-
-    df["test_year"] = df["year"]
-    df["ay"] = df["year"] - 1
-    del df["year"]
-    df["charter"] = 0
-    return df
-
 def load_math_excel(url=urls["nyc_math"].url):
     """
     Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE
