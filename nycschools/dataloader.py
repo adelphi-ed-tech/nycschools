@@ -24,10 +24,18 @@ import arrow
 from . import config
 
 
-def load_data_files(data_dir=""):
-    """Downloads all of the source data files to the local
-    drive and saves them into `platformdirs.site_data_dir`
-    for this application."""
+def get_data_dir():
+    return config.data_dir
+
+
+def download_source_data(data_dir=""):
+    """
+    Downloads all of the source data files to the local
+    drive and saves them into `data_dir`
+    for this application. If `data_dir` is not
+    specified, they are downloaded into the current
+    directory.
+    """
 
     if not data_dir.strip():
         data_dir = config.data_dir
