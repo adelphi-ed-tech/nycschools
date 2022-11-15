@@ -23,8 +23,8 @@ Our goal is to maintain the most current as well as historical record for each o
 
 - _not yet integrated into API or unit tests_
   - [High School Directory](https://data.cityofnewyork.us/Education/2021-DOE-High-School-Directory/8b6c-7uty)
-    - [High School Admissions Selection Criteria](https://data.cityofnewyork.us/Education/Selection-Criteria-for-Fall-2021-High-School-Admis/9gs9-zhxw)
-    - [NYSED School Demographics & Enrollment](https://data.nysed.gov/files/enrollment/20-21/enrollment_2021.zip)
+  - [High School Admissions Selection Criteria](https://data.cityofnewyork.us/Education/Selection-Criteria-for-Fall-2021-High-School-Admis/9gs9-zhxw)
+  - [NYSED School Demographics & Enrollment](https://data.nysed.gov/files/enrollment/20-21/enrollment_2021.zip)
 
 Notebook example files
 ----------------------
