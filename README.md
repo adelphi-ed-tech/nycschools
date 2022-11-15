@@ -13,7 +13,7 @@ Our goal is to maintain the most current as well as historical record for each o
 1. [School Demographic Snapshot](https://data.cityofnewyork.us/Education/2020-2021-Demographic-Snapshot-School/vmmu-wj3w)
 2. [NYC English Language Arts (ELA) State Test Results (non-charter)](https://data.cityofnewyork.us/Education/2013-2019-New-York-State-ELA-Exam/hvdr-xc2s)
 3. [NYC Math State Test Results (non-charter)](https://data.cityofnewyork.us/Education/2013-2019-New-York-State-MATH-Exam/365g-7jtb)
-4. [NYSED 3-8 ELA & Math Assessment Data (statewide, only source for charter schools with demographic categories)](https://data.nysed.gov/downloads.php)
+4. [NYSED 3-8 ELA & Math Assessment Data (statewide, only source for charter schools with demographic categories, 5 separate .zip downloads)](https://data.nysed.gov/downloads.php)
 5. [Charter School English Language Arts (ELA) Test Results](https://data.cityofnewyork.us/Education/2013-2019-English-Language-Arts-ELA-Test-Results-C/sgjd-xi99)
 6. [Charter School Math Test Results](https://data.cityofnewyork.us/Education/2013-2019-Math-Test-Results-Charter-School/3xsw-bpuy)
 7. [Regents Exam Results](https://data.cityofnewyork.us/Education/2014-15-2018-19-NYC-Regents-Exam-Public/2h3w-9uj9)
