@@ -25,9 +25,21 @@ from . import geo
 from . import config
 
 
-demo_filename = os.path.join(config.data_dir, "school-demographics.csv")
+__demo_filename = os.path.join(config.data_dir, "school-demographics.csv")
 
 class demo():
+    """The `demo` class bundles some common sets of column names
+    to make it easier to work with the school demographic `DataFrame`
+
+    Examples:
+    ----------
+    from nycschools import schools
+
+    df = schools.load_school_demographics()
+    basic = df[schools.demo.short_cols]
+    basic
+
+    """
     raw_cols = [
        'dbn', 'school_name', 'year', 'total_enrollment',
        'grade_3k_pk_half_day_full', 'grade_k', 'grade_1', 'grade_2', 'grade_3',
@@ -194,17 +206,6 @@ def str_count(row, col, enroll_col):
         else:
             print(f"Exception in {col}: {row['dbn']} - {row['year']}. Value: {count}")
 
-
-# a dict of borough abbreviations
-boros = {"K":"Brooklyn", "X":"Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
-# parse school distrcit from dbn
-def district(dbn): return int(dbn[:2])
-# parse boro abbreviation from dbn
-def boro(dbn): return boros[dbn[2]]
-# convert academic year spring to an integer with the year in the Fall
-def ay(year): return int(year.split("-")[0])
-
-
 def school_type(school):
     """Any school that serves middle school kids is considered a middle school here."""
 
@@ -218,7 +219,9 @@ def school_type(school):
 
 
 def clean_name(sn):
-    """creates a simplified school name that is easier to search/index"""
+    """Creates a simplified school name that is easier to search/index
+
+    """
     sn = sn.lower()
     sn = sn.strip()
     sn = sn.replace(".", "")
@@ -260,43 +263,69 @@ This school is probably commonly referred to as PS 15."""
 
 
 def load_school_demographics():
-    """
-    Loads the NYC school-level demographic data from the
-    open data portal and create a dataframe., ascending=False
-    Adds new columns to the dataframe:
-         short_name: the best guess at the nuload_ELAtestmerical name of the school (e.g. PS 9)
-                     or "" if none exists
-           district: the school district number [1..32, 75, 79, 84]
-               boro: borough code string ["M","B","X","Q","R"]
-          boro_name: string of the full borough name
-               year: the academic year as an integer representing the calendar
-                     year in the fall of the school year
-        white_asian: combined number of white and asian students
-          non_white: total number of non white students
-    non_white_asian: total number of non white or asian students
-     black_hispanic: total number of black and hispanic students
-            charter: 1 for charter schools, 0 for community public schools
-               beds: the New York State BEDS code for the school
-                zip: school zip code
-       geo_district: the geographic school district where the school is located
-                     will differ for schools where district is > 32
-    return the DataFrame
+    """ Loads the NYC school-level demographic data from the
+    open data portal and create a dataframe.
+
+    Adds new columns to the data:
+
+           short_name: the best guess for the common name of the school (e.g. PS 9)
+                       or "" if none exists
+             district: the school district number [1..32, 75, 79, 84]
+                 boro: borough code string ["M","B","X","Q","R"]
+            boro_name: string of the full borough name
+                 year: the academic year as an integer representing the calendar
+                       year in the fall of the school year
+          white_asian: combined number of white and asian students
+            non_white: total number of non white students
+      non_white_asian: total number of non white or asian students
+       black_hispanic: total number of black and hispanic students
+              charter: 1 for charter schools, 0 for community public schools
+                 beds: the New York State BEDS code for the school
+                  zip: school zip code
+         geo_district: the geographic school district where the school is located
+                       will differ for schools where district is > 32
+
+    Returns
+    --------------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
     """
 
     # try to load it locally to save time
-    df = pd.read_csv(demo_filename)
+    df = pd.read_csv(__demo_filename)
     df.zip = df.zip.fillna(0).astype("int32")
     df.beds = df.beds.fillna(0).astype("int64")
-
+    1 == 1
     return df
 
 def save_demographics(url=config.urls["demographics"].url):
+    """Loads and cleans school demographic data from a NYC Open Data
+    Portal URL. The data is joined with some location data to make it
+    more easily merged with other data sets. A local copy of the data
+    is saved as a .csv in the `nycschools` data directory.
+
+    Parameters
+    -----------
+    url : str , default loads the url from config.urls with the 'demographics' key
+          the URL to the most recent NYC school demographics
+
+    Returns
+    -------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
+    """
     df = pd.read_csv(url)
 
-    df["ay"] = df["year"].apply(ay)
+    boros = {"K":"Brooklyn", "X":"Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
 
-    df["district"] = df["dbn"].apply(district)
-    df["boro"] = df["dbn"].apply(boro)
+    df["ay"] = df["year"].apply(lambda year: int(year.split("-")[0]))
+    df["district"] = df["dbn"].apply(lambda dbn: int(dbn[:2]))
+
+    df["boro"] = df["dbn"].apply(lambda dbn: boros[dbn[2]])
     df["school_num"] = df.dbn.apply(lambda dbn: int(dbn[3:]))
     df["charter"] = df.district.apply(lambda x: 1 if x == 84 else 0)
 
@@ -318,13 +347,15 @@ def save_demographics(url=config.urls["demographics"].url):
 
     df = join_loc_data(df)
     df = df[demo.default_cols]
-    df.to_csv(demo_filename, index=False)
+    df.to_csv(__demo_filename, index=False)
 
     return df
 
 
 def join_loc_data(df):
-    """Join NYS BEDS id, zip code, and other location data."""
+    """Join NYS BEDS id, zip code, and other location data.
+
+    """
     school_loc = geo.load_school_locations()
     # with the left join, we might be missing zip and beds for some schools
     df = df.merge(school_loc[["dbn", "beds", "zip", "geo_district"]], on="dbn", how="left")
@@ -348,6 +379,23 @@ def join_loc_data(df):
     return df
 
 def search(df, qry):
+    """Search a DataFrame for a school using fuzzy logic.
+
+
+    Parameters
+    ----------
+    df : DataFrame
+         a pandas DataFrame containing school data, such as the
+         data returned from `load_school_demographics()`
+    qry : the school name or search term to look for in the data set
+
+    Returns
+    ---------
+    DataFrame
+        the schools that match the `qry` or an empty DataFrame
+        if no matches were found
+
+    """
     t = df.copy(deep=False)
     latest = t.ay.max()
     # just check the lastest year
@@ -373,46 +421,3 @@ def search(df, qry):
     results = t.sort_values(by=["match"], ascending=False)
 
     return results
-
-
-
-# ------------------------------------------------------------------------------
-
-# def load_ela_exam_spreadsheet():
-#     """
-#     Load ELA exam information from the Excel workbook downloaded from the Open Data
-#     Portal. The workbook has different sheets for each demographic
-#     category of students. Each sheet has the same columns.
-#     """
-#     sheet_names = ["all", "swd", "ethnicity", "gender", "econ_status", "ell"]
-#     # open the Excel workbook
-#     xls = pd.ExcelFile('ela.xlsx')
-#     # read each sheet into a list of DataFrames
-#     data = [pd.read_excel(xls, sheet) for sheet in sheet_names]
-#     # combine them into a single dataframe
-#     ela_df = pd.concat(data, ignore_index=True)
-#
-#
-#     # convert these to numbers or coerce to NaN
-#     cols = [
-#         "mean_scale_score",
-#         "level_1",
-#         "level_1_pct",
-#         "level_2",
-#         "level_2_pct",
-#         "level_3",
-#         "level_3_pct",
-#         "level_4",
-#         "level_4_pct",
-#         "level_3_4",
-#         "level_3_4_pct"
-#     ]
-#     for col in cols:
-#         if col.endswith("pct"):
-#             ela_df[col] = pd.to_numeric(ela_df[col], downcast='float', errors='coerce')
-#         else:
-#             ela_df[col] = pd.to_numeric(ela_df[col], downcast='integer', errors='coerce')
-#
-#
-#
-#     ela_df.to_csv("ela-combined.csv", index=False)
