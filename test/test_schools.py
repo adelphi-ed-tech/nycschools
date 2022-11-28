@@ -37,7 +37,7 @@ def test_load_school_demographics():
 def test_save_demographics():
     df = schools.save_demographics()
     assert df is not None, "Demo data frame is null"
-    assert os.path.exists(schools.demo_filename), "no demo file in data_dir"
+    assert os.path.exists(schools.__demo_filename), "no demo file in data_dir"
     expected_keys = schools.demo.default_cols
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
