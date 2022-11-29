@@ -35,10 +35,7 @@ setup(
     ],
     keywords="opendata, schools, newyorkcity",
     python_requires=">=3.7",
-    package_data={
-        'dataurls': ['dataurls.json']
-    },
-    project_urls={  # Optional
+    project_urls={
         "Bug Reports": "https://github.com/adelphi-ed-tech/nycschools/issues",
         "Source": "https://github.com/adelphi-ed-tech/nycschools"
     },
