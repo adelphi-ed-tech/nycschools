@@ -16,6 +16,7 @@ setup(
     url="https://github.com/adelphi-ed-tech/nycschools",
     author="Matthew X. Curinga",
     author_email="matt@curinga.com",
+    license='OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
     classifiers=[
         "Development Status :: 3 - Alpha",
         'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
