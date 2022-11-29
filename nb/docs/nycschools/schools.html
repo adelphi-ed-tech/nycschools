@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>nycschools.schools API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>nycschools.schools</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the &#34;License&#34;) as
+# published by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the License for more details.
+#
+# You should have received a copy of the License along with this program.
+# If not, see &lt;http://www.gnu.org/licenses/&gt;.
+# ==============================================================================
+import os.path
+import math
+import re
+
+import pandas as pd
+import numpy
+from thefuzz import fuzz
+
+from . import geo
+from . import config
+
+
+__demo_filename = os.path.join(config.data_dir, &#34;school-demographics.csv&#34;)
+
+class demo():
+    &#34;&#34;&#34;The `demo` class bundles some common sets of column names
+    to make it easier to work with the school demographic `DataFrame`
+
+    Examples:
+    ----------
+    from nycschools import schools
+
+    df = schools.load_school_demographics()
+    basic = df[schools.demo.short_cols]
+    basic
+
+    &#34;&#34;&#34;
+    raw_cols = [
+       &#39;dbn&#39;, &#39;school_name&#39;, &#39;year&#39;, &#39;total_enrollment&#39;,
+       &#39;grade_3k_pk_half_day_full&#39;, &#39;grade_k&#39;, &#39;grade_1&#39;, &#39;grade_2&#39;, &#39;grade_3&#39;,
+       &#39;grade_4&#39;, &#39;grade_5&#39;, &#39;grade_6&#39;, &#39;grade_7&#39;, &#39;grade_8&#39;, &#39;grade_9&#39;,
+       &#39;grade_10&#39;, &#39;grade_11&#39;, &#39;grade_12&#39;, &#39;female&#39;, &#39;female_1&#39;, &#39;male&#39;,
+       &#39;male_1&#39;, &#39;asian&#39;, &#39;asian_1&#39;, &#39;black&#39;, &#39;black_1&#39;, &#39;hispanic&#39;,
+       &#39;hispanic_1&#39;, &#39;multi_racial&#39;, &#39;multi_racial_1&#39;, &#39;native_american&#39;,
+       &#39;native_american_1&#39;, &#39;white&#39;, &#39;white_1&#39;, &#39;missing_race_ethnicity_data&#39;,
+       &#39;missing_race_ethnicity_data_1&#39;, &#39;students_with_disabilities&#39;,
+       &#39;students_with_disabilities_1&#39;, &#39;english_language_learners&#39;,
+       &#39;english_language_learners_1&#39;, &#39;poverty&#39;, &#39;poverty_1&#39;,
+       &#39;economic_need_index&#39;
+    ]
+
+    default_cols = [
+        &#39;dbn&#39;,
+        &#39;beds&#39;,
+        &#39;district&#39;,
+        &#34;geo_district&#34;,
+        &#39;boro&#39;,
+        &#39;school_name&#39;,
+        &#39;short_name&#39;,
+        &#39;ay&#39;,
+        &#39;year&#39;,
+        &#39;total_enrollment&#39;,
+        &#39;grade_3k_pk_half_day_full&#39;,
+        &#39;grade_k&#39;,
+        &#39;grade_1&#39;,
+        &#39;grade_2&#39;,
+        &#39;grade_3&#39;,
+        &#39;grade_4&#39;,
+        &#39;grade_5&#39;,
+        &#39;grade_6&#39;,
+        &#39;grade_7&#39;,
+        &#39;grade_8&#39;,
+        &#39;grade_9&#39;,
+        &#39;grade_10&#39;,
+        &#39;grade_11&#39;,
+        &#39;grade_12&#39;,
+        &#39;female_n&#39;,
+        &#39;female_pct&#39;,
+        &#39;male_n&#39;,
+        &#39;male_pct&#39;,
+        &#39;asian_n&#39;,
+        &#39;asian_pct&#39;,
+        &#39;black_n&#39;,
+        &#39;black_pct&#39;,
+        &#39;hispanic_n&#39;,
+        &#39;hispanic_pct&#39;,
+        &#39;multi_racial_n&#39;,
+        &#39;multi_racial_pct&#39;,
+        &#39;native_american_n&#39;,
+        &#39;native_american_pct&#39;,
+        &#39;white_n&#39;,
+        &#39;white_pct&#39;,
+        &#39;missing_race_ethnicity_data_n&#39;,
+        &#39;missing_race_ethnicity_data_pct&#39;,
+        &#39;swd_n&#39;,
+        &#39;swd_pct&#39;,
+        &#39;ell_n&#39;,
+        &#39;ell_pct&#39;,
+        &#39;poverty_n&#39;,
+        &#39;poverty_pct&#39;,
+        &#39;eni_pct&#39;,
+        &#39;clean_name&#39;,
+        &#39;zip&#39;
+    ]
+
+    core_cols = [
+        &#39;dbn&#39;,
+        &#39;beds&#39;,
+        &#39;district&#39;,
+        &#34;geo_district&#34;,
+        &#39;boro&#39;,
+        &#39;school_name&#39;,
+        &#39;ay&#39;,
+        &#39;total_enrollment&#39;,
+        &#39;female_n&#39;,
+        &#39;female_pct&#39;,
+        &#39;male_n&#39;,
+        &#39;male_pct&#39;,
+        &#39;asian_n&#39;,
+        &#39;asian_pct&#39;,
+        &#39;black_n&#39;,
+        &#39;black_pct&#39;,
+        &#39;hispanic_n&#39;,
+        &#39;hispanic_pct&#39;,
+        &#39;white_n&#39;,
+        &#39;white_pct&#39;,
+        &#39;swd_n&#39;,
+        &#39;swd_pct&#39;,
+        &#39;ell_n&#39;,
+        &#39;ell_pct&#39;,
+        &#39;poverty_n&#39;,
+        &#39;poverty_pct&#39;,
+        &#39;eni_pct&#39;
+    ]
+
+    short_cols = [&#34;dbn&#34;,&#34;school_name&#34;, &#34;short_name&#34;, &#34;clean_name&#34;, &#34;ay&#34;]
+
+    default_map = {
+        &#39;female&#39;:&#39;female_n&#39;,
+        &#39;female_1&#39;:&#39;female_pct&#39;,
+        &#39;male&#39;:&#39;male_n&#39;,
+        &#39;male_1&#39;:&#39;male_pct&#39;,
+        &#39;asian&#39;:&#39;asian_n&#39;,
+        &#39;asian_1&#39;:&#39;asian_pct&#39;,
+        &#39;black&#39;:&#39;black_n&#39;,
+        &#39;black_1&#39;:&#39;black_pct&#39;,
+        &#39;hispanic&#39;:&#39;hispanic_n&#39;,
+        &#39;hispanic_1&#39;:&#39;hispanic_pct&#39;,
+        &#39;multi_racial&#39;:&#39;multi_racial_n&#39;,
+        &#39;multi_racial_1&#39;:&#39;multi_racial_pct&#39;,
+        &#39;native_american&#39;:&#39;native_american_n&#39;,
+        &#39;native_american_1&#39;:&#39;native_american_pct&#39;,
+        &#39;white&#39;:&#39;white_n&#39;,
+        &#39;white_1&#39;:&#39;white_pct&#39;,
+        &#39;missing_race_ethnicity_data&#39;:&#39;missing_race_ethnicity_data_n&#39;,
+        &#39;missing_race_ethnicity_data_1&#39;:&#39;missing_race_ethnicity_data_pct&#39;,
+        &#39;students_with_disabilities&#39;:&#39;swd_n&#39;,
+        &#39;students_with_disabilities_1&#39;:&#39;swd_pct&#39;,
+        &#39;english_language_learners&#39;:&#39;ell_n&#39;,
+        &#39;english_language_learners_1&#39;:&#39;ell_pct&#39;,
+        &#39;poverty&#39;:&#39;poverty_n&#39;,
+        &#39;poverty_1&#39;:&#39;poverty_pct&#39;,
+        &#39;economic_need_index&#39;:&#39;eni_pct&#39;
+    }
+
+
+def str_pct(row, pct_col, enroll_col):
+    &#34;&#34;&#34;generic function to take percentages represented as Strings and convert to real
+    expects data to look like &#39;84.33%&#39;, &#39;Above 95%&#39;, &#39;Below 5%&#39;
+    Example: df[&#34;economic_need_index&#34;] = df.apply(lambda row: str_pct(row, &#34;economic_need_index&#34;, &#34;total_enrollment&#34;), axis = 1)
+    &#34;&#34;&#34;
+    pct = row[pct_col][:-1]
+    # just call the population size `n`
+    n = row[enroll_col]
+    try:
+        pct = float(pct) / 100
+    except:
+        if &#34;Above&#34; in pct:
+            pct = n * .96 / n
+        elif &#34;Below&#34; in pct:
+            pct = n * .04 / n
+        else:
+            print(f&#34;Exception in {col}: {row[&#39;dbn&#39;]} - {row[&#39;year&#39;]}. Value: {pct}&#34;)
+    return float(pct)
+
+def str_count(row, col, enroll_col):
+    &#34;&#34;&#34;generic function to take whole number counts represented as Strings and convert to integers
+    expects data to look like &#39;246&#39;, &#39;Above 95%&#39;, &#39;Below 5%&#39;
+    Example: df[&#34;poverty&#34;] = df.apply(lambda row: str_count(row, &#34;poverty&#34;, &#34;total_enrollment&#34;), axis = 1)
+    &#34;&#34;&#34;
+    count = row[col]
+    # just call the population size `n`
+    n = row[enroll_col]
+    try:
+        return int(count)
+    except:
+        if &#34;Above&#34; in count:
+            return int(math.ceil(n * .96))
+        elif &#34;Below&#34; in count:
+            return int(math.floor(n * .04))
+        else:
+            print(f&#34;Exception in {col}: {row[&#39;dbn&#39;]} - {row[&#39;year&#39;]}. Value: {count}&#34;)
+
+def school_type(school):
+    &#34;&#34;&#34;Any school that serves middle school kids is considered a middle school here.&#34;&#34;&#34;
+
+    if school[&#34;middle&#34;]:
+        return &#34;MS&#34;
+    if school[&#34;elementary&#34;]:
+        return &#34;PS&#34;
+    if school[&#34;hs&#34;]:
+        return &#34;HS&#34;
+    return &#34;NA&#34;
+
+
+def clean_name(sn):
+    &#34;&#34;&#34;Creates a simplified school name that is easier to search/index
+
+    &#34;&#34;&#34;
+    sn = sn.lower()
+    sn = sn.strip()
+    sn = sn.replace(&#34;.&#34;, &#34;&#34;)
+    clean = []
+    for word in sn.split(&#34; &#34;):
+        try:
+            n = int(word)
+            clean.append(str(n))
+        except:
+            clean.append(word)
+
+    sn = &#34; &#34;.join(clean)
+
+    # ms, is, ps followed by a number
+    p = re.compile(r&#34;\b([m|p|i]s [0-9]*)&#34;)
+    m = p.search(sn)
+    if m:
+        sn = sn.replace(m.group(0), &#34;&#34;)
+    sn = sn.strip()
+    # if the only thing left is the boro, short name will be school num + boro
+    if sn in [&#34;bronx&#34;, &#34;brooklyn&#34;, &#34;manhattan&#34;, &#34;queens&#34;, &#34;staten island&#34;]:
+        sn = f&#34;{m.group(0)} {sn}&#34;
+    return sn
+
+
+def short_name(row):
+    &#34;&#34;&#34;Attempts to guess the common &#34;short name&#34; for a school.
+For example, the full name might be &#34;P.S. 015 Roberto Clemente&#34;.
+This school is probably commonly referred to as PS 15.&#34;&#34;&#34;
+    sn = row.school_name.upper()
+    if &#34;P.S.&#34; in sn or &#34;P. S.&#34; in sn:
+        return f&#34;PS {row.school_num}&#34;
+    if &#34;M.S.&#34; in sn or &#34;M. S.&#34; in sn:
+        return f&#34;MS {row.school_num}&#34;
+    if &#34;I. S.&#34; in sn or &#34;I.S.&#34; in sn:
+        return f&#34;IS {row.school_num}&#34;
+
+    return f&#34;{row.school_type} {row.school_num}&#34;
+
+
+def load_school_demographics():
+    &#34;&#34;&#34; Loads the NYC school-level demographic data from the
+    open data portal and create a dataframe.
+
+    Adds new columns to the data:
+
+           short_name: the best guess for the common name of the school (e.g. PS 9)
+                       or &#34;&#34; if none exists
+             district: the school district number [1..32, 75, 79, 84]
+                 boro: borough code string [&#34;M&#34;,&#34;B&#34;,&#34;X&#34;,&#34;Q&#34;,&#34;R&#34;]
+            boro_name: string of the full borough name
+                 year: the academic year as an integer representing the calendar
+                       year in the fall of the school year
+          white_asian: combined number of white and asian students
+            non_white: total number of non white students
+      non_white_asian: total number of non white or asian students
+       black_hispanic: total number of black and hispanic students
+              charter: 1 for charter schools, 0 for community public schools
+                 beds: the New York State BEDS code for the school
+                  zip: school zip code
+         geo_district: the geographic school district where the school is located
+                       will differ for schools where district is &gt; 32
+
+    Returns
+    --------------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
+    &#34;&#34;&#34;
+
+    # try to load it locally to save time
+    df = pd.read_csv(__demo_filename)
+    df.zip = df.zip.fillna(0).astype(&#34;int32&#34;)
+    df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+    1 == 1
+    return df
+
+def save_demographics(url=config.urls[&#34;demographics&#34;].url):
+    &#34;&#34;&#34;Loads and cleans school demographic data from a NYC Open Data
+    Portal URL. The data is joined with some location data to make it
+    more easily merged with other data sets. A local copy of the data
+    is saved as a .csv in the `nycschools` data directory.
+
+    Parameters
+    -----------
+    url : str , default loads the url from config.urls with the &#39;demographics&#39; key
+          the URL to the most recent NYC school demographics
+
+    Returns
+    -------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
+    &#34;&#34;&#34;
+    df = pd.read_csv(url)
+
+    boros = {&#34;K&#34;:&#34;Brooklyn&#34;, &#34;X&#34;:&#34;Bronx&#34;, &#34;M&#34;: &#34;Manhattan&#34;, &#34;Q&#34;: &#34;Queens&#34;, &#34;R&#34;: &#34;Staten Island&#34;}
+
+    df[&#34;ay&#34;] = df[&#34;year&#34;].apply(lambda year: int(year.split(&#34;-&#34;)[0]))
+    df[&#34;district&#34;] = df[&#34;dbn&#34;].apply(lambda dbn: int(dbn[:2]))
+
+    df[&#34;boro&#34;] = df[&#34;dbn&#34;].apply(lambda dbn: boros[dbn[2]])
+    df[&#34;school_num&#34;] = df.dbn.apply(lambda dbn: int(dbn[3:]))
+    df[&#34;charter&#34;] = df.district.apply(lambda x: 1 if x == 84 else 0)
+
+    # figure out what grades they teach
+    df[&#34;pk&#34;] = df[&#34;grade_3k_pk_half_day_full&#34;] &gt; 0
+    df[&#34;elementary&#34;] = df[&#34;grade_2&#34;] &gt; 0
+    df[&#34;middle&#34;] = df[&#34;grade_7&#34;] &gt; 0
+    df[&#34;hs&#34;] = df[&#34;grade_10&#34;] &gt; 0
+
+    # make it easier to look up schools
+    df[&#34;school_type&#34;] = df.apply(school_type, axis=1)
+    df[&#34;clean_name&#34;] = df.apply(lambda row: clean_name(row.school_name), axis=1)
+    df[&#34;short_name&#34;] = df.apply(short_name, axis=1)
+
+    df[&#34;poverty&#34;] = df.apply(lambda row: str_count(row, &#34;poverty&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df[&#34;poverty_1&#34;] = df.apply(lambda row: str_pct(row, &#34;poverty_1&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df[&#34;economic_need_index&#34;] = df.apply(lambda row: str_pct(row, &#34;economic_need_index&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df = df.rename(columns=demo.default_map)
+
+    df = join_loc_data(df)
+    df = df[demo.default_cols]
+    df.to_csv(__demo_filename, index=False)
+
+    return df
+
+
+def join_loc_data(df):
+    &#34;&#34;&#34;Join NYS BEDS id, zip code, and other location data.
+
+    &#34;&#34;&#34;
+    school_loc = geo.load_school_locations()
+    # with the left join, we might be missing zip and beds for some schools
+    df = df.merge(school_loc[[&#34;dbn&#34;, &#34;beds&#34;, &#34;zip&#34;, &#34;geo_district&#34;]], on=&#34;dbn&#34;, how=&#34;left&#34;)
+    # df.beds = df.beds.fillna(0)
+    df.geo_district = df.geo_district.fillna(0)
+    df.geo_district = df.geo_district.astype(int)
+    # df.zip = df.zip.fillna(0).astype(&#34;int32&#34;)
+    df.beds = pd.to_numeric(df.beds , downcast=&#39;integer&#39;, errors=&#39;coerce&#39;)
+    df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+
+    # df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+
+    def get_geo(row):
+        d = row.district
+        if row.geo_district &gt; 0:
+            return row.geo_district
+        if d &gt; 0 and d &lt;=32:
+            return d
+        return 0
+    df.geo_district = df.apply(get_geo, axis=1)
+    return df
+
+def search(df, qry):
+    &#34;&#34;&#34;Search a DataFrame for a school using fuzzy logic.
+
+
+    Parameters
+    ----------
+    df : DataFrame
+         a pandas DataFrame containing school data, such as the
+         data returned from `load_school_demographics()`
+    qry : the school name or search term to look for in the data set
+
+    Returns
+    ---------
+    DataFrame
+        the schools that match the `qry` or an empty DataFrame
+        if no matches were found
+
+    &#34;&#34;&#34;
+    t = df.copy(deep=False)
+    latest = t.ay.max()
+    # just check the lastest year
+    t = t[t[&#34;ay&#34;] == latest]
+
+    # see if there&#39;s an exact name match
+    q = clean_name(qry)
+    results = t.query(f&#34;clean_name == &#39;{q}&#39;&#34;)
+    if len(q) &gt; 0 and len(results) &gt; 0:
+        return results
+
+    # look it up by number
+    results = t.query(f&#34;short_name == &#39;{qry.upper()}&#39;&#34;)
+    if len(results) &gt; 0:
+        return results
+
+    # fuzzy search -- add a fuzzy search match column
+    t[&#34;match&#34;] = t.school_name.apply(lambda sn: fuzz.token_set_ratio(qry, sn))
+    t = t.query(&#34;match &gt; 80&#34;)
+    t = pd.DataFrame(t)
+    # now sort the results based on the ratio match
+    t[&#34;match&#34;] = t.clean_name.apply(lambda sn: fuzz.ratio(qry, sn))
+    results = t.sort_values(by=[&#34;match&#34;], ascending=False)
+
+    return results</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="nycschools.schools.clean_name"><code class="name flex">
+<span>def <span class="ident">clean_name</span></span>(<span>sn)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates a simplified school name that is easier to search/index</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clean_name(sn):
+    &#34;&#34;&#34;Creates a simplified school name that is easier to search/index
+
+    &#34;&#34;&#34;
+    sn = sn.lower()
+    sn = sn.strip()
+    sn = sn.replace(&#34;.&#34;, &#34;&#34;)
+    clean = []
+    for word in sn.split(&#34; &#34;):
+        try:
+            n = int(word)
+            clean.append(str(n))
+        except:
+            clean.append(word)
+
+    sn = &#34; &#34;.join(clean)
+
+    # ms, is, ps followed by a number
+    p = re.compile(r&#34;\b([m|p|i]s [0-9]*)&#34;)
+    m = p.search(sn)
+    if m:
+        sn = sn.replace(m.group(0), &#34;&#34;)
+    sn = sn.strip()
+    # if the only thing left is the boro, short name will be school num + boro
+    if sn in [&#34;bronx&#34;, &#34;brooklyn&#34;, &#34;manhattan&#34;, &#34;queens&#34;, &#34;staten island&#34;]:
+        sn = f&#34;{m.group(0)} {sn}&#34;
+    return sn</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.join_loc_data"><code class="name flex">
+<span>def <span class="ident">join_loc_data</span></span>(<span>df)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Join NYS BEDS id, zip code, and other location data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def join_loc_data(df):
+    &#34;&#34;&#34;Join NYS BEDS id, zip code, and other location data.
+
+    &#34;&#34;&#34;
+    school_loc = geo.load_school_locations()
+    # with the left join, we might be missing zip and beds for some schools
+    df = df.merge(school_loc[[&#34;dbn&#34;, &#34;beds&#34;, &#34;zip&#34;, &#34;geo_district&#34;]], on=&#34;dbn&#34;, how=&#34;left&#34;)
+    # df.beds = df.beds.fillna(0)
+    df.geo_district = df.geo_district.fillna(0)
+    df.geo_district = df.geo_district.astype(int)
+    # df.zip = df.zip.fillna(0).astype(&#34;int32&#34;)
+    df.beds = pd.to_numeric(df.beds , downcast=&#39;integer&#39;, errors=&#39;coerce&#39;)
+    df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+
+    # df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+
+    def get_geo(row):
+        d = row.district
+        if row.geo_district &gt; 0:
+            return row.geo_district
+        if d &gt; 0 and d &lt;=32:
+            return d
+        return 0
+    df.geo_district = df.apply(get_geo, axis=1)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.load_school_demographics"><code class="name flex">
+<span>def <span class="ident">load_school_demographics</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the NYC school-level demographic data from the
+open data portal and create a dataframe.</p>
+<p>Adds new columns to the data:</p>
+<pre><code>   short_name: the best guess for the common name of the school (e.g. PS 9)
+               or "" if none exists
+     district: the school district number [1..32, 75, 79, 84]
+         boro: borough code string ["M","B","X","Q","R"]
+    boro_name: string of the full borough name
+         year: the academic year as an integer representing the calendar
+               year in the fall of the school year
+  white_asian: combined number of white and asian students
+    non_white: total number of non white students
+</code></pre>
+<p>non_white_asian: total number of non white or asian students
+black_hispanic: total number of black and hispanic students
+charter: 1 for charter schools, 0 for community public schools
+beds: the New York State BEDS code for the school
+zip: school zip code
+geo_district: the geographic school district where the school is located
+will differ for schools where district is &gt; 32</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>DataFrame</code></dt>
+<dd>a pandas DataFrame holding school demographic data for all of the schools
+in the data portal</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_school_demographics():
+    &#34;&#34;&#34; Loads the NYC school-level demographic data from the
+    open data portal and create a dataframe.
+
+    Adds new columns to the data:
+
+           short_name: the best guess for the common name of the school (e.g. PS 9)
+                       or &#34;&#34; if none exists
+             district: the school district number [1..32, 75, 79, 84]
+                 boro: borough code string [&#34;M&#34;,&#34;B&#34;,&#34;X&#34;,&#34;Q&#34;,&#34;R&#34;]
+            boro_name: string of the full borough name
+                 year: the academic year as an integer representing the calendar
+                       year in the fall of the school year
+          white_asian: combined number of white and asian students
+            non_white: total number of non white students
+      non_white_asian: total number of non white or asian students
+       black_hispanic: total number of black and hispanic students
+              charter: 1 for charter schools, 0 for community public schools
+                 beds: the New York State BEDS code for the school
+                  zip: school zip code
+         geo_district: the geographic school district where the school is located
+                       will differ for schools where district is &gt; 32
+
+    Returns
+    --------------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
+    &#34;&#34;&#34;
+
+    # try to load it locally to save time
+    df = pd.read_csv(__demo_filename)
+    df.zip = df.zip.fillna(0).astype(&#34;int32&#34;)
+    df.beds = df.beds.fillna(0).astype(&#34;int64&#34;)
+    1 == 1
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.save_demographics"><code class="name flex">
+<span>def <span class="ident">save_demographics</span></span>(<span>url='https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads and cleans school demographic data from a NYC Open Data
+Portal URL. The data is joined with some location data to make it
+more easily merged with other data sets. A local copy of the data
+is saved as a .csv in the <code><a title="nycschools" href="index.html">nycschools</a></code> data directory.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>url</code></strong> :&ensp;<code>str</code> , default <code>loads the url from config.urls with the 'demographics' key</code></dt>
+<dd>the URL to the most recent NYC school demographics</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>DataFrame</code></dt>
+<dd>a pandas DataFrame holding school demographic data for all of the schools
+in the data portal</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_demographics(url=config.urls[&#34;demographics&#34;].url):
+    &#34;&#34;&#34;Loads and cleans school demographic data from a NYC Open Data
+    Portal URL. The data is joined with some location data to make it
+    more easily merged with other data sets. A local copy of the data
+    is saved as a .csv in the `nycschools` data directory.
+
+    Parameters
+    -----------
+    url : str , default loads the url from config.urls with the &#39;demographics&#39; key
+          the URL to the most recent NYC school demographics
+
+    Returns
+    -------
+    DataFrame
+        a pandas DataFrame holding school demographic data for all of the schools
+        in the data portal
+
+    &#34;&#34;&#34;
+    df = pd.read_csv(url)
+
+    boros = {&#34;K&#34;:&#34;Brooklyn&#34;, &#34;X&#34;:&#34;Bronx&#34;, &#34;M&#34;: &#34;Manhattan&#34;, &#34;Q&#34;: &#34;Queens&#34;, &#34;R&#34;: &#34;Staten Island&#34;}
+
+    df[&#34;ay&#34;] = df[&#34;year&#34;].apply(lambda year: int(year.split(&#34;-&#34;)[0]))
+    df[&#34;district&#34;] = df[&#34;dbn&#34;].apply(lambda dbn: int(dbn[:2]))
+
+    df[&#34;boro&#34;] = df[&#34;dbn&#34;].apply(lambda dbn: boros[dbn[2]])
+    df[&#34;school_num&#34;] = df.dbn.apply(lambda dbn: int(dbn[3:]))
+    df[&#34;charter&#34;] = df.district.apply(lambda x: 1 if x == 84 else 0)
+
+    # figure out what grades they teach
+    df[&#34;pk&#34;] = df[&#34;grade_3k_pk_half_day_full&#34;] &gt; 0
+    df[&#34;elementary&#34;] = df[&#34;grade_2&#34;] &gt; 0
+    df[&#34;middle&#34;] = df[&#34;grade_7&#34;] &gt; 0
+    df[&#34;hs&#34;] = df[&#34;grade_10&#34;] &gt; 0
+
+    # make it easier to look up schools
+    df[&#34;school_type&#34;] = df.apply(school_type, axis=1)
+    df[&#34;clean_name&#34;] = df.apply(lambda row: clean_name(row.school_name), axis=1)
+    df[&#34;short_name&#34;] = df.apply(short_name, axis=1)
+
+    df[&#34;poverty&#34;] = df.apply(lambda row: str_count(row, &#34;poverty&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df[&#34;poverty_1&#34;] = df.apply(lambda row: str_pct(row, &#34;poverty_1&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df[&#34;economic_need_index&#34;] = df.apply(lambda row: str_pct(row, &#34;economic_need_index&#34;, &#34;total_enrollment&#34;), axis = 1)
+    df = df.rename(columns=demo.default_map)
+
+    df = join_loc_data(df)
+    df = df[demo.default_cols]
+    df.to_csv(__demo_filename, index=False)
+
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.school_type"><code class="name flex">
+<span>def <span class="ident">school_type</span></span>(<span>school)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Any school that serves middle school kids is considered a middle school here.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def school_type(school):
+    &#34;&#34;&#34;Any school that serves middle school kids is considered a middle school here.&#34;&#34;&#34;
+
+    if school[&#34;middle&#34;]:
+        return &#34;MS&#34;
+    if school[&#34;elementary&#34;]:
+        return &#34;PS&#34;
+    if school[&#34;hs&#34;]:
+        return &#34;HS&#34;
+    return &#34;NA&#34;</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>df, qry)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search a DataFrame for a school using fuzzy logic.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>df</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>a pandas DataFrame containing school data, such as the
+data returned from <code><a title="nycschools.schools.load_school_demographics" href="#nycschools.schools.load_school_demographics">load_school_demographics()</a></code></dd>
+<dt><strong><code>qry</code></strong> :&ensp;<code>the school name</code> or <code><a title="nycschools.schools.search" href="#nycschools.schools.search">search()</a> term to look for in the data set</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>DataFrame</code></dt>
+<dd>the schools that match the <code>qry</code> or an empty DataFrame
+if no matches were found</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search(df, qry):
+    &#34;&#34;&#34;Search a DataFrame for a school using fuzzy logic.
+
+
+    Parameters
+    ----------
+    df : DataFrame
+         a pandas DataFrame containing school data, such as the
+         data returned from `load_school_demographics()`
+    qry : the school name or search term to look for in the data set
+
+    Returns
+    ---------
+    DataFrame
+        the schools that match the `qry` or an empty DataFrame
+        if no matches were found
+
+    &#34;&#34;&#34;
+    t = df.copy(deep=False)
+    latest = t.ay.max()
+    # just check the lastest year
+    t = t[t[&#34;ay&#34;] == latest]
+
+    # see if there&#39;s an exact name match
+    q = clean_name(qry)
+    results = t.query(f&#34;clean_name == &#39;{q}&#39;&#34;)
+    if len(q) &gt; 0 and len(results) &gt; 0:
+        return results
+
+    # look it up by number
+    results = t.query(f&#34;short_name == &#39;{qry.upper()}&#39;&#34;)
+    if len(results) &gt; 0:
+        return results
+
+    # fuzzy search -- add a fuzzy search match column
+    t[&#34;match&#34;] = t.school_name.apply(lambda sn: fuzz.token_set_ratio(qry, sn))
+    t = t.query(&#34;match &gt; 80&#34;)
+    t = pd.DataFrame(t)
+    # now sort the results based on the ratio match
+    t[&#34;match&#34;] = t.clean_name.apply(lambda sn: fuzz.ratio(qry, sn))
+    results = t.sort_values(by=[&#34;match&#34;], ascending=False)
+
+    return results</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.short_name"><code class="name flex">
+<span>def <span class="ident">short_name</span></span>(<span>row)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Attempts to guess the common "short name" for a school.
+For example, the full name might be "P.S. 015 Roberto Clemente".
+This school is probably commonly referred to as PS 15.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def short_name(row):
+    &#34;&#34;&#34;Attempts to guess the common &#34;short name&#34; for a school.
+For example, the full name might be &#34;P.S. 015 Roberto Clemente&#34;.
+This school is probably commonly referred to as PS 15.&#34;&#34;&#34;
+    sn = row.school_name.upper()
+    if &#34;P.S.&#34; in sn or &#34;P. S.&#34; in sn:
+        return f&#34;PS {row.school_num}&#34;
+    if &#34;M.S.&#34; in sn or &#34;M. S.&#34; in sn:
+        return f&#34;MS {row.school_num}&#34;
+    if &#34;I. S.&#34; in sn or &#34;I.S.&#34; in sn:
+        return f&#34;IS {row.school_num}&#34;
+
+    return f&#34;{row.school_type} {row.school_num}&#34;</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.str_count"><code class="name flex">
+<span>def <span class="ident">str_count</span></span>(<span>row, col, enroll_col)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>generic function to take whole number counts represented as Strings and convert to integers
+expects data to look like '246', 'Above 95%', 'Below 5%'
+Example: df["poverty"] = df.apply(lambda row: str_count(row, "poverty", "total_enrollment"), axis = 1)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def str_count(row, col, enroll_col):
+    &#34;&#34;&#34;generic function to take whole number counts represented as Strings and convert to integers
+    expects data to look like &#39;246&#39;, &#39;Above 95%&#39;, &#39;Below 5%&#39;
+    Example: df[&#34;poverty&#34;] = df.apply(lambda row: str_count(row, &#34;poverty&#34;, &#34;total_enrollment&#34;), axis = 1)
+    &#34;&#34;&#34;
+    count = row[col]
+    # just call the population size `n`
+    n = row[enroll_col]
+    try:
+        return int(count)
+    except:
+        if &#34;Above&#34; in count:
+            return int(math.ceil(n * .96))
+        elif &#34;Below&#34; in count:
+            return int(math.floor(n * .04))
+        else:
+            print(f&#34;Exception in {col}: {row[&#39;dbn&#39;]} - {row[&#39;year&#39;]}. Value: {count}&#34;)</code></pre>
+</details>
+</dd>
+<dt id="nycschools.schools.str_pct"><code class="name flex">
+<span>def <span class="ident">str_pct</span></span>(<span>row, pct_col, enroll_col)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>generic function to take percentages represented as Strings and convert to real
+expects data to look like '84.33%', 'Above 95%', 'Below 5%'
+Example: df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def str_pct(row, pct_col, enroll_col):
+    &#34;&#34;&#34;generic function to take percentages represented as Strings and convert to real
+    expects data to look like &#39;84.33%&#39;, &#39;Above 95%&#39;, &#39;Below 5%&#39;
+    Example: df[&#34;economic_need_index&#34;] = df.apply(lambda row: str_pct(row, &#34;economic_need_index&#34;, &#34;total_enrollment&#34;), axis = 1)
+    &#34;&#34;&#34;
+    pct = row[pct_col][:-1]
+    # just call the population size `n`
+    n = row[enroll_col]
+    try:
+        pct = float(pct) / 100
+    except:
+        if &#34;Above&#34; in pct:
+            pct = n * .96 / n
+        elif &#34;Below&#34; in pct:
+            pct = n * .04 / n
+        else:
+            print(f&#34;Exception in {col}: {row[&#39;dbn&#39;]} - {row[&#39;year&#39;]}. Value: {pct}&#34;)
+    return float(pct)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="nycschools.schools.demo"><code class="flex name class">
+<span>class <span class="ident">demo</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>The <code><a title="nycschools.schools.demo" href="#nycschools.schools.demo">demo</a></code> class bundles some common sets of column names
+to make it easier to work with the school demographic <code>DataFrame</code></p>
+<h2 id="examples">Examples:</h2>
+<p>from nycschools import schools</p>
+<p>df = schools.load_school_demographics()
+basic = df[schools.demo.short_cols]
+basic</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class demo():
+    &#34;&#34;&#34;The `demo` class bundles some common sets of column names
+    to make it easier to work with the school demographic `DataFrame`
+
+    Examples:
+    ----------
+    from nycschools import schools
+
+    df = schools.load_school_demographics()
+    basic = df[schools.demo.short_cols]
+    basic
+
+    &#34;&#34;&#34;
+    raw_cols = [
+       &#39;dbn&#39;, &#39;school_name&#39;, &#39;year&#39;, &#39;total_enrollment&#39;,
+       &#39;grade_3k_pk_half_day_full&#39;, &#39;grade_k&#39;, &#39;grade_1&#39;, &#39;grade_2&#39;, &#39;grade_3&#39;,
+       &#39;grade_4&#39;, &#39;grade_5&#39;, &#39;grade_6&#39;, &#39;grade_7&#39;, &#39;grade_8&#39;, &#39;grade_9&#39;,
+       &#39;grade_10&#39;, &#39;grade_11&#39;, &#39;grade_12&#39;, &#39;female&#39;, &#39;female_1&#39;, &#39;male&#39;,
+       &#39;male_1&#39;, &#39;asian&#39;, &#39;asian_1&#39;, &#39;black&#39;, &#39;black_1&#39;, &#39;hispanic&#39;,
+       &#39;hispanic_1&#39;, &#39;multi_racial&#39;, &#39;multi_racial_1&#39;, &#39;native_american&#39;,
+       &#39;native_american_1&#39;, &#39;white&#39;, &#39;white_1&#39;, &#39;missing_race_ethnicity_data&#39;,
+       &#39;missing_race_ethnicity_data_1&#39;, &#39;students_with_disabilities&#39;,
+       &#39;students_with_disabilities_1&#39;, &#39;english_language_learners&#39;,
+       &#39;english_language_learners_1&#39;, &#39;poverty&#39;, &#39;poverty_1&#39;,
+       &#39;economic_need_index&#39;
+    ]
+
+    default_cols = [
+        &#39;dbn&#39;,
+        &#39;beds&#39;,
+        &#39;district&#39;,
+        &#34;geo_district&#34;,
+        &#39;boro&#39;,
+        &#39;school_name&#39;,
+        &#39;short_name&#39;,
+        &#39;ay&#39;,
+        &#39;year&#39;,
+        &#39;total_enrollment&#39;,
+        &#39;grade_3k_pk_half_day_full&#39;,
+        &#39;grade_k&#39;,
+        &#39;grade_1&#39;,
+        &#39;grade_2&#39;,
+        &#39;grade_3&#39;,
+        &#39;grade_4&#39;,
+        &#39;grade_5&#39;,
+        &#39;grade_6&#39;,
+        &#39;grade_7&#39;,
+        &#39;grade_8&#39;,
+        &#39;grade_9&#39;,
+        &#39;grade_10&#39;,
+        &#39;grade_11&#39;,
+        &#39;grade_12&#39;,
+        &#39;female_n&#39;,
+        &#39;female_pct&#39;,
+        &#39;male_n&#39;,
+        &#39;male_pct&#39;,
+        &#39;asian_n&#39;,
+        &#39;asian_pct&#39;,
+        &#39;black_n&#39;,
+        &#39;black_pct&#39;,
+        &#39;hispanic_n&#39;,
+        &#39;hispanic_pct&#39;,
+        &#39;multi_racial_n&#39;,
+        &#39;multi_racial_pct&#39;,
+        &#39;native_american_n&#39;,
+        &#39;native_american_pct&#39;,
+        &#39;white_n&#39;,
+        &#39;white_pct&#39;,
+        &#39;missing_race_ethnicity_data_n&#39;,
+        &#39;missing_race_ethnicity_data_pct&#39;,
+        &#39;swd_n&#39;,
+        &#39;swd_pct&#39;,
+        &#39;ell_n&#39;,
+        &#39;ell_pct&#39;,
+        &#39;poverty_n&#39;,
+        &#39;poverty_pct&#39;,
+        &#39;eni_pct&#39;,
+        &#39;clean_name&#39;,
+        &#39;zip&#39;
+    ]
+
+    core_cols = [
+        &#39;dbn&#39;,
+        &#39;beds&#39;,
+        &#39;district&#39;,
+        &#34;geo_district&#34;,
+        &#39;boro&#39;,
+        &#39;school_name&#39;,
+        &#39;ay&#39;,
+        &#39;total_enrollment&#39;,
+        &#39;female_n&#39;,
+        &#39;female_pct&#39;,
+        &#39;male_n&#39;,
+        &#39;male_pct&#39;,
+        &#39;asian_n&#39;,
+        &#39;asian_pct&#39;,
+        &#39;black_n&#39;,
+        &#39;black_pct&#39;,
+        &#39;hispanic_n&#39;,
+        &#39;hispanic_pct&#39;,
+        &#39;white_n&#39;,
+        &#39;white_pct&#39;,
+        &#39;swd_n&#39;,
+        &#39;swd_pct&#39;,
+        &#39;ell_n&#39;,
+        &#39;ell_pct&#39;,
+        &#39;poverty_n&#39;,
+        &#39;poverty_pct&#39;,
+        &#39;eni_pct&#39;
+    ]
+
+    short_cols = [&#34;dbn&#34;,&#34;school_name&#34;, &#34;short_name&#34;, &#34;clean_name&#34;, &#34;ay&#34;]
+
+    default_map = {
+        &#39;female&#39;:&#39;female_n&#39;,
+        &#39;female_1&#39;:&#39;female_pct&#39;,
+        &#39;male&#39;:&#39;male_n&#39;,
+        &#39;male_1&#39;:&#39;male_pct&#39;,
+        &#39;asian&#39;:&#39;asian_n&#39;,
+        &#39;asian_1&#39;:&#39;asian_pct&#39;,
+        &#39;black&#39;:&#39;black_n&#39;,
+        &#39;black_1&#39;:&#39;black_pct&#39;,
+        &#39;hispanic&#39;:&#39;hispanic_n&#39;,
+        &#39;hispanic_1&#39;:&#39;hispanic_pct&#39;,
+        &#39;multi_racial&#39;:&#39;multi_racial_n&#39;,
+        &#39;multi_racial_1&#39;:&#39;multi_racial_pct&#39;,
+        &#39;native_american&#39;:&#39;native_american_n&#39;,
+        &#39;native_american_1&#39;:&#39;native_american_pct&#39;,
+        &#39;white&#39;:&#39;white_n&#39;,
+        &#39;white_1&#39;:&#39;white_pct&#39;,
+        &#39;missing_race_ethnicity_data&#39;:&#39;missing_race_ethnicity_data_n&#39;,
+        &#39;missing_race_ethnicity_data_1&#39;:&#39;missing_race_ethnicity_data_pct&#39;,
+        &#39;students_with_disabilities&#39;:&#39;swd_n&#39;,
+        &#39;students_with_disabilities_1&#39;:&#39;swd_pct&#39;,
+        &#39;english_language_learners&#39;:&#39;ell_n&#39;,
+        &#39;english_language_learners_1&#39;:&#39;ell_pct&#39;,
+        &#39;poverty&#39;:&#39;poverty_n&#39;,
+        &#39;poverty_1&#39;:&#39;poverty_pct&#39;,
+        &#39;economic_need_index&#39;:&#39;eni_pct&#39;
+    }</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="nycschools.schools.demo.core_cols"><code class="name">var <span class="ident">core_cols</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="nycschools.schools.demo.default_cols"><code class="name">var <span class="ident">default_cols</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="nycschools.schools.demo.default_map"><code class="name">var <span class="ident">default_map</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="nycschools.schools.demo.raw_cols"><code class="name">var <span class="ident">raw_cols</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="nycschools.schools.demo.short_cols"><code class="name">var <span class="ident">short_cols</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="nycschools" href="index.html">nycschools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="nycschools.schools.clean_name" href="#nycschools.schools.clean_name">clean_name</a></code></li>
+<li><code><a title="nycschools.schools.join_loc_data" href="#nycschools.schools.join_loc_data">join_loc_data</a></code></li>
+<li><code><a title="nycschools.schools.load_school_demographics" href="#nycschools.schools.load_school_demographics">load_school_demographics</a></code></li>
+<li><code><a title="nycschools.schools.save_demographics" href="#nycschools.schools.save_demographics">save_demographics</a></code></li>
+<li><code><a title="nycschools.schools.school_type" href="#nycschools.schools.school_type">school_type</a></code></li>
+<li><code><a title="nycschools.schools.search" href="#nycschools.schools.search">search</a></code></li>
+<li><code><a title="nycschools.schools.short_name" href="#nycschools.schools.short_name">short_name</a></code></li>
+<li><code><a title="nycschools.schools.str_count" href="#nycschools.schools.str_count">str_count</a></code></li>
+<li><code><a title="nycschools.schools.str_pct" href="#nycschools.schools.str_pct">str_pct</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="nycschools.schools.demo" href="#nycschools.schools.demo">demo</a></code></h4>
+<ul class="">
+<li><code><a title="nycschools.schools.demo.core_cols" href="#nycschools.schools.demo.core_cols">core_cols</a></code></li>
+<li><code><a title="nycschools.schools.demo.default_cols" href="#nycschools.schools.demo.default_cols">default_cols</a></code></li>
+<li><code><a title="nycschools.schools.demo.default_map" href="#nycschools.schools.demo.default_map">default_map</a></code></li>
+<li><code><a title="nycschools.schools.demo.raw_cols" href="#nycschools.schools.demo.raw_cols">raw_cols</a></code></li>
+<li><code><a title="nycschools.schools.demo.short_cols" href="#nycschools.schools.demo.short_cols">short_cols</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
