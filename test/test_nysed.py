@@ -4,7 +4,7 @@ import os.path
 from nycschools import config, nysed
 from test_exams import check_state_test
 
-# @pytest.mark.skip(reason="too slow for normal testing")
+@pytest.mark.skip(reason="too slow for normal testing")
 def test_load_nysed_ela_math_archives():
     df = nysed.load_nysed_ela_math_archives()
     check_state_test(df)
