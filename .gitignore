@@ -156,5 +156,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# archive data files
+*.7z
+*.zip
+*.tar
+*.tgz
+*.rar
+
 # system data folder
 data-share
