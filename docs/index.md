@@ -9,7 +9,7 @@ Documentation
 -------------
 1. [List of Open Data Sources](data-sources.md)
 2. [Python API Documentation for `nycschools` library]("api/nycschools/index.html")
-3. Jupyter Notebook Examples
+3. **Jupyter Notebook Examples**
    1. [Pandas Basics](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/01-Basics)
       1. [Loading Data](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/01-loading-data.ipynb)
       2. [Querying Data](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/02-querying-data.ipynb)
@@ -18,8 +18,8 @@ Documentation
    2. [Combining Data](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/02-Combining-Data)
       1. [Groups & Aggregates](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/02-Combining-Data/01-group-and-agg.ipynb)
       2. [Merges & Joins](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/02-Combining-Data/02-merge-and-join.ipynb)
-      - loading and saving outside data
-      - pivots / reshaping data
+      3. loading and saving outside data
+      4. pivots / reshaping data
    3. [Statistical Analysis](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics)
       1. R coefficients
       2. quantiles
