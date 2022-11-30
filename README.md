@@ -62,7 +62,7 @@ run:
 python -m nycschools.dataloader
 ~~~~~~
 
-### (optinoa) Test the code
+### (optional) Test the code
 Run the unit tests to make sure everything is up and running.
 Running these tests will also download all of the data files
 from their online sources.
