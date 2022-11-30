@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>nycschools.exams API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>nycschools.exams</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># NYC School Data
+# Copyright (C) 2022. Matthew X. Curinga
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the &#34;License&#34;) as
+# published by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the License for more details.
+#
+# You should have received a copy of the License along with this program.
+# If not, see &lt;http://www.gnu.org/licenses/&gt;.
+# ==============================================================================
+import pandas as pd
+import numpy as np
+import wget
+
+import os.path
+import zipfile
+
+from . import config
+urls = config.urls
+
+
+# convert these to numbers or coerce to NaN
+numeric_cols = [
+    &#39;number_tested&#39;,
+    &#34;mean_scale_score&#34;,
+    &#34;level_1_n&#34;,
+    &#34;level_1_pct&#34;,
+    &#34;level_2_n&#34;,
+    &#34;level_2_pct&#34;,
+    &#34;level_3_n&#34;,
+    &#34;level_3_pct&#34;,
+    &#34;level_4_n&#34;,
+    &#34;level_4_pct&#34;,
+    &#34;level_3_4_n&#34;,
+    &#34;level_3_4_pct&#34;
+]
+
+
+def load_charter_ela(url=urls[&#34;charter_ela&#34;].url):
+    &#34;&#34;&#34;
+    Loads the charter school ELA exam results for the &#34;All Students&#34;
+    category from the NYC Open Data Portal. Columns are re-named for consistency.
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;charter_ela&#34;].filename)
+    return load_charter_test(url, filename)
+
+def load_charter_math(url=urls[&#34;charter_math&#34;].url):
+    &#34;&#34;&#34;
+    Loads the charter school Math exam results for the &#34;All Students&#34;
+    category from the NYC Open Data Portal. Columns are re-named for consistency.
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;charter_math&#34;].filename)
+    return load_charter_test(url, filename)
+
+def load_charter_test(url, filename):
+    try:
+        return pd.read_csv(filename)
+    except FileNotFoundError:
+        pass
+
+    df = pd.read_csv(url)
+    df = charter_cols(df)
+    df.to_csv(filename, index=False)
+
+    return df
+
+def load_math_ela_wide():
+    &#34;&#34;&#34;
+    Load a combined `DataFrame` with both math and ela test results
+    in a &#34;wide&#34; data format.
+    All of the math result columns have the suffix `_math`
+    and the ELA columns have the suffix `_ela`.
+    &#34;&#34;&#34;
+    math_df = load_math()
+    ela_df = load_ela()
+    combined = math_df.merge(ela_df, how=&#34;inner&#34;, on=[&#34;dbn&#34;, &#34;ay&#34;, &#34;grade&#34;], suffixes=[&#34;_math&#34;, &#34;_ela&#34;])
+    return combined
+
+def load_math_ela_long():
+    &#34;&#34;&#34;
+    Load a combined `DataFrame` with both math and ela test results
+    in a &#34;wide&#34; data format.
+    All of the math result columns have the suffix `_math`
+    and the ELA columns have the suffix `_ela`.
+    &#34;&#34;&#34;
+    math_df = load_math().copy()
+    ela_df = load_ela().copy()
+    math_df[&#34;exam&#34;] = &#34;math&#34;
+    ela_df[&#34;exam&#34;] = &#34;ela&#34;
+    return pd.concat([math_df, ela_df])
+
+
+def load_ela():
+    &#34;&#34;&#34;
+    Loads the New York State ELA grades 3-8 ELA exam results for all categories.
+    If a local .csv data file exists, it will return results from that file. If
+    no local file is available, itt will loads the Excel data file for from the
+    NYC Data Portal and then cobmines the results with charter school data into
+    a `DataFrame`. _This can be slow_.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_ela&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_ela_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])
+
+
+def load_math():
+    &#34;&#34;&#34;
+    Loads the New York State Math grades 3-8 ELA exam results for all categories.
+    If a local .csv data file exists, it will return results from that file. If
+    no local file is available, itt will loads the Excel data file for from the
+    NYC Data Portal and then cobmines the results with charter school data into
+    a `DataFrame`. _This can be slow_.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_math_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])
+
+
+def load_regents():
+    &#34;&#34;&#34;
+    Loads the New York State Regents exam scores for all categories.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_math_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])
+    if refresh:
+        return load_regents_excel()
+
+    try:
+        # try to load it locally to save time
+        return pd.read_csv(&#34;regents-exams.csv&#34;)
+    except FileNotFoundError:
+        return load_regents_excel()
+
+# ==============================================================================
+
+def charter_cols(data):
+    df = data.copy()
+
+    if &#34;unnamed_column&#34; in df:
+        del df[&#34;unnamed_column&#34;]
+
+    df[&#34;ay&#34;] = df[&#34;year&#34;] - 1
+
+    new_cols = {
+        &#39;year&#39;: &#39;test_year&#39;,
+        &#39;level_1&#39;: &#39;level_1_n&#39;,
+        &#39;level_1_1&#39;: &#39;level_1_pct&#39;,
+        &#39;level_2&#39;: &#39;level_2_n&#39;,
+        &#39;level_2_1&#39;: &#39;level_2_pct&#39;,
+        &#39;level_3&#39;: &#39;level_3_n&#39;,
+        &#39;level_3_1&#39;: &#39;level_3_pct&#39;,
+        &#39;level_4&#39;: &#39;level_4_n&#39;,
+        &#39;level_4_1&#39;: &#39;level_4_pct&#39;,
+        &#39;level_3_4&#39;: &#39;level_3_4_n&#39;,
+        &#39;level_3_4_1&#39;: &#39;level_3_4_pct&#39;
+    }
+
+    df = df.rename(columns=new_cols)
+
+    df[&#34;charter&#34;] = 1
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors=&#39;coerce&#39;)
+        if col.endswith(&#34;pct&#34;):
+            df[col] = df[col] / 100
+
+    return df
+
+
+def load_regents_excel():
+    url = &#34;&#34;
+    xls = pd.read_excel(url, sheet_name=None)
+    cols = [
+        &#39;School DBN&#39;,
+        &#39;School Type&#39;,
+        &#39;School Level&#39;,
+        &#39;Regents Exam&#39;,
+        &#39;Year&#39;,
+        &#39;Category&#39;,
+        &#39;Total Tested&#39;,
+        &#39;Mean Score&#39;,
+        &#39;Number Scoring Below 65&#39;,
+        &#39;Percent Scoring Below 65&#39;,
+        &#39;Number Scoring 65 or Above&#39;,
+        &#39;Percent Scoring 65 or Above&#39;,
+        &#39;Number Scoring 80 or Above&#39;,
+        &#39;Percent Scoring 80 or Above&#39;,
+        &#39;Number Scoring CR&#39;,
+        &#39;Percent Scoring CR&#39;]
+
+    new_cols = [
+        &#39;dbn&#39;,
+        &#39;school_type&#39;,
+        &#39;school_level&#39;,
+        &#39;regents_exam&#39;,
+        &#39;year&#39;,
+        &#39;category&#39;,
+        &#39;number_tested&#39;,
+        &#39;mean_score&#39;,
+        &#39;below_65_n&#39;,
+        &#39;below_65_pct&#39;,
+        &#39;above_64_n&#39;,
+        &#39;above_64_pct&#39;,
+        &#39;above_79_n&#39;,
+        &#39;above_79_pct&#39;,
+        &#39;college_ready_n&#39;,
+        &#39;college_ready_pct&#39;]
+
+    sheet_names = [&#39;All Students&#39;,
+        &#39;By Gender&#39;,
+        &#39;By Ethnicity&#39;,
+        &#39;By ELL Status&#39;,
+        &#39;By SWD Status&#39;]
+
+    data = [xls[sheet] for sheet in sheet_names]
+    df = pd.concat(data, ignore_index=True)
+    df = df[cols]
+    df.columns = new_cols
+    numeric_cols = new_cols[6:]
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors=&#39;coerce&#39;)
+    df[&#34;test_year&#34;] = df[&#34;year&#34;]
+    df[&#34;ay&#34;] = df[&#34;year&#34;] - 1
+    df = df.sort_values(by=[&#34;dbn&#34;,&#34;ay&#34;,&#34;regents_exam&#34;,&#34;category&#34;])
+    df.to_csv(&#34;regents-exams.csv&#34;, index=False)
+    return df
+
+
+def load_math_excel(url=urls[&#34;nyc_math&#34;].url):
+    &#34;&#34;&#34;
+    Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE
+    fails to release the demographic breakdowns for test results via its open
+    data api.
+    &#34;&#34;&#34;
+
+    df = read_nys_exam_excel(url)
+    charter_df = load_charter_math()
+    df = pd.concat([df, charter_df])
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    df.to_csv(filename, index=False)
+    return df
+
+def load_ela_excel(url=urls[&#34;nyc_ela&#34;].url):
+    &#34;&#34;&#34;
+    Load NYS ELA test scores from the Excel workbook rather than the API. NYC DOE
+    fails to release the demographic breakdowns for test results via its open
+    data api.
+    &#34;&#34;&#34;
+
+    df = read_nys_exam_excel(url)
+    charter_df = load_charter_ela()
+    df = pd.concat([df, charter_df])
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_ela&#34;].filename)
+    df.to_csv(filename, index=False)
+    return df</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="nycschools.exams.charter_cols"><code class="name flex">
+<span>def <span class="ident">charter_cols</span></span>(<span>data)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def charter_cols(data):
+    df = data.copy()
+
+    if &#34;unnamed_column&#34; in df:
+        del df[&#34;unnamed_column&#34;]
+
+    df[&#34;ay&#34;] = df[&#34;year&#34;] - 1
+
+    new_cols = {
+        &#39;year&#39;: &#39;test_year&#39;,
+        &#39;level_1&#39;: &#39;level_1_n&#39;,
+        &#39;level_1_1&#39;: &#39;level_1_pct&#39;,
+        &#39;level_2&#39;: &#39;level_2_n&#39;,
+        &#39;level_2_1&#39;: &#39;level_2_pct&#39;,
+        &#39;level_3&#39;: &#39;level_3_n&#39;,
+        &#39;level_3_1&#39;: &#39;level_3_pct&#39;,
+        &#39;level_4&#39;: &#39;level_4_n&#39;,
+        &#39;level_4_1&#39;: &#39;level_4_pct&#39;,
+        &#39;level_3_4&#39;: &#39;level_3_4_n&#39;,
+        &#39;level_3_4_1&#39;: &#39;level_3_4_pct&#39;
+    }
+
+    df = df.rename(columns=new_cols)
+
+    df[&#34;charter&#34;] = 1
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors=&#39;coerce&#39;)
+        if col.endswith(&#34;pct&#34;):
+            df[col] = df[col] / 100
+
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_charter_ela"><code class="name flex">
+<span>def <span class="ident">load_charter_ela</span></span>(<span>url='https://data.cityofnewyork.us/resource/sgjd-xi99.csv?$limit=1000000')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the charter school ELA exam results for the "All Students"
+category from the NYC Open Data Portal. Columns are re-named for consistency.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_charter_ela(url=urls[&#34;charter_ela&#34;].url):
+    &#34;&#34;&#34;
+    Loads the charter school ELA exam results for the &#34;All Students&#34;
+    category from the NYC Open Data Portal. Columns are re-named for consistency.
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;charter_ela&#34;].filename)
+    return load_charter_test(url, filename)</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_charter_math"><code class="name flex">
+<span>def <span class="ident">load_charter_math</span></span>(<span>url='https://data.cityofnewyork.us/resource/3xsw-bpuy.csv?$limit=1000000')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the charter school Math exam results for the "All Students"
+category from the NYC Open Data Portal. Columns are re-named for consistency.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_charter_math(url=urls[&#34;charter_math&#34;].url):
+    &#34;&#34;&#34;
+    Loads the charter school Math exam results for the &#34;All Students&#34;
+    category from the NYC Open Data Portal. Columns are re-named for consistency.
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;charter_math&#34;].filename)
+    return load_charter_test(url, filename)</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_charter_test"><code class="name flex">
+<span>def <span class="ident">load_charter_test</span></span>(<span>url, filename)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_charter_test(url, filename):
+    try:
+        return pd.read_csv(filename)
+    except FileNotFoundError:
+        pass
+
+    df = pd.read_csv(url)
+    df = charter_cols(df)
+    df.to_csv(filename, index=False)
+
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_ela"><code class="name flex">
+<span>def <span class="ident">load_ela</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the New York State ELA grades 3-8 ELA exam results for all categories.
+If a local .csv data file exists, it will return results from that file. If
+no local file is available, itt will loads the Excel data file for from the
+NYC Data Portal and then cobmines the results with charter school data into
+a <code>DataFrame</code>. <em>This can be slow</em>.
+@return <code>DataFrame</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_ela():
+    &#34;&#34;&#34;
+    Loads the New York State ELA grades 3-8 ELA exam results for all categories.
+    If a local .csv data file exists, it will return results from that file. If
+    no local file is available, itt will loads the Excel data file for from the
+    NYC Data Portal and then cobmines the results with charter school data into
+    a `DataFrame`. _This can be slow_.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_ela&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_ela_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_ela_excel"><code class="name flex">
+<span>def <span class="ident">load_ela_excel</span></span>(<span>url='https://data.cityofnewyork.us/api/views/hvdr-xc2s/files/4db8f0e7-0150-4302-bed7-529c89efa225?download=true&filename=school-ela-results-2013-2019-(public).xlsx')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load NYS ELA test scores from the Excel workbook rather than the API. NYC DOE
+fails to release the demographic breakdowns for test results via its open
+data api.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_ela_excel(url=urls[&#34;nyc_ela&#34;].url):
+    &#34;&#34;&#34;
+    Load NYS ELA test scores from the Excel workbook rather than the API. NYC DOE
+    fails to release the demographic breakdowns for test results via its open
+    data api.
+    &#34;&#34;&#34;
+
+    df = read_nys_exam_excel(url)
+    charter_df = load_charter_ela()
+    df = pd.concat([df, charter_df])
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_ela&#34;].filename)
+    df.to_csv(filename, index=False)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_math"><code class="name flex">
+<span>def <span class="ident">load_math</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the New York State Math grades 3-8 ELA exam results for all categories.
+If a local .csv data file exists, it will return results from that file. If
+no local file is available, itt will loads the Excel data file for from the
+NYC Data Portal and then cobmines the results with charter school data into
+a <code>DataFrame</code>. <em>This can be slow</em>.
+@return <code>DataFrame</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_math():
+    &#34;&#34;&#34;
+    Loads the New York State Math grades 3-8 ELA exam results for all categories.
+    If a local .csv data file exists, it will return results from that file. If
+    no local file is available, itt will loads the Excel data file for from the
+    NYC Data Portal and then cobmines the results with charter school data into
+    a `DataFrame`. _This can be slow_.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_math_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_math_ela_long"><code class="name flex">
+<span>def <span class="ident">load_math_ela_long</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load a combined <code>DataFrame</code> with both math and ela test results
+in a "wide" data format.
+All of the math result columns have the suffix <code>_math</code>
+and the ELA columns have the suffix <code>_ela</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_math_ela_long():
+    &#34;&#34;&#34;
+    Load a combined `DataFrame` with both math and ela test results
+    in a &#34;wide&#34; data format.
+    All of the math result columns have the suffix `_math`
+    and the ELA columns have the suffix `_ela`.
+    &#34;&#34;&#34;
+    math_df = load_math().copy()
+    ela_df = load_ela().copy()
+    math_df[&#34;exam&#34;] = &#34;math&#34;
+    ela_df[&#34;exam&#34;] = &#34;ela&#34;
+    return pd.concat([math_df, ela_df])</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_math_ela_wide"><code class="name flex">
+<span>def <span class="ident">load_math_ela_wide</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load a combined <code>DataFrame</code> with both math and ela test results
+in a "wide" data format.
+All of the math result columns have the suffix <code>_math</code>
+and the ELA columns have the suffix <code>_ela</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_math_ela_wide():
+    &#34;&#34;&#34;
+    Load a combined `DataFrame` with both math and ela test results
+    in a &#34;wide&#34; data format.
+    All of the math result columns have the suffix `_math`
+    and the ELA columns have the suffix `_ela`.
+    &#34;&#34;&#34;
+    math_df = load_math()
+    ela_df = load_ela()
+    combined = math_df.merge(ela_df, how=&#34;inner&#34;, on=[&#34;dbn&#34;, &#34;ay&#34;, &#34;grade&#34;], suffixes=[&#34;_math&#34;, &#34;_ela&#34;])
+    return combined</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_math_excel"><code class="name flex">
+<span>def <span class="ident">load_math_excel</span></span>(<span>url='https://data.cityofnewyork.us/api/views/365g-7jtb/files/17910cb0-8a62-4037-84b5-f0b4c2b3f71f?download=true&filename=school-math-results-2013-2019-(public).xlsx')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE
+fails to release the demographic breakdowns for test results via its open
+data api.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_math_excel(url=urls[&#34;nyc_math&#34;].url):
+    &#34;&#34;&#34;
+    Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE
+    fails to release the demographic breakdowns for test results via its open
+    data api.
+    &#34;&#34;&#34;
+
+    df = read_nys_exam_excel(url)
+    charter_df = load_charter_math()
+    df = pd.concat([df, charter_df])
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    df.to_csv(filename, index=False)
+    return df</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_regents"><code class="name flex">
+<span>def <span class="ident">load_regents</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the New York State Regents exam scores for all categories.
+@return <code>DataFrame</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_regents():
+    &#34;&#34;&#34;
+    Loads the New York State Regents exam scores for all categories.
+    @return `DataFrame`
+    &#34;&#34;&#34;
+    filename = os.path.join(config.data_dir, urls[&#34;nyc_math&#34;].filename)
+    try:
+        df = pd.read_csv(filename, low_memory=False)
+    except FileNotFoundError:
+        df = load_math_excel()
+    return df.sort_values(by=[&#34;dbn&#34;, &#34;ay&#34;])
+    if refresh:
+        return load_regents_excel()
+
+    try:
+        # try to load it locally to save time
+        return pd.read_csv(&#34;regents-exams.csv&#34;)
+    except FileNotFoundError:
+        return load_regents_excel()</code></pre>
+</details>
+</dd>
+<dt id="nycschools.exams.load_regents_excel"><code class="name flex">
+<span>def <span class="ident">load_regents_excel</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_regents_excel():
+    url = &#34;&#34;
+    xls = pd.read_excel(url, sheet_name=None)
+    cols = [
+        &#39;School DBN&#39;,
+        &#39;School Type&#39;,
+        &#39;School Level&#39;,
+        &#39;Regents Exam&#39;,
+        &#39;Year&#39;,
+        &#39;Category&#39;,
+        &#39;Total Tested&#39;,
+        &#39;Mean Score&#39;,
+        &#39;Number Scoring Below 65&#39;,
+        &#39;Percent Scoring Below 65&#39;,
+        &#39;Number Scoring 65 or Above&#39;,
+        &#39;Percent Scoring 65 or Above&#39;,
+        &#39;Number Scoring 80 or Above&#39;,
+        &#39;Percent Scoring 80 or Above&#39;,
+        &#39;Number Scoring CR&#39;,
+        &#39;Percent Scoring CR&#39;]
+
+    new_cols = [
+        &#39;dbn&#39;,
+        &#39;school_type&#39;,
+        &#39;school_level&#39;,
+        &#39;regents_exam&#39;,
+        &#39;year&#39;,
+        &#39;category&#39;,
+        &#39;number_tested&#39;,
+        &#39;mean_score&#39;,
+        &#39;below_65_n&#39;,
+        &#39;below_65_pct&#39;,
+        &#39;above_64_n&#39;,
+        &#39;above_64_pct&#39;,
+        &#39;above_79_n&#39;,
+        &#39;above_79_pct&#39;,
+        &#39;college_ready_n&#39;,
+        &#39;college_ready_pct&#39;]
+
+    sheet_names = [&#39;All Students&#39;,
+        &#39;By Gender&#39;,
+        &#39;By Ethnicity&#39;,
+        &#39;By ELL Status&#39;,
+        &#39;By SWD Status&#39;]
+
+    data = [xls[sheet] for sheet in sheet_names]
+    df = pd.concat(data, ignore_index=True)
+    df = df[cols]
+    df.columns = new_cols
+    numeric_cols = new_cols[6:]
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors=&#39;coerce&#39;)
+    df[&#34;test_year&#34;] = df[&#34;year&#34;]
+    df[&#34;ay&#34;] = df[&#34;year&#34;] - 1
+    df = df.sort_values(by=[&#34;dbn&#34;,&#34;ay&#34;,&#34;regents_exam&#34;,&#34;category&#34;])
+    df.to_csv(&#34;regents-exams.csv&#34;, index=False)
+    return df</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="nycschools" href="index.html">nycschools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="nycschools.exams.charter_cols" href="#nycschools.exams.charter_cols">charter_cols</a></code></li>
+<li><code><a title="nycschools.exams.load_charter_ela" href="#nycschools.exams.load_charter_ela">load_charter_ela</a></code></li>
+<li><code><a title="nycschools.exams.load_charter_math" href="#nycschools.exams.load_charter_math">load_charter_math</a></code></li>
+<li><code><a title="nycschools.exams.load_charter_test" href="#nycschools.exams.load_charter_test">load_charter_test</a></code></li>
+<li><code><a title="nycschools.exams.load_ela" href="#nycschools.exams.load_ela">load_ela</a></code></li>
+<li><code><a title="nycschools.exams.load_ela_excel" href="#nycschools.exams.load_ela_excel">load_ela_excel</a></code></li>
+<li><code><a title="nycschools.exams.load_math" href="#nycschools.exams.load_math">load_math</a></code></li>
+<li><code><a title="nycschools.exams.load_math_ela_long" href="#nycschools.exams.load_math_ela_long">load_math_ela_long</a></code></li>
+<li><code><a title="nycschools.exams.load_math_ela_wide" href="#nycschools.exams.load_math_ela_wide">load_math_ela_wide</a></code></li>
+<li><code><a title="nycschools.exams.load_math_excel" href="#nycschools.exams.load_math_excel">load_math_excel</a></code></li>
+<li><code><a title="nycschools.exams.load_regents" href="#nycschools.exams.load_regents">load_regents</a></code></li>
+<li><code><a title="nycschools.exams.load_regents_excel" href="#nycschools.exams.load_regents_excel">load_regents_excel</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
