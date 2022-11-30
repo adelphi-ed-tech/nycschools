@@ -197,6 +197,4 @@ def check_write_edit_delete(path):
 
     return True
 
-
-
 config = get_config()

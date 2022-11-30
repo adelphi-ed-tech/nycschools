@@ -15,7 +15,6 @@
 # ==============================================================================
 import os
 import os.path
-from types import SimpleNamespace
 import json
 
 import wget
@@ -66,3 +65,20 @@ downloading {key} from:
     print(f"""
 {len(urls)} files downloaded in {delta}
 """)
+
+
+def main():
+    """Show the path to the `data_dir` where school data is stored.
+
+    """
+    print(f"""
+Data directory:
+{config.data_dir}
+
+You can change the data dir by updating your config file, located at:
+{config.config_file}
+    """)
+
+
+if __name__ == "__main__":
+    main()
