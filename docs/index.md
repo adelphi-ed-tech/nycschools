@@ -8,7 +8,7 @@ Our goal is to build platform where any motivated individual or groups can evalu
 Documentation
 -------------
 1. [List of Open Data Sources](data-sources.md)
-2. [Python API Documentation for `nycschools` library]("api/nycschools/index.html")
+2. [Python API Documentation for `nycschools` library](api/nycschools/index.html)
 3. **Jupyter Notebook Examples**
    1. [Pandas Basics](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/01-Basics)
       1. [Loading Data](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/01-loading-data.ipynb)
