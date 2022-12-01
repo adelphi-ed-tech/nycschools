@@ -77,7 +77,7 @@ Data directory:
 
 You can change the data dir by updating your config file, located at:
 {config.config_file}
-    """)
+""")
 
 
 if __name__ == "__main__":
