@@ -24,19 +24,18 @@ Documentation
       1. R coefficients
       2. quantiles
       3. z-scores
-      4. [T Tests](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/correlation-and-t_tests.ipynb)
+      4. [T Tests](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/04-t_tests.ipynb)
       5. Anova / F Tests
       6. Ordinary Least Square (OLS) regressions
       7. Partial Least Square (PLS) regressions
-      8. predictive statistics (r-squared, mean squared error)
+      8. [Predictive statistics (r-squared, mean squared error)](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/08-predictive.ipynb)
    4. Graphs and Charts
-      - tables
-      - bar charts
-      - stacked bar charts
-      - line graphs
-      - scatter plots
-      - color maps
-      - network graphs
+      1. [bar charts](01-basic-bar-charts.ipynb)
+      2. tables   
+      3. stacked bar charts
+      4. line graphs
+      5. scatter plots
+      6. network graphs
    5. Maps and GIS data
       - Choropleth Maps (colored regions based on data)
       - map overlays with multiple data sets
