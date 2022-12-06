@@ -20,22 +20,21 @@ Documentation
       2. [Merges & Joins](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/02-Combining-Data/02-merge-and-join.ipynb)
       3. loading and saving outside data
       4. pivots / reshaping data
-   3. [Statistical Analysis](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics)
+   3. Graphs and Charts
+      1. [Bar Charts](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/03-Graphs-and-Charts/01-basic-bar-charts.ipynb)
+      2. grouped bar charts
+      3. line graphs
+      4. scatter plots
+      5. network graphs
+   4. [Statistical Analysis](https://github.com/adelphi-ed-tech/nycschools/tree/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics)
       1. R coefficients
       2. quantiles
       3. z-scores
       4. [T Tests](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/04-t_tests.ipynb)
-      5. Anova / F Tests
-      6. Ordinary Least Square (OLS) regressions
-      7. Partial Least Square (PLS) regressions
-      8. [Predictive statistics (r-squared, mean squared error)](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/08-predictive.ipynb)
-   4. Graphs and Charts
-      1. [bar charts](01-basic-bar-charts.ipynb)
-      2. tables   
-      3. stacked bar charts
-      4. line graphs
-      5. scatter plots
-      6. network graphs
+      5. [Anova / F Tests and lineare regression (OLS)]()
+      6. Partial Least Square (PLS) regressions
+      7. [Predictive statistics (r-squared, mean squared error)](https://github.com/adelphi-ed-tech/nycschools/blob/a0b29340b5b781e108885355714e2149a4a6c37f/nb/04-Statistics/08-predictive.ipynb)
+
    5. Maps and GIS data
       - Choropleth Maps (colored regions based on data)
       - map overlays with multiple data sets
