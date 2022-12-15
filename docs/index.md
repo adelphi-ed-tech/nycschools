@@ -14,10 +14,10 @@ Documentation
       1. [Loading Data](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/01-loading-data.ipynb)
       2. [Querying Data](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/02-querying-data.ipynb)
       3. [Basic Statistics](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/03-basic-stats.ipynb)
-      4. [Calculating Columns](https://github.com/adelphi-ed-tech/nycschools/blob/nb/01-Basics/04-calculating-columns.ipynb)
+      4. [Calculating Columns](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/01-Basics/04-calculating-columns.ipynb)
    2. [Combining Data](https://github.com/adelphi-ed-tech/nycschools/tree/nb/02-Combining-Data)
-      1. [Groups & Aggregates](https://github.com/adelphi-ed-tech/nycschools/blob/nb/02-Combining-Data/01-group-and-agg.ipynb)
-      2. [Merges & Joins](https://github.com/adelphi-ed-tech/nycschools/blob/nb/02-Combining-Data/02-merge-and-join.ipynb)
+      1. [Groups & Aggregates](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/02-Combining-Data/01-group-and-agg.ipynb)
+      2. [Merges & Joins](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/02-Combining-Data/02-merge-and-join.ipynb)
       3. loading and saving outside data
       4. pivots / reshaping data
    3. Graphs and Charts
