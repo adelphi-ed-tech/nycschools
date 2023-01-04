@@ -165,3 +165,7 @@ yarn-error.log*
 
 # system data folder
 data-share
+
+# visual studio
+*.code-workspace
+.vscode/*
