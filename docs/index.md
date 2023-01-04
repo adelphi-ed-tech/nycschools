@@ -20,7 +20,7 @@ Documentation
       2. [Merges & Joins](https://github.com/adelphi-ed-tech/nycschools/blob/nb/02-Combining-Data/02-merge-and-join.ipynb)
       3. loading and saving outside data
       4. pivots / reshaping data
-   3. Graphs and Charts
+   3. [Graphs and Charts](https://github.com/adelphi-ed-tech/nycschools/tree/main/nb/03-Graphs-and-Charts)
       1. [Bar Charts](https://github.com/adelphi-ed-tech/nycschools/blob/main/nb/03-Graphs-and-Charts/01-basic-bar-charts.ipynb)
       2. grouped bar charts
       3. line graphs
