@@ -33,6 +33,21 @@ setup(
         'Framework :: Jupyter',
         'Topic :: Education',
     ],
+    dependencies = [
+        "arrow",
+        "folium",
+        "geopandas",
+        "importlib",
+        "ipython",
+        "matplotlib",
+        "networkx",
+        "numpy",
+        "pandas",
+        "platformdirs",
+        "seaborn",
+        "wget",
+        "thefuzz"
+    ],
     keywords="opendata, schools, newyorkcity",
     python_requires=">=3.7",
     project_urls={
