@@ -18,7 +18,6 @@ import math
 import re
 
 import pandas as pd
-import numpy
 from thefuzz import fuzz
 
 from . import geo

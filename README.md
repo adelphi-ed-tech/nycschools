@@ -47,6 +47,9 @@ Install the package with:
 pip install dist/nycschools-0.1.0.tar.gz
 ~~~~~~
 
+### Configure the project
+_coming soon: set data dir_
+
 ### (optional) Download the data
 The first time you load the data from the live data portals
 can be very slow. The NYSED data in particular can load
@@ -61,6 +64,19 @@ run:
 ~~~~~~{.bash}
 python -m nycschools.dataloader
 ~~~~~~
+
+## Development environment
+If you wish to build and develop the source code, follow these instructions after enabling your `venv`:
+
+~~~~~~{.bash}
+# install all libraries
+pip install -r dev-requirements.txt
+# install dev version of project
+pip install -e .
+# run unit tests
+pytest
+~~~~~~
+
 
 ### (optional) Test the code
 Run the unit tests to make sure everything is up and running.

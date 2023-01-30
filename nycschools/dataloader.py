@@ -72,11 +72,15 @@ def main():
 
     """
     print(f"""
+{"*"*80}
 Data directory:
 {config.data_dir}
 
 You can change the data dir by updating your config file, located at:
 {config.config_file}
+
+or by setting the environment variable:
+NYC_SCHOOLS_DATA_DIR
 """)
 
 
