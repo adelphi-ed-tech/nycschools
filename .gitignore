@@ -164,7 +164,7 @@ yarn-error.log*
 *.rar
 
 # data_dir
-school-share
+school-data
 
 # visual studio
 *.code-workspace
