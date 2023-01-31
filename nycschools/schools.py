@@ -296,7 +296,6 @@ def load_school_demographics():
     df = pd.read_csv(__demo_filename)
     df.zip = df.zip.fillna(0).astype("int32")
     df.beds = df.beds.fillna(0).astype("int64")
-    1 == 1
     return df
 
 def save_demographics(url=config.urls["demographics"].url):
