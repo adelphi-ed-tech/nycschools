@@ -3,7 +3,7 @@ from nycschools import config
 from invoke import task
 
 @task
-def make_archive(c):
+def archive(c):
     """Create a .7z archive of all of the files in the data directory."""
 
     data_dir = os.path.abspath(config.  data_dir)
@@ -20,9 +20,9 @@ def build(c):
     c.run("python -m build")
 
 @task
-def test(c):
+def test(c, opt=""):
     """Run unit tests."""
-    c.run("pytest")
+    c.run(f"pytest {opt}")
 
 @task
 def docs(c):

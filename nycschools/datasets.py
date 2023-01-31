@@ -19,6 +19,11 @@
 # these are the URLs into the open data portals
 # update when new datasets are released
 urls = {
+  "school-data-archive": {
+    "url": "https://drive.google.com/uc?export=download&id=1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF",
+    "filename":"nycschools-data.7z",
+    "desc": "Download the archive of clean school data from public Google Drive"
+  },
   "demographics": {
     "url": "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000",
     "filename":"school-demographics.csv",

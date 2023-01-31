@@ -24,7 +24,7 @@ def get_version():
     """Returns the version of the nycschools package"""
     return "0.1.0"
 
-def __read_urls__():
+def __read_urls():
     """Reads the urls from the datasets module"""
     urls = {}
     for k,v in __urls.items():
@@ -62,7 +62,7 @@ def get_config():
     if not os.path.exists(config["data_dir"]):
         os.mkdir(config["data_dir"])
             
-    config["urls"] = __read_urls__()
+    config["urls"] = __read_urls()
     return SimpleNamespace(**config)
 
 

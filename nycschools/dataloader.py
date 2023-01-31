@@ -18,6 +18,8 @@ import os.path
 
 import wget
 import arrow
+import py7zr
+import requests
 
 from . import config
 
@@ -25,6 +27,37 @@ from . import config
 def get_data_dir():
     return config.data_dir
 
+
+def download_cache(data_dir=""):
+    """
+    Downloads the school data archive to the local
+    drive and saves it into `data_dir` then extracts
+    the .7z archive. `data_dir` now contains the
+    cleaned and compiled school data files.
+
+    Parameters:
+        data_dir (str): the path to the directory where
+            the data files should be saved. If not specified,
+            the package configuration `data_dir` is used.
+
+    Returns:
+        str: the path to the downloaded file
+    """
+    if not data_dir.strip():
+        data_dir = config.data_dir
+    url = config.urls["school-data-archive"].url
+    filename = config.urls["school-data-archive"].filename
+    data_dir = os.path.abspath(data_dir)
+    archive = os.path.join(data_dir, filename)
+    resp = requests.get(url)
+    with open(archive, "wb") as f:
+        f.write(resp.content)
+
+    with py7zr.SevenZipFile(archive, mode='r') as z:
+        z.extractall(path=data_dir)
+
+    os.remove(archive)
+    return data_dir
 
 def download_source_data(data_dir=""):
     """
