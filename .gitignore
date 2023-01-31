@@ -163,8 +163,8 @@ yarn-error.log*
 *.tgz
 *.rar
 
-# system data folder
-data-share
+# data_dir
+school-share
 
 # visual studio
 *.code-workspace
