@@ -43,7 +43,6 @@ setup(
         "networkx",
         "numpy",
         "pandas",
-        "platformdirs",
         "seaborn",
         "wget",
         "thefuzz"

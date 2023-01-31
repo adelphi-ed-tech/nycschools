@@ -16,7 +16,6 @@
 # ==============================================================================
 import os
 import os.path
-import json
 from types import SimpleNamespace
 from .datasets import urls as __urls
 

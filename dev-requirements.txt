@@ -83,7 +83,6 @@ pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.2.0
 pingouin==0.5.2
-platformdirs==2.5.2
 pluggy==1.0.0
 prometheus-client==0.14.1
 prompt-toolkit==3.0.30
