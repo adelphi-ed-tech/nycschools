@@ -45,6 +45,8 @@ setup(
         "pandas",
         "seaborn",
         "wget",
+        "py7zr",
+        "python-Levenshtein",
         "thefuzz"
     ],
     keywords="opendata, schools, newyorkcity",
