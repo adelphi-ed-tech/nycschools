@@ -27,5 +27,6 @@ def test(c, opt=""):
 @task
 def docs(c):
     """Build the documentation with sphynx."""
-    c.run("sphinx-apidoc nycschools -o docs/api")
-    c.run("sphinx-build -b html docs docs/build")
+    c.run("sphinx-apidoc nycschools -o docs-source/api")
+    # c.run("rsync -r docs-source/res docs/res")
+    c.run("sphinx-build -b html docs-source docs")
