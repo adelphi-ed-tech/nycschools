@@ -67,3 +67,12 @@ def docs(c):
 def install_from_testpypi(c):
     """Install the package from testpypi but using real pypi for dependencies."""
     c.run("python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nycschools")
+
+
+@task
+def tag(c):
+    """Tag the current version."""
+    project = get_project_config()
+    version = project["version"]
+    c.run(f"git tag -a {version} -m 'version {version}'")
+    c.run(f"git push --tags")
