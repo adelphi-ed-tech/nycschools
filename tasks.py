@@ -24,6 +24,11 @@ def archive(c):
     print(f"creating archive {filename} from {data_dir}/*")
     c.run(f"7z a {filename} {data_dir}/*")
 
+@task 
+def clean(c):
+    """Remove dist and docs directories."""
+    c.run("rm -rf dist")
+    c.run("rm -rf docs")
 
 @task
 def build(c):
@@ -34,14 +39,17 @@ def build(c):
     c.run("python -m build")
 
 @task
-def push(c, test=True):
-    """Build the package."""
-    if test:
-        print("pushing to testpypi")
-        c.run("twine upload --repository testpypi dist/*")
-    else:
-        print("pushing to pypi. this is NOT a drill.")
+def push(c, production=False):
+    """Push the current distribution to pypi.
+    By default, this pushes to testpypi.
+    To push to pypi, use the -p or --production flag.
+    """
+    if production:
+        print("Pushing to pypi. This is NOT A DRILL.")
         c.run("twine upload dist/*")
+    else:
+        print("Pushing to testpypi")
+        c.run("twine upload --repository testpypi dist/*")
     
 
 @task
@@ -54,3 +62,8 @@ def docs(c):
     """Build the documentation with sphynx."""
     c.run("sphinx-apidoc nycschools -o docs-source/api")
     c.run("sphinx-build -b html docs-source docs")
+
+@task
+def install_from_testpypi(c):
+    """Install the package from testpypi but using real pypi for dependencies."""
+    c.run("python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nycschools")

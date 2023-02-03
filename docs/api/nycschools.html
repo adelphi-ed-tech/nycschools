@@ -37,109 +37,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">nycschools package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-nycschools.class_size">nycschools.class_size module</a><ul>
-<li><a class="reference internal" href="#nycschools.class_size.load_class_size"><code class="docutils literal notranslate"><span class="pre">load_class_size()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.class_size.save_class_size"><code class="docutils literal notranslate"><span class="pre">save_class_size()</span></code></a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../data-sources.html">Open Data Sources available through <code class="docutils literal notranslate"><span class="pre">nycschools</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">New York Schools Open Data Project</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.dataloader">nycschools.dataloader module</a><ul>
-<li><a class="reference internal" href="#nycschools.dataloader.download_cache"><code class="docutils literal notranslate"><span class="pre">download_cache()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.dataloader.download_source_data"><code class="docutils literal notranslate"><span class="pre">download_source_data()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.dataloader.get_data_dir"><code class="docutils literal notranslate"><span class="pre">get_data_dir()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.dataloader.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.datasets">nycschools.datasets module</a></li>
-<li><a class="reference internal" href="#module-nycschools.exams">nycschools.exams module</a><ul>
-<li><a class="reference internal" href="#nycschools.exams.charter_cols"><code class="docutils literal notranslate"><span class="pre">charter_cols()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_charter_ela"><code class="docutils literal notranslate"><span class="pre">load_charter_ela()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_charter_math"><code class="docutils literal notranslate"><span class="pre">load_charter_math()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_charter_test"><code class="docutils literal notranslate"><span class="pre">load_charter_test()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_ela"><code class="docutils literal notranslate"><span class="pre">load_ela()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_ela_excel"><code class="docutils literal notranslate"><span class="pre">load_ela_excel()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_math"><code class="docutils literal notranslate"><span class="pre">load_math()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_math_ela_long"><code class="docutils literal notranslate"><span class="pre">load_math_ela_long()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_math_ela_wide"><code class="docutils literal notranslate"><span class="pre">load_math_ela_wide()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_math_excel"><code class="docutils literal notranslate"><span class="pre">load_math_excel()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_regents"><code class="docutils literal notranslate"><span class="pre">load_regents()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.exams.load_regents_excel"><code class="docutils literal notranslate"><span class="pre">load_regents_excel()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.geo">nycschools.geo module</a><ul>
-<li><a class="reference internal" href="#nycschools.geo.add_labels"><code class="docutils literal notranslate"><span class="pre">add_labels()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.geo.get_and_save_locations"><code class="docutils literal notranslate"><span class="pre">get_and_save_locations()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.geo.get_locations"><code class="docutils literal notranslate"><span class="pre">get_locations()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.geo.get_points"><code class="docutils literal notranslate"><span class="pre">get_points()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.geo.load_districts"><code class="docutils literal notranslate"><span class="pre">load_districts()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.geo.load_school_locations"><code class="docutils literal notranslate"><span class="pre">load_school_locations()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.nysed">nycschools.nysed module</a><ul>
-<li><a class="reference internal" href="#nycschools.nysed.calc_all_grades"><code class="docutils literal notranslate"><span class="pre">calc_all_grades()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.download_and_extract"><code class="docutils literal notranslate"><span class="pre">download_and_extract()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.fix_cols"><code class="docutils literal notranslate"><span class="pre">fix_cols()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.fix_data"><code class="docutils literal notranslate"><span class="pre">fix_data()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.load_nyc_nysed"><code class="docutils literal notranslate"><span class="pre">load_nyc_nysed()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.load_nys_nysed"><code class="docutils literal notranslate"><span class="pre">load_nys_nysed()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.load_nysed_ela_math_archives"><code class="docutils literal notranslate"><span class="pre">load_nysed_ela_math_archives()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.map_nysed_nyc"><code class="docutils literal notranslate"><span class="pre">map_nysed_nyc()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.nysed.read_nysed_exam"><code class="docutils literal notranslate"><span class="pre">read_nysed_exam()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.schools">nycschools.schools module</a><ul>
-<li><a class="reference internal" href="#nycschools.schools.clean_name"><code class="docutils literal notranslate"><span class="pre">clean_name()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.demo"><code class="docutils literal notranslate"><span class="pre">demo</span></code></a><ul>
-<li><a class="reference internal" href="#nycschools.schools.demo.core_cols"><code class="docutils literal notranslate"><span class="pre">demo.core_cols</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.demo.default_cols"><code class="docutils literal notranslate"><span class="pre">demo.default_cols</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.demo.default_map"><code class="docutils literal notranslate"><span class="pre">demo.default_map</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.demo.raw_cols"><code class="docutils literal notranslate"><span class="pre">demo.raw_cols</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.demo.short_cols"><code class="docutils literal notranslate"><span class="pre">demo.short_cols</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#nycschools.schools.join_loc_data"><code class="docutils literal notranslate"><span class="pre">join_loc_data()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.load_school_demographics"><code class="docutils literal notranslate"><span class="pre">load_school_demographics()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.save_demographics"><code class="docutils literal notranslate"><span class="pre">save_demographics()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.school_type"><code class="docutils literal notranslate"><span class="pre">school_type()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.short_name"><code class="docutils literal notranslate"><span class="pre">short_name()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.str_count"><code class="docutils literal notranslate"><span class="pre">str_count()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.schools.str_pct"><code class="docutils literal notranslate"><span class="pre">str_pct()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.tools">nycschools.tools module</a><ul>
-<li><a class="reference internal" href="#nycschools.tools.quick_merge"><code class="docutils literal notranslate"><span class="pre">quick_merge()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools.ui">nycschools.ui module</a><ul>
-<li><a class="reference internal" href="#nycschools.ui.commas"><code class="docutils literal notranslate"><span class="pre">commas()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.counter"><code class="docutils literal notranslate"><span class="pre">counter()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.draw_model"><code class="docutils literal notranslate"><span class="pre">draw_model()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.edge_label"><code class="docutils literal notranslate"><span class="pre">edge_label()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.fmt_pearson"><code class="docutils literal notranslate"><span class="pre">fmt_pearson()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.fmt_table"><code class="docutils literal notranslate"><span class="pre">fmt_table()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.hexmap"><code class="docutils literal notranslate"><span class="pre">hexmap()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.infinite"><code class="docutils literal notranslate"><span class="pre">infinite()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.network_map"><code class="docutils literal notranslate"><span class="pre">network_map()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.nice_name"><code class="docutils literal notranslate"><span class="pre">nice_name()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.pct"><code class="docutils literal notranslate"><span class="pre">pct()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.plot_model"><code class="docutils literal notranslate"><span class="pre">plot_model()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.round_f"><code class="docutils literal notranslate"><span class="pre">round_f()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.ui.ul"><code class="docutils literal notranslate"><span class="pre">ul()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-nycschools">Module contents</a><ul>
-<li><a class="reference internal" href="#nycschools.get_config"><code class="docutils literal notranslate"><span class="pre">get_config()</span></code></a></li>
-<li><a class="reference internal" href="#nycschools.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+
         </div>
       </div>
     </nav>
