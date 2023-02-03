@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nycschools"
+version = "0.1.11"
+authors = [
+  { name="Matthew X. Curinga", email="matt@curinga.com" },
+]
+description = "Tools to work with open data about New York City public schools"
+readme = "README.md"
+
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Intended Audience :: Science/Research',
+    'Natural Language :: English',
+    'Framework :: Jupyter',
+    'Topic :: Education',
+]
+keywords=["opendata, schools, newyorkcity"]
+
+dependencies = [
+    "arrow",
+    "folium",
+    "geopandas",
+    "ipython",
+    "matplotlib",
+    "networkx",
+    "numpy",
+    "pandas",
+    "requests",
+    "seaborn",
+    "wget",
+    "py7zr",
+    "python-Levenshtein",
+    "thefuzz",
+]
+
+[project.urls]
+"Homepage" = "https://adelphi-ed-tech.github.io/nycschools/"
+"Bug Tracker" = "https://github.com/adelphi-ed-tech/nycschools/issues"
+"Source" = "https://github.com/adelphi-ed-tech/nycschools"
