@@ -15,9 +15,6 @@
 # ==============================================================================
 import os
 import os.path
-
-import wget
-import arrow
 import py7zr
 import requests
 
@@ -28,24 +25,16 @@ def get_data_dir():
     return config.data_dir
 
 
-#   if not data_dir:
-#     print(f"""
-#   Could not find nyc-school-data in your Google Drive.
-#   Please see the documentation to learn how to configure Google Colab:
-#   https://adelphi-ed-tech.github.io/nycschools/  
-# """)
-
-
 def download_data():
-    path = find_data_dir()
+    path = find_data_dir(config)
     if path:
         config.data_dir = path
         return path
     
-    return download_archive()
+    return download_archive(config.data_dir)
 
 
-def find_data_dir():
+def find_data_dir(config):
     """
     Tries to find an existing data directory populated
     with data, including searching through mounted
@@ -60,12 +49,14 @@ def find_data_dir():
     local = os.path.join(".", "school-data")
 
     paths = [config.data_dir, env_dir, local]
+    # first look locally
     for path in paths:
-        if os.path.exists(path) and contains_data_files(path):
+        if path and os.path.exists(path) and contains_data_files(path):
             config.data_dir = path
             return path
+    # if not, try to mount a google drive
     path = mount_colab_data_dir()
-    if contains_data_files(path):
+    if path and contains_data_files(path):
         config.data_dir = path
         return path
     return None
@@ -74,7 +65,7 @@ def find_data_dir():
 def mount_colab_data_dir():
     """Try to mount a google drive directory in colab
     and then search for the data directory by looking
-    for a directory with the know name 'nyc-schools-data'."""
+    for a directory with the known name 'nyc-schools-data'."""
 
     gdrive = "/content/gdrive"
     target = "nyc-schools-data"
@@ -176,46 +167,6 @@ def download_archive(data_dir=None):
 
     os.remove(archive)
     return data_dir
-
-def download_source_data(data_dir=""):
-    """
-    Downloads all of the source data files to the local
-    drive and saves them into `data_dir`
-    for this application. If `data_dir` is not
-    specified, they are downloaded into the current
-    directory.
-    """
-
-    if not data_dir.strip():
-        data_dir = config.data_dir
-
-    data_dir = os.path.abspath(data_dir)
-
-    print(f"""
-Downloading NYC Schools Data Files
-==================================
-saving files to:
-{data_dir}
-""")
-    urls = read_urls()
-    start = arrow.utcnow()
-    for key, link in urls.items():
-        url = link.url
-        print(f"""
-downloading {key} from:
-{url}""")
-
-        filename = url.split("/")[-1].split("?")[0]
-        if link.filename:
-            filename = link.filename
-        wget.download(url, out=os.path.join(data_dir, filename))
-
-    end = arrow.utcnow()
-    delta = end.humanize(start, only_distance=True)
-    print(f"""
-{len(urls)} files downloaded in {delta}
-""")
-
 
 def main():
     """Show the path to the `data_dir` where school data is stored.
