@@ -21,5 +21,7 @@ our conversations about schools in New York.
 .. toctree::
    :maxdepth: 2
 
+   install.md
    data-sources.md
    notebooks.md
+   api/nycschools.rst

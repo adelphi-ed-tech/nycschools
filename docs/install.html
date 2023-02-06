@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Sources" href="data-sources.html" />
+    <link rel="prev" title="New York Schools Open Data Project" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NYC Schools Open Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-in-google-colab">Installing in Google Colab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#link-to-the-data-resources-from-your-google-drive">Link to the data resources from your Google Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-to-colab">Importing to Colab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-locally">Installing locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-for-development">Installing for development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Data Science Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/nycschools.html">nycschools package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NYC Schools Open Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/install.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<section id="installing-in-google-colab">
+<h2>Installing in Google Colab<a class="headerlink" href="#installing-in-google-colab" title="Permalink to this heading"></a></h2>
+<section id="link-to-the-data-resources-from-your-google-drive">
+<h3>Link to the data resources from your Google Drive<a class="headerlink" href="#link-to-the-data-resources-from-your-google-drive" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Sign into your Google Account</p></li>
+<li><p>Open the link to our source data files: <a class="reference external" href="https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link">https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link</a></p></li>
+<li><p>Create a shortcut to the data in your drive</p></li>
+</ol>
+<img src="_static/add-gdrive.gif" alt="menu navigating to add link to gdrive">
+</section>
+<section id="importing-to-colab">
+<h3>Importing to Colab<a class="headerlink" href="#importing-to-colab" title="Permalink to this heading"></a></h3>
+<p>Open a new Colab notebook and then add this code at the start of your program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># install the package and its requirements
+!pip install nycschools
+
+# discover the data in your Google Drive, or download it to the local Colab
+# if no suitable data is found
+from nyschools import dataloader
+dataloader.download_data()
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">dataloader</span></code> will prompt you for permission to look in your Google Drive for the data folder. If you do not allow access, the program will attempt to download the data locally. You will have to download the data for each session when using this notebook.</p>
+</section>
+</section>
+<section id="installing-locally">
+<h2>Installing locally<a class="headerlink" href="#installing-locally" title="Permalink to this heading"></a></h2>
+<p>Optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install with <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nycschools
+</pre></div>
+</div>
+<p>Download the data files to your local project folder (where you will run you code from):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>school-data
+wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp<span class="o">=</span>share_link
+7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can install the data in any directory available with read/write access to your python
+programs by setting and ENV variable to the full path to the <code class="docutils literal notranslate"><span class="pre">data_dir</span></code></p>
+<p>For example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=/opt/data/nycschools</span></code></p>
+</div>
+</section>
+<section id="installing-for-development">
+<h2>Installing for development<a class="headerlink" href="#installing-for-development" title="Permalink to this heading"></a></h2>
+<p>First, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> for the project. Activate the <code class="docutils literal notranslate"><span class="pre">venv</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/adelphi-ed-tech/nycschools.git
+
+<span class="c1"># install the development environment</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># get the data</span>
+mkdir<span class="w"> </span>school-data
+wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp<span class="o">=</span>share_link
+7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
+
+<span class="c1"># build the project</span>
+invoke<span class="w"> </span>build
+
+<span class="c1"># install `nycschools` in dev mode</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>dist/nycschools-latest.tar.gz
+
+<span class="c1"># build the docs</span>
+invoke<span class="w"> </span>docs<span class="w"> </span>-c
+
+<span class="c1"># run unit tests</span>
+invoke<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="New York Schools Open Data Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data-sources.html" class="btn btn-neutral float-right" title="Data Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Matthew X. Curinga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

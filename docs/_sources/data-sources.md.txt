@@ -1,5 +1,5 @@
-Open Data Sources available through `nycschools`
-------------------------------------------------
+Data Sources
+=============
 Our goal is to maintain the most current as well as historical record for each of these data sets.
 
 1. [School Demographic Snapshot](https://data.cityofnewyork.us/Education/2020-2021-Demographic-Snapshot-School/vmmu-wj3w)
