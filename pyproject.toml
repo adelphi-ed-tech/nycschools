@@ -39,12 +39,12 @@ dependencies = [
     "networkx",
     "numpy",
     "pandas",
-    "requests",
-    "seaborn",
-    "wget",
     "py7zr",
     "python-Levenshtein",
+    "requests",
+    "seaborn",
     "thefuzz",
+    "wget",
 ]
 
 [project.urls]
