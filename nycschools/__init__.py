@@ -63,6 +63,7 @@ def get_config():
         os.mkdir(config["data_dir"])
             
     config["urls"] = __read_urls()
+
     return SimpleNamespace(**config)
 
 

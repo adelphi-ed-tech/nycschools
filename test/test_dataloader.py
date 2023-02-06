@@ -4,6 +4,9 @@ import os
 import pytest
 import shutil
 
+
+tmp_data_dir = "/tmp/nyc-schools-test-data"
+
 @pytest.mark.skip(reason="too slow for normal testing")
 def test_read_urls():
     """Reads the urls download data file and makes sure they can all be reached."""
@@ -14,23 +17,26 @@ def test_read_urls():
         assert r.status_code == 200
 
 
-def test_download_cache():
-    if os.path.exists("test-data"):
-        shutil.rmtree("test-data")
+def test_contains_data_files():
 
-    os.mkdir("test-data")
-    loader.download_cache(data_dir="test-data")
-    files = [
-        "charter-ela.csv",
-        "charter-math.csv",
-        "nyc-ela.csv",
-        "nyc-math.csv",
-        "nysed-exams.csv",
-        "nysed-exams.feather",
-        "school-demographics.csv",
-        "school_locations.geojson"
-    ]
+    assert loader.contains_data_files(config.data_dir), "data files should be present in the default data directory"
 
-    for f in files:
-        assert os.path.exists(f"test-data/{f}")
-    shutil.rmtree("test-data")
+    if os.path.exists(tmp_data_dir):
+        shutil.rmtree(tmp_data_dir)
+    os.mkdir(tmp_data_dir)
+    assert not loader.contains_data_files(tmp_data_dir)
+    shutil.rmtree(tmp_data_dir)
+
+
+
+def test_download_archive():
+    
+    if os.path.exists(tmp_data_dir):
+        shutil.rmtree(tmp_data_dir)
+
+    os.mkdir(tmp_data_dir)
+    loader.download_archive(data_dir=tmp_data_dir)
+    assert loader.contains_data_files(tmp_data_dir)
+    shutil.rmtree(tmp_data_dir)
+
+

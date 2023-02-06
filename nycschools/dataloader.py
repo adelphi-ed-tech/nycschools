@@ -22,13 +22,131 @@ import py7zr
 import requests
 
 from . import config
-
+import warnings
 
 def get_data_dir():
     return config.data_dir
 
 
-def download_cache(data_dir=""):
+#   if not data_dir:
+#     print(f"""
+#   Could not find nyc-school-data in your Google Drive.
+#   Please see the documentation to learn how to configure Google Colab:
+#   https://adelphi-ed-tech.github.io/nycschools/  
+# """)
+
+
+def download_data():
+    path = find_data_dir()
+    if path:
+        config.data_dir = path
+        return path
+    
+    return download_archive()
+
+
+def find_data_dir():
+    """
+    Tries to find an existing data directory populated
+    with data, including searching through mounted
+    google drive if the `colab` package is available
+    and the g drive is mounted in the "standard" location
+    of `/content/gdrive`.
+
+    Returns:
+        str: the path to the data directory
+    """
+    env_dir = os.environ.get("NYC_SCHOOLS_DATA_DIR", None)
+    local = os.path.join(".", "school-data")
+
+    paths = [config.data_dir, env_dir, local]
+    for path in paths:
+        if os.path.exists(path) and contains_data_files(path):
+            config.data_dir = path
+            return path
+    path = mount_colab_data_dir()
+    if contains_data_files(path):
+        config.data_dir = path
+        return path
+    return None
+
+
+def mount_colab_data_dir():
+    """Try to mount a google drive directory in colab
+    and then search for the data directory by looking
+    for a directory with the know name 'nyc-schools-data'."""
+
+    gdrive = "/content/gdrive"
+    target = "nyc-schools-data"
+
+    if not os.path.exists(gdrive):
+        try:
+            from google.colab import drive
+            drive.mount(gdrive)
+        except:
+            return None
+
+    # first check all of MyDrive
+    for root, dirs, files in os.walk(f"{gdrive}/MyDrive"):
+        if target in dirs:
+            return os.path.join(root, f"{target}/data")
+
+    # next check all of Shared Drives
+    for root, dirs, files in os.walk(f"{gdrive}/Shareddrives"):
+        if target in dirs:
+            return os.path.join(root, f"{target}/data")
+
+    return None
+
+
+
+def contains_data_files(path):
+    """
+    Checks to see if the specified path contains
+    the data files required by this application.
+
+    Parameters:
+        path (str): the path to check
+
+    Returns:
+        bool: True if the path contains the data files
+            required by this application, False otherwise
+    """
+    files = set(os.listdir(path))
+    if len(files) == 0:
+        return False
+
+    expected = {
+        "charter-ela.csv",
+        "charter-math.csv",
+        "nyc-ela.csv",
+        "nyc-math.csv",
+        "nysed-exams.csv",
+        "nysed-exams.feather",
+        "school-demographics.csv",
+        "school_locations.geojson"
+    }
+
+    if expected.issubset(files):
+        return True
+    
+    missing = expected.difference(files)
+    if len(missing) == len(expected):
+        return False
+    
+    warnings.warn(f"""Some data files are missing from the data directory.
+    Found files: {files.intersection(expected)}
+    Missing files: {missing}
+You can download the data files by running: `nycschools.download_cache()`
+For more information, see:
+https://adelphi-ed-tech.github.io/nycschools/""")
+
+    
+    return False
+
+
+
+def download_archive(data_dir=None):
     """
     Downloads the school data archive to the local
     drive and saves it into `data_dir` then extracts
@@ -43,7 +161,7 @@ def download_cache(data_dir=""):
     Returns:
         str: the path to the downloaded file
     """
-    if not data_dir.strip():
+    if not data_dir:
         data_dir = config.data_dir
     url = config.urls["school-data-archive"].url
     filename = config.urls["school-data-archive"].filename
@@ -108,10 +226,7 @@ def main():
 Data directory:
 {config.data_dir}
 
-You can change the data dir by updating your config file, located at:
-{config.config_file}
-
-or by setting the environment variable:
+Change this by setting the environment variable:
 NYC_SCHOOLS_DATA_DIR
 """)
 
