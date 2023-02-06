@@ -63,6 +63,7 @@ First, create a `virtualenv` for the project. Activate the `venv`.
 ```bash
 # clone the repository
 git clone https://github.com/adelphi-ed-tech/nycschools.git
+cd nycschools
 
 # install the development environment
 pip install -r requirements.txt
