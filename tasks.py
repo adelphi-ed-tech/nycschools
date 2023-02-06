@@ -45,12 +45,14 @@ def push(c, production=False):
     By default, this pushes to testpypi.
     To push to pypi, use the -p or --production flag.
     """
+    project = get_project_config()
+    current = f"nycschools-{project['version']}"
     if production:
         print("Pushing to pypi. This is NOT A DRILL.")
-        c.run("twine upload dist/*")
+        c.run(f"twine upload dist/{current}*")
     else:
         print("Pushing to testpypi")
-        c.run("twine upload --repository testpypi dist/*")
+        c.run(f"twine upload --repository testpypi dist/{current}*")
     
 
 @task
