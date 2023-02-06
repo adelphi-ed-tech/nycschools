@@ -95,13 +95,14 @@
 <section id="importing-to-colab">
 <h3>Importing to Colab<a class="headerlink" href="#importing-to-colab" title="Permalink to this heading"></a></h3>
 <p>Open a new Colab notebook and then add this code at the start of your program:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># install the package and its requirements
-!pip install nycschools
-
-# discover the data in your Google Drive, or download it to the local Colab
-# if no suitable data is found
-from nyschools import dataloader
-dataloader.download_data()
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the package and its requirements</span>
+!pip<span class="w"> </span>install<span class="w"> </span>nycschools
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># discover the data in your Google Drive, or download it to the local Colab</span>
+<span class="c1"># if no suitable data is found</span>
+<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">dataloader</span>
+<span class="n">dataloader</span><span class="o">.</span><span class="n">download_data</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">dataloader</span></code> will prompt you for permission to look in your Google Drive for the data folder. If you do not allow access, the program will attempt to download the data locally. You will have to download the data for each session when using this notebook.</p>
@@ -114,7 +115,10 @@ dataloader.download_data()
 </pre></div>
 </div>
 <p>Download the data files to your local project folder (where you will run you code from):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>school-data
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a local data dir</span>
+mkdir<span class="w"> </span>school-data
+
+<span class="c1"># install download and extract the 7z archive</span>
 wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp<span class="o">=</span>share_link
 7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
 </pre></div>

@@ -31,6 +31,9 @@ source_suffix = {
     '.md': 'markdown',
 }
 
+highlight_language = 'python'
+pygments_style = 'fruity'
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

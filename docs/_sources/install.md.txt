@@ -13,13 +13,14 @@ Installing in Google Colab
 ### Importing to Colab
 Open a new Colab notebook and then add this code at the start of your program:
 
-```python
+```bash
 # install the package and its requirements
 !pip install nycschools
-
+```
+```python
 # discover the data in your Google Drive, or download it to the local Colab
 # if no suitable data is found
-from nyschools import dataloader
+from nycschools import dataloader
 dataloader.download_data()
 ```
 
@@ -37,7 +38,10 @@ pip install nycschools
 Download the data files to your local project folder (where you will run you code from):
 
 ```bash
+# make a local data dir
 mkdir school-data
+
+# install download and extract the 7z archive
 wget https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link
 7z x nycschools-data.7z -o./school-data/
 ```
