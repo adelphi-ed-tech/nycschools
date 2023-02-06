@@ -37,6 +37,7 @@ def build(c):
     print(f"building {project['name']} v{project['version']} ")
     c.run("rm -rf dist")
     c.run("python -m build")
+    c.run(f"cp dist/nycschools-{project['version']}.tar.gz dist/nycschools-latest.tar.gz")
 
 @task
 def push(c, production=False):
@@ -58,8 +59,10 @@ def test(c, opt=""):
     c.run(f"pytest {opt}")
 
 @task
-def docs(c):
+def docs(c, clean=False):
     """Build the documentation with sphynx."""
+    if clean:
+        c.run("rm -rf docs")
     c.run("sphinx-apidoc nycschools -o docs-source/api")
     c.run("sphinx-build -b html docs-source docs")
 
