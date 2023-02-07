@@ -22,28 +22,18 @@ our conversations about schools in New York.
 ```{toctree}
 ---
 caption: Getting Started
-maxdepth: 3
+maxdepth: 2
 ---
 Installation <install.md>
 ```
 
-```{toctree}
----
-caption: Learning Data Science
-maxdepth: 3
----
-Loading Data <nb/01-Basics/01-loading-data.ipynb>
-Querying & Searching <nb/01-Basics/02-querying-data.ipynb>
-Basic Stats <nb/01-Basics/03-basic-stats.ipynb>
-Calculating New Columns <nb/01-Basics/04-calculating-columns.ipynb>
+```{include} nb/toc.md
 ```
 
-
-
 ```{toctree}
 ---
-caption: Reference
-maxdepth: 3
+caption: References
+maxdepth: 2
 ---
 Data Sources <data-sources.md>
 API Docs <api/nycschools.rst>

@@ -17,6 +17,7 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -37,11 +38,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nb/01-Basics/index.html">1. Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/02-Combining-Data/index.html">2. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/03-Graphs-and-Charts/index.html">3. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../data-sources.html">Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Data Science Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nycschools.html">nycschools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nycschools.html">API Docs</a></li>
 </ul>
 
         </div>
@@ -68,7 +80,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nycschools">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="nycschools">
 <h1>nycschools<a class="headerlink" href="#nycschools" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>

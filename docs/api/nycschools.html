@@ -17,10 +17,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Data Science Examples" href="../notebooks.html" /> 
+    <link rel="prev" title="Data Sources" href="../data-sources.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,11 +39,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../nb/01-Basics/index.html">1. Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/02-Combining-Data/index.html">2. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/03-Graphs-and-Charts/index.html">3. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../data-sources.html">Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Data Science Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">nycschools package</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-nycschools.class_size">nycschools.class_size module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nycschools.class_size.load_class_size"><code class="docutils literal notranslate"><span class="pre">load_class_size()</span></code></a></li>
@@ -170,7 +182,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nycschools-package">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="nycschools-package">
 <h1>nycschools package<a class="headerlink" href="#nycschools-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
@@ -806,7 +842,7 @@ urls: a dictionary of urls to download data if the local</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../notebooks.html" class="btn btn-neutral float-left" title="Data Science Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../data-sources.html" class="btn btn-neutral float-left" title="Data Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

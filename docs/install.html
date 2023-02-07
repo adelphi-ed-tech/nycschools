@@ -17,10 +17,11 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Sources" href="data-sources.html" />
+    <link rel="next" title="1. Data Basics" href="nb/01-Basics/index.html" />
     <link rel="prev" title="New York Schools Open Data Project" href="index.html" /> 
 </head>
 
@@ -39,7 +40,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installing-in-google-colab">Installing in Google Colab</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#link-to-the-data-resources-from-your-google-drive">Link to the data resources from your Google Drive</a></li>
@@ -50,9 +52,19 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-for-development">Installing for development</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nb/01-Basics/index.html">1. Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/02-Combining-Data/index.html">2. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/03-Graphs-and-Charts/index.html">3. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="data-sources.html">Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Data Science Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/nycschools.html">nycschools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/nycschools.html">API Docs</a></li>
 </ul>
 
         </div>
@@ -79,7 +91,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <section id="installing-in-google-colab">
 <h2>Installing in Google Colab<a class="headerlink" href="#installing-in-google-colab" title="Permalink to this heading"></a></h2>
@@ -167,7 +203,7 @@ invoke<span class="w"> </span><span class="nb">test</span>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="New York Schools Open Data Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data-sources.html" class="btn btn-neutral float-right" title="Data Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nb/01-Basics/index.html" class="btn btn-neutral float-right" title="1. Data Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
