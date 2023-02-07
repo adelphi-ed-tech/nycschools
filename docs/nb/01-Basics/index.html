@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Basics &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Loading Data" href="01-loading-data.html" />
+    <link rel="prev" title="Installation" href="../../install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NYC Schools Open Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-loading-data.html">1. Loading Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html">2. Querying &amp; Selecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-basic-stats.html">3. Basic Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-calculating-columns.html">4. Calculating New Columns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/nycschools.html">API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NYC Schools Open Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Data Basics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/nb/01-Basics/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="data-basics">
+<h1>Data Basics<a class="headerlink" href="#data-basics" title="Permalink to this heading"></a></h1>
+<p>The basic examples in this section will show you how to get started with the <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> library and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> – a core python library for data science. We assume that you have some familiarity with python programming and using Jupyter Notebook and/or Google Colab.</p>
+<!-- This file is automatically generated by tasks.py -->
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">01-Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01-loading-data.html">1. Loading Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-loading-data.html#Displaying-data-tables">1.1. Displaying data tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02-querying-data.html">2. Querying &amp; Selecting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html#Selecting-just-one-year">2.1. Selecting just one year</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html#Compound-expressions">2.2. Compound expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html#Finding-a-subset-of-data">2.3. Finding a subset of data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html#Using-drop_duplicates">2.4. Using <code class="docutils literal notranslate"><span class="pre">drop_duplicates</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html#Filtering-missing-data">2.5. Filtering missing data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-basic-stats.html">3. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-calculating-columns.html">4. Calculating New Columns</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01-loading-data.html" class="btn btn-neutral float-right" title="1. Loading Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Matthew X. Curinga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

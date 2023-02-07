@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. ANOVA and OLS Regression &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Predictive Statistics" href="08-predictive-stats.html" />
+    <link rel="prev" title="1. T Tests" href="04-t_tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NYC Schools Open Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/nycschools.html">API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NYC Schools Open Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Statistics</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>ANOVA and OLS Regression</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/nb/04-Statistics/05-anova-ols.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="ANOVA-and-OLS-Regression">
+<h1><span class="section-number">2. </span>ANOVA and OLS Regression<a class="headerlink" href="#ANOVA-and-OLS-Regression" title="Permalink to this heading"></a></h1>
+<p>This notebook combines school demographic data and New York State ELA test scores to examine the factors that predict test scores. In it we run a t-test to test for statistic difference in the scores for White students and Black students.</p>
+<p>We then run analysis of variance between the 4 main ethnic/racial groups to see if there is statistical significance in the outcomes. We run an OLS regression on these groups with the “All Students” as a baseline reference category and display the ANOVA table and regression summary.</p>
+<p>Finally, one run a different OLS regression to examine the school demographic factors and their effect on test scores.</p>
+<p>In this notebook:</p>
+<ul class="simple">
+<li><p>t-test (review)</p></li>
+<li><p>ANOVA (analysis of variance)</p></li>
+<li><p>OLS (ordinary least squares) regression</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the demographic data</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">scipy</span>
+
+<span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span> <span class="k">as</span> <span class="n">md</span>
+
+<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span><span class="p">,</span> <span class="n">exams</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the demographic data and merge it with the ELA data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+
+<span class="c1"># load the data from the csv file</span>
+<span class="n">ela</span> <span class="o">=</span> <span class="n">exams</span><span class="o">.</span><span class="n">load_ela</span><span class="p">()</span>
+
+
+<span class="c1">#drop the rows with NaN (where the pop is too small to report)</span>
+<span class="n">ela</span> <span class="o">=</span> <span class="n">ela</span><span class="p">[</span><span class="n">ela</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span>
+
+<span class="c1"># for this analysis we will only look at grade 8 scores for the 2018-19 (pre-covid) school year</span>
+<span class="c1"># the last pre-covid year</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">grade</span> <span class="o">==</span><span class="s1">&#39;8&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">mean_scale_score</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+
+<span class="c1"># create 5 groups as independent data frames</span>
+
+<span class="n">all_students</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;All Students&quot;</span><span class="p">][[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+<span class="n">black</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Black&quot;</span><span class="p">][[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+<span class="n">white</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;White&quot;</span><span class="p">][[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+<span class="n">hispanic</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Hispanic&quot;</span><span class="p">][[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+<span class="n">asian</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Asian&quot;</span><span class="p">][[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<section id="t-test:-white-and-black-students">
+<h2><span class="section-number">2.1. </span>t-test: white and black students<a class="headerlink" href="#t-test:-white-and-black-students" title="Permalink to this heading"></a></h2>
+<p>Before running the ANOVA and further analysis, we will run a t-test between Black and White students to determine if there is a significant difference between their average test score.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># calculate the mean test score and standard deviation for each group</span>
+<span class="n">mean_std</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">Mean</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mean_scale_score&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">),</span> <span class="n">STD</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mean_scale_score&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="s2">&quot;**Mean average and standard deviation of test scores for each group.**&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mean_std</span><span class="p">)</span>
+
+
+<span class="c1"># run a t-test to see if there is a statistical difference between white and black student scores</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">white</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">],</span><span class="n">black</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">**T-Test results** comparing school averages of</span>
+<span class="s2">White (`n=</span><span class="si">{</span><span class="n">white</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2">`) and Black (`n=</span><span class="si">{</span><span class="n">black</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2">`)</span>
+<span class="s2">students in 8th grade student ELA scores for 2019-20 academic year.</span>
+
+<span class="s2">- White students: M=</span><span class="si">{</span><span class="n">white</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.04f</span><span class="si">}</span><span class="s2">, SD=</span><span class="si">{</span><span class="n">white</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.04f</span><span class="si">}</span>
+<span class="s2">- Black students: M=</span><span class="si">{</span><span class="n">black</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, SD=</span><span class="si">{</span><span class="n">black</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.04f</span><span class="si">}</span>
+<span class="s2">- T-score: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">, p-val: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">pvalue</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">`n` values report the number of schools observed, not the number of test takers. Further analysis</span>
+<span class="s2">will report on the t-test for weighted means that account for school size.</span>
+
+<span class="s2">We see that there is a statistically significance difference in test scores between the groups.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<p><strong>Mean average and standard deviation of test scores for each group.</strong></p>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mean</th>
+      <th>STD</th>
+    </tr>
+    <tr>
+      <th>category</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>All Students</th>
+      <td>601.561093</td>
+      <td>9.266628</td>
+    </tr>
+    <tr>
+      <th>Asian</th>
+      <td>610.011383</td>
+      <td>10.234169</td>
+    </tr>
+    <tr>
+      <th>Black</th>
+      <td>598.277534</td>
+      <td>7.550302</td>
+    </tr>
+    <tr>
+      <th>Current ELL</th>
+      <td>577.753650</td>
+      <td>6.179677</td>
+    </tr>
+    <tr>
+      <th>Econ Disadv</th>
+      <td>601.216605</td>
+      <td>8.690372</td>
+    </tr>
+    <tr>
+      <th>Ever ELL</th>
+      <td>604.167463</td>
+      <td>6.260445</td>
+    </tr>
+    <tr>
+      <th>Female</th>
+      <td>603.935732</td>
+      <td>9.382392</td>
+    </tr>
+    <tr>
+      <th>Hispanic</th>
+      <td>598.379582</td>
+      <td>8.639729</td>
+    </tr>
+    <tr>
+      <th>Male</th>
+      <td>597.740034</td>
+      <td>9.912043</td>
+    </tr>
+    <tr>
+      <th>Never ELL</th>
+      <td>602.036189</td>
+      <td>8.229933</td>
+    </tr>
+    <tr>
+      <th>Not Econ Disadv</th>
+      <td>605.578228</td>
+      <td>9.724134</td>
+    </tr>
+    <tr>
+      <th>Not SWD</th>
+      <td>603.212482</td>
+      <td>9.386994</td>
+    </tr>
+    <tr>
+      <th>SWD</th>
+      <td>587.826847</td>
+      <td>7.421250</td>
+    </tr>
+    <tr>
+      <th>White</th>
+      <td>607.967339</td>
+      <td>11.660535</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<p><strong>T-Test results</strong> comparing school averages of White (<code class="docutils literal notranslate"><span class="pre">n=191</span></code>) and Black (<code class="docutils literal notranslate"><span class="pre">n=348</span></code>) students in 8th grade student ELA scores for 2019-20 academic year.</p>
+<ul class="simple">
+<li><p>White students: M=607.9673, SD=11.6605</p></li>
+<li><p>Black students: M=598.2775343971265, SD=7.5503</p></li>
+<li><p>T-score: 11.675, p-val: 0.0</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">n</span></code> values report the number of schools observed, not the number of test takers. Further analysis will report on the t-test for weighted means that account for school size.</p>
+<p>We see that there is a statistically significance difference in test scores between the groups.</p>
+</div>
+</div>
+</section>
+<section id="ANOVA-&amp;-f-values">
+<h2><span class="section-number">2.2. </span>ANOVA &amp; f-values<a class="headerlink" href="#ANOVA-&-f-values" title="Permalink to this heading"></a></h2>
+<p>In the example below we calculate the f-statistic to see if there are significant differences in test scores based on racial/ethnic group of the test takers. We compare the four main groups in NYC Schools: Asian, Black, Hispanic, and White.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run a one way anova to test if there is significant difference between the</span>
+<span class="c1"># average test scores at the school level of 4 different racial/ethnic groups</span>
+
+<span class="n">fvalue</span><span class="p">,</span> <span class="n">pvalue</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span>
+    <span class="n">asian</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">],</span>
+    <span class="n">black</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">],</span>
+    <span class="n">hispanic</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">],</span>
+    <span class="n">white</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">])</span>
+
+
+<span class="n">results</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A **one-way between subjects ANOVA** was conducted to compare the effect of</span>
+<span class="s2">racial/ethnic group on the test score for 8th grade NYS ELA exams for</span>
+<span class="s2">during the 2018-2019 academic year.</span>
+
+<span class="s2">The four groups in the test are: Asian (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">asian</span><span class="p">)</span><span class="si">}</span><span class="s2">), Black (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">black</span><span class="p">)</span><span class="si">}</span><span class="s2">), Latinx (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hispanic</span><span class="p">)</span><span class="si">}</span><span class="s2">),</span>
+<span class="s2">and White (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">white</span><span class="p">)</span><span class="si">}</span><span class="s2">) students.</span>
+
+<span class="s2">The was a significant effect of racial/ethnic group on test score at</span>
+<span class="s2">the p&lt;.001 level for the four conditions, [p=</span><span class="si">{</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.04f</span><span class="si">}</span><span class="s2">, F=</span><span class="si">{</span><span class="n">fvalue</span><span class="si">:</span><span class="s2">.04f</span><span class="si">}</span><span class="s2">].</span>
+
+<span class="s2">_`n` values are the number of schools reported, not the number of test takers in each group_</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">md</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<p>A <strong>one-way between subjects ANOVA</strong> was conducted to compare the effect of racial/ethnic group on the test score for 8th grade NYS ELA exams for during the 2018-2019 academic year.</p>
+<p>The four groups in the test are: Asian (n=187), Black (n=348), Latinx (n=404), and White (n=191) students.</p>
+<p>The was a significant effect of racial/ethnic group on test score at the p&lt;.001 level for the four conditions, [p=0.0000, F=113.9984].</p>
+<p><em>``n`` values are the number of schools reported, not the number of test takers in each group</em></p>
+</div>
+</div>
+<section id="Pingouin-results">
+<h3><span class="section-number">2.2.1. </span>Pingouin results<a class="headerlink" href="#Pingouin-results" title="Permalink to this heading"></a></h3>
+<p>When we ran the t-test we saw that <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> offers some useful additional features. The API (syntax for using) <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> differes from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>. Before we run the test, we create a new single dataframe with just the columns we care about. We tell the function which column is the dependent variable and which specifies the groups.</p>
+<p>Below we show the <a class="reference external" href="https://pingouin-stats.org/generated/pingouin.anova.html#pingouin.anova">pinguion ANOVA</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pg.anova()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Asian&quot;</span><span class="p">,</span> <span class="s2">&quot;Black&quot;</span><span class="p">,</span> <span class="s2">&quot;Hispanic&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">])]</span>
+<span class="n">data</span><span class="p">[[</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]]</span>
+
+<span class="n">pg</span><span class="o">.</span><span class="n">anova</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="s1">&#39;mean_scale_score&#39;</span><span class="p">,</span> <span class="n">between</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">detailed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Source</th>
+      <th>SS</th>
+      <th>DF</th>
+      <th>MS</th>
+      <th>F</th>
+      <th>p-unc</th>
+      <th>np2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>category</td>
+      <td>28908.194891</td>
+      <td>3</td>
+      <td>9636.064964</td>
+      <td>113.998413</td>
+      <td>1.832508e-64</td>
+      <td>0.232968</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Within</td>
+      <td>95178.598593</td>
+      <td>1126</td>
+      <td>84.528063</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="OLS-Linear-Regression">
+<h2><span class="section-number">2.3. </span>OLS Linear Regression<a class="headerlink" href="#OLS-Linear-Regression" title="Permalink to this heading"></a></h2>
+<p>The ANOVA tells us that there is a significant difference in test result based on racial/ethnic group. We can run a regression analysis to help us isolate the impact of different factors on our <code class="docutils literal notranslate"><span class="pre">mean_scale_score</span></code> – our dependent variable.</p>
+<p>For this analysis we will look at the school demographics to analyze the mean ELA test score for All Students at the school.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first choose the &quot;factors&quot; from our data fields that we believe impact mean_scale_score</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="s2">&quot;All Students&quot;</span><span class="p">]</span>
+<span class="n">factors</span> <span class="o">=</span> <span class="p">[</span>
+       <span class="s1">&#39;total_enrollment&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;female_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;asian_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;black_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;hispanic_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;white_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;swd_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ell_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;poverty_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;eni_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;charter&#39;</span><span class="p">]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_scale_score&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">factors</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>    <td>mean_scale_score</td> <th>  R-squared:         </th> <td>   0.699</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.694</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   131.4</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 06 Dec 2022</td> <th>  Prob (F-statistic):</th> <td>3.87e-154</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>18:03:26</td>     <th>  Log-Likelihood:    </th> <td> -1929.9</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   634</td>      <th>  AIC:               </th> <td>   3884.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   622</td>      <th>  BIC:               </th> <td>   3937.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>    11</td>      <th>                     </th>     <td> </td>
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+          <td></td>            <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>
+</tr>
+<tr>
+  <th>const</th>            <td>  615.1489</td> <td>   10.519</td> <td>   58.479</td> <td> 0.000</td> <td>  594.492</td> <td>  635.806</td>
+</tr>
+<tr>
+  <th>total_enrollment</th> <td>   -0.0002</td> <td>    0.001</td> <td>   -0.283</td> <td> 0.777</td> <td>   -0.002</td> <td>    0.001</td>
+</tr>
+<tr>
+  <th>female_pct</th>       <td>    8.4008</td> <td>    2.380</td> <td>    3.530</td> <td> 0.000</td> <td>    3.727</td> <td>   13.074</td>
+</tr>
+<tr>
+  <th>asian_pct</th>        <td>   12.3692</td> <td>   11.826</td> <td>    1.046</td> <td> 0.296</td> <td>  -10.855</td> <td>   35.593</td>
+</tr>
+<tr>
+  <th>black_pct</th>        <td>   -1.9667</td> <td>   11.588</td> <td>   -0.170</td> <td> 0.865</td> <td>  -24.723</td> <td>   20.790</td>
+</tr>
+<tr>
+  <th>hispanic_pct</th>     <td>    4.0233</td> <td>   11.462</td> <td>    0.351</td> <td> 0.726</td> <td>  -18.485</td> <td>   26.532</td>
+</tr>
+<tr>
+  <th>white_pct</th>        <td>    6.6385</td> <td>   11.235</td> <td>    0.591</td> <td> 0.555</td> <td>  -15.425</td> <td>   28.702</td>
+</tr>
+<tr>
+  <th>swd_pct</th>          <td>  -38.2322</td> <td>    3.837</td> <td>   -9.964</td> <td> 0.000</td> <td>  -45.767</td> <td>  -30.697</td>
+</tr>
+<tr>
+  <th>ell_pct</th>          <td>  -35.6202</td> <td>    2.406</td> <td>  -14.807</td> <td> 0.000</td> <td>  -40.344</td> <td>  -30.896</td>
+</tr>
+<tr>
+  <th>poverty_pct</th>      <td>   -8.5422</td> <td>    3.808</td> <td>   -2.243</td> <td> 0.025</td> <td>  -16.020</td> <td>   -1.065</td>
+</tr>
+<tr>
+  <th>eni_pct</th>          <td>   -2.6267</td> <td>    3.664</td> <td>   -0.717</td> <td> 0.474</td> <td>   -9.821</td> <td>    4.568</td>
+</tr>
+<tr>
+  <th>charter</th>          <td>    2.1596</td> <td>    0.598</td> <td>    3.614</td> <td> 0.000</td> <td>    0.986</td> <td>    3.333</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>34.045</td> <th>  Durbin-Watson:     </th> <td>   1.670</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  69.095</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.326</td> <th>  Prob(JB):          </th> <td>9.92e-16</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 4.480</td> <th>  Cond. No.          </th> <td>9.05e+04</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 9.05e+04. This might indicate that there are<br/>strong multicollinearity or other numerical problems.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can also pull specific data from the model</span>
+<span class="c1"># here we create our own table with the factors, coefficients and p-values</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:],)</span>
+<span class="n">pvalues</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;factor&quot;</span><span class="p">:</span><span class="n">params</span><span class="p">,</span><span class="s2">&quot;coef&quot;</span><span class="p">:</span><span class="n">coefs</span><span class="p">,</span><span class="s2">&quot;p-values&quot;</span><span class="p">:</span><span class="n">pvalues</span><span class="p">})</span>
+<span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;coef&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>factor</th>
+      <th>coef</th>
+      <th>p-values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>swd_pct</td>
+      <td>-38.232201</td>
+      <td>8.505317e-22</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ell_pct</td>
+      <td>-35.620239</td>
+      <td>1.030998e-42</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>poverty_pct</td>
+      <td>-8.542162</td>
+      <td>2.522178e-02</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>eni_pct</td>
+      <td>-2.626731</td>
+      <td>4.736688e-01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>black_pct</td>
+      <td>-1.966710</td>
+      <td>8.652873e-01</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>total_enrollment</td>
+      <td>-0.000191</td>
+      <td>7.772975e-01</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>charter</td>
+      <td>2.159607</td>
+      <td>3.258558e-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>hispanic_pct</td>
+      <td>4.023272</td>
+      <td>7.256952e-01</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>white_pct</td>
+      <td>6.638455</td>
+      <td>5.548231e-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>female_pct</td>
+      <td>8.400780</td>
+      <td>4.460913e-04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>asian_pct</td>
+      <td>12.369227</td>
+      <td>2.960056e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04-t_tests.html" class="btn btn-neutral float-left" title="1. T Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08-predictive-stats.html" class="btn btn-neutral float-right" title="3. Predictive Statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Matthew X. Curinga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

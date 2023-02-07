@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Grouped Bar Charts &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Line &amp; Scatter Plots" href="03-line-and-scatter-charts.html" />
+    <link rel="prev" title="1. Bar Charts" href="01-basic-bar-charts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NYC Schools Open Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Graphs &amp; Charts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-basic-bar-charts.html">1. Bar Charts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Grouped Bar Charts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Simple-Bar-Chart">2.1. Simple Bar Chart</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Drawing-the-plot">2.1.1. Drawing the plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Labels,-figure-size,-and-more">2.2. Labels, figure size, and more</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Grouped-Bar-Chart:-Citywide-student-demographics">2.3. Grouped Bar Chart: Citywide student demographics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#melt()-to-un-pivot-data">2.3.1. <code class="docutils literal notranslate"><span class="pre">melt()</span></code> to un-pivot data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Grouped-Bar-Chart:-student-demographics-by-district">2.4. Grouped Bar Chart: student demographics by district</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03-line-and-scatter-charts.html">3. Line &amp; Scatter Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/nycschools.html">API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NYC Schools Open Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Graphs &amp; Charts</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Grouped Bar Charts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Grouped-Bar-Charts">
+<h1><span class="section-number">2. </span>Grouped Bar Charts<a class="headerlink" href="#Grouped-Bar-Charts" title="Permalink to this heading"></a></h1>
+<p>This notebook introduces the methods of creating bar charts from our data, including some of the key concepts of our plotting package, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Bar charts are useful for making comparisons between close data because we are very good at evaluating the size of rectangles.</p>
+<p>Topics covered:</p>
+<ul class="simple">
+<li><p>bar charts</p></li>
+<li><p>styling charts (titles, labels, size, color, etc)</p></li>
+<li><p>grouped bar charts</p></li>
+<li><p>new <code class="docutils literal notranslate"><span class="pre">school_data</span></code> package for custom code</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span><span class="p">,</span> <span class="n">ui</span><span class="p">,</span> <span class="n">exams</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Simple-Bar-Chart">
+<h2><span class="section-number">2.1. </span>Simple Bar Chart<a class="headerlink" href="#Simple-Bar-Chart" title="Permalink to this heading"></a></h2>
+<p>We can quickly and easily create charts in <code class="docutils literal notranslate"><span class="pre">pandas</span></code> by calling the <code class="docutils literal notranslate"><span class="pre">bar.plot()</span></code> function on a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. The first step is to create a table where the data is ready to present. In this example, we’ll create a bar chart from the school enrollment data in <code class="docutils literal notranslate"><span class="pre">df</span></code> (the school demographics).</p>
+<p>We’ll get started by borrowing the code from our <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">agg</span></code> examples.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># boros = df[df.ay == 2020]</span>
+<span class="n">boros</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">]]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">boros</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;boro&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s2">&quot;dbn&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_enrollment&quot;</span><span class="p">:[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">]})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Borough&quot;</span><span class="p">,</span> <span class="s2">&quot;Num. Schools&quot;</span><span class="p">,</span> <span class="s2">&quot;Total Students&quot;</span><span class="p">,</span> <span class="s2">&quot;Avg School Size&quot;</span><span class="p">,</span> <span class="s2">&quot;Smallest School&quot;</span><span class="p">,</span> <span class="s2">&quot;Largest School&quot;</span><span class="p">]</span>
+<span class="n">table</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Borough</th>
+      <th>Num. Schools</th>
+      <th>Total Students</th>
+      <th>Avg School Size</th>
+      <th>Smallest School</th>
+      <th>Largest School</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bronx</td>
+      <td>2387</td>
+      <td>1225655</td>
+      <td>513.470884</td>
+      <td>7</td>
+      <td>3016</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brooklyn</td>
+      <td>3117</td>
+      <td>1771238</td>
+      <td>568.250882</td>
+      <td>26</td>
+      <td>6040</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Manhattan</td>
+      <td>2018</td>
+      <td>990354</td>
+      <td>490.760159</td>
+      <td>12</td>
+      <td>3381</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Queens</td>
+      <td>2072</td>
+      <td>1573722</td>
+      <td>759.518340</td>
+      <td>32</td>
+      <td>4557</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staten Island</td>
+      <td>407</td>
+      <td>318278</td>
+      <td>782.009828</td>
+      <td>55</td>
+      <td>3911</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="Drawing-the-plot">
+<h3><span class="section-number">2.1.1. </span>Drawing the plot<a class="headerlink" href="#Drawing-the-plot" title="Permalink to this heading"></a></h3>
+<p>Making a chart from our <code class="docutils literal notranslate"><span class="pre">table</span></code> is as simple as calling <code class="docutils literal notranslate"><span class="pre">plot.bar()</span></code>. In the example below we specify that we want enrollment (school size) as the vertical y-axis and Borough as our x-axis.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Borough&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Total Students&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_5_0.png" src="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_5_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># doe the same thing with average school size</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Borough&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Avg School Size&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_6_0.png" src="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_6_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Labels,-figure-size,-and-more">
+<h2><span class="section-number">2.2. </span>Labels, figure size, and more<a class="headerlink" href="#Labels,-figure-size,-and-more" title="Permalink to this heading"></a></h2>
+<p>We can make a pretty decent bar chart for a single line of code, but with a few more arguments to our function, we can make it even better. To do this, we’re going to use a few more features from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and related libraries.</p>
+<p>In this example we will specify:</p>
+<ul class="simple">
+<li><p>sorting the columns by size</p></li>
+<li><p>setting the images size</p></li>
+<li><p>adding titles and labels</p></li>
+<li><p>changing colors</p></li>
+</ul>
+<p>You may have noticed that we were assigning the <strong>return</strong> value from <code class="docutils literal notranslate"><span class="pre">plot()</span></code> into a new variable called <code class="docutils literal notranslate"><span class="pre">ax</span></code>. This servers the simple purpose of showing only the chart (and not the return value), but it also allows us to keep adding items to our chart.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># before drawing anything, change the &quot;style&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;dark_background&#39;</span><span class="p">)</span>
+
+<span class="c1"># show all the styles</span>
+<span class="c1"># change dark_background to any style from this list to try it out</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">available</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Solarize_Light2&#39;,
+ &#39;_classic_test_patch&#39;,
+ &#39;_mpl-gallery&#39;,
+ &#39;_mpl-gallery-nogrid&#39;,
+ &#39;bmh&#39;,
+ &#39;classic&#39;,
+ &#39;dark_background&#39;,
+ &#39;fast&#39;,
+ &#39;fivethirtyeight&#39;,
+ &#39;ggplot&#39;,
+ &#39;grayscale&#39;,
+ &#39;seaborn&#39;,
+ &#39;seaborn-bright&#39;,
+ &#39;seaborn-colorblind&#39;,
+ &#39;seaborn-dark&#39;,
+ &#39;seaborn-dark-palette&#39;,
+ &#39;seaborn-darkgrid&#39;,
+ &#39;seaborn-deep&#39;,
+ &#39;seaborn-muted&#39;,
+ &#39;seaborn-notebook&#39;,
+ &#39;seaborn-paper&#39;,
+ &#39;seaborn-pastel&#39;,
+ &#39;seaborn-poster&#39;,
+ &#39;seaborn-talk&#39;,
+ &#39;seaborn-ticks&#39;,
+ &#39;seaborn-white&#39;,
+ &#39;seaborn-whitegrid&#39;,
+ &#39;tableau-colorblind10&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort the tabgle in descending order by school size -- this will order our bars</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Avg School Size&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Borough&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Avg School Size&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;violet&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Average School Size by Borough&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Students&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_9_0.png" src="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_9_0.png" />
+</div>
+</div>
+</section>
+<section id="Grouped-Bar-Chart:-Citywide-student-demographics">
+<h2><span class="section-number">2.3. </span>Grouped Bar Chart: Citywide student demographics<a class="headerlink" href="#Grouped-Bar-Chart:-Citywide-student-demographics" title="Permalink to this heading"></a></h2>
+<p>Drawing from the counts of students in different demographic categories (<code class="docutils literal notranslate"><span class="pre">asian_n</span></code>, <code class="docutils literal notranslate"><span class="pre">ell_n</span></code>) we will draw a basic bar chart.</p>
+<section id="melt()-to-un-pivot-data">
+<h3><span class="section-number">2.3.1. </span><code class="docutils literal notranslate"><span class="pre">melt()</span></code> to un-pivot data<a class="headerlink" href="#melt()-to-un-pivot-data" title="Permalink to this heading"></a></h3>
+<p>The first thing we do is <strong>melt</strong> the columns with the demographic counts into a single column. Typically, a melt will create two new columns: one with the categories or <code class="docutils literal notranslate"><span class="pre">id</span></code> labels for the row, and a second with the <code class="docutils literal notranslate"><span class="pre">values</span></code> for the row. In this example we create <strong>enroll_cat</strong> (<code class="docutils literal notranslate"><span class="pre">id</span></code>) to tell us which <em>category</em> of enrollment number we’re looking at and <strong>enrollment</strong> (<code class="docutils literal notranslate"><span class="pre">values</span></code>) to hold the number of students for that row for that category. Each row in this dataframe reports the
+observation for a specicif school, grade, academic year (<code class="docutils literal notranslate"><span class="pre">dbn</span></code>, <code class="docutils literal notranslate"><span class="pre">grade</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tests</span> <span class="o">=</span> <span class="n">exams</span><span class="o">.</span><span class="n">load_math_ela_wide</span><span class="p">()</span>
+<span class="n">tests</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>grade</th>
+      <th>category_math</th>
+      <th>number_tested_math</th>
+      <th>mean_scale_score_math</th>
+      <th>level_1_n_math</th>
+      <th>level_1_pct_math</th>
+      <th>level_2_n_math</th>
+      <th>level_2_pct_math</th>
+      <th>level_3_n_math</th>
+      <th>...</th>
+      <th>level_2_pct_ela</th>
+      <th>level_3_n_ela</th>
+      <th>level_3_pct_ela</th>
+      <th>level_4_n_ela</th>
+      <th>level_4_pct_ela</th>
+      <th>level_3_4_n_ela</th>
+      <th>level_3_4_pct_ela</th>
+      <th>test_year_ela</th>
+      <th>charter_ela</th>
+      <th>school_name_ela</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.407407</td>
+      <td>2.0</td>
+      <td>0.074074</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>2.0</td>
+      <td>0.074074</td>
+      <td>2013</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.421053</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>2013</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.375000</td>
+      <td>2.0</td>
+      <td>0.250000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>2.0</td>
+      <td>0.250000</td>
+      <td>2013</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2013</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2013</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5516426</th>
+      <td>84X730</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>51</td>
+      <td>604.000000</td>
+      <td>7.0</td>
+      <td>0.137000</td>
+      <td>12.0</td>
+      <td>0.235000</td>
+      <td>20.0</td>
+      <td>...</td>
+      <td>0.431000</td>
+      <td>23.0</td>
+      <td>0.451000</td>
+      <td>4.0</td>
+      <td>0.078</td>
+      <td>27.0</td>
+      <td>0.529000</td>
+      <td>2019</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+    </tr>
+    <tr>
+      <th>5516427</th>
+      <td>84X730</td>
+      <td>4</td>
+      <td>All Students</td>
+      <td>47</td>
+      <td>597.000000</td>
+      <td>15.0</td>
+      <td>0.319000</td>
+      <td>10.0</td>
+      <td>0.213000</td>
+      <td>15.0</td>
+      <td>...</td>
+      <td>0.286000</td>
+      <td>13.0</td>
+      <td>0.265000</td>
+      <td>4.0</td>
+      <td>0.082</td>
+      <td>17.0</td>
+      <td>0.347000</td>
+      <td>2019</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+    </tr>
+    <tr>
+      <th>5516428</th>
+      <td>84X730</td>
+      <td>5</td>
+      <td>All Students</td>
+      <td>53</td>
+      <td>593.000000</td>
+      <td>23.0</td>
+      <td>0.434000</td>
+      <td>13.0</td>
+      <td>0.245000</td>
+      <td>12.0</td>
+      <td>...</td>
+      <td>0.377000</td>
+      <td>8.0</td>
+      <td>0.151000</td>
+      <td>7.0</td>
+      <td>0.132</td>
+      <td>15.0</td>
+      <td>0.283000</td>
+      <td>2019</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+    </tr>
+    <tr>
+      <th>5516429</th>
+      <td>84X730</td>
+      <td>6</td>
+      <td>All Students</td>
+      <td>110</td>
+      <td>595.000000</td>
+      <td>38.0</td>
+      <td>0.345000</td>
+      <td>30.0</td>
+      <td>0.273000</td>
+      <td>34.0</td>
+      <td>...</td>
+      <td>0.292000</td>
+      <td>23.0</td>
+      <td>0.204000</td>
+      <td>12.0</td>
+      <td>0.106</td>
+      <td>35.0</td>
+      <td>0.310000</td>
+      <td>2019</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+    </tr>
+    <tr>
+      <th>5516430</th>
+      <td>84X730</td>
+      <td>All Grades</td>
+      <td>All Students</td>
+      <td>261</td>
+      <td>597.000000</td>
+      <td>83.0</td>
+      <td>0.318000</td>
+      <td>65.0</td>
+      <td>0.249000</td>
+      <td>81.0</td>
+      <td>...</td>
+      <td>0.335000</td>
+      <td>67.0</td>
+      <td>0.252000</td>
+      <td>27.0</td>
+      <td>0.102</td>
+      <td>94.0</td>
+      <td>0.353000</td>
+      <td>2019</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+    </tr>
+  </tbody>
+</table>
+<p>5516431 rows × 35 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># work with just one year to make things clearer</span>
+<span class="n">totals</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="n">totals</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+
+
+<span class="c1"># define the category columns -- the columns which will be &quot;melted&quot; / collapsed</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;asian_n&quot;</span><span class="p">,</span> <span class="s2">&quot;black_n&quot;</span><span class="p">,</span><span class="s2">&quot;hispanic_n&quot;</span><span class="p">,</span><span class="s2">&quot;white_n&quot;</span><span class="p">]</span>
+
+<span class="c1"># the columns that will be the same after the melt</span>
+<span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;district&quot;</span><span class="p">,</span> <span class="s2">&quot;boro&quot;</span><span class="p">]</span>
+
+<span class="c1"># get just the cols we want from the df</span>
+<span class="n">totals</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="n">id_cols</span> <span class="o">+</span> <span class="n">cats</span><span class="p">]</span>
+
+<span class="c1"># make nice names for our columns by dropping the _n and renaming total_enrollment to &quot;all students&quot;</span>
+<span class="c1"># these column headers will become the data in the enroll_cat column after the melt</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;all students&quot;</span><span class="p">,</span> <span class="s2">&quot;asian&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;hispanic&quot;</span><span class="p">,</span><span class="s2">&quot;white&quot;</span><span class="p">]</span>
+<span class="n">totals</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">id_cols</span> <span class="o">+</span> <span class="n">cats</span>
+
+<span class="n">totals</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># melt tutorial:</span>
+<span class="c1"># https://www.educba.com/pandas-melt/</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">totals</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="n">id_cols</span><span class="p">,</span> <span class="n">value_vars</span><span class="o">=</span><span class="n">cats</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;enrollment&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># let&#39;s look at one grade for one school for one year (2019) to see what ouplt.style.use(&#39;fivethirtyeight&#39;)r data looks like</span>
+<span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;dbn == &#39;01M015&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>district</th>
+      <th>boro</th>
+      <th>enroll_cat</th>
+      <th>enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>all students</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>1878</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>asian</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>3756</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>black</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>5634</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>hispanic</td>
+      <td>102</td>
+    </tr>
+    <tr>
+      <th>7512</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>white</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use groupby and agg to get the city wide enrollment data</span>
+<span class="n">city_enroll</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="s2">&quot;enrollment&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+
+<span class="n">city_enroll</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>enroll_cat</th>
+      <th>enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>all students</td>
+      <td>1050017</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>asian</td>
+      <td>173758</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>black</td>
+      <td>261595</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hispanic</td>
+      <td>432188</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>white</td>
+      <td>151060</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a bar chart of new york city student population</span>
+<span class="c1"># the size is set in inches (don&#39;t think it&#39;s pixels or else it takes a long time to run)</span>
+<span class="c1"># to see the full size image, right click and view image</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">city_enroll</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;New York City School Students&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the y-axis label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;number of students (millions)&quot;</span><span class="p">)</span>
+<span class="k">pass</span> <span class="c1"># pass so only the chartdisplays with no other output</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_15_0.png" src="../../_images/nb_03-Graphs-and-Charts_02-grouped-bar-chart_15_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="Grouped-Bar-Chart:-student-demographics-by-district">
+<h2><span class="section-number">2.4. </span>Grouped Bar Chart: student demographics by district<a class="headerlink" href="#Grouped-Bar-Chart:-student-demographics-by-district" title="Permalink to this heading"></a></h2>
+<p>Now we’ll make a more complicated bar chart, where we display the ethnic group populations at the district leve. For this chart we will have 20 bars (4 groups x 5 boroughs). We use more of the functions in <code class="docutils literal notranslate"><span class="pre">matplot</span></code> to style our ouput, add titls and legends, etc.</p>
+<p>Links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.pythoncharts.com/matplotlib/grouped-bar-charts-matplotlib/">Python Charts: Grouped Bar Charts with Labels in Matplotlib</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html">Matplotlib: Legend Demo</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.set_context.html">Seaborn: set_context()</a></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now group them by district</span>
+<span class="n">boro_enroll</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="s2">&quot;enrollment&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;enroll_cat&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">fmt_table</span><span class="p">(</span><span class="n">boro_enroll</span><span class="p">,</span> <span class="n">num_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">col_map</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">:</span><span class="s2">&quot;student group&quot;</span><span class="p">})</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>boro</th>
+      <th>student group</th>
+      <th>enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bronx</td>
+      <td>all students</td>
+      <td>218,081</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bronx</td>
+      <td>asian</td>
+      <td>11,006</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Bronx</td>
+      <td>black</td>
+      <td>58,362</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bronx</td>
+      <td>hispanic</td>
+      <td>136,098</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bronx</td>
+      <td>white</td>
+      <td>8,934</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Brooklyn</td>
+      <td>all students</td>
+      <td>315,797</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Brooklyn</td>
+      <td>asian</td>
+      <td>53,857</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Brooklyn</td>
+      <td>black</td>
+      <td>108,445</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Brooklyn</td>
+      <td>hispanic</td>
+      <td>90,867</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Brooklyn</td>
+      <td>white</td>
+      <td>54,185</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Manhattan</td>
+      <td>all students</td>
+      <td>169,026</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Manhattan</td>
+      <td>asian</td>
+      <td>20,232</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Manhattan</td>
+      <td>black</td>
+      <td>38,320</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Manhattan</td>
+      <td>hispanic</td>
+      <td>75,697</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Manhattan</td>
+      <td>white</td>
+      <td>27,781</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Queens</td>
+      <td>all students</td>
+      <td>283,289</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Queens</td>
+      <td>asian</td>
+      <td>80,720</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Queens</td>
+      <td>black</td>
+      <td>48,030</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Queens</td>
+      <td>hispanic</td>
+      <td>110,264</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Queens</td>
+      <td>white</td>
+      <td>33,692</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Staten Island</td>
+      <td>all students</td>
+      <td>63,824</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Staten Island</td>
+      <td>asian</td>
+      <td>7,943</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Staten Island</td>
+      <td>black</td>
+      <td>8,438</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Staten Island</td>
+      <td>hispanic</td>
+      <td>19,262</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Staten Island</td>
+      <td>white</td>
+      <td>26,468</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a df for each group we want to plot</span>
+<span class="n">asian</span> <span class="o">=</span> <span class="n">boro_enroll</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;enroll_cat == &#39;asian&#39;&quot;</span><span class="p">)</span>
+<span class="n">black</span> <span class="o">=</span> <span class="n">boro_enroll</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;enroll_cat == &#39;black&#39;&quot;</span><span class="p">)</span>
+<span class="n">hispanic</span> <span class="o">=</span> <span class="n">boro_enroll</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;enroll_cat == &#39;hispanic&#39;&quot;</span><span class="p">)</span>
+<span class="n">white</span> <span class="o">=</span> <span class="n">boro_enroll</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;enroll_cat == &#39;white&#39;&quot;</span><span class="p">)</span>
+
+<span class="c1"># get the tick marks for the x access</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">boro</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+
+<span class="c1"># instead of plotting the dataframe, get the figure and axis components from the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># the bar width in inches</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mf">.17</span>
+
+<span class="c1"># add the bars</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">hispanic</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Hispanic&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">black</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">white</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;White&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">asian</span><span class="p">[</span><span class="s2">&quot;enrollment&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Asian&quot;</span><span class="p">)</span>
+
+<span class="c1"># set the x-ticks to the middle of the bar groups and add labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">boro_enroll</span><span class="o">.</span><span class="n">boro</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+
+<span class="c1"># style the output</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;talk&#39;</span><span class="p">)</span>
+<span class="c1"># sns.set_context(&#39;poster&#39;)</span>
+<span class="c1"># sns.set_context(&#39;paper&#39;)</span>
+<span class="c1"># sns.set_context(&#39;notebook&#39;)</span>
+
+<span class="c1"># Set the y-axis label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of students&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Axis styling.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;#DDDDDD&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#efefef&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;New York City School Enrollment by Borough&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">/home/mxc/Projects/school-data-portal/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb Cell 20</span> in <span class="ansi-cyan-fg">&lt;cell line: 2&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/home/mxc/Projects/school-data-portal/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb#X25sZmlsZQ%3D%3D?line=0&#39;&gt;1&lt;/a&gt;</span> # create a df for each group we want to plot
+<span class="ansi-green-fg">----&gt; &lt;a href=&#39;vscode-notebook-cell:/home/mxc/Projects/school-data-portal/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb#X25sZmlsZQ%3D%3D?line=1&#39;&gt;2&lt;/a&gt;</span> asian = boro_enroll.query(&#34;enroll_cat == &#39;asian&#39;&#34;)
+<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/home/mxc/Projects/school-data-portal/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb#X25sZmlsZQ%3D%3D?line=2&#39;&gt;3&lt;/a&gt;</span> black = boro_enroll.query(&#34;enroll_cat == &#39;black&#39;&#34;)
+<span class="ansi-green-intense-fg ansi-bold">      &lt;a href=&#39;vscode-notebook-cell:/home/mxc/Projects/school-data-portal/nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb#X25sZmlsZQ%3D%3D?line=3&#39;&gt;4&lt;/a&gt;</span> hispanic = boro_enroll.query(&#34;enroll_cat == &#39;hispanic&#39;&#34;)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;boro_enroll&#39; is not defined
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01-basic-bar-charts.html" class="btn btn-neutral float-left" title="1. Bar Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03-line-and-scatter-charts.html" class="btn btn-neutral float-right" title="3. Line &amp; Scatter Plots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Matthew X. Curinga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

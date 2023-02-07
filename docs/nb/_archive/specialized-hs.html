@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> NYC Schools Open Data
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">2. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">3. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data-sources.html">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/nycschools.html">API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NYC Schools Open Data</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/nb/_archive/specialized-hs.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span> <span class="k">as</span> <span class="n">md</span>
+
+<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span><span class="p">,</span> <span class="n">exams</span><span class="p">,</span> <span class="n">ui</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+<span class="n">hs</span> <span class="o">=</span> <span class="n">demo</span><span class="p">[(</span><span class="n">demo</span><span class="o">.</span><span class="n">grade_10</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">ay</span><span class="o">==</span><span class="mi">2020</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">boro</span> <span class="o">==</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">)]</span>
+<span class="n">hs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>beds</th>
+      <th>district</th>
+      <th>geo_district</th>
+      <th>boro</th>
+      <th>school_name</th>
+      <th>short_name</th>
+      <th>ay</th>
+      <th>year</th>
+      <th>total_enrollment</th>
+      <th>...</th>
+      <th>missing_race_ethnicity_data_pct</th>
+      <th>swd_n</th>
+      <th>swd_pct</th>
+      <th>ell_n</th>
+      <th>ell_pct</th>
+      <th>poverty_n</th>
+      <th>poverty_pct</th>
+      <th>eni_pct</th>
+      <th>clean_name</th>
+      <th>zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3646</th>
+      <td>13K265</td>
+      <td>331300010265</td>
+      <td>13</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Dr. Susan S. McKinney Secondary School of the ...</td>
+      <td>MS 265</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>320</td>
+      <td>...</td>
+      <td>0.006</td>
+      <td>91</td>
+      <td>0.284</td>
+      <td>10</td>
+      <td>0.031</td>
+      <td>277</td>
+      <td>0.866</td>
+      <td>0.902</td>
+      <td>dr susan s mckinney secondary school of the arts</td>
+      <td>11205</td>
+    </tr>
+    <tr>
+      <th>3686</th>
+      <td>13K350</td>
+      <td>331300011350</td>
+      <td>13</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Urban Assembly School of Music and Art</td>
+      <td>HS 350</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>176</td>
+      <td>...</td>
+      <td>0.000</td>
+      <td>47</td>
+      <td>0.267</td>
+      <td>8</td>
+      <td>0.045</td>
+      <td>152</td>
+      <td>0.864</td>
+      <td>0.872</td>
+      <td>urban assembly school of music and art</td>
+      <td>11201</td>
+    </tr>
+    <tr>
+      <th>3696</th>
+      <td>13K412</td>
+      <td>331300011412</td>
+      <td>13</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn Community Arts &amp; Media High School (B...</td>
+      <td>HS 412</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>547</td>
+      <td>...</td>
+      <td>0.007</td>
+      <td>167</td>
+      <td>0.305</td>
+      <td>22</td>
+      <td>0.040</td>
+      <td>443</td>
+      <td>0.810</td>
+      <td>0.824</td>
+      <td>brooklyn community arts &amp; media high school (b...</td>
+      <td>11205</td>
+    </tr>
+    <tr>
+      <th>3701</th>
+      <td>13K419</td>
+      <td>331300011419</td>
+      <td>13</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Science Skills Center High School for Science,...</td>
+      <td>HS 419</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>573</td>
+      <td>...</td>
+      <td>0.028</td>
+      <td>70</td>
+      <td>0.122</td>
+      <td>15</td>
+      <td>0.026</td>
+      <td>504</td>
+      <td>0.880</td>
+      <td>0.756</td>
+      <td>science skills center high school for science,...</td>
+      <td>11201</td>
+    </tr>
+    <tr>
+      <th>3706</th>
+      <td>13K430</td>
+      <td>331300011430</td>
+      <td>13</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn Technical High School</td>
+      <td>HS 430</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>5921</td>
+      <td>...</td>
+      <td>0.023</td>
+      <td>95</td>
+      <td>0.016</td>
+      <td>5</td>
+      <td>0.001</td>
+      <td>3495</td>
+      <td>0.590</td>
+      <td>0.506</td>
+      <td>brooklyn technical high school</td>
+      <td>11217</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9044</th>
+      <td>84K757</td>
+      <td>331300861056</td>
+      <td>84</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Unity Prep Charter School</td>
+      <td>MS 757</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>538</td>
+      <td>...</td>
+      <td>0.004</td>
+      <td>112</td>
+      <td>0.208</td>
+      <td>18</td>
+      <td>0.033</td>
+      <td>401</td>
+      <td>0.745</td>
+      <td>0.795</td>
+      <td>unity prep charter school</td>
+      <td>11221</td>
+    </tr>
+    <tr>
+      <th>9079</th>
+      <td>84K775</td>
+      <td>332300860941</td>
+      <td>84</td>
+      <td>23</td>
+      <td>Brooklyn</td>
+      <td>Leadership Preparatory Ocean Hill Charter School</td>
+      <td>MS 775</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>1353</td>
+      <td>...</td>
+      <td>0.002</td>
+      <td>142</td>
+      <td>0.105</td>
+      <td>32</td>
+      <td>0.024</td>
+      <td>1098</td>
+      <td>0.812</td>
+      <td>0.718</td>
+      <td>leadership preparatory ocean hill charter school</td>
+      <td>11212</td>
+    </tr>
+    <tr>
+      <th>9144</th>
+      <td>84K803</td>
+      <td>331300861063</td>
+      <td>84</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn LAB Charter School</td>
+      <td>MS 803</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>510</td>
+      <td>...</td>
+      <td>0.004</td>
+      <td>135</td>
+      <td>0.265</td>
+      <td>19</td>
+      <td>0.037</td>
+      <td>355</td>
+      <td>0.696</td>
+      <td>0.741</td>
+      <td>brooklyn lab charter school</td>
+      <td>11226</td>
+    </tr>
+    <tr>
+      <th>9177</th>
+      <td>84K892</td>
+      <td>331600861112</td>
+      <td>84</td>
+      <td>16</td>
+      <td>Brooklyn</td>
+      <td>Brooklyn Emerging Leaders Academy Charter School</td>
+      <td>HS 892</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>238</td>
+      <td>...</td>
+      <td>0.008</td>
+      <td>41</td>
+      <td>0.172</td>
+      <td>3</td>
+      <td>0.013</td>
+      <td>195</td>
+      <td>0.819</td>
+      <td>0.766</td>
+      <td>brooklyn emerging leaders academy charter school</td>
+      <td>11221</td>
+    </tr>
+    <tr>
+      <th>9187</th>
+      <td>84K911</td>
+      <td>331300861110</td>
+      <td>84</td>
+      <td>13</td>
+      <td>Brooklyn</td>
+      <td>Edmund W. Gordon Brooklyn Laboratory Charter S...</td>
+      <td>MS 911</td>
+      <td>2020</td>
+      <td>2020-21</td>
+      <td>301</td>
+      <td>...</td>
+      <td>0.000</td>
+      <td>72</td>
+      <td>0.239</td>
+      <td>9</td>
+      <td>0.030</td>
+      <td>230</td>
+      <td>0.764</td>
+      <td>0.790</td>
+      <td>edmund w gordon brooklyn laboratory charter schoo</td>
+      <td>11226</td>
+    </tr>
+  </tbody>
+</table>
+<p>184 rows × 51 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># schools.demo has some lists of strings for accessing sub-sets of columns</span>
+<span class="n">df</span><span class="p">[</span><span class="n">schools</span><span class="o">.</span><span class="n">demo</span><span class="o">.</span><span class="n">core_cols</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dbn</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;02M475&quot;</span><span class="p">,</span> <span class="s2">&quot;13K430&quot;</span><span class="p">,</span> <span class="s2">&quot;09X413&quot;</span><span class="p">]</span>
+<span class="n">tech</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">dbn</span><span class="p">)]</span>
+<span class="n">tech</span> <span class="o">=</span> <span class="n">tech</span><span class="p">[</span><span class="n">tech</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="n">tech</span>
+
+<span class="n">tech</span><span class="p">[</span><span class="n">schools</span><span class="o">.</span><span class="n">demo</span><span class="o">.</span><span class="n">core_cols</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dbn&#39;</span><span class="p">,</span><span class="s1">&#39;school_name&#39;</span><span class="p">,</span> <span class="s1">&#39;total_enrollment&#39;</span><span class="p">,</span> <span class="s1">&#39;male_pct&#39;</span><span class="p">,</span> <span class="s1">&#39;female_pct&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;asian_pct&#39;</span><span class="p">,</span> <span class="s1">&#39;black_pct&#39;</span><span class="p">,</span> <span class="s1">&#39;hispanic_pct&#39;</span><span class="p">,</span><span class="s1">&#39;white_pct&#39;</span><span class="p">,</span> <span class="s1">&#39;poverty_pct&#39;</span><span class="p">]</span>
+<span class="n">tech</span> <span class="o">=</span> <span class="n">tech</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">pretty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;school&#39;</span><span class="p">,</span> <span class="s1">&#39;total students&#39;</span><span class="p">,</span> <span class="s1">&#39;% male&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">% f</span><span class="s1">emale&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">% a</span><span class="s1">sian&#39;</span><span class="p">,</span> <span class="s1">&#39;% black&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">% hi</span><span class="s1">spanic&#39;</span><span class="p">,</span><span class="s1">&#39;% white&#39;</span><span class="p">,</span>  <span class="s1">&#39;% poverty&#39;</span><span class="p">]</span>
+<span class="n">tech</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pretty_cols</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">fmt_table</span><span class="p">(</span><span class="n">tech</span><span class="p">,</span> <span class="n">pct_cols</span><span class="o">=</span><span class="n">pretty_cols</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span>  <span class="n">num_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;total students&quot;</span><span class="p">])</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">tech</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;school&#39;</span><span class="p">,</span> <span class="s1">&#39;total students&#39;</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="n">pretty_cols</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;enroll_cat&quot;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;enrollment&quot;</span><span class="p">)</span>
+<span class="c1"># data = data.groupby([&quot;id&quot;,&quot;school&quot;, &quot;total students, enroll_cat&quot;]).max()</span>
+<span class="n">data</span>
+<span class="c1"># ax = data.plot(x=&quot;enroll_cat&quot;, y=[&quot;enrollment&quot;], kind=&quot;bar&quot;, figsize=(12, 9))</span>
+
+<span class="c1"># ax.set_xlabel(&quot;New York City School Students&quot;)</span>
+
+<span class="c1"># # Set the y-axis label</span>
+<span class="c1"># ax.set_ylabel(&quot;number of students (millions)&quot;)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Matthew X. Curinga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
