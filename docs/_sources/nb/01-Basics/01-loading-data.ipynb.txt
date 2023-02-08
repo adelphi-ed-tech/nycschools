@@ -8,6 +8,7 @@
    "source": [
     "Loading Data\n",
     "============\n",
+    "[[colab](https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb)] [[github](https://github.com/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb)]\n",
     "\n",
     "This notebook loads the NYC School Demographic data.\n",
     "Working with this dataset, we look at some basic\n",

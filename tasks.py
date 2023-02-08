@@ -67,6 +67,7 @@ def docs(c, clean=False):
         c.run("rm -rf docs")
     c.run("sphinx-apidoc nycschools -o docs-source/api")
     c.run("sphinx-build -j 4 -b html docs-source docs")
+    c.run("touch docs/.nojekyll")
 
 @task
 def toc(c):
