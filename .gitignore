@@ -163,9 +163,14 @@ yarn-error.log*
 *.tgz
 *.rar
 
-# data_dir
+# nycschools data_dir
 school-data
 
 # visual studio
 *.code-workspace
 .vscode/*
+
+#sphinx build
+docs/_build
+*.pickle
+*.doctrees
