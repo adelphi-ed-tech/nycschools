@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Graphs-from-ui-package">
-<h1><span class="section-number">23. </span>Graphs from <code class="docutils literal notranslate"><span class="pre">ui</span></code> package<a class="headerlink" href="#Graphs-from-ui-package" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">23. </span>Graphs from <code class="docutils literal notranslate"><span class="pre">ui</span></code> package<a class="headerlink" href="#Graphs-from-ui-package" title="Permalink to this headline"></a></h1>
 <p>Demonstrations of re-usable functions to make “standard” graphs.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -410,7 +408,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="OLS-Model-Network-Graph">
-<h2><span class="section-number">23.1. </span>OLS Model Network Graph<a class="headerlink" href="#OLS-Model-Network-Graph" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.1. </span>OLS Model Network Graph<a class="headerlink" href="#OLS-Model-Network-Graph" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ui.plot_model</span></code> takes the <code class="docutils literal notranslate"><span class="pre">model</span></code> object from <code class="docutils literal notranslate"><span class="pre">statsmodel</span></code> OLS linear regression and creates a network graph that plots the relation between the factors and the dependent variable.</p>
 <p>The example below uses the demographic factors of a school population to predict the average ELA test score (<code class="docutils literal notranslate"><span class="pre">mean_scale_score</span></code>).</p>
 <div class="nbinput docutils container">
@@ -441,7 +439,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Grouped-Bar-Chart">
-<h2><span class="section-number">23.2. </span>Grouped Bar Chart<a class="headerlink" href="#Grouped-Bar-Chart" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.2. </span>Grouped Bar Chart<a class="headerlink" href="#Grouped-Bar-Chart" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ui.plot_group_bars</span></code></p>
 <p>Here we’re going to plot the demographic data for Stuvesant, Bronx Science, and Brooklyn Tech high schools. These three schools’ admissions are set by NYS law to be based on scores on the SHSAT exam. Other schools also use this exam for admissions, but NYC DOE can change the criteria for the other “specialized” schools without seeking permission from NYS.</p>
 <div class="nbinput docutils container">

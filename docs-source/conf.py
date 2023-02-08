@@ -41,6 +41,7 @@ pygments_style = 'fruity'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
+# html_theme = "sphinx_material"
 html_static_path = ['_static', "res"]
 
 html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }

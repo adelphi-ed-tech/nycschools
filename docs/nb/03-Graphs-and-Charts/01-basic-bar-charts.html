@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Bar Charts &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>2.1. Bar Charts &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Grouped Bar Charts" href="02-grouped-bar-chart.html" />
-    <link rel="prev" title="Graphs &amp; Charts" href="index.html" /> 
+    <link rel="next" title="2.2. Grouped Bar Charts" href="02-grouped-bar-chart.html" />
+    <link rel="prev" title="2. Graphs &amp; Charts" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Graphs &amp; Charts</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Bar Charts</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Graphs &amp; Charts</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.1. </span>Bar Charts</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/03-Graphs-and-Charts/01-basic-bar-charts.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Bar-Charts">
-<h1><span class="section-number">1. </span>Bar Charts<a class="headerlink" href="#Bar-Charts" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2.1. </span>Bar Charts<a class="headerlink" href="#Bar-Charts" title="Permalink to this headline"></a></h1>
 <p>This notebook introduces the methods of creating bar charts from our data, including some of the key concepts of our plotting package, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Bar charts are useful for making comparisons between close data because we are very good at evaluating the size of rectangles.</p>
 <p>Topics covered:</p>
 <ul class="simple">
@@ -385,7 +383,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Simple-Bar-Chart">
-<h2><span class="section-number">1.1. </span>Simple Bar Chart<a class="headerlink" href="#Simple-Bar-Chart" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1.1. </span>Simple Bar Chart<a class="headerlink" href="#Simple-Bar-Chart" title="Permalink to this headline"></a></h2>
 <p>We can quickly and easily create charts in <code class="docutils literal notranslate"><span class="pre">pandas</span></code> by calling the <code class="docutils literal notranslate"><span class="pre">bar.plot()</span></code> function on a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. The first step is to create a table where the data is ready to present. In this example, we’ll create a bar chart from the school enrollment data in <code class="docutils literal notranslate"><span class="pre">df</span></code> (the school demographics).</p>
 <p>We’ll get started by borrowing the code from our <code class="docutils literal notranslate"><span class="pre">groupby</span></code> and <code class="docutils literal notranslate"><span class="pre">agg</span></code> examples.</p>
 <div class="nbinput docutils container">
@@ -490,7 +488,7 @@ div.rendered_html tbody tr:hover {
 </div></div>
 </div>
 <section id="Drawing-the-plot">
-<h3><span class="section-number">1.1.1. </span>Drawing the plot<a class="headerlink" href="#Drawing-the-plot" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">2.1.1.1. </span>Drawing the plot<a class="headerlink" href="#Drawing-the-plot" title="Permalink to this headline"></a></h3>
 <p>Making a chart from our <code class="docutils literal notranslate"><span class="pre">table</span></code> is as simple as calling <code class="docutils literal notranslate"><span class="pre">plot.bar()</span></code>. In the example below we specify that we want enrollment (school size) as the vertical y-axis and Borough as our x-axis.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -526,7 +524,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="Labels,-figure-size,-and-more">
-<h2><span class="section-number">1.2. </span>Labels, figure size, and more<a class="headerlink" href="#Labels,-figure-size,-and-more" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1.2. </span>Labels, figure size, and more<a class="headerlink" href="#Labels,-figure-size,-and-more" title="Permalink to this headline"></a></h2>
 <p>We can make a pretty decent bar chart for a single line of code, but with a few more arguments to our function, we can make it even better. To do this, we’re going to use a few more features from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and related libraries.</p>
 <p>In this example we will specify:</p>
 <ul class="simple">
@@ -613,8 +611,8 @@ div.rendered_html tbody tr:hover {
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Graphs &amp; Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02-grouped-bar-chart.html" class="btn btn-neutral float-right" title="2. Grouped Bar Charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="2. Graphs &amp; Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-grouped-bar-chart.html" class="btn btn-neutral float-right" title="2.2. Grouped Bar Charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

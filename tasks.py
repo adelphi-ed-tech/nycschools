@@ -81,7 +81,7 @@ def toc(c):
 ```{{toctree}}
 ---
 caption: {caption}
-maxdepth: 2
+maxdepth: 5
 numbered:
 ---
 {toc}

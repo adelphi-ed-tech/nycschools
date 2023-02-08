@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -25,7 +23,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="2. Querying &amp; Selecting" href="02-querying-data.html" />
-    <link rel="prev" title="1. Data Basics" href="index.html" /> 
+    <link rel="prev" title="Data Basics" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,21 +46,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Data Basics</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Loading Data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Displaying-data-tables">1.1. Displaying data tables</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="02-querying-data.html">2. Querying &amp; Selecting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-basic-stats.html">3. Basic Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-calculating-columns.html">4. Calculating New Columns</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -84,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Data Basics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Data Basics</a></li>
       <li class="breadcrumb-item active"><span class="section-number">1. </span>Loading Data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/01-Basics/01-loading-data.ipynb.txt" rel="nofollow"> View page source</a>
@@ -375,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Loading-Data">
-<h1><span class="section-number">1. </span>Loading Data<a class="headerlink" href="#Loading-Data" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">1. </span>Loading Data<a class="headerlink" href="#Loading-Data" title="Permalink to this headline"></a></h1>
 <p>[<a class="reference external" href="https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb">colab</a>] [<a class="reference external" href="https://github.com/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb">github</a>]</p>
 <p>This notebook loads the NYC School Demographic data. Working with this dataset, we look at some basic <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> operations.</p>
 <p>We assume that you have a basic understanding of Python and Jupyter notebooks. This is a good start if you are new to Pandas and data science in Python.</p>
@@ -398,7 +387,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Displaying-data-tables">
-<h2><span class="section-number">1.1. </span>Displaying data tables<a class="headerlink" href="#Displaying-data-tables" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.1. </span>Displaying data tables<a class="headerlink" href="#Displaying-data-tables" title="Permalink to this headline"></a></h2>
 <p>If we display <code class="docutils literal notranslate"><span class="pre">df</span></code> notebook shows us some of the data from the start of the data set and some from the end.</p>
 <p>If we call <code class="docutils literal notranslate"><span class="pre">df.head()</span></code> we get the start of the data. <code class="docutils literal notranslate"><span class="pre">df.tail()</span></code> shows us the end of the data.</p>
 <p>Comment/uncomment the different options to see how they work.</p>
@@ -985,7 +974,7 @@ Note: precentages are displayed as real numbers between 0..1
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="1. Data Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Data Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="02-querying-data.html" class="btn btn-neutral float-right" title="2. Querying &amp; Selecting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="ELA-Pivot">
-<h1><span class="section-number">10. </span>ELA Pivot<a class="headerlink" href="#ELA-Pivot" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">10. </span>ELA Pivot<a class="headerlink" href="#ELA-Pivot" title="Permalink to this headline"></a></h1>
 <p>This notebook uses <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to convert our ““<a class="reference external" href="https://www.statology.org/long-vs-wide-data/">long</a>”” dataframe to a wide dataframe. This is called re-shaping.</p>
 <p>The NYC DOE provides the ELA test scores in long format. There is a column called <code class="docutils literal notranslate"><span class="pre">category</span></code> that repeats the same 14 unique values (<em>e.g.</em> “All Students”, “Asian”, “Never ELL”, …) In this long format, we have 424,676 rows of data. Each row is the observation of a school (dbn), academic year, grade level, and demographic category. The test results are then reported in the following columns: - number_tested - mean_scale_score - level_1 - level_1_pct - level_2 - level_2_pct - level_3 -
 level_3_pct - level_4 - level_4_pct - level_3_4 - level_3_4_pct</p>
@@ -1249,9 +1247,9 @@ Index([&#39;dbn&#39;, &#39;grade&#39;, &#39;year&#39;, &#39;number_tested_all_st
 </pre></div></div>
 </div>
 <section id="Quick-analysis-with-wide-data">
-<h2><span class="section-number">10.1. </span>Quick analysis with wide data<a class="headerlink" href="#Quick-analysis-with-wide-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.1. </span>Quick analysis with wide data<a class="headerlink" href="#Quick-analysis-with-wide-data" title="Permalink to this headline"></a></h2>
 <section id="ELL-vs-All-Students">
-<h3><span class="section-number">10.1.1. </span>ELL vs All Students<a class="headerlink" href="#ELL-vs-All-Students" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">10.1.1. </span>ELL vs All Students<a class="headerlink" href="#ELL-vs-All-Students" title="Permalink to this headline"></a></h3>
 <p>Which schools have the best ELA test scores for ELL students compared to never-ELL students?</p>
 <p>Let’s compute a new column called <code class="docutils literal notranslate"><span class="pre">ell_delta</span></code> which will be the positive or negative difference in mean test scores betewen the ELL group and the Never ELL group.</p>
 <div class="nbinput docutils container">

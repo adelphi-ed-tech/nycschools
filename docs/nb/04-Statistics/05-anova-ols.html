@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. ANOVA and OLS Regression &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>3.2. ANOVA and OLS Regression &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. Predictive Statistics" href="08-predictive-stats.html" />
-    <link rel="prev" title="1. T Tests" href="04-t_tests.html" /> 
+    <link rel="next" title="3.3. Predictive Statistics" href="08-predictive-stats.html" />
+    <link rel="prev" title="3.1. T Tests" href="04-t_tests.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Statistics</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2. </span>ANOVA and OLS Regression</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>Statistics</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2. </span>ANOVA and OLS Regression</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/04-Statistics/05-anova-ols.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="ANOVA-and-OLS-Regression">
-<h1><span class="section-number">2. </span>ANOVA and OLS Regression<a class="headerlink" href="#ANOVA-and-OLS-Regression" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2. </span>ANOVA and OLS Regression<a class="headerlink" href="#ANOVA-and-OLS-Regression" title="Permalink to this headline"></a></h1>
 <p>This notebook combines school demographic data and New York State ELA test scores to examine the factors that predict test scores. In it we run a t-test to test for statistic difference in the scores for White students and Black students.</p>
 <p>We then run analysis of variance between the 4 main ethnic/racial groups to see if there is statistical significance in the outcomes. We run an OLS regression on these groups with the “All Students” as a baseline reference category and display the ANOVA table and regression summary.</p>
 <p>Finally, one run a different OLS regression to examine the school demographic factors and their effect on test scores.</p>
@@ -427,7 +425,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="t-test:-white-and-black-students">
-<h2><span class="section-number">2.1. </span>t-test: white and black students<a class="headerlink" href="#t-test:-white-and-black-students" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.1. </span>t-test: white and black students<a class="headerlink" href="#t-test:-white-and-black-students" title="Permalink to this headline"></a></h2>
 <p>Before running the ANOVA and further analysis, we will run a t-test between Black and White students to determine if there is a significant difference between their average test score.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
@@ -588,7 +586,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="ANOVA-&amp;-f-values">
-<h2><span class="section-number">2.2. </span>ANOVA &amp; f-values<a class="headerlink" href="#ANOVA-&-f-values" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.2. </span>ANOVA &amp; f-values<a class="headerlink" href="#ANOVA-&-f-values" title="Permalink to this headline"></a></h2>
 <p>In the example below we calculate the f-statistic to see if there are significant differences in test scores based on racial/ethnic group of the test takers. We compare the four main groups in NYC Schools: Asian, Black, Hispanic, and White.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
@@ -633,7 +631,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Pingouin-results">
-<h3><span class="section-number">2.2.1. </span>Pingouin results<a class="headerlink" href="#Pingouin-results" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.2.1. </span>Pingouin results<a class="headerlink" href="#Pingouin-results" title="Permalink to this headline"></a></h3>
 <p>When we ran the t-test we saw that <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> offers some useful additional features. The API (syntax for using) <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> differes from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>. Before we run the test, we create a new single dataframe with just the columns we care about. We tell the function which column is the dependent variable and which specifies the groups.</p>
 <p>Below we show the <a class="reference external" href="https://pingouin-stats.org/generated/pingouin.anova.html#pingouin.anova">pinguion ANOVA</a>.</p>
 <div class="nbinput docutils container">
@@ -709,7 +707,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="OLS-Linear-Regression">
-<h2><span class="section-number">2.3. </span>OLS Linear Regression<a class="headerlink" href="#OLS-Linear-Regression" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.3. </span>OLS Linear Regression<a class="headerlink" href="#OLS-Linear-Regression" title="Permalink to this headline"></a></h2>
 <p>The ANOVA tells us that there is a significant difference in test result based on racial/ethnic group. We can run a regression analysis to help us isolate the impact of different factors on our <code class="docutils literal notranslate"><span class="pre">mean_scale_score</span></code> – our dependent variable.</p>
 <p>For this analysis we will look at the school demographics to analyze the mean ELA test score for All Students at the school.</p>
 <div class="nbinput docutils container">
@@ -953,8 +951,8 @@ div.rendered_html tbody tr:hover {
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04-t_tests.html" class="btn btn-neutral float-left" title="1. T Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="08-predictive-stats.html" class="btn btn-neutral float-right" title="3. Predictive Statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04-t_tests.html" class="btn btn-neutral float-left" title="3.1. T Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08-predictive-stats.html" class="btn btn-neutral float-right" title="3.3. Predictive Statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

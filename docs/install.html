@@ -14,15 +14,13 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="_static/custom.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Data Basics" href="nb/01-Basics/index.html" />
+    <link rel="next" title="Data Basics" href="nb/01-Basics/index.html" />
     <link rel="prev" title="New York Schools Open Data Project" href="index.html" /> 
 </head>
 
@@ -56,11 +54,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nb/01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb/02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb/03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb/04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nb/05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nb/05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -117,11 +115,11 @@
 }
 </style>
 <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
 <section id="installing-in-google-colab">
-<h2>Installing in Google Colab<a class="headerlink" href="#installing-in-google-colab" title="Permalink to this heading"></a></h2>
+<h2>Installing in Google Colab<a class="headerlink" href="#installing-in-google-colab" title="Permalink to this headline"></a></h2>
 <section id="link-to-the-data-resources-from-your-google-drive">
-<h3>Link to the data resources from your Google Drive<a class="headerlink" href="#link-to-the-data-resources-from-your-google-drive" title="Permalink to this heading"></a></h3>
+<h3>Link to the data resources from your Google Drive<a class="headerlink" href="#link-to-the-data-resources-from-your-google-drive" title="Permalink to this headline"></a></h3>
 <ol class="arabic simple">
 <li><p>Sign into your Google Account</p></li>
 <li><p>Open the link to our source data files: <a class="reference external" href="https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link">https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link</a></p></li>
@@ -130,7 +128,7 @@
 <img src="_static/add-gdrive.gif" alt="menu navigating to add link to gdrive">
 </section>
 <section id="importing-to-colab">
-<h3>Importing to Colab<a class="headerlink" href="#importing-to-colab" title="Permalink to this heading"></a></h3>
+<h3>Importing to Colab<a class="headerlink" href="#importing-to-colab" title="Permalink to this headline"></a></h3>
 <p>Open a new Colab notebook and then add this code at the start of your program:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the package and its requirements</span>
 !pip<span class="w"> </span>install<span class="w"> </span>nycschools
@@ -146,7 +144,7 @@
 </section>
 </section>
 <section id="installing-locally">
-<h2>Installing locally<a class="headerlink" href="#installing-locally" title="Permalink to this heading"></a></h2>
+<h2>Installing locally<a class="headerlink" href="#installing-locally" title="Permalink to this headline"></a></h2>
 <p>Optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install with <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nycschools
 </pre></div>
@@ -169,7 +167,7 @@ programs by setting and ENV variable to the full path to the <code class="docuti
 </div>
 </section>
 <section id="installing-for-development">
-<h2>Installing for development<a class="headerlink" href="#installing-for-development" title="Permalink to this heading"></a></h2>
+<h2>Installing for development<a class="headerlink" href="#installing-for-development" title="Permalink to this headline"></a></h2>
 <p>First, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> for the project. Activate the <code class="docutils literal notranslate"><span class="pre">venv</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the repository</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/adelphi-ed-tech/nycschools.git
@@ -204,7 +202,7 @@ invoke<span class="w"> </span><span class="nb">test</span>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="New York Schools Open Data Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="nb/01-Basics/index.html" class="btn btn-neutral float-right" title="1. Data Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nb/01-Basics/index.html" class="btn btn-neutral float-right" title="Data Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

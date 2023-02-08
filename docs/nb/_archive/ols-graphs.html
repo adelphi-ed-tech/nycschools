@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Graphs-and-Charts">
-<h1><span class="section-number">17. </span>Graphs and Charts<a class="headerlink" href="#Graphs-and-Charts" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">17. </span>Graphs and Charts<a class="headerlink" href="#Graphs-and-Charts" title="Permalink to this headline"></a></h1>
 <p>This notebook looks at some of the tools for building graphical visualizations of our data, as well as some new, useful techniques for transforming data to help with the data viz.</p>
 <p>Topics covered:</p>
 <ul class="simple">
@@ -771,10 +769,10 @@ The autoreload extension is already loaded. To reload it, use:
 </div>
 </div>
 <section id="Simple-Bar-Chart:-Citywide-student-demographics">
-<h2><span class="section-number">17.1. </span>Simple Bar Chart: Citywide student demographics<a class="headerlink" href="#Simple-Bar-Chart:-Citywide-student-demographics" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">17.1. </span>Simple Bar Chart: Citywide student demographics<a class="headerlink" href="#Simple-Bar-Chart:-Citywide-student-demographics" title="Permalink to this headline"></a></h2>
 <p>Drawing from the counts of students in different demographic categories (<code class="docutils literal notranslate"><span class="pre">asian_n</span></code>, <code class="docutils literal notranslate"><span class="pre">ell_n</span></code>) we will draw a basic bar chart.</p>
 <section id="melt()-to-un-pivot-data">
-<h3><span class="section-number">17.1.1. </span><code class="docutils literal notranslate"><span class="pre">melt()</span></code> to un-pivot data<a class="headerlink" href="#melt()-to-un-pivot-data" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">17.1.1. </span><code class="docutils literal notranslate"><span class="pre">melt()</span></code> to un-pivot data<a class="headerlink" href="#melt()-to-un-pivot-data" title="Permalink to this headline"></a></h3>
 <p>The first thing we do is <strong>melt</strong> the columns with the demographic counts into a single column. Typically, a melt will create two new columns: one with the categories or <code class="docutils literal notranslate"><span class="pre">id</span></code> labels for the row, and a second with the <code class="docutils literal notranslate"><span class="pre">values</span></code> for the row. In this example we create <strong>enroll_cat</strong> (<code class="docutils literal notranslate"><span class="pre">id</span></code>) to tell us which <em>category</em> of enrollment number we’re looking at and <strong>enrollment</strong> (<code class="docutils literal notranslate"><span class="pre">values</span></code>) to hold the number of students for that row for that category. Each row in this dataframe reports the
 observation for a specicif school, grade, academic year (<code class="docutils literal notranslate"><span class="pre">dbn</span></code>, <code class="docutils literal notranslate"><span class="pre">grade</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code>).</p>
 <div class="nbinput docutils container">
@@ -1151,7 +1149,7 @@ observation for a specicif school, grade, academic year (<code class="docutils l
 </section>
 </section>
 <section id="Grouped-Bar-Chart:-student-demographics-by-district">
-<h2><span class="section-number">17.2. </span>Grouped Bar Chart: student demographics by district<a class="headerlink" href="#Grouped-Bar-Chart:-student-demographics-by-district" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">17.2. </span>Grouped Bar Chart: student demographics by district<a class="headerlink" href="#Grouped-Bar-Chart:-student-demographics-by-district" title="Permalink to this headline"></a></h2>
 <p>Now we’ll make a more complicated bar chart, where we display the ethnic group populations at the district leve. For this chart we will have 20 bars (4 groups x 5 boroughs). We use more of the functions in <code class="docutils literal notranslate"><span class="pre">matplot</span></code> to style our ouput, add titls and legends, etc.</p>
 <p>Links:</p>
 <ul class="simple">
@@ -1418,7 +1416,7 @@ observation for a specicif school, grade, academic year (<code class="docutils l
 </div>
 </section>
 <section id="Scatter-plots-and-correlations">
-<h2><span class="section-number">17.3. </span>Scatter plots and correlations<a class="headerlink" href="#Scatter-plots-and-correlations" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">17.3. </span>Scatter plots and correlations<a class="headerlink" href="#Scatter-plots-and-correlations" title="Permalink to this headline"></a></h2>
 <p>In the next section we’re going to see what demographic factors of schools impact student test scores on the NYS ELA exams, grades 3-8.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
@@ -1866,7 +1864,7 @@ observation for a specicif school, grade, academic year (<code class="docutils l
 </div>
 </div>
 <section id="Drop-outliers">
-<h3><span class="section-number">17.3.1. </span>Drop outliers<a class="headerlink" href="#Drop-outliers" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">17.3.1. </span>Drop outliers<a class="headerlink" href="#Drop-outliers" title="Permalink to this headline"></a></h3>
 <p>For the next correlation, first we’ll drop the outliers by computing z-scores. Outliers can distort the results of our correlations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -1924,7 +1922,7 @@ observation for a specicif school, grade, academic year (<code class="docutils l
 </section>
 </section>
 <section id="Network-Graph-Diagram">
-<h2><span class="section-number">17.4. </span>Network Graph Diagram<a class="headerlink" href="#Network-Graph-Diagram" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">17.4. </span>Network Graph Diagram<a class="headerlink" href="#Network-Graph-Diagram" title="Permalink to this headline"></a></h2>
 <p>In this section we create a network graph diagram to help visualize the factors in an Ordinary Least Squares (OLS) regression that analyzes the effect of school demographics on ELA test scores.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:

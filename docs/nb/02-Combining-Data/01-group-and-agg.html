@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Groups &amp; Aggregates &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>1.1. Groups &amp; Aggregates &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Merges &amp; Joins" href="02-merge-and-join.html" />
-    <link rel="prev" title="Combining Data" href="index.html" /> 
+    <link rel="next" title="1.2. Merges &amp; Joins" href="02-merge-and-join.html" />
+    <link rel="prev" title="1. Combining Data" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Combining Data</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Groups &amp; Aggregates</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Combining Data</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.1. </span>Groups &amp; Aggregates</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/02-Combining-Data/01-group-and-agg.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Groups-&amp;-Aggregates">
-<h1><span class="section-number">1. </span>Groups &amp; Aggregates<a class="headerlink" href="#Groups-&-Aggregates" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">1.1. </span>Groups &amp; Aggregates<a class="headerlink" href="#Groups-&-Aggregates" title="Permalink to this headline"></a></h1>
 <p>In this notebook we look at how to change the level that we use to analyze data by <strong>grouping</strong> multiple rows into a single row. This <code class="docutils literal notranslate"><span class="pre">groupby</span></code> function allows us to look at the school data by district, borough, or academic year. To group data, you specifiy the column name or column names for the group. All unique names or combinations will become a single row.</p>
 <p>The <em>other</em> rows of data need to be <strong>aggregated</strong> in some way. Common aggregate functions include <code class="docutils literal notranslate"><span class="pre">sum</span></code> (e.g. find the total enrolled students in Brooklyn), <code class="docutils literal notranslate"><span class="pre">count</span></code> (find unique schools in Queens), and <code class="docutils literal notranslate"><span class="pre">mean</span></code> (find the average percent poverty of students in the Bronx).</p>
 <div class="nbinput nblast docutils container">
@@ -380,7 +378,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Total-Enrollment-by-Boro">
-<h2><span class="section-number">1.1. </span>Total Enrollment by Boro<a class="headerlink" href="#Total-Enrollment-by-Boro" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.1.1. </span>Total Enrollment by Boro<a class="headerlink" href="#Total-Enrollment-by-Boro" title="Permalink to this headline"></a></h2>
 <p>For this example, we create a simplified data set that only has 2 columns: <code class="docutils literal notranslate"><span class="pre">boro</span></code> and <code class="docutils literal notranslate"><span class="pre">total_enrollment</span></code>. We also limit it to only the 2020 academic year.</p>
 <p>We call the <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> function of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>and pass in “boro” as the column name for the group. From there, we call <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> on the resulting GroupBy object. This will sum up the enrollment in each school, in each borough.</p>
 <div class="nbinput docutils container">
@@ -519,7 +517,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Using-a-dict-of-aggregate-columns">
-<h2><span class="section-number">1.2. </span>Using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of aggregate columns<a class="headerlink" href="#Using-a-dict-of-aggregate-columns" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.1.2. </span>Using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of aggregate columns<a class="headerlink" href="#Using-a-dict-of-aggregate-columns" title="Permalink to this headline"></a></h2>
 <p>Now, we might have a few more questions about this simple measure of school enrollment. For example, what was the average enrollment, and how many different schools are in each borough?</p>
 <p>We can answer these questions by running by adding more columns (namely <code class="docutils literal notranslate"><span class="pre">dbn</span></code>) to our data and using different aggregate functions. In this case we will use <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, and <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
 <p>To accomplish this, we call the <code class="docutils literal notranslate"><span class="pre">agg</span></code> function on the results of the groupby and pass in a dictionary where the column names are keys, and the aggregate function(s) are the values. If we want only a single agg function, we can use that as the value, but if we want multiple functions, we can set a list of strings as the value.</p>
@@ -630,7 +628,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Resetting-the-index">
-<h2><span class="section-number">1.3. </span>Resetting the index<a class="headerlink" href="#Resetting-the-index" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.1.3. </span>Resetting the index<a class="headerlink" href="#Resetting-the-index" title="Permalink to this headline"></a></h2>
 <p>In the results above, we say that the aggregate columns do not appear in the same row as the grouped column, boro. Also, there are 2 levels to the aggregate index because we have 4 columns for total_enrollment. Sometimes we want to convert these columnbs back into a flat index. This makes it easier to filter, merge, and sort the data and to access specific Series in the DataFrame. Unfortunately, we can’t simply call <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> like we did above.</p>
 <p>Here after we reset the index, we rename all of the columns with a new list of strings. The length of the new list musth match the number of columns.</p>
 <div class="nbinput docutils container">
@@ -732,7 +730,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Grouping-by-Multiple-Columns">
-<h2><span class="section-number">1.4. </span>Grouping by Multiple Columns<a class="headerlink" href="#Grouping-by-Multiple-Columns" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.1.4. </span>Grouping by Multiple Columns<a class="headerlink" href="#Grouping-by-Multiple-Columns" title="Permalink to this headline"></a></h2>
 <p>Sometimes we might want to pass in more than one column as the group by index. In this example we will group our data by borough and whether they are a charter school or not.</p>
 <p>Note a couple of things in this short example:</p>
 <ol class="arabic simple">
@@ -905,8 +903,8 @@ div.rendered_html tbody tr:hover {
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Combining Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02-merge-and-join.html" class="btn btn-neutral float-right" title="2. Merges &amp; Joins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="1. Combining Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-merge-and-join.html" class="btn btn-neutral float-right" title="1.2. Merges &amp; Joins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

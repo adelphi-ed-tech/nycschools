@@ -14,9 +14,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="../_static/custom.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -46,115 +44,27 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../nb/01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nb/05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nb/05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../data-sources.html">Data Sources</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.class_size">nycschools.class_size module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.class_size.load_class_size"><code class="docutils literal notranslate"><span class="pre">load_class_size()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.class_size.save_class_size"><code class="docutils literal notranslate"><span class="pre">save_class_size()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.dataloader">nycschools.dataloader module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.contains_data_files"><code class="docutils literal notranslate"><span class="pre">contains_data_files()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.download_archive"><code class="docutils literal notranslate"><span class="pre">download_archive()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.download_data"><code class="docutils literal notranslate"><span class="pre">download_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.find_data_dir"><code class="docutils literal notranslate"><span class="pre">find_data_dir()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.get_data_dir"><code class="docutils literal notranslate"><span class="pre">get_data_dir()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.dataloader.mount_colab_data_dir"><code class="docutils literal notranslate"><span class="pre">mount_colab_data_dir()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.class_size">nycschools.class_size module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.dataloader">nycschools.dataloader module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-nycschools.datasets">nycschools.datasets module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.exams">nycschools.exams module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.charter_cols"><code class="docutils literal notranslate"><span class="pre">charter_cols()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_charter_ela"><code class="docutils literal notranslate"><span class="pre">load_charter_ela()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_charter_math"><code class="docutils literal notranslate"><span class="pre">load_charter_math()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_charter_test"><code class="docutils literal notranslate"><span class="pre">load_charter_test()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_ela"><code class="docutils literal notranslate"><span class="pre">load_ela()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_ela_excel"><code class="docutils literal notranslate"><span class="pre">load_ela_excel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_math"><code class="docutils literal notranslate"><span class="pre">load_math()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_math_ela_long"><code class="docutils literal notranslate"><span class="pre">load_math_ela_long()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_math_ela_wide"><code class="docutils literal notranslate"><span class="pre">load_math_ela_wide()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_math_excel"><code class="docutils literal notranslate"><span class="pre">load_math_excel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_regents"><code class="docutils literal notranslate"><span class="pre">load_regents()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.exams.load_regents_excel"><code class="docutils literal notranslate"><span class="pre">load_regents_excel()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.geo">nycschools.geo module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.add_labels"><code class="docutils literal notranslate"><span class="pre">add_labels()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.get_and_save_locations"><code class="docutils literal notranslate"><span class="pre">get_and_save_locations()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.get_locations"><code class="docutils literal notranslate"><span class="pre">get_locations()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.get_points"><code class="docutils literal notranslate"><span class="pre">get_points()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.load_districts"><code class="docutils literal notranslate"><span class="pre">load_districts()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.geo.load_school_locations"><code class="docutils literal notranslate"><span class="pre">load_school_locations()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.nysed">nycschools.nysed module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.calc_all_grades"><code class="docutils literal notranslate"><span class="pre">calc_all_grades()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.download_and_extract"><code class="docutils literal notranslate"><span class="pre">download_and_extract()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.fix_cols"><code class="docutils literal notranslate"><span class="pre">fix_cols()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.fix_data"><code class="docutils literal notranslate"><span class="pre">fix_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.load_nyc_nysed"><code class="docutils literal notranslate"><span class="pre">load_nyc_nysed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.load_nys_nysed"><code class="docutils literal notranslate"><span class="pre">load_nys_nysed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.load_nysed_ela_math_archives"><code class="docutils literal notranslate"><span class="pre">load_nysed_ela_math_archives()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.map_nysed_nyc"><code class="docutils literal notranslate"><span class="pre">map_nysed_nyc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.nysed.read_nysed_exam"><code class="docutils literal notranslate"><span class="pre">read_nysed_exam()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.schools">nycschools.schools module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.clean_name"><code class="docutils literal notranslate"><span class="pre">clean_name()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.demo"><code class="docutils literal notranslate"><span class="pre">demo</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#nycschools.schools.demo.core_cols"><code class="docutils literal notranslate"><span class="pre">demo.core_cols</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nycschools.schools.demo.default_cols"><code class="docutils literal notranslate"><span class="pre">demo.default_cols</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nycschools.schools.demo.default_map"><code class="docutils literal notranslate"><span class="pre">demo.default_map</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nycschools.schools.demo.raw_cols"><code class="docutils literal notranslate"><span class="pre">demo.raw_cols</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nycschools.schools.demo.short_cols"><code class="docutils literal notranslate"><span class="pre">demo.short_cols</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.join_loc_data"><code class="docutils literal notranslate"><span class="pre">join_loc_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.load_school_demographics"><code class="docutils literal notranslate"><span class="pre">load_school_demographics()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.save_demographics"><code class="docutils literal notranslate"><span class="pre">save_demographics()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.school_type"><code class="docutils literal notranslate"><span class="pre">school_type()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.short_name"><code class="docutils literal notranslate"><span class="pre">short_name()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.str_count"><code class="docutils literal notranslate"><span class="pre">str_count()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.schools.str_pct"><code class="docutils literal notranslate"><span class="pre">str_pct()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.tools">nycschools.tools module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.tools.quick_merge"><code class="docutils literal notranslate"><span class="pre">quick_merge()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.ui">nycschools.ui module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.commas"><code class="docutils literal notranslate"><span class="pre">commas()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.counter"><code class="docutils literal notranslate"><span class="pre">counter()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.draw_model"><code class="docutils literal notranslate"><span class="pre">draw_model()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.edge_label"><code class="docutils literal notranslate"><span class="pre">edge_label()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.fmt_pearson"><code class="docutils literal notranslate"><span class="pre">fmt_pearson()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.fmt_table"><code class="docutils literal notranslate"><span class="pre">fmt_table()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.hexmap"><code class="docutils literal notranslate"><span class="pre">hexmap()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.infinite"><code class="docutils literal notranslate"><span class="pre">infinite()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.network_map"><code class="docutils literal notranslate"><span class="pre">network_map()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.nice_name"><code class="docutils literal notranslate"><span class="pre">nice_name()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.pct"><code class="docutils literal notranslate"><span class="pre">pct()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.plot_model"><code class="docutils literal notranslate"><span class="pre">plot_model()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.round_f"><code class="docutils literal notranslate"><span class="pre">round_f()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.ui.ul"><code class="docutils literal notranslate"><span class="pre">ul()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-nycschools">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.get_config"><code class="docutils literal notranslate"><span class="pre">get_config()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nycschools.get_version"><code class="docutils literal notranslate"><span class="pre">get_version()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.exams">nycschools.exams module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.geo">nycschools.geo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.nysed">nycschools.nysed module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.schools">nycschools.schools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.tools">nycschools.tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools.ui">nycschools.ui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-nycschools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -208,12 +118,12 @@
 }
 </style>
 <section id="nycschools-package">
-<h1>nycschools package<a class="headerlink" href="#nycschools-package" title="Permalink to this heading"></a></h1>
+<h1>nycschools package<a class="headerlink" href="#nycschools-package" title="Permalink to this headline"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-nycschools.class_size">
-<span id="nycschools-class-size-module"></span><h2>nycschools.class_size module<a class="headerlink" href="#module-nycschools.class_size" title="Permalink to this heading"></a></h2>
+<span id="nycschools-class-size-module"></span><h2>nycschools.class_size module<a class="headerlink" href="#module-nycschools.class_size" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.class_size.load_class_size">
 <span class="sig-prename descclassname"><span class="pre">nycschools.class_size.</span></span><span class="sig-name descname"><span class="pre">load_class_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.class_size.load_class_size" title="Permalink to this definition"></a></dt>
@@ -225,19 +135,16 @@
 <dd><p>Loads and cleans class size data for each year that it is available
 in the <cite>datasets</cite>. Currently data is available for each year from
 2009-2021 excluding the 2020-2021 school year.</p>
-<section id="returns">
-<h3>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>DataFrame</dt><dd><p>a pandas DataFrame holding school demographic data for all of the schools
 in the data portal</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>
 <section id="module-nycschools.dataloader">
-<span id="nycschools-dataloader-module"></span><h2>nycschools.dataloader module<a class="headerlink" href="#module-nycschools.dataloader" title="Permalink to this heading"></a></h2>
+<span id="nycschools-dataloader-module"></span><h2>nycschools.dataloader module<a class="headerlink" href="#module-nycschools.dataloader" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.contains_data_files">
 <span class="sig-prename descclassname"><span class="pre">nycschools.dataloader.</span></span><span class="sig-name descname"><span class="pre">contains_data_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.dataloader.contains_data_files" title="Permalink to this definition"></a></dt>
@@ -313,10 +220,10 @@ for a directory with the known name ‘nyc-schools-data’.</p>
 
 </section>
 <section id="module-nycschools.datasets">
-<span id="nycschools-datasets-module"></span><h2>nycschools.datasets module<a class="headerlink" href="#module-nycschools.datasets" title="Permalink to this heading"></a></h2>
+<span id="nycschools-datasets-module"></span><h2>nycschools.datasets module<a class="headerlink" href="#module-nycschools.datasets" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-nycschools.exams">
-<span id="nycschools-exams-module"></span><h2>nycschools.exams module<a class="headerlink" href="#module-nycschools.exams" title="Permalink to this heading"></a></h2>
+<span id="nycschools-exams-module"></span><h2>nycschools.exams module<a class="headerlink" href="#module-nycschools.exams" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.exams.charter_cols">
 <span class="sig-prename descclassname"><span class="pre">nycschools.exams.</span></span><span class="sig-name descname"><span class="pre">charter_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.exams.charter_cols" title="Permalink to this definition"></a></dt>
@@ -348,7 +255,7 @@ category from the NYC Open Data Portal. Columns are re-named for consistency.</p
 If a local .csv data file exists, it will return results from that file. If
 no local file is available, itt will loads the Excel data file for from the
 NYC Data Portal and then cobmines the results with charter school data into
-a <cite>DataFrame</cite>. _This can be <a href="#id5"><span class="problematic" id="id6">slow_</span></a>.
+a <cite>DataFrame</cite>. _This can be <a href="#id1"><span class="problematic" id="id2">slow_</span></a>.
 &#64;return <cite>DataFrame</cite></p>
 </dd></dl>
 
@@ -367,7 +274,7 @@ data api.</p>
 If a local .csv data file exists, it will return results from that file. If
 no local file is available, itt will loads the Excel data file for from the
 NYC Data Portal and then cobmines the results with charter school data into
-a <cite>DataFrame</cite>. _This can be <a href="#id7"><span class="problematic" id="id8">slow_</span></a>.
+a <cite>DataFrame</cite>. _This can be <a href="#id3"><span class="problematic" id="id4">slow_</span></a>.
 &#64;return <cite>DataFrame</cite></p>
 </dd></dl>
 
@@ -411,7 +318,7 @@ data api.</p>
 
 </section>
 <section id="module-nycschools.geo">
-<span id="nycschools-geo-module"></span><h2>nycschools.geo module<a class="headerlink" href="#module-nycschools.geo" title="Permalink to this heading"></a></h2>
+<span id="nycschools-geo-module"></span><h2>nycschools.geo module<a class="headerlink" href="#module-nycschools.geo" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.geo.add_labels">
 <span class="sig-prename descclassname"><span class="pre">nycschools.geo.</span></span><span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.geo.add_labels" title="Permalink to this definition"></a></dt>
@@ -450,7 +357,7 @@ census tract, and police precinct.</p>
 
 </section>
 <section id="module-nycschools.nysed">
-<span id="nycschools-nysed-module"></span><h2>nycschools.nysed module<a class="headerlink" href="#module-nycschools.nysed" title="Permalink to this heading"></a></h2>
+<span id="nycschools-nysed-module"></span><h2>nycschools.nysed module<a class="headerlink" href="#module-nycschools.nysed" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.nysed.calc_all_grades">
 <span class="sig-prename descclassname"><span class="pre">nycschools.nysed.</span></span><span class="sig-name descname"><span class="pre">calc_all_grades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nysed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.nysed.calc_all_grades" title="Permalink to this definition"></a></dt>
@@ -525,7 +432,7 @@ in New York State.</p>
 
 </section>
 <section id="module-nycschools.schools">
-<span id="nycschools-schools-module"></span><h2>nycschools.schools module<a class="headerlink" href="#module-nycschools.schools" title="Permalink to this heading"></a></h2>
+<span id="nycschools-schools-module"></span><h2>nycschools.schools module<a class="headerlink" href="#module-nycschools.schools" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.schools.clean_name">
 <span class="sig-prename descclassname"><span class="pre">nycschools.schools.</span></span><span class="sig-name descname"><span class="pre">clean_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.schools.clean_name" title="Permalink to this definition"></a></dt>
@@ -538,8 +445,6 @@ in New York State.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The <cite>demo</cite> class bundles some common sets of column names
 to make it easier to work with the school demographic <cite>DataFrame</cite></p>
-<section id="examples">
-<h3>Examples:<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
 <p>from nycschools import schools</p>
 <p>df = schools.load_school_demographics()
 basic = df[schools.demo.short_cols]
@@ -569,7 +474,6 @@ basic</p>
 <span class="sig-name descname"><span class="pre">short_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'school_name',</span> <span class="pre">'short_name',</span> <span class="pre">'clean_name',</span> <span class="pre">'ay']</span></em><a class="headerlink" href="#nycschools.schools.demo.short_cols" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -632,14 +536,11 @@ open data portal and create a dataframe.</p>
 </dd>
 </dl>
 </div></blockquote>
-<section id="id1">
-<h3>Returns<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>DataFrame</dt><dd><p>a pandas DataFrame holding school demographic data for all of the schools
 in the data portal</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -649,21 +550,15 @@ in the data portal</p>
 Portal URL. The data is joined with some location data to make it
 more easily merged with other data sets. A local copy of the data
 is saved as a .csv in the <cite>nycschools</cite> data directory.</p>
-<section id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>url<span class="classifier">str , default loads the url from config.urls with the ‘demographics’ key</span></dt><dd><p>the URL to the most recent NYC school demographics</p>
 </dd>
 </dl>
-</section>
-<section id="id2">
-<h3>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>DataFrame</dt><dd><p>a pandas DataFrame holding school demographic data for all of the schools
 in the data portal</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -676,23 +571,17 @@ in the data portal</p>
 <dt class="sig sig-object py" id="nycschools.schools.search">
 <span class="sig-prename descclassname"><span class="pre">nycschools.schools.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.schools.search" title="Permalink to this definition"></a></dt>
 <dd><p>Search a DataFrame for a school using fuzzy logic.</p>
-<section id="id3">
-<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>df<span class="classifier">DataFrame</span></dt><dd><p>a pandas DataFrame containing school data, such as the
 data returned from <cite>load_school_demographics()</cite></p>
 </dd>
 </dl>
 <p>qry : the school name or search term to look for in the data set</p>
-</section>
-<section id="id4">
-<h3>Returns<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>DataFrame</dt><dd><p>the schools that match the <cite>qry</cite> or an empty DataFrame
 if no matches were found</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -721,7 +610,7 @@ Example: df[“economic_need_index”] = df.apply(lambda row: str_pct(row, “ec
 
 </section>
 <section id="module-nycschools.tools">
-<span id="nycschools-tools-module"></span><h2>nycschools.tools module<a class="headerlink" href="#module-nycschools.tools" title="Permalink to this heading"></a></h2>
+<span id="nycschools-tools-module"></span><h2>nycschools.tools module<a class="headerlink" href="#module-nycschools.tools" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.tools.quick_merge">
 <span class="sig-prename descclassname"><span class="pre">nycschools.tools.</span></span><span class="sig-name descname"><span class="pre">quick_merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dbn'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.tools.quick_merge" title="Permalink to this definition"></a></dt>
@@ -729,7 +618,7 @@ Example: df[“economic_need_index”] = df.apply(lambda row: str_pct(row, “ec
 
 </section>
 <section id="module-nycschools.ui">
-<span id="nycschools-ui-module"></span><h2>nycschools.ui module<a class="headerlink" href="#module-nycschools.ui" title="Permalink to this heading"></a></h2>
+<span id="nycschools-ui-module"></span><h2>nycschools.ui module<a class="headerlink" href="#module-nycschools.ui" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.ui.commas">
 <span class="sig-prename descclassname"><span class="pre">nycschools.ui.</span></span><span class="sig-name descname"><span class="pre">commas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.ui.commas" title="Permalink to this definition"></a></dt>
@@ -805,7 +694,7 @@ The r is rounded to 2 decimals, and p is rounded to 3 decimals.</p>
 
 </section>
 <section id="module-nycschools">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nycschools" title="Permalink to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nycschools" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.get_config">
 <span class="sig-prename descclassname"><span class="pre">nycschools.</span></span><span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nycschools.get_config" title="Permalink to this definition"></a></dt>

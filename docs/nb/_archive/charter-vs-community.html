@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -1164,7 +1162,7 @@ charter schools with demo 267
 </div>
 <div class="output_area docutils container">
 <section id="T-Test-comparing-test-scores-for-charter-and-public-schools">
-<h1><span class="section-number">2. </span>T-Test comparing test scores for charter and public schools<a class="headerlink" href="#T-Test-comparing-test-scores-for-charter-and-public-schools" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>T-Test comparing test scores for charter and public schools<a class="headerlink" href="#T-Test-comparing-test-scores-for-charter-and-public-schools" title="Permalink to this headline"></a></h1>
 <p>T-Test results comparing average math and ELA test scores for academic years 2017-2018. Data includes the mean average test score for 191 charter schools and 1,114 community schools.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  Charter schools: M=606.34, SD=9.41
 Community schools: M=598.86, SD=11.85
@@ -1175,7 +1173,7 @@ Community schools: M=598.86, SD=11.85
 </div>
 </div>
 <section id="Why-do-charter-school-students-score-higher-on-NYS-exams?">
-<h1><span class="section-number">2. </span>Why do charter school students score higher on NYS exams?<a class="headerlink" href="#Why-do-charter-school-students-score-higher-on-NYS-exams?" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>Why do charter school students score higher on NYS exams?<a class="headerlink" href="#Why-do-charter-school-students-score-higher-on-NYS-exams?" title="Permalink to this headline"></a></h1>
 <p>We can interpret these results to understand that the higher mean test scores for charter schools is statistically significant (p&lt;.01). The t-test doesn’t offer insight into <em>why</em> charters produce higher test scores. In the academic and popular literature surrounding schools, though, several hypothesis have been forwarded to explain the difference in scores:</p>
 <ul class="simple">
 <li><p>charter schools are more rigorous: they have better instructional methods, faculty, and/or leadership</p></li>
@@ -1491,7 +1489,7 @@ Community schools: M=598.86, SD=11.85
 </div>
 </section>
 <section id="Charters-serve-a-different-population">
-<h1><span class="section-number">3. </span>Charters serve a different population<a class="headerlink" href="#Charters-serve-a-different-population" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>Charters serve a different population<a class="headerlink" href="#Charters-serve-a-different-population" title="Permalink to this headline"></a></h1>
 <p>The table above shows us that charter schools serve a completely different population than public schools. The clear difference is that charter school students are more than twice as likely to be Black as public school students. Accordingly, every other racial/ethinic group is greater in percentage in public schools. Most markedly for Asian and White students, but still statistically significant for Hispanic students with 42.2% Hispanic in public schools and 38.4% in charters
 (<code class="docutils literal notranslate"><span class="pre">t(204687)</span> <span class="pre">=</span> <span class="pre">9.041,</span> <span class="pre">p</span> <span class="pre">&lt;</span> <span class="pre">.01</span></code>).</p>
 <p>As noted as a possible explanation for higher test scores in charter schools, they serve statistically significant (p&lt;.01) lower percentage of ELL students and stdents with disabilities, with English Learners are twice as likely to be in a public school as a charter school.</p>
@@ -1749,7 +1747,7 @@ Community schools: M=598.86, SD=11.85
 </div>
 <div class="output_area docutils container">
 <section id="Linear-Regression:-public-schools">
-<h2><span class="section-number">2. </span>Linear Regression: public schools<a class="headerlink" href="#Linear-Regression:-public-schools" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2. </span>Linear Regression: public schools<a class="headerlink" href="#Linear-Regression:-public-schools" title="Permalink to this headline"></a></h2>
 </section>
 </div>
 </div>
@@ -1846,7 +1844,7 @@ Community schools: M=598.86, SD=11.85
 </div>
 <div class="output_area docutils container">
 <section id="Linear-Regression:-charter-schools">
-<h2><span class="section-number">2. </span>Linear Regression: charter schools<a class="headerlink" href="#Linear-Regression:-charter-schools" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2. </span>Linear Regression: charter schools<a class="headerlink" href="#Linear-Regression:-charter-schools" title="Permalink to this headline"></a></h2>
 </section>
 </div>
 </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Statistics &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>3. Statistics &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,16 +14,14 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script src="../../_static/custom.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. T Tests" href="04-t_tests.html" />
-    <link rel="prev" title="3. Line &amp; Scatter Plots" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html" /> 
+    <link rel="next" title="3.1. T Tests" href="04-t_tests.html" />
+    <link rel="prev" title="2.3. Line &amp; Scatter Plots" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,17 +45,17 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Statistics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04-t_tests.html">1. T Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html">2. ANOVA and OLS Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html">3. Predictive Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#Partial-Least-Squares">4. Partial Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Statistics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-t_tests.html">3.1. T Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html">3.2. ANOVA and OLS Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html">3.3. Predictive Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#Partial-Least-Squares">3.4. Partial Least Squares</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -79,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Statistics</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Statistics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/04-Statistics/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,28 +112,28 @@
 }
 </style>
 <section id="statistics">
-<h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h1>
 <p>We demonstrate a number of statistical techniques that help us understand and compare the quantitative data available through <code class="docutils literal notranslate"><span class="pre">nycschools</span></code>.</p>
 <!-- This file is automatically generated by tasks.py -->
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">04-Statistics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="04-t_tests.html">1. T Tests</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04-t_tests.html#pingouin-stats-wrapper">1.1. <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> stats wrapper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-t_tests.html">3.1. T Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-t_tests.html#pingouin-stats-wrapper">3.1.1. <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> stats wrapper</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="05-anova-ols.html">2. ANOVA and OLS Regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#t-test:-white-and-black-students">2.1. t-test: white and black students</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#ANOVA-&amp;-f-values">2.2. ANOVA &amp; f-values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#OLS-Linear-Regression">2.3. OLS Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-anova-ols.html">3.2. ANOVA and OLS Regression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#t-test:-white-and-black-students">3.2.1. t-test: white and black students</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#ANOVA-&amp;-f-values">3.2.2. ANOVA &amp; f-values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-anova-ols.html#OLS-Linear-Regression">3.2.3. OLS Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="08-predictive-stats.html">3. Predictive Statistics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#Predicting-test-scores">3.1. Predicting test scores</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#OLS-Linear-Regression-with-different-factors">3.2. OLS Linear Regression with different factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-predictive-stats.html">3.3. Predictive Statistics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#Predicting-test-scores">3.3.1. Predicting test scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-predictive-stats.html#OLS-Linear-Regression-with-different-factors">3.3.2. OLS Linear Regression with different factors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="08-predictive-stats.html#Partial-Least-Squares">4. Partial Least Squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-predictive-stats.html#Partial-Least-Squares">3.4. Partial Least Squares</a></li>
 </ul>
 </div>
 </section>
@@ -144,8 +142,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html" class="btn btn-neutral float-left" title="3. Line &amp; Scatter Plots" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04-t_tests.html" class="btn btn-neutral float-right" title="1. T Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html" class="btn btn-neutral float-left" title="2.3. Line &amp; Scatter Plots" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04-t_tests.html" class="btn btn-neutral float-right" title="3.1. T Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

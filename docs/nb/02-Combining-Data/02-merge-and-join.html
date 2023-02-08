@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Merges &amp; Joins &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>1.2. Merges &amp; Joins &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Graphs &amp; Charts" href="../03-Graphs-and-Charts/index.html" />
-    <link rel="prev" title="1. Groups &amp; Aggregates" href="01-group-and-agg.html" /> 
+    <link rel="next" title="2. Graphs &amp; Charts" href="../03-Graphs-and-Charts/index.html" />
+    <link rel="prev" title="1.1. Groups &amp; Aggregates" href="01-group-and-agg.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Combining Data</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2. </span>Merges &amp; Joins</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Combining Data</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.2. </span>Merges &amp; Joins</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/02-Combining-Data/02-merge-and-join.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Merges-&amp;-Joins">
-<h1><span class="section-number">2. </span>Merges &amp; Joins<a class="headerlink" href="#Merges-&-Joins" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">1.2. </span>Merges &amp; Joins<a class="headerlink" href="#Merges-&-Joins" title="Permalink to this headline"></a></h1>
 <p>Here, finally, we combine data sets together. I say finally because this is one of the <em>first</em> things you will do when working with real world data. <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> has already combined multiple data sets into its core DataFrames, but you will want to combine this data in new ways, make new DataFrames from your results, and pull in new data from the outside world.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
@@ -385,7 +383,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Merging-Data">
-<h2><span class="section-number">2.1. </span>Merging Data<a class="headerlink" href="#Merging-Data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.2.1. </span>Merging Data<a class="headerlink" href="#Merging-Data" title="Permalink to this headline"></a></h2>
 <p>When two data sets have a shared key then combining them into a single dataframe is straightforward. Here we use the <code class="docutils literal notranslate"><span class="pre">merge()</span></code> function in <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to combine the school demographcs and ela test results into a single data frame. We merge them “on” the <code class="docutils literal notranslate"><span class="pre">dbn</span></code> and <code class="docutils literal notranslate"><span class="pre">ay</span></code> columns because these cols represent a unique identifier for each row in both data sets. <em>Note</em> that the result has only the intersecton of both datasets. If our demographic data has a DBN that’s not in the test data set,
 that school’s data will be dropped from the results.</p>
 <div class="nbinput docutils container">
@@ -753,7 +751,7 @@ that school’s data will be dropped from the results.</p>
 </div>
 </section>
 <section id="Merge-with-suffixes:-wide-data">
-<h2><span class="section-number">2.2. </span>Merge with suffixes: wide data<a class="headerlink" href="#Merge-with-suffixes:-wide-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.2.2. </span>Merge with suffixes: wide data<a class="headerlink" href="#Merge-with-suffixes:-wide-data" title="Permalink to this headline"></a></h2>
 <p>When we have a data set where we use columns to represent different categories of data, we can call this “wide data.” In this example, we’re going to make a test results data frame that has math and ela test scores in the same row.</p>
 <p>At the start of this notebook we loaded both the math and ela exam data. Note that they have exactly the same columns. When we <em>merge</em> them, we’re going to <strong>suffix</strong> the ela data with <code class="docutils literal notranslate"><span class="pre">_ela</span></code> and the math data with <code class="docutils literal notranslate"><span class="pre">_math</span></code>. We will drop <code class="docutils literal notranslate"><span class="pre">school_name</span></code> from one of the data sets and use <code class="docutils literal notranslate"><span class="pre">[&quot;dbn&quot;,</span> <span class="pre">&quot;ay&quot;,</span> <span class="pre">&quot;test_year&quot;,</span> <span class="pre">&quot;grade&quot;,</span> <span class="pre">&quot;category&quot;]</span></code> to join the two.</p>
 <div class="nbinput docutils container">
@@ -1041,7 +1039,7 @@ that school’s data will be dropped from the results.</p>
 </div>
 </section>
 <section id="Concatenate-DataFrames:-long-data">
-<h2><span class="section-number">2.3. </span>Concatenate DataFrames: long data<a class="headerlink" href="#Concatenate-DataFrames:-long-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.2.3. </span>Concatenate DataFrames: long data<a class="headerlink" href="#Concatenate-DataFrames:-long-data" title="Permalink to this headline"></a></h2>
 <p>If we have two DataFrames with the same columns (like our math and ela results) we can concatenate the data from one df onto the other to create a longer dataframe. Generally, this is a more flexible format for analysis than the wide data format. In our math/ela example, it allows us to, for example, easily average the math and ela test scores together (filtering for group, year, etc).</p>
 <p>In the example here we will add a new column, <code class="docutils literal notranslate"><span class="pre">test</span></code>, which will have the value of “ela” or “math”. This column will let us know whether that row reports a math test or ela test result.</p>
 <div class="nbinput docutils container">
@@ -1366,8 +1364,8 @@ that school’s data will be dropped from the results.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01-group-and-agg.html" class="btn btn-neutral float-left" title="1. Groups &amp; Aggregates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../03-Graphs-and-Charts/index.html" class="btn btn-neutral float-right" title="Graphs &amp; Charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01-group-and-agg.html" class="btn btn-neutral float-left" title="1.1. Groups &amp; Aggregates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../03-Graphs-and-Charts/index.html" class="btn btn-neutral float-right" title="2. Graphs &amp; Charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
