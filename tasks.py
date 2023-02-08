@@ -108,6 +108,10 @@ def install_from_testpypi(c):
     """Install the package from testpypi but using real pypi for dependencies."""
     c.run("python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nycschools")
 
+@task
+def install_dev(c):
+    """Install the package in development mode."""
+    c.run("pip install -e .[dev]")
 
 @task
 def tag(c):
