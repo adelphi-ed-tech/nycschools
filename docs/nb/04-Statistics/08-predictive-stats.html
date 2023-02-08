@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Predictive Statistics &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>3.3. Predictive Statistics &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Maps &amp; GIS" href="../05-Maps-and-GIS/index.html" />
-    <link rel="prev" title="2. ANOVA and OLS Regression" href="05-anova-ols.html" /> 
+    <link rel="next" title="4. Maps &amp; GIS" href="../05-Maps-and-GIS/index.html" />
+    <link rel="prev" title="3.2. ANOVA and OLS Regression" href="05-anova-ols.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Statistics</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Predictive Statistics</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>Statistics</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3. </span>Predictive Statistics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/04-Statistics/08-predictive-stats.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Predictive-Statistics">
-<h1><span class="section-number">3. </span>Predictive Statistics<a class="headerlink" href="#Predictive-Statistics" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.3. </span>Predictive Statistics<a class="headerlink" href="#Predictive-Statistics" title="Permalink to this headline"></a></h1>
 <p>This notebook uses the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library to run some machine learning predictions using regression analysis. It has examples of both Ordinary Least Square and Partial Least Square Regression.</p>
 <p>We look at school demographics to see how well we can use those factors to predict mean_scale_score. We look at the grades 3-8 NYS math exams for the most recent academic year in our data set.</p>
 <div class="nbinput nblast docutils container">
@@ -583,7 +581,7 @@ div.rendered_html tbody tr:hover {
 </div></div>
 </div>
 <section id="Predicting-test-scores">
-<h2><span class="section-number">3.1. </span>Predicting test scores<a class="headerlink" href="#Predicting-test-scores" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3.1. </span>Predicting test scores<a class="headerlink" href="#Predicting-test-scores" title="Permalink to this headline"></a></h2>
 <p>Using OLS regression we will see how well we can predict mean_scale_score for the “All Students” category. We will run this with several variations of factors to see which factors have the strongest prediction.</p>
 <p>The basic ideas of a predictive model is that we will use some of our data to “train” the model and use the other portion to “test” the model. Once we calculate a coeefficient for each factor, we can use those values to adjust the data sets mean score for a particular case.</p>
 <p>These examples will use two statistical measures to compare our models:</p>
@@ -592,7 +590,7 @@ div.rendered_html tbody tr:hover {
 <li><p>mean squared error (<code class="docutils literal notranslate"><span class="pre">rmse</span></code>) tells us the mean distance between predictions and recorded scores in the same scale as our exam; so an rmse of 10 means that, on average, our predictions were 10 points away from the actual score</p></li>
 </ul>
 <section id="Correlation-table">
-<h3><span class="section-number">3.1.1. </span>Correlation table<a class="headerlink" href="#Correlation-table" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.3.1.1. </span>Correlation table<a class="headerlink" href="#Correlation-table" title="Permalink to this headline"></a></h3>
 <p>First, let’s see how the factors correlate with each other, and with our dependent variable. This table uses a “coolwarm” color map. Darker red indicates a strong positive correlation and darker blue a strong negative correlation.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -1273,7 +1271,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="OLS-Linear-Regression-with-different-factors">
-<h2><span class="section-number">3.2. </span>OLS Linear Regression with different factors<a class="headerlink" href="#OLS-Linear-Regression-with-different-factors" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3.2. </span>OLS Linear Regression with different factors<a class="headerlink" href="#OLS-Linear-Regression-with-different-factors" title="Permalink to this headline"></a></h2>
 <p>We’re going to run a linear regression prediction with several different sets of factors to see which combination creates the strongest predictive model.</p>
 <p>Because the training and testing sets are randomized we will get slightly different results each time we run the code in this cell. It appears that the factors that total enrollment has no predictive power and that including poverty_pct without eni_pct produces slightly better predictions.</p>
 <div class="nbinput docutils container">
@@ -1376,7 +1374,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="Partial-Least-Squares">
-<h1><span class="section-number">4. </span>Partial Least Squares<a class="headerlink" href="#Partial-Least-Squares" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.4. </span>Partial Least Squares<a class="headerlink" href="#Partial-Least-Squares" title="Permalink to this headline"></a></h1>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -1719,7 +1717,7 @@ array([2.07183903e-19, 0.00000000e+00, 9.40071536e-01, 9.96353400e-01,
 </div>
 <div class="output_area docutils container">
 <section id="Graph-of-PLS-coefficients">
-<h2><span class="section-number">3. </span>Graph of PLS coefficients<a class="headerlink" href="#Graph-of-PLS-coefficients" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>Graph of PLS coefficients<a class="headerlink" href="#Graph-of-PLS-coefficients" title="Permalink to this headline"></a></h2>
 </section>
 </div>
 </div>
@@ -1735,7 +1733,7 @@ array([2.07183903e-19, 0.00000000e+00, 9.40071536e-01, 9.96353400e-01,
 </div>
 <div class="output_area docutils container">
 <section id="Graph-of-OLS-coefficients">
-<h2><span class="section-number">3. </span>Graph of OLS coefficients<a class="headerlink" href="#Graph-of-OLS-coefficients" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>Graph of OLS coefficients<a class="headerlink" href="#Graph-of-OLS-coefficients" title="Permalink to this headline"></a></h2>
 </section>
 </div>
 </div>
@@ -1752,8 +1750,8 @@ array([2.07183903e-19, 0.00000000e+00, 9.40071536e-01, 9.96353400e-01,
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="05-anova-ols.html" class="btn btn-neutral float-left" title="2. ANOVA and OLS Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../05-Maps-and-GIS/index.html" class="btn btn-neutral float-right" title="2. Maps &amp; GIS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05-anova-ols.html" class="btn btn-neutral float-left" title="3.2. ANOVA and OLS Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../05-Maps-and-GIS/index.html" class="btn btn-neutral float-right" title="4. Maps &amp; GIS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

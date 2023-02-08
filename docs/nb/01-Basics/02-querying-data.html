@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -48,25 +46,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Data Basics</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01-loading-data.html">1. Loading Data</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Querying &amp; Selecting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Selecting-just-one-year">2.1. Selecting just one year</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Compound-expressions">2.2. Compound expressions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Finding-a-subset-of-data">2.3. Finding a subset of data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Using-drop_duplicates">2.4. Using <code class="docutils literal notranslate"><span class="pre">drop_duplicates</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Filtering-missing-data">2.5. Filtering missing data</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="03-basic-stats.html">3. Basic Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-calculating-columns.html">4. Calculating New Columns</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -88,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Data Basics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Data Basics</a></li>
       <li class="breadcrumb-item active"><span class="section-number">2. </span>Querying &amp; Selecting</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/01-Basics/02-querying-data.ipynb.txt" rel="nofollow"> View page source</a>
@@ -379,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Querying-&amp;-Selecting">
-<h1><span class="section-number">2. </span>Querying &amp; Selecting<a class="headerlink" href="#Querying-&-Selecting" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>Querying &amp; Selecting<a class="headerlink" href="#Querying-&-Selecting" title="Permalink to this headline"></a></h1>
 <p>In this Notebook we go over some of the ways of querying data in a dataframe.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> slice notation for subsets of data</p></li>
@@ -560,7 +545,7 @@ div.rendered_html tbody tr:hover {
 </div></div>
 </div>
 <section id="Selecting-just-one-year">
-<h2><span class="section-number">2.1. </span>Selecting just one year<a class="headerlink" href="#Selecting-just-one-year" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>Selecting just one year<a class="headerlink" href="#Selecting-just-one-year" title="Permalink to this headline"></a></h2>
 <p>We can see that our data contains multiple years of data for each school. We can filter or query the data to just get a single year.</p>
 <p>To do this, we will use the slice notation similary to above, however, instead of a list of columns, we have a Boolean expression using one of the columns in our data set.</p>
 <p><code class="docutils literal notranslate"><span class="pre">df[df.ay</span> <span class="pre">==</span> <span class="pre">2020]</span></code> returns only the rows where <code class="docutils literal notranslate"><span class="pre">ay</span></code> equals <code class="docutils literal notranslate"><span class="pre">2020</span></code></p>
@@ -662,7 +647,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Compound-expressions">
-<h2><span class="section-number">2.2. </span>Compound expressions<a class="headerlink" href="#Compound-expressions" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>Compound expressions<a class="headerlink" href="#Compound-expressions" title="Permalink to this headline"></a></h2>
 <p>We can use Boolean operators to make more complex queries. <code class="docutils literal notranslate"><span class="pre">pandas</span></code> uses the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator for Boolean <strong>and</strong> and the <code class="docutils literal notranslate"><span class="pre">|</span></code> operator for Boolean <strong>or</strong>. Note that you should wrap your equality expressions inside of parenethesis.</p>
 <p>To write bug-free code, we do not recommend mixing <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> clauses in the same query.</p>
 <p>Below are two examples:</p>
@@ -1056,7 +1041,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Finding-a-subset-of-data">
-<h2><span class="section-number">2.3. </span>Finding a subset of data<a class="headerlink" href="#Finding-a-subset-of-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>Finding a subset of data<a class="headerlink" href="#Finding-a-subset-of-data" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> has a usefule function called <code class="docutils literal notranslate"><span class="pre">isin()</span></code> that lets us filter data on a <code class="docutils literal notranslate"><span class="pre">Series</span></code> if the value is in a set of values. First, we’ll do a simple example where we find all of the schools in a district <code class="docutils literal notranslate"><span class="pre">[3,8,15]</span></code></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -1170,7 +1155,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Using-drop_duplicates">
-<h2><span class="section-number">2.4. </span>Using <code class="docutils literal notranslate"><span class="pre">drop_duplicates</span></code><a class="headerlink" href="#Using-drop_duplicates" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>Using <code class="docutils literal notranslate"><span class="pre">drop_duplicates</span></code><a class="headerlink" href="#Using-drop_duplicates" title="Permalink to this headline"></a></h2>
 <p>In the display of the table above, since we chose not to show all of the columns, we have repeated columns. Sometimes we will want just the unique results. We saw that <code class="docutils literal notranslate"><span class="pre">unique()</span></code> works for a <code class="docutils literal notranslate"><span class="pre">Series</span></code>. It doesn’t work for a dataframe, however.</p>
 <p>Luckily, we have <code class="docutils literal notranslate"><span class="pre">drop_duplicates()</span></code> which serves a similar function…see:</p>
 <div class="nbinput docutils container">
@@ -1283,7 +1268,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Filtering-missing-data">
-<h2><span class="section-number">2.5. </span>Filtering missing data<a class="headerlink" href="#Filtering-missing-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>Filtering missing data<a class="headerlink" href="#Filtering-missing-data" title="Permalink to this headline"></a></h2>
 <p>You will not always have complete data, and sometimes you need to find rows with missing records. You may want to update them with some default or derived values, or, you may simpley want to exclude them from your data.</p>
 <p>In this example, we will use <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> to load the grade 3-8 ELA NYS exams. We will then filter out all of the rows that don’t have a score. Some rows are null because not enough students took the exam. Others may be missing data because their students were exempt from the exam or other reasons.</p>
 <div class="nbinput docutils container">

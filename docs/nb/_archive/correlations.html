@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Statistics-Libraries">
-<h1><span class="section-number">9. </span>Statistics Libraries<a class="headerlink" href="#Statistics-Libraries" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">9. </span>Statistics Libraries<a class="headerlink" href="#Statistics-Libraries" title="Permalink to this headline"></a></h1>
 <p>This notebook runs some examples of different statitics functions on our data set. The data we are looking at is the combined school demographics data and NYS math test scores which are given each year in grades 3-8. The basic hypothesis we are attempting to test is that the percentage of Black students in a school has no effect on the average test score for the school. This is a complex topic and this notebook does not claim to adequately explore the topic. It is meant to give us a first look
 at how we might explore this question.</p>
 <p>In addition to <code class="docutils literal notranslate"><span class="pre">pandas</span></code> there are two “main” libraries for doing mathematical and statistical operations: <code class="docutils literal notranslate"><span class="pre">scipy</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. In addition to these libraries, this notebook uses a package called <a class="reference external" href="https://pingouin-stats.org/">Pingouin</a> which “wraps” these other packages and works nicely with pandas <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>.</p>
@@ -440,13 +438,13 @@ scipy_R: (-0.47137621471716734, 0.0)
 </pre></div></div>
 </div>
 <section id="Numpy-and-Scipy-Pearson-Coefficients">
-<h2><span class="section-number">9.1. </span>Numpy and Scipy Pearson Coefficients<a class="headerlink" href="#Numpy-and-Scipy-Pearson-Coefficients" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.1. </span>Numpy and Scipy Pearson Coefficients<a class="headerlink" href="#Numpy-and-Scipy-Pearson-Coefficients" title="Permalink to this headline"></a></h2>
 <p>The code above uses two different libraries to calculate the correlation between <code class="docutils literal notranslate"><span class="pre">black_1</span></code> (the percentage of Black students in a school) and <code class="docutils literal notranslate"><span class="pre">mean_scale_score</span></code> (the average mean test score for the school in a given year – for all grades and all demographic categories).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> fuction <code class="docutils literal notranslate"><span class="pre">[corrcoef](https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html)</span></code> returns an array where it runs a “row-wise” and “column-wise” correlation. We see that <code class="docutils literal notranslate"><span class="pre">numpy</span></code> returns a value of <code class="docutils literal notranslate"><span class="pre">-0.47137621</span></code> for R.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">`pearsonr</span></code> &lt;<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html?highlight=pearson">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html?highlight=pearson</a>&gt;`__ function from the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> library runs the same statistical operation as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, but it returns the R coeefficient and the p-value for the test. We see that for our data R=-0.47137621471716734 and p &lt; .01 (the result returned is zero).</p>
 </section>
 <section id="Pingouin">
-<h2><span class="section-number">9.2. </span>Pingouin<a class="headerlink" href="#Pingouin" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.2. </span>Pingouin<a class="headerlink" href="#Pingouin" title="Permalink to this headline"></a></h2>
 <p>The next example runs use the <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> library to find the correlation on the same two <code class="docutils literal notranslate"><span class="pre">Series</span></code>. In this example, we use the <code class="docutils literal notranslate"><span class="pre">`corr</span></code> &lt;<a class="reference external" href="https://pingouin-stats.org/generated/pingouin.corr.html#pingouin.corr">https://pingouin-stats.org/generated/pingouin.corr.html#pingouin.corr</a>&gt;`__ function wich <strong>returns</strong> a pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. Pinguin runs the Pearson correlation coefficient as well as several related statistical functions and returns all of the results</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:

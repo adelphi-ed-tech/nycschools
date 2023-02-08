@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Clean-and-Merge-Data">
-<h1><span class="section-number">16. </span>Clean and Merge Data<a class="headerlink" href="#Clean-and-Merge-Data" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">16. </span>Clean and Merge Data<a class="headerlink" href="#Clean-and-Merge-Data" title="Permalink to this headline"></a></h1>
 <p>This notebook loads and combines 3 different data files into a single dataframe. It combines <em>school demographic data</em>, <em>math test scortes</em>, and <em>ela test scores</em>.</p>
 <p>For this example we try to use more re-usable functions to help clean our data. In order to <strong>merge</strong> data sets, we need to have “keys” or “indices” in both dataframes in order to know which rows to merge together. We know that our schools have a unique key called <code class="docutils literal notranslate"><span class="pre">dbn</span></code> which we can use, but we also need to combine it with the academic year in order to get a the correct unique id for each row.</p>
 <ul class="simple">
@@ -384,7 +382,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Load-demgographics-data">
-<h2><span class="section-number">16.1. </span>Load demgographics data<a class="headerlink" href="#Load-demgographics-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.1. </span>Load demgographics data<a class="headerlink" href="#Load-demgographics-data" title="Permalink to this headline"></a></h2>
 <p>Here we load the school demographics data set from the API URL and then clean it up a little bit.</p>
 <p>We will merge this data with the test score data into a single data frame.</p>
 <div class="nbinput docutils container">
@@ -493,7 +491,7 @@ Index([&#39;dbn&#39;, &#39;school_name&#39;, &#39;year&#39;, &#39;total_enrollme
 </div>
 </section>
 <section id="Load-and-merge-the-math-data">
-<h2><span class="section-number">16.2. </span>Load and merge the math data<a class="headerlink" href="#Load-and-merge-the-math-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.2. </span>Load and merge the math data<a class="headerlink" href="#Load-and-merge-the-math-data" title="Permalink to this headline"></a></h2>
 <p>Here we get the math data and then fix up the columns. We rename the columns so that they have the same names as the ELA columns we’ll load later.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
@@ -978,7 +976,7 @@ Index([&#39;dbn&#39;, &#39;school_name&#39;, &#39;grade&#39;, &#39;year&#39;, &#
 </div>
 </section>
 <section id="Sorting-schools-on-math-performance">
-<h2><span class="section-number">16.3. </span>Sorting schools on math performance<a class="headerlink" href="#Sorting-schools-on-math-performance" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.3. </span>Sorting schools on math performance<a class="headerlink" href="#Sorting-schools-on-math-performance" title="Permalink to this headline"></a></h2>
 <p>Now that we have the combined data, we can sort (and rank) the schools based on their performance on the NYS math test and display some of the demographic data for each school.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
@@ -1169,7 +1167,7 @@ avg enrollment, bottom 100 396.08
 </div>
 </section>
 <section id="Load-and-merge-ELA-data">
-<h2><span class="section-number">16.4. </span>Load and merge ELA data<a class="headerlink" href="#Load-and-merge-ELA-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.4. </span>Load and merge ELA data<a class="headerlink" href="#Load-and-merge-ELA-data" title="Permalink to this headline"></a></h2>
 <p>Merging the ELA data is similar to mergin the math data, however we have to add a new key to our join – grade level. Also, because math and ela datasets share column names, we specify <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> when we call <code class="docutils literal notranslate"><span class="pre">merge()</span></code> on our dataframe.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
@@ -1252,7 +1250,7 @@ Index([&#39;dbn&#39;, &#39;school_name&#39;, &#39;year&#39;, &#39;total_enrollme
 </div>
 </section>
 <section id="Look-at-the-combined-data">
-<h2><span class="section-number">16.5. </span>Look at the combined data<a class="headerlink" href="#Look-at-the-combined-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.5. </span>Look at the combined data<a class="headerlink" href="#Look-at-the-combined-data" title="Permalink to this headline"></a></h2>
 <p>Now that we have all three data sets merged, we can calculate a new column that combines the Math and ELA scores for each school-year-grade observation. Below we create the column, sort the data, and then show the results.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:

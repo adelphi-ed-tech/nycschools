@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Line &amp; Scatter Plots &mdash; NYC Schools Open Data 0.1.0 documentation</title>
+  <title>2.3. Line &amp; Scatter Plots &mdash; NYC Schools Open Data 0.1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -24,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Statistics" href="../04-Statistics/index.html" />
-    <link rel="prev" title="2. Grouped Bar Charts" href="02-grouped-bar-chart.html" /> 
+    <link rel="next" title="3. Statistics" href="../04-Statistics/index.html" />
+    <link rel="prev" title="2.2. Grouped Bar Charts" href="02-grouped-bar-chart.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,11 +47,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -75,8 +73,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Graphs &amp; Charts</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Line &amp; Scatter Plots</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Graphs &amp; Charts</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2.3. </span>Line &amp; Scatter Plots</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nb/03-Graphs-and-Charts/03-line-and-scatter-charts.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -366,7 +364,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Line-&amp;-Scatter-Plots">
-<h1><span class="section-number">3. </span>Line &amp; Scatter Plots<a class="headerlink" href="#Line-&-Scatter-Plots" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2.3. </span>Line &amp; Scatter Plots<a class="headerlink" href="#Line-&-Scatter-Plots" title="Permalink to this headline"></a></h1>
 <p>This notebook introduces the methods of creating bar charts from our data, including some of the key concepts of our plotting package, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. Bar charts are useful for making comparisons between close data because we are very good at evaluating the size of rectangles.</p>
 <p>Topics covered:</p>
 <ul class="simple">
@@ -402,7 +400,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Scatter-plots-and-correlations">
-<h2><span class="section-number">3.1. </span>Scatter plots and correlations<a class="headerlink" href="#Scatter-plots-and-correlations" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3.1. </span>Scatter plots and correlations<a class="headerlink" href="#Scatter-plots-and-correlations" title="Permalink to this headline"></a></h2>
 <p>In the next section we’re going to see what demographic factors of schools impact student test scores on the NYS ELA exams, grades 3-8.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -882,7 +880,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Drop-outliers">
-<h3><span class="section-number">3.1.1. </span>Drop outliers<a class="headerlink" href="#Drop-outliers" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">2.3.1.1. </span>Drop outliers<a class="headerlink" href="#Drop-outliers" title="Permalink to this headline"></a></h3>
 <p>For the next correlation, first we’ll drop the outliers by computing z-scores. Outliers can distort the results of our correlations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -916,8 +914,8 @@ div.rendered_html tbody tr:hover {
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02-grouped-bar-chart.html" class="btn btn-neutral float-left" title="2. Grouped Bar Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../04-Statistics/index.html" class="btn btn-neutral float-right" title="Statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02-grouped-bar-chart.html" class="btn btn-neutral float-left" title="2.2. Grouped Bar Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../04-Statistics/index.html" class="btn btn-neutral float-right" title="3. Statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Load-ELA-Excel-Data">
-<h1><span class="section-number">12. </span>Load ELA Excel Data<a class="headerlink" href="#Load-ELA-Excel-Data" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">12. </span>Load ELA Excel Data<a class="headerlink" href="#Load-ELA-Excel-Data" title="Permalink to this headline"></a></h1>
 <p>For some reason, the Open Data Portal does not provide the latest grades 3-8 test data in its live URL. It’s only available as an Excel file to download from the page that should have the API link. These Excel files have one sheet for each poplulation tested:</p>
 <ul class="simple">
 <li><p>all students</p></li>
@@ -401,7 +399,7 @@ The autoreload extension is already loaded. To reload it, use:
 </div>
 </section>
 <section id="Load-from-Excel">
-<h1><span class="section-number">13. </span>Load from Excel<a class="headerlink" href="#Load-from-Excel" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">13. </span>Load from Excel<a class="headerlink" href="#Load-from-Excel" title="Permalink to this headline"></a></h1>
 <p>The excel workbook as a different sheet for each type of data: - ethnic breaks - students with disabilities - ELL - poverty</p>
 <p>Each one of these sheets has the same column headers:</p>
 <ul class="simple">
@@ -709,7 +707,7 @@ The autoreload extension is already loaded. To reload it, use:
 </div></div>
 </div>
 <section id="Clean-and-save">
-<h2><span class="section-number">13.1. </span>Clean and save<a class="headerlink" href="#Clean-and-save" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">13.1. </span>Clean and save<a class="headerlink" href="#Clean-and-save" title="Permalink to this headline"></a></h2>
 <p>As we’ve seen, the DOE inserts an <code class="docutils literal notranslate"><span class="pre">s</span></code> if too few students are represented by a single value (e.g. 3 ELL students sat for the ELA exam in third grade at a school).</p>
 <p>Rather than having mixed data types, we will convert all of the cells with <code class="docutils literal notranslate"><span class="pre">s</span></code> to the special <code class="docutils literal notranslate"><span class="pre">numpy</span></code> <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number).</p>
 <p>Later we can filter these out or search for them by calling <code class="docutils literal notranslate"><span class="pre">isnull()</span></code> (example below).</p>
@@ -754,7 +752,7 @@ The autoreload extension is already loaded. To reload it, use:
 </section>
 </section>
 <section id="Merge-ELA-and-School-Demographics">
-<h1><span class="section-number">14. </span>Merge ELA and School Demographics<a class="headerlink" href="#Merge-ELA-and-School-Demographics" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">14. </span>Merge ELA and School Demographics<a class="headerlink" href="#Merge-ELA-and-School-Demographics" title="Permalink to this headline"></a></h1>
 <p>This last code block demonstrates the new <code class="docutils literal notranslate"><span class="pre">schools</span></code> package and how to use the <code class="docutils literal notranslate"><span class="pre">load_school_demographics()</span></code> function.</p>
 <p>Here we: 1. load the demographics data 2. <code class="docutils literal notranslate"><span class="pre">merge</span></code> it with the ELA test data 3. report on some results</p>
 <p>We’ll use some aggregate functions to make a couple of quick tables.</p>

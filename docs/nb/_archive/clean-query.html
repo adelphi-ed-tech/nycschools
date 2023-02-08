@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,7 +361,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Cleaning-and-Querying-Pandas-Data">
-<h1><span class="section-number">4. </span>Cleaning and Querying Pandas Data<a class="headerlink" href="#Cleaning-and-Querying-Pandas-Data" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4. </span>Cleaning and Querying Pandas Data<a class="headerlink" href="#Cleaning-and-Querying-Pandas-Data" title="Permalink to this headline"></a></h1>
 <p>This notebook shows us how to <strong>modify</strong> and <strong>create new</strong> columns in a pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. This is an important part of cleaning data to prepare it for analysis and visualization.</p>
 <p>We also look at some techniques for <em>searching data</em> in order to get subsets of data (rows) that match certain criteria.</p>
 <p>Finally, we learn how to save and load local copies of the data so that we can easily use the cleaned data.</p>
@@ -381,7 +379,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Selecting-rows-with-boolean-indexing">
-<h1><span class="section-number">5. </span>Selecting rows with boolean indexing<a class="headerlink" href="#Selecting-rows-with-boolean-indexing" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>Selecting rows with boolean indexing<a class="headerlink" href="#Selecting-rows-with-boolean-indexing" title="Permalink to this headline"></a></h1>
 <p>Pandas has several ways to select data – to get a subset of data from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. One of the easiest ways is to use “boolan indexing”. This approach lets us use the Python comparison operators to find rows that match our criteria. We can then use the “index” of these rows to get a subset from a dataframe.</p>
 <p>In this example we use the “dbn” field look for a match with a specific string. We capture the results in a variable, <code class="docutils literal notranslate"><span class="pre">ps9</span></code> that holds the new <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
 <div class="nbinput docutils container">
@@ -579,9 +577,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Creating-new-columns">
-<h1><span class="section-number">6. </span>Creating new columns<a class="headerlink" href="#Creating-new-columns" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">6. </span>Creating new columns<a class="headerlink" href="#Creating-new-columns" title="Permalink to this headline"></a></h1>
 <section id="Create-a-new-column-based-on-data-from-other-columns">
-<h2><span class="section-number">6.1. </span>Create a new column based on data from other columns<a class="headerlink" href="#Create-a-new-column-based-on-data-from-other-columns" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">6.1. </span>Create a new column based on data from other columns<a class="headerlink" href="#Create-a-new-column-based-on-data-from-other-columns" title="Permalink to this headline"></a></h2>
 <p>One of the most straightforward ways to modify a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is to create a new column based on data in an existing column. Let’s do that with our data.</p>
 <p>In New York City some elementary schools offer “universal pre-k” – school for 3 year olds and 4 year olds. We can infer whether a school has pre-k based on the number of students enrolled in prek-3 or prek-4, indicated by ‘grade_3k_pk_half_day_full’.</p>
 <p>Let’s start simple and add a new column called <code class="docutils literal notranslate"><span class="pre">prek</span></code> which will hold a <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> value. <code class="docutils literal notranslate"><span class="pre">True</span></code> if the school has more than zero students in pre-k and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it doesn’t.</p>
@@ -882,7 +880,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Create-a-new-column-with-a-function-using-apply()">
-<h2><span class="section-number">6.2. </span>Create a new column with a function using <code class="docutils literal notranslate"><span class="pre">apply()</span></code><a class="headerlink" href="#Create-a-new-column-with-a-function-using-apply()" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">6.2. </span>Create a new column with a function using <code class="docutils literal notranslate"><span class="pre">apply()</span></code><a class="headerlink" href="#Create-a-new-column-with-a-function-using-apply()" title="Permalink to this headline"></a></h2>
 <p>Sometimes the column we want can’t be easily calculated using arithmetic. Pandas lets use use a function to calculate values with more complex logic. You can create a new <code class="docutils literal notranslate"><span class="pre">Series</span></code> by using the <code class="docutils literal notranslate"><span class="pre">apply()</span></code> function on a column from your dataframe.</p>
 <p>In this example we parse the dbn to create a new field called <code class="docutils literal notranslate"><span class="pre">district</span></code>.</p>
 <div class="nbinput nblast docutils container">
@@ -1032,7 +1030,7 @@ div.rendered_html tbody tr:hover {
 </section>
 </section>
 <section id="Sorting-dataframes">
-<h1><span class="section-number">7. </span>Sorting dataframes<a class="headerlink" href="#Sorting-dataframes" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">7. </span>Sorting dataframes<a class="headerlink" href="#Sorting-dataframes" title="Permalink to this headline"></a></h1>
 <p>Sorting data can make it easier to understand our data set (and also let us get a subset of data, like the 50 wealthiest schools based on <code class="docutils literal notranslate"><span class="pre">total_enrollment</span></code>). We’ve seen how to sort a series. It’s not much more complicated to sort a dataframe. In this example, we sort on total_enrollment, in descending order, then use Python slice notation to get the first 25 schools in the list</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -1254,7 +1252,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Saving-data">
-<h1><span class="section-number">8. </span>Saving data<a class="headerlink" href="#Saving-data" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">8. </span>Saving data<a class="headerlink" href="#Saving-data" title="Permalink to this headline"></a></h1>
 <p>Now that we’ve made these changes to our core data, we can export it so that we can either load it into a different notebook file, or another program (maybe for visualization, or a web server). Pandas makes this <em>very</em> easy. Here we save <code class="docutils literal notranslate"><span class="pre">df</span></code> as a .csv file (you can open it in Excel). It will save it into the same folder as our notebook file.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:

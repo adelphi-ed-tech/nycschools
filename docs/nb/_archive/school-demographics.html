@@ -14,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -47,11 +45,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">1. Data Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">Combining Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">Graphs &amp; Charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">2. Maps &amp; GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Basics/index.html">Data Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Combining-Data/index.html">1. Combining Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Graphs-and-Charts/index.html">2. Graphs &amp; Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Statistics/index.html">3. Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Maps-and-GIS/index.html">4. Maps &amp; GIS</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
@@ -363,12 +361,12 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="School-Demographics">
-<h1><span class="section-number">18. </span>School Demographics<a class="headerlink" href="#School-Demographics" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">18. </span>School Demographics<a class="headerlink" href="#School-Demographics" title="Permalink to this headline"></a></h1>
 <p>The New York City Department of Education collects and reports school demographic data for all of the public schools in its system. This notebook describes the data released under the <a class="reference external" href="https://data.cityofnewyork.us/Education/2020-2021-Demographic-Snapshot-School/vmmu-wj3w">2020-2021 School Demographics Snapshot</a>.</p>
 <p>A “clean” version of this data can be loaded from the <code class="docutils literal notranslate"><span class="pre">schools</span></code> module with the <code class="docutils literal notranslate"><span class="pre">load_school_demographics()</span></code> function.</p>
 <p>This notebook describes that data and shows some ways to use it.</p>
 <section id="Importing-and-loading-the-data">
-<h2><span class="section-number">18.1. </span>Importing and loading the data<a class="headerlink" href="#Importing-and-loading-the-data" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.1. </span>Importing and loading the data<a class="headerlink" href="#Importing-and-loading-the-data" title="Permalink to this headline"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -497,7 +495,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <section id="Calculating-aggregates">
-<h3><span class="section-number">18. </span>Calculating aggregates<a class="headerlink" href="#Calculating-aggregates" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">18. </span>Calculating aggregates<a class="headerlink" href="#Calculating-aggregates" title="Permalink to this headline"></a></h3>
 <p>This data set contains school data from <strong>academic years 2016-2020</strong>. It includes demographic <strong>data from 1,879 different schools</strong> in the 32 zoned school districts as well as in the “special” districts:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.schools.nyc.gov/learning/special-education/school-settings/district-75">District 75</a> for students with highly specialized needs that cannot be met in the regular school special education program</p></li>
@@ -1106,7 +1104,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <section id="Data-Dictionary">
-<h3><span class="section-number">18. </span>Data Dictionary<a class="headerlink" href="#Data-Dictionary" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">18. </span>Data Dictionary<a class="headerlink" href="#Data-Dictionary" title="Permalink to this headline"></a></h3>
 <p>We renamed some of the columns from the raw dataset for brevity and clarity. For each demographic group where there is a count and a percentage, we suffix the “count” column with <code class="docutils literal notranslate"><span class="pre">_n</span></code> and the percentage column with <code class="docutils literal notranslate"><span class="pre">_pct</span></code>. The DOE data uses the convention of column name with no suffix for counts and <code class="docutils literal notranslate"><span class="pre">_1</span></code> for percents. Note also that <code class="docutils literal notranslate"><span class="pre">year</span></code> has change to an integer representation of the acadmic year. The raw data has a string, but other DOE data releases use integers for the year. The int
 value makes the data easier to merge and sort.</p>
 </section>
@@ -1412,7 +1410,7 @@ court-involved yout, etc. <a href="#id1"><span class="problematic" id="id3">`Dis
 </div>
 </section>
 <section id="Change-over-time">
-<h2><span class="section-number">18.2. </span>Change over time<a class="headerlink" href="#Change-over-time" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.2. </span>Change over time<a class="headerlink" href="#Change-over-time" title="Permalink to this headline"></a></h2>
 <p>The school demographics data set tells us about the student population a school serves. We can investigate questions around school size, racial and ethnic makeup, students with disabilities, ENL students, and poverty levels. Looking at the number of students at each grade level we can see school type: P-5, K-5, 6-8, P-12, etc. We can aggregate this data at district level, grade level, school type (communit/charter). Also, since our data spans several years, we can calculate changes over time.</p>
 <p>This data is particularly intersting as a baseline for merging with other data sets (test scores, high school acceptance, etc.), but there may be interesting questions without a merge.</p>
 <p>This example calculates change in % of poverty and and student demographics over time to get a sense of which schools and districts are “gentrifying” and what that means for the student body.</p>
