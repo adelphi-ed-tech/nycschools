@@ -1,0 +1,1566 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>8. Merges &amp; Joins &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9. Graphs &amp; Charts" href="../03-Graphs-and-Charts/index.html" />
+    <link rel="prev" title="7. Groups &amp; Aggregates" href="01-group-and-agg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  School Data Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/index.html">
+   1. Data Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/01-loading-data.html">
+   2. Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/02-querying-data.html">
+   3. Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/03-basic-stats.html">
+   4. Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/04-calculating-columns.html">
+   5. Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   6. Combining Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-group-and-agg.html">
+   7. Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/index.html">
+   9. Graphs &amp; Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
+   10. Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   11. Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/index.html">
+   12. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/04-t_tests.html">
+   13. T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/05-anova-ols.html">
+   14. ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/08-predictive-stats.html">
+   15. Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/index.html">
+   17. Maps &amp; GIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/01-maps-intro.html">
+   18. Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/02-mapping-schools.html">
+   19. Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/master/docs/nb/02-Combining-Data/02-merge-and-join.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2Fnb/02-Combining-Data/02-merge-and-join.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/nb/02-Combining-Data/02-merge-and-join.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merging-data">
+   8.1. Merging Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-with-suffixes-wide-data">
+   8.2. Merge with suffixes: wide data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concatenate-dataframes-long-data">
+   8.3. Concatenate DataFrames: long data
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Merges & Joins</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merging-data">
+   8.1. Merging Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-with-suffixes-wide-data">
+   8.2. Merge with suffixes: wide data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concatenate-dataframes-long-data">
+   8.3. Concatenate DataFrames: long data
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="merges-joins">
+<h1><span class="section-number">8. </span>Merges &amp; Joins<a class="headerlink" href="#merges-joins" title="Permalink to this headline">#</a></h1>
+<p>Here, finally, we combine data sets together. I say finally because this is one of the <em>first</em> things you will do when working with real world data. <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> has already combined multiple data sets into its core DataFrames, but you will want to combine this data in new ways, make new DataFrames from your results, and pull in new data from the outside world.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span><span class="p">,</span> <span class="n">exams</span>
+
+<span class="c1"># school demographics in one frame</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+
+<span class="c1"># exam results in another frame</span>
+<span class="n">ela</span> <span class="o">=</span> <span class="n">exams</span><span class="o">.</span><span class="n">load_ela</span><span class="p">()</span>
+<span class="n">math</span> <span class="o">=</span> <span class="n">exams</span><span class="o">.</span><span class="n">load_math</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="merging-data">
+<h2><span class="section-number">8.1. </span>Merging Data<a class="headerlink" href="#merging-data" title="Permalink to this headline">#</a></h2>
+<p>When two data sets have a shared key then combining them into a single dataframe is straightforward. Here we use the <code class="docutils literal notranslate"><span class="pre">merge()</span></code> function in <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to combine the school demographcs and ela test results into a single data frame. We merge them “on” the <code class="docutils literal notranslate"><span class="pre">dbn</span></code> and <code class="docutils literal notranslate"><span class="pre">ay</span></code> columns because these cols represent a unique identifier for each row in both data sets. <em>Note</em> that the result has only the intersecton of both datasets. If our demographic data has a DBN that’s not in the test data set, that school’s data will be dropped from the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>beds</th>
+      <th>district</th>
+      <th>geo_district</th>
+      <th>boro</th>
+      <th>school_name_x</th>
+      <th>short_name</th>
+      <th>ay</th>
+      <th>year</th>
+      <th>total_enrollment</th>
+      <th>...</th>
+      <th>level_2_pct</th>
+      <th>level_3_n</th>
+      <th>level_3_pct</th>
+      <th>level_4_n</th>
+      <th>level_4_pct</th>
+      <th>level_3_4_n</th>
+      <th>level_3_4_pct</th>
+      <th>test_year</th>
+      <th>charter</th>
+      <th>school_name_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>0.296296</td>
+      <td>7.0</td>
+      <td>0.259259</td>
+      <td>2.0</td>
+      <td>0.074074</td>
+      <td>9.0</td>
+      <td>0.333333</td>
+      <td>2017</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>0.521739</td>
+      <td>9.0</td>
+      <td>0.391304</td>
+      <td>1.0</td>
+      <td>0.043478</td>
+      <td>10.0</td>
+      <td>0.434783</td>
+      <td>2017</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>0.647059</td>
+      <td>5.0</td>
+      <td>0.294118</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>5.0</td>
+      <td>0.294118</td>
+      <td>2017</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>0.462687</td>
+      <td>21.0</td>
+      <td>0.313433</td>
+      <td>3.0</td>
+      <td>0.044776</td>
+      <td>24.0</td>
+      <td>0.358209</td>
+      <td>2017</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>0.333333</td>
+      <td>7.0</td>
+      <td>0.333333</td>
+      <td>2.0</td>
+      <td>0.095238</td>
+      <td>9.0</td>
+      <td>0.428571</td>
+      <td>2017</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 68 columns</p>
+</div></div></div>
+</div>
+<p>Astute readers will see a new column called <code class="docutils literal notranslate"><span class="pre">school_name_x</span></code> in our results. You can’t see it in the truncated data above, but there is also a <code class="docutils literal notranslate"><span class="pre">school_name_y</span></code>. Both data sets had a <code class="docutils literal notranslate"><span class="pre">school_name</span></code> column, so <code class="docutils literal notranslate"><span class="pre">pandas</span></code> suffixed the one from <code class="docutils literal notranslate"><span class="pre">demo</span></code> with <code class="docutils literal notranslate"><span class="pre">x</span></code> and the one from <code class="docutils literal notranslate"><span class="pre">ela</span></code> with <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p>Because both columns <em>should</em> contain the same data (because they have the save DBN for the same school year), in this case we can just drop one of the columns before the merge. We’ll drop <code class="docutils literal notranslate"><span class="pre">school_name</span></code> from <code class="docutils literal notranslate"><span class="pre">ela</span></code> because the demographics data set should have our canoninical school names.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ela2</span> <span class="o">=</span> <span class="n">ela</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;school_name&quot;</span><span class="p">)</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ela2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>beds</th>
+      <th>district</th>
+      <th>geo_district</th>
+      <th>boro</th>
+      <th>school_name</th>
+      <th>short_name</th>
+      <th>ay</th>
+      <th>year</th>
+      <th>total_enrollment</th>
+      <th>...</th>
+      <th>level_2_n</th>
+      <th>level_2_pct</th>
+      <th>level_3_n</th>
+      <th>level_3_pct</th>
+      <th>level_4_n</th>
+      <th>level_4_pct</th>
+      <th>level_3_4_n</th>
+      <th>level_3_4_pct</th>
+      <th>test_year</th>
+      <th>charter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>0.296296</td>
+      <td>7.0</td>
+      <td>0.259259</td>
+      <td>2.0</td>
+      <td>0.074074</td>
+      <td>9.0</td>
+      <td>0.333333</td>
+      <td>2017</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>12.0</td>
+      <td>0.521739</td>
+      <td>9.0</td>
+      <td>0.391304</td>
+      <td>1.0</td>
+      <td>0.043478</td>
+      <td>10.0</td>
+      <td>0.434783</td>
+      <td>2017</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>0.647059</td>
+      <td>5.0</td>
+      <td>0.294118</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>5.0</td>
+      <td>0.294118</td>
+      <td>2017</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>31.0</td>
+      <td>0.462687</td>
+      <td>21.0</td>
+      <td>0.313433</td>
+      <td>3.0</td>
+      <td>0.044776</td>
+      <td>24.0</td>
+      <td>0.358209</td>
+      <td>2017</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>310100010015</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Manhattan</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>PS 15</td>
+      <td>2016</td>
+      <td>2016-17</td>
+      <td>178</td>
+      <td>...</td>
+      <td>7.0</td>
+      <td>0.333333</td>
+      <td>7.0</td>
+      <td>0.333333</td>
+      <td>2.0</td>
+      <td>0.095238</td>
+      <td>9.0</td>
+      <td>0.428571</td>
+      <td>2017</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 67 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="merge-with-suffixes-wide-data">
+<h2><span class="section-number">8.2. </span>Merge with suffixes: wide data<a class="headerlink" href="#merge-with-suffixes-wide-data" title="Permalink to this headline">#</a></h2>
+<p>When we have a data set where we use columns to represent different categories of data, we can call this “wide data.” In this example, we’re going to make a test results data frame that has math and ela test scores in the same row.</p>
+<p>At the start of this notebook we loaded both the math and ela exam data. Note that they have exactly the same columns. When we <em>merge</em> them, we’re going to <strong>suffix</strong> the ela data with <code class="docutils literal notranslate"><span class="pre">_ela</span></code> and the math data with <code class="docutils literal notranslate"><span class="pre">_math</span></code>. We will drop <code class="docutils literal notranslate"><span class="pre">school_name</span></code> from one of the data sets and use <code class="docutils literal notranslate"><span class="pre">[&quot;dbn&quot;,</span> <span class="pre">&quot;ay&quot;,</span> <span class="pre">&quot;test_year&quot;,</span> <span class="pre">&quot;grade&quot;,</span> <span class="pre">&quot;category&quot;]</span></code> to join the two.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ela2</span> <span class="o">=</span> <span class="n">ela</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;school_name&quot;</span><span class="p">)</span>
+<span class="n">wide</span> <span class="o">=</span> <span class="n">ela2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">math</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">,</span> <span class="s2">&quot;test_year&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">],</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;_ela&quot;</span><span class="p">,</span> <span class="s2">&quot;_math&quot;</span><span class="p">])</span>
+<span class="n">wide</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>grade</th>
+      <th>category</th>
+      <th>number_tested_ela</th>
+      <th>mean_scale_score_ela</th>
+      <th>level_1_n_ela</th>
+      <th>level_1_pct_ela</th>
+      <th>level_2_n_ela</th>
+      <th>level_2_pct_ela</th>
+      <th>level_3_n_ela</th>
+      <th>...</th>
+      <th>level_2_n_math</th>
+      <th>level_2_pct_math</th>
+      <th>level_3_n_math</th>
+      <th>level_3_pct_math</th>
+      <th>level_4_n_math</th>
+      <th>level_4_pct_math</th>
+      <th>level_3_4_n_math</th>
+      <th>level_3_4_pct_math</th>
+      <th>charter_math</th>
+      <th>school_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>289.296295</td>
+      <td>14.0</td>
+      <td>0.518519</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>4</td>
+      <td>All Students</td>
+      <td>20</td>
+      <td>277.649994</td>
+      <td>8.0</td>
+      <td>0.400000</td>
+      <td>11.0</td>
+      <td>0.550000</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>6.0</td>
+      <td>0.300000</td>
+      <td>1.0</td>
+      <td>0.050000</td>
+      <td>1.0</td>
+      <td>0.050000</td>
+      <td>2.0</td>
+      <td>0.100000</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>5</td>
+      <td>All Students</td>
+      <td>24</td>
+      <td>283.958344</td>
+      <td>12.0</td>
+      <td>0.500000</td>
+      <td>11.0</td>
+      <td>0.458333</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>6.0</td>
+      <td>0.250000</td>
+      <td>1.0</td>
+      <td>0.041667</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.041667</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>All Grades</td>
+      <td>All Students</td>
+      <td>71</td>
+      <td>284.211273</td>
+      <td>34.0</td>
+      <td>0.478873</td>
+      <td>33.0</td>
+      <td>0.464789</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>23.0</td>
+      <td>0.323944</td>
+      <td>2.0</td>
+      <td>0.028169</td>
+      <td>1.0</td>
+      <td>0.014085</td>
+      <td>3.0</td>
+      <td>0.042254</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>Not SWD</td>
+      <td>19</td>
+      <td>287.157898</td>
+      <td>11.0</td>
+      <td>0.578947</td>
+      <td>8.0</td>
+      <td>0.421053</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>8.0</td>
+      <td>0.421053</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div></div>
+</div>
+<p>Now that we have the wide data, we can easily compare math and ela results for the same set school/year/grade/category. Below we will calculate a new column called <code class="docutils literal notranslate"><span class="pre">test_delta</span></code> that shows the difference between math and ela results for the same cohort of students in the same school. This will let us see, for example, which if any schools are “unbalanced” in math and ELA. Later, we might correlate this to other demographic data such as high percentages of ELL or SWD students.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wide</span><span class="p">[</span><span class="s2">&quot;test_delta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wide</span><span class="o">.</span><span class="n">mean_scale_score_math</span> <span class="o">-</span> <span class="n">wide</span><span class="o">.</span><span class="n">mean_scale_score_ela</span>
+<span class="n">wide</span><span class="p">[</span><span class="s2">&quot;test_delta_abs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">wide</span><span class="o">.</span><span class="n">mean_scale_score_math</span> <span class="o">-</span> <span class="n">wide</span><span class="o">.</span><span class="n">mean_scale_score_ela</span><span class="p">)</span>
+
+<span class="n">wide</span> <span class="o">=</span> <span class="n">wide</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;test_delta_abs&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">wide</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;grade&quot;</span><span class="p">,</span><span class="s2">&quot;ay&quot;</span><span class="p">,</span><span class="s2">&quot;category&quot;</span><span class="p">,</span><span class="s2">&quot;mean_scale_score_math&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_scale_score_ela&quot;</span><span class="p">,</span> <span class="s2">&quot;test_delta&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>grade</th>
+      <th>ay</th>
+      <th>category</th>
+      <th>mean_scale_score_math</th>
+      <th>mean_scale_score_ela</th>
+      <th>test_delta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28254</th>
+      <td>03M054</td>
+      <td>8</td>
+      <td>2014</td>
+      <td>Never ELL</td>
+      <td>243.764710</td>
+      <td>331.356811</td>
+      <td>-87.592102</td>
+    </tr>
+    <tr>
+      <th>82041</th>
+      <td>07X500</td>
+      <td>8</td>
+      <td>2014</td>
+      <td>Female</td>
+      <td>210.500000</td>
+      <td>296.057129</td>
+      <td>-85.557129</td>
+    </tr>
+    <tr>
+      <th>28230</th>
+      <td>03M054</td>
+      <td>8</td>
+      <td>2014</td>
+      <td>Female</td>
+      <td>244.666672</td>
+      <td>329.838715</td>
+      <td>-85.172043</td>
+    </tr>
+    <tr>
+      <th>82020</th>
+      <td>07X500</td>
+      <td>8</td>
+      <td>2014</td>
+      <td>Not SWD</td>
+      <td>222.750000</td>
+      <td>301.250000</td>
+      <td>-78.500000</td>
+    </tr>
+    <tr>
+      <th>240736</th>
+      <td>20K105</td>
+      <td>5</td>
+      <td>2015</td>
+      <td>Current ELL</td>
+      <td>330.679260</td>
+      <td>252.888885</td>
+      <td>77.790375</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="concatenate-dataframes-long-data">
+<h2><span class="section-number">8.3. </span>Concatenate DataFrames: long data<a class="headerlink" href="#concatenate-dataframes-long-data" title="Permalink to this headline">#</a></h2>
+<p>If we have two DataFrames with the same columns (like our math and ela results) we can concatenate the data from one df onto the other to create a longer dataframe. Generally, this is a more flexible format for analysis than the wide data format. In our math/ela example, it allows us to, for example, easily average the math and ela test scores together (filtering for group, year, etc).</p>
+<p>In the example here we will add a new column, <code class="docutils literal notranslate"><span class="pre">test</span></code>, which will have the value of “ela” or “math”. This column will let us know whether that row reports a math test or ela test result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;math&quot;</span>
+<span class="n">ela</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ela&quot;</span>
+<span class="n">long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">math</span><span class="p">,</span> <span class="n">ela</span><span class="p">])</span>
+<span class="n">long</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>grade</th>
+      <th>category</th>
+      <th>number_tested</th>
+      <th>mean_scale_score</th>
+      <th>level_1_n</th>
+      <th>level_1_pct</th>
+      <th>level_2_n</th>
+      <th>level_2_pct</th>
+      <th>level_3_n</th>
+      <th>level_3_pct</th>
+      <th>level_4_n</th>
+      <th>level_4_pct</th>
+      <th>level_3_4_n</th>
+      <th>level_3_4_pct</th>
+      <th>test_year</th>
+      <th>ay</th>
+      <th>charter</th>
+      <th>school_name</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>27</td>
+      <td>277.777771</td>
+      <td>16.0</td>
+      <td>0.592593</td>
+      <td>11.0</td>
+      <td>0.407407</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>2013</td>
+      <td>2012</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>math</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>01M015</td>
+      <td>4</td>
+      <td>All Students</td>
+      <td>20</td>
+      <td>277.399994</td>
+      <td>12.0</td>
+      <td>0.600000</td>
+      <td>6.0</td>
+      <td>0.300000</td>
+      <td>1.0</td>
+      <td>0.050000</td>
+      <td>1.0</td>
+      <td>0.050000</td>
+      <td>2.0</td>
+      <td>0.100000</td>
+      <td>2013</td>
+      <td>2012</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>math</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>01M015</td>
+      <td>5</td>
+      <td>All Students</td>
+      <td>24</td>
+      <td>274.000000</td>
+      <td>17.0</td>
+      <td>0.708333</td>
+      <td>6.0</td>
+      <td>0.250000</td>
+      <td>1.0</td>
+      <td>0.041667</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.041667</td>
+      <td>2013</td>
+      <td>2012</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>math</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>01M015</td>
+      <td>All Grades</td>
+      <td>All Students</td>
+      <td>71</td>
+      <td>276.394379</td>
+      <td>45.0</td>
+      <td>0.633803</td>
+      <td>23.0</td>
+      <td>0.323944</td>
+      <td>2.0</td>
+      <td>0.028169</td>
+      <td>1.0</td>
+      <td>0.014085</td>
+      <td>3.0</td>
+      <td>0.042254</td>
+      <td>2013</td>
+      <td>2012</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>math</td>
+    </tr>
+    <tr>
+      <th>32606</th>
+      <td>01M015</td>
+      <td>3</td>
+      <td>Not SWD</td>
+      <td>19</td>
+      <td>275.736847</td>
+      <td>11.0</td>
+      <td>0.578947</td>
+      <td>8.0</td>
+      <td>0.421053</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>2013</td>
+      <td>2012</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>math</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>430002</th>
+      <td>84X730</td>
+      <td>3</td>
+      <td>All Students</td>
+      <td>51</td>
+      <td>602.000000</td>
+      <td>2.0</td>
+      <td>0.039000</td>
+      <td>22.0</td>
+      <td>0.431000</td>
+      <td>23.0</td>
+      <td>0.451000</td>
+      <td>4.0</td>
+      <td>0.078000</td>
+      <td>27.0</td>
+      <td>0.529000</td>
+      <td>2019</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+      <td>ela</td>
+    </tr>
+    <tr>
+      <th>430009</th>
+      <td>84X730</td>
+      <td>4</td>
+      <td>All Students</td>
+      <td>49</td>
+      <td>591.000000</td>
+      <td>18.0</td>
+      <td>0.367000</td>
+      <td>14.0</td>
+      <td>0.286000</td>
+      <td>13.0</td>
+      <td>0.265000</td>
+      <td>4.0</td>
+      <td>0.082000</td>
+      <td>17.0</td>
+      <td>0.347000</td>
+      <td>2019</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+      <td>ela</td>
+    </tr>
+    <tr>
+      <th>430016</th>
+      <td>84X730</td>
+      <td>5</td>
+      <td>All Students</td>
+      <td>53</td>
+      <td>597.000000</td>
+      <td>18.0</td>
+      <td>0.340000</td>
+      <td>20.0</td>
+      <td>0.377000</td>
+      <td>8.0</td>
+      <td>0.151000</td>
+      <td>7.0</td>
+      <td>0.132000</td>
+      <td>15.0</td>
+      <td>0.283000</td>
+      <td>2019</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+      <td>ela</td>
+    </tr>
+    <tr>
+      <th>430017</th>
+      <td>84X730</td>
+      <td>6</td>
+      <td>All Students</td>
+      <td>113</td>
+      <td>592.000000</td>
+      <td>45.0</td>
+      <td>0.398000</td>
+      <td>33.0</td>
+      <td>0.292000</td>
+      <td>23.0</td>
+      <td>0.204000</td>
+      <td>12.0</td>
+      <td>0.106000</td>
+      <td>35.0</td>
+      <td>0.310000</td>
+      <td>2019</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+      <td>ela</td>
+    </tr>
+    <tr>
+      <th>430024</th>
+      <td>84X730</td>
+      <td>All Grades</td>
+      <td>All Students</td>
+      <td>266</td>
+      <td>594.000000</td>
+      <td>83.0</td>
+      <td>0.312000</td>
+      <td>89.0</td>
+      <td>0.335000</td>
+      <td>67.0</td>
+      <td>0.252000</td>
+      <td>27.0</td>
+      <td>0.102000</td>
+      <td>94.0</td>
+      <td>0.353000</td>
+      <td>2019</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>BRONX CHARTER SCHOOL FOR THE ARTS</td>
+      <td>ela</td>
+    </tr>
+  </tbody>
+</table>
+<p>856567 rows × 20 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/02-Combining-Data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-group-and-agg.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Groups &amp; Aggregates</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../03-Graphs-and-Charts/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Graphs &amp; Charts</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

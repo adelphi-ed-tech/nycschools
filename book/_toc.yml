@@ -1,0 +1,56 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro.md
+parts:
+  - caption: Getting Started
+    chapters:
+    - file: install.md
+
+  - caption: School Data Basics
+    chapters:
+    - file: nb/01-Basics/index.md
+    - file: nb/01-Basics/01-loading-data.ipynb
+    - file: nb/01-Basics/02-querying-data.ipynb
+    - file: nb/01-Basics/03-basic-stats.ipynb
+    - file: nb/01-Basics/04-calculating-columns.ipynb
+
+  - caption: Combining Data
+    chapters:
+    - file: nb/02-Combining-Data/index.md
+    - file: nb/02-Combining-Data/01-group-and-agg.ipynb
+    - file: nb/02-Combining-Data/02-merge-and-join.ipynb
+
+  - caption: Graphs and Charts
+    chapters:
+    - file: nb/03-Graphs-and-Charts/index.md
+    - file: nb/03-Graphs-and-Charts/01-basic-bar-charts.ipynb
+    # - file: nb/03-Graphs-and-Charts/02-grouped-bar-chart.ipynb
+    - file: nb/03-Graphs-and-Charts/03-line-and-scatter-charts.ipynb
+
+  - caption: Statistics
+    chapters:
+    - file: nb/04-Statistics/index.md
+    - file: nb/04-Statistics/04-t_tests.ipynb
+    - file: nb/04-Statistics/05-anova-ols.ipynb
+    - file: nb/04-Statistics/08-predictive-stats.ipynb
+
+  - caption: Maps and GIS
+    chapters:
+    - file: nb/05-Maps-and-GIS/index.md
+    - file: nb/05-Maps-and-GIS/01-maps-intro.ipynb
+    - file: nb/05-Maps-and-GIS/02-mapping-schools.ipynb
+  
+  - caption: Reference
+    chapters:
+    - file: api/nycschools.rst
+      title: API Documentation
+    - file: data-sources.md
+
+  - caption: About NYC Schools
+    chapters:
+    - file: about.md
+      title: About Us
+    - file: team.md
+      title: Our Team

@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Calculating New Columns &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6. Combining Data" href="../02-Combining-Data/index.html" />
+    <link rel="prev" title="4. Basic Statistics" href="03-basic-stats.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  School Data Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   1. Data Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-loading-data.html">
+   2. Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-querying-data.html">
+   3. Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-basic-stats.html">
+   4. Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Combining-Data/index.html">
+   6. Combining Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Combining-Data/01-group-and-agg.html">
+   7. Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Combining-Data/02-merge-and-join.html">
+   8. Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/index.html">
+   9. Graphs &amp; Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
+   10. Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   11. Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/index.html">
+   12. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/04-t_tests.html">
+   13. T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/05-anova-ols.html">
+   14. ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/08-predictive-stats.html">
+   15. Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/index.html">
+   17. Maps &amp; GIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/01-maps-intro.html">
+   18. Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/02-mapping-schools.html">
+   19. Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/master/docs/nb/01-Basics/04-calculating-columns.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2Fnb/01-Basics/04-calculating-columns.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/nb/01-Basics/04-calculating-columns.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Calculating New Columns</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="calculating-new-columns">
+<h1><span class="section-number">5. </span>Calculating New Columns<a class="headerlink" href="#calculating-new-columns" title="Permalink to this headline">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> makes it easy to calculate new fields based on
+existing data. This Notebook looks at the <em>easy</em> cases
+and then takes on some more advanced cases using our
+schooldemographcs data set.</p>
+<p>Topics in this notebook:</p>
+<ul class="simple">
+<li><p>calculating columns with <em>vectorization</em></p></li>
+<li><p>calculating columns with <code class="docutils literal notranslate"><span class="pre">apply()</span></code> on a series</p></li>
+<li><p>lambda functions</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">copy()</span></code> to make a (shallow) copy of a data frame</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># with &quot;vectorization&quot;</span>
+<span class="c1"># ---------------------</span>
+
+<span class="c1"># calcualte a new fields for the pct of school that is black or hispanic</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;black_hispanic_n&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">black_n</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">hispanic_n</span>
+
+<span class="c1"># now calcluate that as a pct of the total enrollment</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;black_hispanic_pct&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">black_hispanic_n</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">total_enrollment</span>
+
+<span class="n">df</span><span class="p">[</span> <span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;school_name&quot;</span><span class="p">,</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;black_hispanic_n&quot;</span><span class="p">,</span> <span class="s2">&quot;black_hispanic_pct&quot;</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>school_name</th>
+      <th>total_enrollment</th>
+      <th>black_hispanic_n</th>
+      <th>black_hispanic_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>178</td>
+      <td>156</td>
+      <td>0.876404</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>190</td>
+      <td>162</td>
+      <td>0.852632</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>174</td>
+      <td>143</td>
+      <td>0.821839</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>190</td>
+      <td>152</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>P.S. 015 Roberto Clemente</td>
+      <td>193</td>
+      <td>155</td>
+      <td>0.803109</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>84X730</td>
+      <td>Bronx Charter School for the Arts</td>
+      <td>320</td>
+      <td>312</td>
+      <td>0.975000</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>84X730</td>
+      <td>Bronx Charter School for the Arts</td>
+      <td>314</td>
+      <td>308</td>
+      <td>0.980892</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>84X730</td>
+      <td>Bronx Charter School for the Arts</td>
+      <td>430</td>
+      <td>419</td>
+      <td>0.974419</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>84X730</td>
+      <td>Bronx Charter School for the Arts</td>
+      <td>523</td>
+      <td>509</td>
+      <td>0.973231</td>
+    </tr>
+    <tr>
+      <th>10000</th>
+      <td>84X730</td>
+      <td>Bronx Charter School for the Arts</td>
+      <td>626</td>
+      <td>609</td>
+      <td>0.972843</td>
+    </tr>
+  </tbody>
+</table>
+<p>10001 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can also use boolean expressions -- let&#39;s mark all of the schools not in districts 1-32 as &quot;special_district&quot;</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;special_district&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">&gt;</span> <span class="mi">32</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;district&quot;</span><span class="p">,</span> <span class="s2">&quot;special_district&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>district</th>
+      <th>special_district</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>84X730</td>
+      <td>84</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>84X730</td>
+      <td>84</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>84X730</td>
+      <td>84</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>84X730</td>
+      <td>84</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10000</th>
+      <td>84X730</td>
+      <td>84</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>10001 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vectorization is the best way to create cols based on clacluations but can&#39;t handle more advanced logic</span>
+<span class="c1"># here we use apply() to format total enrollment to make it easier to read</span>
+<span class="c1"># we&#39;ll call the new field total_enrollment_pp -- pp: pretty print</span>
+
+<span class="c1"># create a function that we will &quot;apply&quot; to that columns</span>
+<span class="k">def</span> <span class="nf">fmt_enroll</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;total_enrollment_pp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">total_enrollment</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fmt_enroll</span><span class="p">)</span>
+<span class="n">big_schools</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">big_schools</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment_pp&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>total_enrollment</th>
+      <th>total_enrollment_pp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3722</th>
+      <td>13K430</td>
+      <td>6040</td>
+      <td>6,040</td>
+    </tr>
+    <tr>
+      <th>3721</th>
+      <td>13K430</td>
+      <td>5937</td>
+      <td>5,937</td>
+    </tr>
+    <tr>
+      <th>3723</th>
+      <td>13K430</td>
+      <td>5921</td>
+      <td>5,921</td>
+    </tr>
+    <tr>
+      <th>3720</th>
+      <td>13K430</td>
+      <td>5838</td>
+      <td>5,838</td>
+    </tr>
+    <tr>
+      <th>3719</th>
+      <td>13K430</td>
+      <td>5682</td>
+      <td>5,682</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># since our function is so simple, it&#39;s a good candidate for a lambda function</span>
+<span class="c1"># lambdas in python are anonymsous functions that have a reduced syntax</span>
+<span class="c1"># see examples here:</span>
+<span class="c1"># https://www.freecodecamp.org/news/python-lambda-function-explained/</span>
+
+<span class="c1"># make a copy of our data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># use lambda to format the percentages</span>
+<span class="c1"># we use the f-string syntax to round the number to a 2 decimal float</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;black_pct_pp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">black_pct</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.02f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;black_pct_pp&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        28.70%
+1        27.40%
+2        27.60%
+3        29.50%
+4        27.50%
+          ...  
+9996     23.75%
+9997     20.70%
+9998     22.79%
+9999     25.05%
+10000    26.84%
+Name: black_pct_pp, Length: 10001, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can put the whole thing in a loop, too</span>
+<span class="c1"># here we replace the original value with the formatted value</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_pct&quot;</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.02f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+
+<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;asian_pct&quot;</span><span class="p">,</span> <span class="s2">&quot;black_pct&quot;</span><span class="p">,</span> <span class="s2">&quot;hispanic_pct&quot;</span><span class="p">,</span> <span class="s2">&quot;white_pct&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dbn</th>
+      <th>asian_pct</th>
+      <th>black_pct</th>
+      <th>hispanic_pct</th>
+      <th>white_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01M015</td>
+      <td>0.079</td>
+      <td>0.287</td>
+      <td>0.590</td>
+      <td>0.022</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01M015</td>
+      <td>0.105</td>
+      <td>0.274</td>
+      <td>0.579</td>
+      <td>0.032</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01M015</td>
+      <td>0.138</td>
+      <td>0.276</td>
+      <td>0.546</td>
+      <td>0.034</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>01M015</td>
+      <td>0.142</td>
+      <td>0.295</td>
+      <td>0.505</td>
+      <td>0.047</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>01M015</td>
+      <td>0.135</td>
+      <td>0.275</td>
+      <td>0.528</td>
+      <td>0.057</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/01-Basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03-basic-stats.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Basic Statistics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../02-Combining-Data/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Combining Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nycschools.nysed &#8212; Learn Data Science with Open Data</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learn Data Science with Open Data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Learn Data Science with New York City Schools Open Data
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-colab.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  School Data Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/index.html">
+   1. Data Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/01-loading-data.html">
+   2. Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/02-querying-data.html">
+   3. Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/03-basic-stats.html">
+   4. Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/04-calculating-columns.html">
+   5. Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/index.html">
+   6. Combining Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/01-group-and-agg.html">
+   7. Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/02-merge-and-join.html">
+   8. Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/index.html">
+   9. Graphs &amp; Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   10. Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   11. Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/index.html">
+   12. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/04-t_tests.html">
+   13. T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/05-anova-ols.html">
+   14. ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/08-predictive-stats.html">
+   15. Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/index.html">
+   17. Maps &amp; GIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/01-maps-intro.html">
+   18. Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/02-mapping-schools.html">
+   19. Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2F_modules/nycschools/nysed.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for nycschools.nysed</h1><div class="highlight"><pre>
+<span></span><span class="c1"># NYC School Data</span>
+<span class="c1"># Copyright (C) 2022. Matthew X. Curinga</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the &quot;License&quot;) as</span>
+<span class="c1"># published by the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="c1"># ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span>
+<span class="c1"># FOR A PARTICULAR PURPOSE.  See the License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the License along with this program.</span>
+<span class="c1"># If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">wget</span>
+
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">schools</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span>
+
+
+<div class="viewcode-block" id="load_nyc_nysed"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.load_nyc_nysed">[docs]</a><span class="k">def</span> <span class="nf">load_nyc_nysed</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the subset set of the `load_nys_nysed` data for schools in the</span>
+<span class="sd">    New York City Department of Education school demographics data set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">load_nys_nysed</span><span class="p">()</span>
+    <span class="n">nyc</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+    <span class="n">beds</span> <span class="o">=</span> <span class="n">nyc</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">beds</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="load_nys_nysed"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.load_nys_nysed">[docs]</a><span class="k">def</span> <span class="nf">load_nys_nysed</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the grades 3-8 math and ela exam results for all schools and distrcicts</span>
+<span class="sd">    in New York State, in a long data format. This is the only data set that has</span>
+<span class="sd">    demographic test results for charter schools in NYC. This data has all of</span>
+<span class="sd">    the same columns as the NYC `load_math_ela_long`. Note that NYS does not</span>
+<span class="sd">    report the same demographic categories as New York City. In particular, the</span>
+<span class="sd">    two groups handle ENL students differently. NYC has 3 categories (current</span>
+<span class="sd">    ell, ever ell, never ell) where NYS only has ELL and Non-ELL.</span>
+
+<span class="sd">    The NYSED data includes categories that are not part of the NYC data such as</span>
+<span class="sd">    homelessness, foster care, and parents in armed services.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try to load it locally to save time</span>
+        <span class="n">feather</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;nysed-exams.feather&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="n">feather</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_nysed_ela_math_archives</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="load_nysed_ela_math_archives"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.load_nysed_ela_math_archives">[docs]</a><span class="k">def</span> <span class="nf">load_nysed_ela_math_archives</span><span class="p">(</span><span class="n">urls</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nysed_math_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">urls</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Downloads all of the zip archives listed in the urls configuraiton. Extract</span>
+<span class="sd">    the archives into a temp folder and read them as dataframes. Concats the</span>
+<span class="sd">    dataframes into a single df and return.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;tmp&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+    <span class="c1"># download and extract all of the .zip files from NYSED data portal</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+        <span class="n">download_and_extract</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+
+    <span class="c1"># delete all of the files we don&#39;t care about from the temp dir</span>
+    <span class="c1"># and parse all of the ones we _do_ care about</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;mdb&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;RESEARCHER_FILE&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">f</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">read_nysed_exam</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+    <span class="c1"># save as csv for outside/generic use</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;nysed-exams.csv&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># this is a big file, so save as feather for internal use</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;nysed-exams.feather&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    <span class="c1"># delete the temp folder</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="download_and_extract"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.download_and_extract">[docs]</a><span class="k">def</span> <span class="nf">download_and_extract</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tmp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download and extract the .zip archives from NYSED&quot;&quot;&quot;</span>
+    <span class="n">zippath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">zippath</span><span class="p">)</span>
+    <span class="nb">zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zippath</span><span class="p">)</span>
+    <span class="nb">zip</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">tmp</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fix_cols"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.fix_cols">[docs]</a><span class="k">def</span> <span class="nf">fix_cols</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fixes the columns in the dataframe so that each NYSED year is consistent</span>
+<span class="sd">    with the other years&#39; columns and column name/formats match other  NYC DOE</span>
+<span class="sd">    columns in the data portal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nysed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># make sure capitalization is consistent</span>
+    <span class="n">nysed</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nysed</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="n">col_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;school_name&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;BEDSCODE&quot;</span><span class="p">:</span><span class="s2">&quot;beds&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SUBGROUP_NAME&quot;</span><span class="p">:</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ITEM_SUBJECT_AREA&quot;</span><span class="p">:</span><span class="s2">&quot;exam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ITEM_DESC&quot;</span><span class="p">:</span><span class="s2">&quot;grade&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SY_END_DATE&quot;</span><span class="p">:</span><span class="s2">&quot;test_year&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TOTAL_TESTED&quot;</span><span class="p">:</span><span class="s2">&quot;number_tested&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;TOTAL_ENROLLED&#39;</span><span class="p">:</span> <span class="s1">&#39;total_enrollment&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;TOTAL_NOT_TESTED&#39;</span><span class="p">:</span> <span class="s1">&#39;number_not_tested&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;L1_COUNT&#39;</span><span class="p">:</span><span class="s2">&quot;level_1_n&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L1_PCT&#39;</span><span class="p">:</span><span class="s2">&quot;level_1_pct&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L2_COUNT&#39;</span><span class="p">:</span><span class="s2">&quot;level_2_n&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L2_PCT&#39;</span><span class="p">:</span><span class="s2">&quot;level_2_pct&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L3_COUNT&#39;</span><span class="p">:</span><span class="s2">&quot;level_3_n&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L3_PCT&#39;</span><span class="p">:</span><span class="s2">&quot;level_3_pct&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L4_COUNT&#39;</span><span class="p">:</span><span class="s2">&quot;level_4_n&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L4_PCT&#39;</span><span class="p">:</span><span class="s2">&quot;level_4_pct&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;L3-L4_PCT&#39;</span><span class="p">:</span><span class="s2">&quot;level_3_4_pct&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;MEAN_SCALE_SCORE&#39;</span><span class="p">:</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;SUBGROUP_CODE&#39;</span><span class="p">:</span> <span class="s1">&#39;subgroup_code&#39;</span>
+    <span class="p">}</span>
+
+
+    <span class="c1"># rename columns to match NYC cols</span>
+    <span class="k">def</span> <span class="nf">map_col</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">col_map</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">col_map</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">col</span>
+    <span class="n">nysed</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">map_col</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;total_enrollment&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">nysed</span><span class="p">:</span>
+        <span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;total_enrollment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="s2">&quot;number_not_tested&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">nysed</span><span class="p">:</span>
+        <span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;number_not_tested&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">nysed</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">col_map</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span></div>
+
+
+
+<div class="viewcode-block" id="fix_data"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.fix_data">[docs]</a><span class="k">def</span> <span class="nf">fix_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleans data in the dataframe so that row-level data is</span>
+<span class="sd">    consistent across test years and matches NYC math/ela data sets:</span>
+<span class="sd">    - student categories are consistent</span>
+<span class="sd">    - counts and percents are consistent</span>
+<span class="sd">    - exam category is consistent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">nysed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span> <span class="c1"># this for excel</span>
+        <span class="n">nysed</span><span class="o">.</span><span class="n">test_year</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">test_year</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span> <span class="c1"># or this for csv</span>
+        <span class="n">nysed</span><span class="o">.</span><span class="n">test_year</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">test_year</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">cat_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;English Language Learner&#39;</span><span class="p">:</span> <span class="s2">&quot;Current ELL&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;Asian or Native Hawaiian/Other Pacific Islander&#39;</span><span class="p">:</span> <span class="s1">&#39;Asian&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Hispanic or Latino&#39;</span><span class="p">:</span> <span class="s1">&#39;Hispanic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Black or African American&#39;</span><span class="p">:</span> <span class="s1">&#39;Black&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Not Economically Disadvantaged&#39;</span><span class="p">:</span> <span class="s1">&#39;Not Econ Disadv&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Economically Disadvantaged&#39;</span><span class="p">:</span> <span class="s1">&#39;Econ Disadv&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Students with Disabilities&#39;</span><span class="p">:</span> <span class="s1">&#39;SWD&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;General Education Students&#39;</span><span class="p">:</span> <span class="s1">&#39;Not SWD&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Non-English Language Learner&#39;</span><span class="p">:</span> <span class="s1">&#39;Never ELL&#39;</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">map_cats</span><span class="p">(</span><span class="n">cat</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_map</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cat_map</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">cat</span>
+
+    <span class="c1"># rename the student demo categories to match NYC</span>
+    <span class="n">nysed</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">map_cats</span><span class="p">)</span>
+
+    <span class="c1"># rename the exams to match NYC</span>
+    <span class="n">nysed</span><span class="o">.</span><span class="n">exam</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">exam</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s2">&quot;ELA&quot;</span><span class="p">:</span><span class="s2">&quot;ela&quot;</span><span class="p">,</span><span class="s2">&quot;Mathematics&quot;</span><span class="p">:</span><span class="s2">&quot;math&quot;</span><span class="p">})</span>
+
+
+    <span class="c1"># make counts into integers</span>
+    <span class="n">count_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nysed</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_n&quot;</span><span class="p">)]</span>
+    <span class="c1"># if we have these cols, add them too</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;number_tested&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">,</span> <span class="s2">&quot;number_not_tested&quot;</span><span class="p">,</span> <span class="s2">&quot;test_year&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nysed</span><span class="p">:</span>
+            <span class="n">count_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">count_cols</span><span class="p">:</span>
+
+        <span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+        <span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">nysed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">test_year</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;level_3_4_n&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">level_3_n</span> <span class="o">+</span> <span class="n">nysed</span><span class="o">.</span><span class="n">level_4_n</span>
+
+    <span class="c1"># parse the grade leve string to just the grade int</span>
+    <span class="n">nysed</span><span class="o">.</span><span class="n">grade</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">grade</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+
+
+    <span class="c1"># convert percents from 0-100 to 0-1 to match other data</span>
+    <span class="k">def</span> <span class="nf">fix_pct</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span><span class="s2">&quot;-&quot;</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;endswith&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x</span>
+            <span class="n">x</span> <span class="o">/=</span> <span class="mi">100</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;couldn&#39;t fix&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">x</span>
+
+    <span class="n">pct_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nysed</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;pct&quot;</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">pct_cols</span><span class="p">:</span>
+        <span class="n">nysed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">nysed</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fix_pct</span><span class="p">)</span>
+        <span class="c1"># nysed[c] = nysed[c].astype(&quot;float&quot;)</span>
+
+    <span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">nysed</span><span class="p">[</span><span class="s2">&quot;mean_scale_score&quot;</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">nysed</span></div>
+
+
+<div class="viewcode-block" id="read_nysed_exam"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.read_nysed_exam">[docs]</a><span class="k">def</span> <span class="nf">read_nysed_exam</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the Excel file that has all test scores for all schools and districts</span>
+<span class="sd">    in New York State.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">nysed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">nysed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">nysed</span> <span class="o">=</span> <span class="n">fix_cols</span><span class="p">(</span><span class="n">nysed</span><span class="p">)</span>
+    <span class="n">nysed</span> <span class="o">=</span> <span class="n">fix_data</span><span class="p">(</span><span class="n">nysed</span><span class="p">)</span>
+
+    <span class="c1"># all_grades = calc_all_grades(nysed.sample(500))</span>
+    <span class="c1"># nysed = nysed[cols]</span>
+    <span class="c1"># all_grades = all_grades[cols]</span>
+    <span class="c1"># nysed = nysed.append(all_grades, ignore_index=True)</span>
+
+    <span class="k">return</span> <span class="n">nysed</span></div>
+
+
+
+<div class="viewcode-block" id="map_nysed_nyc"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.map_nysed_nyc">[docs]</a><span class="k">def</span> <span class="nf">map_nysed_nyc</span><span class="p">(</span><span class="n">nysed</span><span class="p">):</span>
+    <span class="n">dbn_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s2">&quot;dbn-beds-list.feather&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;beds&quot;</span><span class="p">])</span>
+    <span class="n">dbn_list</span><span class="p">[</span><span class="n">dbn_list</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">nysed</span><span class="o">.</span><span class="n">beds</span><span class="p">)]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nysed</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="c1"># add dbn to nysed</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dbn_list</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;beds&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cols</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">combined</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+    <span class="n">combined</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="s2">&quot;nyc-nysed-exams.feather&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">combined</span></div>
+
+
+
+<div class="viewcode-block" id="calc_all_grades"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.nysed.calc_all_grades">[docs]</a><span class="k">def</span> <span class="nf">calc_all_grades</span><span class="p">(</span><span class="n">nysed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NYSED data doesn&#39;t include All Grades like NYC schools, so this function</span>
+<span class="sd">    adds an &quot;All Grades&quot; category with aggregate data for each school.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># add all students category to nysed</span>
+    <span class="k">def</span> <span class="nf">all_grades_for_school</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;For each school, calculate the aggregate result for all grades&quot;&quot;&quot;</span>
+        <span class="n">qry</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;beds == &#39;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">beds</span><span class="si">}</span><span class="s2">&#39; and ay == </span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">ay</span><span class="si">}</span><span class="s2"> and category == &#39;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">&#39; and exam==&#39;</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">exam</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">nysed</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">qry</span><span class="p">)</span>
+
+        <span class="n">mean_scale_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mean_scale_score</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">total_enrollment</span><span class="p">)</span>
+        <span class="n">num_tested</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">number_tested</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;3_4&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">num_tested</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">levels_n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+            <span class="n">levels_pct</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">levels_n</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;level_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_n&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">]</span>
+            <span class="n">levels_pct</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">/</span> <span class="n">num_tested</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">levels_n</span> <span class="p">]</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="s1">&#39;ay&#39;</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">ay</span><span class="p">,</span>
+              <span class="s1">&#39;exam&#39;</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">exam</span><span class="p">,</span>
+              <span class="s1">&#39;grade&#39;</span><span class="p">:</span> <span class="s2">&quot;All Grades&quot;</span><span class="p">,</span>
+              <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+              <span class="s1">&#39;test_year&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">test_year</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+              <span class="s1">&#39;mean_scale_score&#39;</span><span class="p">:</span> <span class="n">mean_scale_score</span><span class="p">,</span>
+              <span class="s1">&#39;number_tested&#39;</span><span class="p">:</span> <span class="n">num_tested</span><span class="p">,</span>
+              <span class="s1">&#39;number_not_tested&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">number_not_tested</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+              <span class="s1">&#39;level_1_n&#39;</span><span class="p">:</span> <span class="n">levels_n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="s1">&#39;level_1_pct&#39;</span><span class="p">:</span> <span class="n">levels_pct</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="s1">&#39;level_2_n&#39;</span><span class="p">:</span> <span class="n">levels_n</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="s1">&#39;level_2_pct&#39;</span><span class="p">:</span> <span class="n">levels_pct</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="s1">&#39;level_3_n&#39;</span><span class="p">:</span> <span class="n">levels_n</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+              <span class="s1">&#39;level_3_pct&#39;</span><span class="p">:</span> <span class="n">levels_pct</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+              <span class="s1">&#39;level_4_n&#39;</span><span class="p">:</span> <span class="n">levels_n</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+              <span class="s1">&#39;level_4_pct&#39;</span><span class="p">:</span> <span class="n">levels_pct</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+              <span class="s1">&#39;level_3_4_n&#39;</span><span class="p">:</span> <span class="n">levels_n</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+              <span class="s1">&#39;level_3_4_pct&#39;</span><span class="p">:</span> <span class="n">levels_pct</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+              <span class="s1">&#39;beds&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;beds&quot;</span><span class="p">,</span><span class="s2">&quot;ay&quot;</span><span class="p">,</span><span class="s2">&quot;exam&quot;</span><span class="p">,</span><span class="s2">&quot;category&quot;</span><span class="p">,</span><span class="s2">&quot;test_year&quot;</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">nysed</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">all_grades_for_school</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Groups &amp; Aggregates &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="8. Merges &amp; Joins" href="02-merge-and-join.html" />
+    <link rel="prev" title="6. Combining Data" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  School Data Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/index.html">
+   1. Data Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/01-loading-data.html">
+   2. Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/02-querying-data.html">
+   3. Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/03-basic-stats.html">
+   4. Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Basics/04-calculating-columns.html">
+   5. Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   6. Combining Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-merge-and-join.html">
+   8. Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/index.html">
+   9. Graphs &amp; Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
+   10. Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   11. Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/index.html">
+   12. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/04-t_tests.html">
+   13. T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/05-anova-ols.html">
+   14. ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Statistics/08-predictive-stats.html">
+   15. Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/index.html">
+   17. Maps &amp; GIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/01-maps-intro.html">
+   18. Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Maps-and-GIS/02-mapping-schools.html">
+   19. Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/master/docs/nb/02-Combining-Data/01-group-and-agg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2Fnb/02-Combining-Data/01-group-and-agg.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/nb/02-Combining-Data/01-group-and-agg.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-enrollment-by-boro">
+   7.1. Total Enrollment by Boro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-a-dict-of-aggregate-columns">
+   7.2. Using a
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dict
+    </span>
+   </code>
+   of aggregate columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resetting-the-index">
+   7.3. Resetting the index
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-by-multiple-columns">
+   7.4. Grouping by Multiple Columns
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Groups & Aggregates</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-enrollment-by-boro">
+   7.1. Total Enrollment by Boro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-a-dict-of-aggregate-columns">
+   7.2. Using a
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dict
+    </span>
+   </code>
+   of aggregate columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resetting-the-index">
+   7.3. Resetting the index
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-by-multiple-columns">
+   7.4. Grouping by Multiple Columns
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="groups-aggregates">
+<h1><span class="section-number">7. </span>Groups &amp; Aggregates<a class="headerlink" href="#groups-aggregates" title="Permalink to this headline">#</a></h1>
+<p>In this notebook we look at how to change the level that we use to analyze data by <strong>grouping</strong> multiple
+rows into a single row. This <code class="docutils literal notranslate"><span class="pre">groupby</span></code> function allows us to look at the school data by district,
+borough, or academic year. To group data, you specifiy the column name or column names for the group. All unique names or combinations will become a single row.</p>
+<p>The <em>other</em> rows of data need to be <strong>aggregated</strong> in some way. Common aggregate functions include <code class="docutils literal notranslate"><span class="pre">sum</span></code> (e.g. find the total enrolled students in Brooklyn), <code class="docutils literal notranslate"><span class="pre">count</span></code> (find unique schools in Queens), and <code class="docutils literal notranslate"><span class="pre">mean</span></code> (find the average percent poverty of students in the Bronx).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">schools</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">schools</span><span class="o">.</span><span class="n">load_school_demographics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="total-enrollment-by-boro">
+<h2><span class="section-number">7.1. </span>Total Enrollment by Boro<a class="headerlink" href="#total-enrollment-by-boro" title="Permalink to this headline">#</a></h2>
+<p>For this example, we create a simplified data set that only has 2 columns:
+<code class="docutils literal notranslate"><span class="pre">boro</span></code> and <code class="docutils literal notranslate"><span class="pre">total_enrollment</span></code>. We also limit it to only the 2020 academic year.</p>
+<p>We call the <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> function of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>and pass in “boro” as the column name for the group.
+From there, we call <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> on the resulting GroupBy object. This will sum up the enrollment in each school,
+in each borough.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boros</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="n">boros</span> <span class="o">=</span> <span class="n">boros</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">]]</span>
+
+<span class="n">boros</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boro&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_enrollment</th>
+    </tr>
+    <tr>
+      <th>boro</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bronx</th>
+      <td>238074</td>
+    </tr>
+    <tr>
+      <th>Brooklyn</th>
+      <td>346802</td>
+    </tr>
+    <tr>
+      <th>Manhattan</th>
+      <td>194144</td>
+    </tr>
+    <tr>
+      <th>Queens</th>
+      <td>305660</td>
+    </tr>
+    <tr>
+      <th>Staten Island</th>
+      <td>63824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We see in th results that Brooklyn had the most students enrolled in 2020 (n=346802) and Staten Island
+had the fewest (n=63824).</p>
+<p>We also notice that <code class="docutils literal notranslate"><span class="pre">total_enrolmment</span></code> doesn’t appear on the same level as <code class="docutils literal notranslate"><span class="pre">boro</span></code>. If we want to be able to treat <code class="docutils literal notranslate"><span class="pre">total_enrollment</span></code> as a “normal” column, we need to call <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> after our aggregate function.</p>
+<p>Like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boros</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boro&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>boro</th>
+      <th>total_enrollment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bronx</td>
+      <td>238074</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brooklyn</td>
+      <td>346802</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Manhattan</td>
+      <td>194144</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Queens</td>
+      <td>305660</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staten Island</td>
+      <td>63824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="using-a-dict-of-aggregate-columns">
+<h2><span class="section-number">7.2. </span>Using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of aggregate columns<a class="headerlink" href="#using-a-dict-of-aggregate-columns" title="Permalink to this headline">#</a></h2>
+<p>Now, we might have a few more questions about this simple measure of school enrollment. For example, what was the average enrollment, and how many different schools are in each borough?</p>
+<p>We can answer these questions by running by adding more columns (namely <code class="docutils literal notranslate"><span class="pre">dbn</span></code>) to our data and using different aggregate functions. In this case we will use <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, and <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
+<p>To accomplish this, we call the <code class="docutils literal notranslate"><span class="pre">agg</span></code> function on the results of the groupby and pass in a dictionary
+where the column names are keys, and the aggregate function(s) are the values. If we want only a single agg
+function, we can use that as the value, but if we want multiple functions, we can set a list of strings
+as the value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boros</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="n">boros</span> <span class="o">=</span> <span class="n">boros</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">]]</span>
+<span class="n">boros</span> <span class="o">=</span> <span class="n">boros</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;boro&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s2">&quot;dbn&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;total_enrollment&quot;</span><span class="p">:[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">]})</span>
+<span class="n">boros</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dbn</th>
+      <th colspan="4" halign="left">total_enrollment</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>boro</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bronx</th>
+      <td>496</td>
+      <td>238074</td>
+      <td>479.987903</td>
+      <td>7</td>
+      <td>2936</td>
+    </tr>
+    <tr>
+      <th>Brooklyn</th>
+      <td>640</td>
+      <td>346802</td>
+      <td>541.878125</td>
+      <td>46</td>
+      <td>5921</td>
+    </tr>
+    <tr>
+      <th>Manhattan</th>
+      <td>408</td>
+      <td>194144</td>
+      <td>475.843137</td>
+      <td>14</td>
+      <td>3342</td>
+    </tr>
+    <tr>
+      <th>Queens</th>
+      <td>421</td>
+      <td>305660</td>
+      <td>726.033254</td>
+      <td>42</td>
+      <td>4424</td>
+    </tr>
+    <tr>
+      <th>Staten Island</th>
+      <td>83</td>
+      <td>63824</td>
+      <td>768.963855</td>
+      <td>144</td>
+      <td>3726</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="resetting-the-index">
+<h2><span class="section-number">7.3. </span>Resetting the index<a class="headerlink" href="#resetting-the-index" title="Permalink to this headline">#</a></h2>
+<p>In the results above, we say that the aggregate columns do not appear in the same row as the grouped column, boro. Also, there are 2 levels to the aggregate index because we have 4 columns for total_enrollment. Sometimes we want to convert these columnbs back into a flat index. This makes it easier to filter, merge, and sort the data and to access specific Series in the DataFrame. Unfortunately, we can’t simply call <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> like we did above.</p>
+<p>Here after we reset the index, we rename all of the columns with a new list of strings. The length of the new list musth match the number of columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boros</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="n">boros</span> <span class="o">=</span> <span class="n">boros</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">]]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">boros</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;boro&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s2">&quot;dbn&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;total_enrollment&quot;</span><span class="p">:[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">]})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Borough&quot;</span><span class="p">,</span> <span class="s2">&quot;Num. Schools&quot;</span><span class="p">,</span> <span class="s2">&quot;Total Students&quot;</span><span class="p">,</span> <span class="s2">&quot;Avg School Size&quot;</span><span class="p">,</span> <span class="s2">&quot;Smallest School&quot;</span><span class="p">,</span> <span class="s2">&quot;Largest School&quot;</span><span class="p">]</span>
+<span class="n">table</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Borough</th>
+      <th>Num. Schools</th>
+      <th>Total Students</th>
+      <th>Avg School Size</th>
+      <th>Smallest School</th>
+      <th>Largest School</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bronx</td>
+      <td>496</td>
+      <td>238074</td>
+      <td>479.987903</td>
+      <td>7</td>
+      <td>2936</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brooklyn</td>
+      <td>640</td>
+      <td>346802</td>
+      <td>541.878125</td>
+      <td>46</td>
+      <td>5921</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Manhattan</td>
+      <td>408</td>
+      <td>194144</td>
+      <td>475.843137</td>
+      <td>14</td>
+      <td>3342</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Queens</td>
+      <td>421</td>
+      <td>305660</td>
+      <td>726.033254</td>
+      <td>42</td>
+      <td>4424</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staten Island</td>
+      <td>83</td>
+      <td>63824</td>
+      <td>768.963855</td>
+      <td>144</td>
+      <td>3726</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="grouping-by-multiple-columns">
+<h2><span class="section-number">7.4. </span>Grouping by Multiple Columns<a class="headerlink" href="#grouping-by-multiple-columns" title="Permalink to this headline">#</a></h2>
+<p>Sometimes we might want to pass in more than one column as the group by index. In this example we will group our data by borough and whether they are a charter school or not.</p>
+<p>Note a couple of things in this short example:</p>
+<ol class="simple">
+<li><p>We call <code class="docutils literal notranslate"><span class="pre">copy()</span></code> on <code class="docutils literal notranslate"><span class="pre">df</span></code> because we are adding a new column and don’t want to mess with the original data frame</p></li>
+<li><p>We use a lambda function in apply, and we use a special type of if/else statement usually called a “ternary” operation</p></li>
+<li><p>Because we’re doing several agg functions, we will create them as a dict <em>before</em> we call <code class="docutils literal notranslate"><span class="pre">agg()</span></code>. This is just to make our code easier to read and maintain</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># because we&#39;re adding data to our subset, we&#39;re going to call copy()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;school type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">district</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;charter&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">84</span> <span class="k">else</span> <span class="s2">&quot;public&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span><span class="s2">&quot;school type&quot;</span><span class="p">,</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;asian_pct&quot;</span><span class="p">,</span><span class="s2">&quot;black_pct&quot;</span><span class="p">,</span><span class="s2">&quot;hispanic_pct&quot;</span><span class="p">,</span><span class="s2">&quot;white_pct&quot;</span><span class="p">]]</span>
+<span class="n">aggs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;dbn&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;asian_pct&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;black_pct&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;hispanic_pct&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;white_pct&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span>
+<span class="p">}</span>
+
+
+<span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;boro&quot;</span><span class="p">,</span> <span class="s2">&quot;school type&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">aggs</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>boro</th>
+      <th>school type</th>
+      <th>dbn</th>
+      <th>asian_pct</th>
+      <th>black_pct</th>
+      <th>hispanic_pct</th>
+      <th>white_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bronx</td>
+      <td>charter</td>
+      <td>89</td>
+      <td>0.022963</td>
+      <td>0.377873</td>
+      <td>0.569022</td>
+      <td>0.011857</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bronx</td>
+      <td>public</td>
+      <td>407</td>
+      <td>0.041388</td>
+      <td>0.257767</td>
+      <td>0.645111</td>
+      <td>0.039413</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Brooklyn</td>
+      <td>charter</td>
+      <td>102</td>
+      <td>0.029157</td>
+      <td>0.600608</td>
+      <td>0.268745</td>
+      <td>0.071765</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Brooklyn</td>
+      <td>public</td>
+      <td>538</td>
+      <td>0.121413</td>
+      <td>0.408924</td>
+      <td>0.306846</td>
+      <td>0.137351</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Manhattan</td>
+      <td>charter</td>
+      <td>57</td>
+      <td>0.026281</td>
+      <td>0.445404</td>
+      <td>0.463035</td>
+      <td>0.037228</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Manhattan</td>
+      <td>public</td>
+      <td>351</td>
+      <td>0.106721</td>
+      <td>0.208111</td>
+      <td>0.467208</td>
+      <td>0.176647</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Queens</td>
+      <td>charter</td>
+      <td>28</td>
+      <td>0.092321</td>
+      <td>0.402000</td>
+      <td>0.406929</td>
+      <td>0.066893</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Queens</td>
+      <td>public</td>
+      <td>393</td>
+      <td>0.262712</td>
+      <td>0.197873</td>
+      <td>0.380275</td>
+      <td>0.119517</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Staten Island</td>
+      <td>charter</td>
+      <td>6</td>
+      <td>0.021333</td>
+      <td>0.258500</td>
+      <td>0.437667</td>
+      <td>0.237333</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Staten Island</td>
+      <td>public</td>
+      <td>77</td>
+      <td>0.116519</td>
+      <td>0.142909</td>
+      <td>0.319675</td>
+      <td>0.392117</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./nb/02-Combining-Data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Combining Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="02-merge-and-join.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Merges &amp; Joins</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
