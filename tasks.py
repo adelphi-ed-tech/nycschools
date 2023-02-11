@@ -100,6 +100,7 @@ def book(c, clean=False, docs=False):
         api(c)
     c.run("jupyter-book build book")
     if docs:
+        print("copying book/_build/html to docs for github pages")
         c.run("cp -r book/_build/html/* docs")
         c.run("touch docs/.nojekyll")
 
