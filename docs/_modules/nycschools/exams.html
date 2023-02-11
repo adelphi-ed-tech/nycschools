@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nycschools.exams &#8212; Learn Data Science with Open Data</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learn Data Science with Open Data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Learn Data Science with New York City Schools Open Data
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-colab.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  School Data Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/index.html">
+   1. Data Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/01-loading-data.html">
+   2. Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/02-querying-data.html">
+   3. Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/03-basic-stats.html">
+   4. Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/04-calculating-columns.html">
+   5. Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/index.html">
+   6. Combining Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/01-group-and-agg.html">
+   7. Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/02-merge-and-join.html">
+   8. Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/index.html">
+   9. Graphs &amp; Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   10. Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   11. Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/index.html">
+   12. Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/04-t_tests.html">
+   13. T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/05-anova-ols.html">
+   14. ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/08-predictive-stats.html">
+   15. Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/index.html">
+   17. Maps &amp; GIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/01-maps-intro.html">
+   18. Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/02-mapping-schools.html">
+   19. Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2F_modules/nycschools/exams.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for nycschools.exams</h1><div class="highlight"><pre>
+<span></span><span class="c1"># NYC School Data</span>
+<span class="c1"># Copyright (C) 2022. Matthew X. Curinga</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the &quot;License&quot;) as</span>
+<span class="c1"># published by the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="c1"># ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span>
+<span class="c1"># FOR A PARTICULAR PURPOSE.  See the License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the License along with this program.</span>
+<span class="c1"># If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">wget</span>
+
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span>
+
+
+<span class="c1"># convert these to numbers or coerce to NaN</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;number_tested&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_scale_score&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_1_n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_1_pct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_2_n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_2_pct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_3_n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_3_pct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_4_n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_4_pct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_3_4_n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level_3_4_pct&quot;</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="load_charter_ela"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_charter_ela">[docs]</a><span class="k">def</span> <span class="nf">load_charter_ela</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;charter_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the charter school ELA exam results for the &quot;All Students&quot;</span>
+<span class="sd">    category from the NYC Open Data Portal. Columns are re-named for consistency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;charter_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load_charter_test</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="load_charter_math"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_charter_math">[docs]</a><span class="k">def</span> <span class="nf">load_charter_math</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;charter_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the charter school Math exam results for the &quot;All Students&quot;</span>
+<span class="sd">    category from the NYC Open Data Portal. Columns are re-named for consistency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;charter_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load_charter_test</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="load_charter_test"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_charter_test">[docs]</a><span class="k">def</span> <span class="nf">load_charter_test</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">charter_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="load_math_ela_wide"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_math_ela_wide">[docs]</a><span class="k">def</span> <span class="nf">load_math_ela_wide</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a combined `DataFrame` with both math and ela test results</span>
+<span class="sd">    in a &quot;wide&quot; data format.</span>
+<span class="sd">    All of the math result columns have the suffix `_math`</span>
+<span class="sd">    and the ELA columns have the suffix `_ela`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">math_df</span> <span class="o">=</span> <span class="n">load_math</span><span class="p">()</span>
+    <span class="n">ela_df</span> <span class="o">=</span> <span class="n">load_ela</span><span class="p">()</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">math_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ela_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">],</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;_math&quot;</span><span class="p">,</span> <span class="s2">&quot;_ela&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">combined</span></div>
+
+<div class="viewcode-block" id="load_math_ela_long"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_math_ela_long">[docs]</a><span class="k">def</span> <span class="nf">load_math_ela_long</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a combined `DataFrame` with both math and ela test results</span>
+<span class="sd">    in a &quot;wide&quot; data format.</span>
+<span class="sd">    All of the math result columns have the suffix `_math`</span>
+<span class="sd">    and the ELA columns have the suffix `_ela`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">math_df</span> <span class="o">=</span> <span class="n">load_math</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">ela_df</span> <span class="o">=</span> <span class="n">load_ela</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">math_df</span><span class="p">[</span><span class="s2">&quot;exam&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;math&quot;</span>
+    <span class="n">ela_df</span><span class="p">[</span><span class="s2">&quot;exam&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ela&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">math_df</span><span class="p">,</span> <span class="n">ela_df</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="load_ela"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_ela">[docs]</a><span class="k">def</span> <span class="nf">load_ela</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the New York State ELA grades 3-8 ELA exam results for all categories.</span>
+<span class="sd">    If a local .csv data file exists, it will return results from that file. If</span>
+<span class="sd">    no local file is available, itt will loads the Excel data file for from the</span>
+<span class="sd">    NYC Data Portal and then cobmines the results with charter school data into</span>
+<span class="sd">    a `DataFrame`. _This can be slow_.</span>
+<span class="sd">    @return `DataFrame`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">load_ela_excel</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="load_math"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_math">[docs]</a><span class="k">def</span> <span class="nf">load_math</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the New York State Math grades 3-8 ELA exam results for all categories.</span>
+<span class="sd">    If a local .csv data file exists, it will return results from that file. If</span>
+<span class="sd">    no local file is available, itt will loads the Excel data file for from the</span>
+<span class="sd">    NYC Data Portal and then cobmines the results with charter school data into</span>
+<span class="sd">    a `DataFrame`. _This can be slow_.</span>
+<span class="sd">    @return `DataFrame`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">load_math_excel</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="load_regents"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_regents">[docs]</a><span class="k">def</span> <span class="nf">load_regents</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the New York State Regents exam scores for all categories.</span>
+<span class="sd">    @return `DataFrame`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">load_math_excel</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;ay&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">refresh</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_regents_excel</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># try to load it locally to save time</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;regents-exams.csv&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_regents_excel</span><span class="p">()</span></div>
+
+<span class="c1"># ==============================================================================</span>
+
+<div class="viewcode-block" id="charter_cols"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.charter_cols">[docs]</a><span class="k">def</span> <span class="nf">charter_cols</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="s2">&quot;unnamed_column&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;unnamed_column&quot;</span><span class="p">]</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">new_cols</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="s1">&#39;test_year&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_1_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_1_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_1_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_2&#39;</span><span class="p">:</span> <span class="s1">&#39;level_2_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_2_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_2_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_3&#39;</span><span class="p">:</span> <span class="s1">&#39;level_3_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_3_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_3_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_4&#39;</span><span class="p">:</span> <span class="s1">&#39;level_4_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_4_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_4_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_3_4&#39;</span><span class="p">:</span> <span class="s1">&#39;level_3_4_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_3_4_1&#39;</span><span class="p">:</span> <span class="s1">&#39;level_3_4_pct&#39;</span>
+    <span class="p">}</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">new_cols</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;charter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;pct&quot;</span><span class="p">):</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="load_regents_excel"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_regents_excel">[docs]</a><span class="k">def</span> <span class="nf">load_regents_excel</span><span class="p">():</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;School DBN&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;School Type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;School Level&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Regents Exam&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Category&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Total Tested&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Mean Score&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number Scoring Below 65&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Percent Scoring Below 65&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number Scoring 65 or Above&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Percent Scoring 65 or Above&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number Scoring 80 or Above&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Percent Scoring 80 or Above&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number Scoring CR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Percent Scoring CR&#39;</span><span class="p">]</span>
+
+    <span class="n">new_cols</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;dbn&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;school_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;school_level&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;regents_exam&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;category&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;number_tested&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mean_score&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;below_65_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;below_65_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;above_64_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;above_64_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;above_79_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;above_79_pct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;college_ready_n&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;college_ready_pct&#39;</span><span class="p">]</span>
+
+    <span class="n">sheet_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;All Students&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;By Gender&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;By Ethnicity&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;By ELL Status&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;By SWD Status&#39;</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">xls</span><span class="p">[</span><span class="n">sheet</span><span class="p">]</span> <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">sheet_names</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">new_cols</span>
+    <span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">new_cols</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;test_year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span><span class="s2">&quot;ay&quot;</span><span class="p">,</span><span class="s2">&quot;regents_exam&quot;</span><span class="p">,</span><span class="s2">&quot;category&quot;</span><span class="p">])</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;regents-exams.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="load_math_excel"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_math_excel">[docs]</a><span class="k">def</span> <span class="nf">load_math_excel</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE</span>
+<span class="sd">    fails to release the demographic breakdowns for test results via its open</span>
+<span class="sd">    data api.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">read_nys_exam_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">charter_df</span> <span class="o">=</span> <span class="n">load_charter_math</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">charter_df</span><span class="p">])</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_math&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="load_ela_excel"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.exams.load_ela_excel">[docs]</a><span class="k">def</span> <span class="nf">load_ela_excel</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load NYS ELA test scores from the Excel workbook rather than the API. NYC DOE</span>
+<span class="sd">    fails to release the demographic breakdowns for test results via its open</span>
+<span class="sd">    data api.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">read_nys_exam_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">charter_df</span> <span class="o">=</span> <span class="n">load_charter_ela</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">charter_df</span><span class="p">])</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;nyc_ela&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
