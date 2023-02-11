@@ -33,23 +33,27 @@ def __read_urls():
 
 
 def get_config():
-    """initializes configuration settings.
-    Determines the location for local data files by first
-    looking for an environment variable called NYC_SCHOOLS_DATA_DIR
+    """Initialize the configuration settings.
 
-    If this ENV variable is not set, 
-    data files are stored in a directory called `school-data` in the current
-    directory. If this directory does not exist, it is created.
+Parameters
+----------
+None
 
-    To see (and see how to change) these settings for your installation,
-    run `python -m nycschools.dataloader`
+Returns
+-------
+SimpleNamespace : 
+    A namespace object with the following attributes:
+    - data_dir : str
+        The path to the data directory.
+    - urls : dict
+        A dictionary of URLs to download data if the local cache should be re-built.
 
-    Returns:
-        SimpleNamespace: a namespace object with the following attributes:
-            data_dir: the path to the data directory
-            urls: a dictionary of urls to download data if the local
-                  cache should be re-built
-    """
+Notes
+-----
+The location for local data files is determined by first looking for an environment variable called `NYC_SCHOOLS_DATA_DIR`. If this environment variable is not set, the data files are stored in a directory called `school-data` in the current directory. If this directory does not exist, it will be created.
+
+To see and change these settings for your installation, run `python -m nycschools.dataloader`.
+"""
 
     env_dir = os.environ.get("NYC_SCHOOLS_DATA_DIR", None)
     local = os.path.join(".", "school-data")
