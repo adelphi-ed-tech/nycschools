@@ -2,6 +2,7 @@ build
 invoke
 toml
 arrow
+pyarrow
 folium
 geopandas
 ipython
@@ -10,9 +11,13 @@ matplotlib
 networkx
 numpy
 pandas
+pingouin
 py7zr
+pytest
+python-dotenv
 python-Levenshtein
 requests
+scikit-learn
 seaborn
 thefuzz
 wget
