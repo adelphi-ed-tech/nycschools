@@ -56,7 +56,8 @@ To see and change these settings for your installation, run `python -m nycschool
 """
 
     env_dir = os.environ.get("NYC_SCHOOLS_DATA_DIR", None)
-    local = os.path.join(".", "school-data")
+    pwd = os.getcwd()
+    local = os.path.join(pwd, "school-data")
     config = {}
     if env_dir:
         config["data_dir"] = env_dir
