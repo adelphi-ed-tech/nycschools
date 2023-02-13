@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>14. ANOVA and OLS Regression &#8212; NYC Schools Open Data Portal</title>
+    <title>ANOVA and OLS Regression &#8212; NYC Schools Open Data Portal</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="15. Predictive Statistics" href="08-predictive-stats.html" />
-    <link rel="prev" title="13. T Tests" href="04-t_tests.html" />
+    <link rel="next" title="Predictive Statistics" href="08-predictive-stats.html" />
+    <link rel="prev" title="T Tests" href="04-t_tests.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -134,27 +134,27 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/index.html">
-   1. Data Basics
+   Data Basics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/01-loading-data.html">
-   2. Loading Data
+   Loading Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/02-querying-data.html">
-   3. Querying &amp; Selecting
+   Querying &amp; Selecting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/03-basic-stats.html">
-   4. Basic Statistics
+   Basic Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/04-calculating-columns.html">
-   5. Calculating New Columns
+   Calculating New Columns
   </a>
  </li>
 </ul>
@@ -166,17 +166,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../02-Combining-Data/index.html">
-   6. Combining Data
+   Combining Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../02-Combining-Data/01-group-and-agg.html">
-   7. Groups &amp; Aggregates
+   Groups &amp; Aggregates
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../02-Combining-Data/02-merge-and-join.html">
-   8. Merges &amp; Joins
+   Merges &amp; Joins
   </a>
  </li>
 </ul>
@@ -188,17 +188,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../03-Graphs-and-Charts/index.html">
-   9. Graphs &amp; Charts
+   Graphs &amp; Charts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
-   10. Bar Charts
+   Bar Charts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html">
-   11. Line &amp; Scatter Plots
+   Line &amp; Scatter Plots
   </a>
  </li>
 </ul>
@@ -210,22 +210,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="index.html">
-   12. Statistics
+   Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-t_tests.html">
-   13. T Tests
+   T Tests
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   14. ANOVA and OLS Regression
+   ANOVA and OLS Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08-predictive-stats.html">
-   15. Predictive Statistics
+   Predictive Statistics
   </a>
  </li>
 </ul>
@@ -237,17 +237,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../05-Maps-and-GIS/index.html">
-   17. Maps &amp; GIS
+   Maps &amp; GIS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../05-Maps-and-GIS/01-maps-intro.html">
-   18. Introduction to Maps and Spatial Data
+   Introduction to Maps and Spatial Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../05-Maps-and-GIS/02-mapping-schools.html">
-   19. Layered Maps
+   Layered Maps
   </a>
  </li>
 </ul>
@@ -265,6 +265,23 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../data-sources.html">
    Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About NYC Schools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about.html">
+   About Us
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../team.html">
+   Our Team
   </a>
  </li>
 </ul>
@@ -475,24 +492,24 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#t-test-white-and-black-students">
-   14.1. t-test: white and black students
+   t-test: white and black students
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anova-f-values">
-   14.2. ANOVA &amp; f-values
+   ANOVA &amp; f-values
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pingouin-results">
-     14.2.1. Pingouin results
+     Pingouin results
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ols-linear-regression">
-   14.3. OLS Linear Regression
+   OLS Linear Regression
   </a>
  </li>
 </ul>
@@ -516,24 +533,24 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#t-test-white-and-black-students">
-   14.1. t-test: white and black students
+   t-test: white and black students
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anova-f-values">
-   14.2. ANOVA &amp; f-values
+   ANOVA &amp; f-values
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pingouin-results">
-     14.2.1. Pingouin results
+     Pingouin results
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ols-linear-regression">
-   14.3. OLS Linear Regression
+   OLS Linear Regression
   </a>
  </li>
 </ul>
@@ -547,7 +564,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="anova-and-ols-regression">
-<h1><span class="section-number">14. </span>ANOVA and OLS Regression<a class="headerlink" href="#anova-and-ols-regression" title="Permalink to this headline">#</a></h1>
+<h1>ANOVA and OLS Regression<a class="headerlink" href="#anova-and-ols-regression" title="Permalink to this headline">#</a></h1>
 <p>This notebook combines school demographic data
 and New York State ELA test scores to examine
 the factors that predict test scores. In it we
@@ -615,7 +632,7 @@ the school demographic factors and their effect on test scores.</p>
 </div>
 </div>
 <section id="t-test-white-and-black-students">
-<h2><span class="section-number">14.1. </span>t-test: white and black students<a class="headerlink" href="#t-test-white-and-black-students" title="Permalink to this headline">#</a></h2>
+<h2>t-test: white and black students<a class="headerlink" href="#t-test-white-and-black-students" title="Permalink to this headline">#</a></h2>
 <p>Before running the ANOVA and further analysis, we will run a t-test between Black and White students to determine if there is a significant difference between their average test score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,7 +779,7 @@ will report on the t-test for weighted means that account for school size.</p>
 </div>
 </section>
 <section id="anova-f-values">
-<h2><span class="section-number">14.2. </span>ANOVA &amp; f-values<a class="headerlink" href="#anova-f-values" title="Permalink to this headline">#</a></h2>
+<h2>ANOVA &amp; f-values<a class="headerlink" href="#anova-f-values" title="Permalink to this headline">#</a></h2>
 <p>In the example below we calculate the f-statistic to see if there are significant differences in test scores based on racial/ethnic group of the test takers. We compare the four main groups in NYC Schools: Asian, Black, Hispanic, and White.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -805,7 +822,7 @@ the p&lt;.001 level for the four conditions, [p=0.0000, F=113.9984].</p>
 </div>
 </div>
 <section id="pingouin-results">
-<h3><span class="section-number">14.2.1. </span>Pingouin results<a class="headerlink" href="#pingouin-results" title="Permalink to this headline">#</a></h3>
+<h3>Pingouin results<a class="headerlink" href="#pingouin-results" title="Permalink to this headline">#</a></h3>
 <p>When we ran the t-test we saw that <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> offers some useful additional features.
 The API (syntax for using) <code class="docutils literal notranslate"><span class="pre">pingouin</span></code> differes from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>. Before we run the test, we
 create a new single dataframe with just the columns we care about. We tell the function which column
@@ -878,7 +895,7 @@ is the dependent variable and which specifies the groups.</p>
 </section>
 </section>
 <section id="ols-linear-regression">
-<h2><span class="section-number">14.3. </span>OLS Linear Regression<a class="headerlink" href="#ols-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>OLS Linear Regression<a class="headerlink" href="#ols-linear-regression" title="Permalink to this headline">#</a></h2>
 <p>The ANOVA tells us that there is a significant difference in test result based on racial/ethnic group. We can run a regression analysis to help us isolate the impact of different factors on our <code class="docutils literal notranslate"><span class="pre">mean_scale_score</span></code> – our dependent variable.</p>
 <p>For this analysis we will look at the school demographics to analyze the mean ELA test score for All Students at the school.</p>
 <div class="cell docutils container">
@@ -924,7 +941,7 @@ is the dependent variable and which specifies the groups.</p>
   <th>Date:</th>             <td>Sat, 11 Feb 2023</td> <th>  Prob (F-statistic):</th> <td>3.87e-154</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>12:22:18</td>     <th>  Log-Likelihood:    </th> <td> -1929.9</td> 
+  <th>Time:</th>                 <td>13:02:09</td>     <th>  Log-Likelihood:    </th> <td> -1929.9</td> 
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   634</td>      <th>  AIC:               </th> <td>   3884.</td> 
@@ -1137,13 +1154,13 @@ is the dependent variable and which specifies the groups.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">13. </span>T Tests</p>
+            <p class="prev-next-title">T Tests</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="08-predictive-stats.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Predictive Statistics</p>
+        <p class="prev-next-title">Predictive Statistics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
