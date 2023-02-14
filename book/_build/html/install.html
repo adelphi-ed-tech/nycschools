@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Installation &#8212; NYC Schools Open Data Portal</title>
+    <title>Installing Locally &#8212; NYC Schools Open Data Portal</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Loading Data" href="nb/01-Basics/01-loading-data.html" />
-    <link rel="prev" title="NYC Schools Open Data Portal" href="intro.html" />
+    <link rel="next" title="Development Install" href="install-dev.html" />
+    <link rel="prev" title="Installing in Google Colab" href="install-colab.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -116,19 +116,29 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Getting Started
+  Installing
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Installation
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install-dev.html">
+   Development Install
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  School Data Basics
+  Getting Started
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -414,124 +424,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-in-google-colab">
-   Installing in Google Colab
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-to-the-data-resources-from-your-google-drive">
-     Link to the data resources from your Google Drive
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importing-to-colab">
-     Importing to Colab
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-locally">
-   Installing locally
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-with-invoke">
-   Installing with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     invoke
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#manual-dev-install">
-   Manual dev install
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Installation</h1>
+                <h1>Installing Locally</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-in-google-colab">
-   Installing in Google Colab
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-to-the-data-resources-from-your-google-drive">
-     Link to the data resources from your Google Drive
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importing-to-colab">
-     Importing to Colab
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-locally">
-   Installing locally
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-with-invoke">
-   Installing with
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     invoke
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#manual-dev-install">
-   Manual dev install
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -539,38 +448,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h1>
-<section id="installing-in-google-colab">
-<h2>Installing in Google Colab<a class="headerlink" href="#installing-in-google-colab" title="Permalink to this headline">#</a></h2>
-<section id="link-to-the-data-resources-from-your-google-drive">
-<h3>Link to the data resources from your Google Drive<a class="headerlink" href="#link-to-the-data-resources-from-your-google-drive" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
-<li><p>Sign into your Google Account</p></li>
-<li><p>Open the link to our source data files: <a class="reference external" href="https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link">https://drive.google.com/drive/folders/1Yf7ZbK0S8HyYR7kL9_MUNePWj6a7GwbL?usp=share_link</a></p></li>
-<li><p>Create a shortcut to the data in your drive</p></li>
-</ol>
-<img src="_static/add-gdrive.gif" alt="menu navigating to add link to gdrive">
-</section>
-<section id="importing-to-colab">
-<h3>Importing to Colab<a class="headerlink" href="#importing-to-colab" title="Permalink to this headline">#</a></h3>
-<p>Open a new Colab notebook and then add this code at the start of your program:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the package and its requirements</span>
-!pip<span class="w"> </span>install<span class="w"> </span>nycschools
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># discover the data in your Google Drive, or download it to the local Colab</span>
-<span class="c1"># if no suitable data is found</span>
-<span class="kn">from</span> <span class="nn">nycschools</span> <span class="kn">import</span> <span class="n">dataloader</span>
-<span class="n">dataloader</span><span class="o">.</span><span class="n">download_data</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dataloader</span></code> will prompt you for permission to look in your Google Drive for the data folder. If you do not allow access, the program will attempt to download the data locally. You will have to download the data for each session when using this notebook.</p>
-</section>
-</section>
-<section id="installing-locally">
-<h2>Installing locally<a class="headerlink" href="#installing-locally" title="Permalink to this headline">#</a></h2>
-<p>Optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install with <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="installing-locally">
+<h1>Installing Locally<a class="headerlink" href="#installing-locally" title="Permalink to this headline">#</a></h1>
+<p>You can install <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> for use in your own Python projects just as you would any other library, however this package also requires a local data directory to store data files.</p>
+<p>First, optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install the package with <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nycschools
 </pre></div>
 </div>
@@ -593,38 +474,6 @@ programs by setting and ENV variable to the full path to the <code class="docuti
 or set it in your Notebook using <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env">the <code class="docutils literal notranslate"><span class="pre">env</span></code> magic command</a>, like this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">%env</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=~/Documents/mydataproject/school-data</span></code></p>
 </div>
-</section>
-<section id="installing-with-invoke">
-<h2>Installing with <code class="docutils literal notranslate"><span class="pre">invoke</span></code><a class="headerlink" href="#installing-with-invoke" title="Permalink to this headline">#</a></h2>
-<p>First, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> for the project using <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">python</a>,
-<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/commands/create.html">conda</a>,
-<a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/install.html">virtualenvwrapper</a>, or whichever manner you choose.</p>
-<p>Once it’s created, make sure your <code class="docutils literal notranslate"><span class="pre">venv</span></code> is active. This project uses the <a class="reference external" href="https://www.pyinvoke.org/">invoke</a> task runner to automate development tasks, and we’ll use it to establish your environment. At this time, the tasks are configured to work in a linux (and probably mac osx) environment.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the repository</span>
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/adelphi-ed-tech/nycschools.git
-<span class="nb">cd</span><span class="w"> </span>nycschools
-
-<span class="c1"># install the development requirements</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-
-<span class="c1"># run the development install task</span>
-invoke<span class="w"> </span>install-dev
-</pre></div>
-</div>
-</section>
-<section id="manual-dev-install">
-<h2>Manual dev install<a class="headerlink" href="#manual-dev-install" title="Permalink to this headline">#</a></h2>
-<p>If <code class="docutils literal notranslate"><span class="pre">invoke</span></code> isn’t working for you or you are setting up on windows, you can get up and running with these steps:</p>
-<ol class="simple">
-<li><p>Get the repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/adelphi-ed-tech/nycschools.git</span></code></p></li>
-<li><p>Move into the project directory.</p></li>
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">venv</span></code> for your project.</p></li>
-<li><p>Install the project requirements with <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>. These are found in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
-<li><p>Install the library from source in development mode: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">nycschools</span></code></p></li>
-<li><p>Download the data from: <a class="reference external" href="https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link">https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link</a></p></li>
-<li><p>Create a new folder called <code class="docutils literal notranslate"><span class="pre">nyc-schools</span></code> and extract the contents of  <code class="docutils literal notranslate"><span class="pre">nycschools-data.7z</span></code> into <code class="docutils literal notranslate"><span class="pre">nyc-schools</span></code></p></li>
-</ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -654,17 +503,17 @@ invoke<span class="w"> </span>install-dev
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="install-colab.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">NYC Schools Open Data Portal</p>
+            <p class="prev-next-title">Installing in Google Colab</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="nb/01-Basics/01-loading-data.html" title="next page">
+    <a class='right-next' id="next-link" href="install-dev.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Loading Data</p>
+        <p class="prev-next-title">Development Install</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

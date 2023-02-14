@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>7. Groups &amp; Aggregates &#8212; NYC Schools Open Data Portal</title>
+    <title>Groups &amp; Aggregates &#8212; NYC Schools Open Data Portal</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="8. Merges &amp; Joins" href="02-merge-and-join.html" />
-    <link rel="prev" title="6. Combining Data" href="index.html" />
+    <link rel="next" title="Merges &amp; Joins" href="02-merge-and-join.html" />
+    <link rel="prev" title="Calculating New Columns" href="../01-Basics/04-calculating-columns.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,51 +110,56 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    <no title>
+                    NYC Schools Open Data Portal
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-dev.html">
+   Development Install
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting Started
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../install.html">
-   Installation
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  School Data Basics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01-Basics/index.html">
-   1. Data Basics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/01-loading-data.html">
-   2. Loading Data
+   Loading Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/02-querying-data.html">
-   3. Querying &amp; Selecting
+   Querying &amp; Selecting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/03-basic-stats.html">
-   4. Basic Statistics
+   Basic Statistics
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../01-Basics/04-calculating-columns.html">
-   5. Calculating New Columns
+   Calculating New Columns
   </a>
  </li>
 </ul>
@@ -164,19 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   6. Combining Data
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Groups &amp; Aggregates
+   Groups &amp; Aggregates
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02-merge-and-join.html">
-   8. Merges &amp; Joins
+   Merges &amp; Joins
   </a>
  </li>
 </ul>
@@ -187,18 +187,18 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../03-Graphs-and-Charts/index.html">
-   9. Graphs &amp; Charts
+  <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
+   Bar Charts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../03-Graphs-and-Charts/01-basic-bar-charts.html">
-   10. Bar Charts
+  <a class="reference internal" href="../03-Graphs-and-Charts/02-grouped-bar-chart.html">
+   Grouped Bar Charts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../03-Graphs-and-Charts/03-line-and-scatter-charts.html">
-   11. Line &amp; Scatter Plots
+   Line &amp; Scatter Plots
   </a>
  </li>
 </ul>
@@ -209,23 +209,18 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../04-Statistics/index.html">
-   12. Statistics
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../04-Statistics/04-t_tests.html">
-   13. T Tests
+   T Tests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../04-Statistics/05-anova-ols.html">
-   14. ANOVA and OLS Regression
+   ANOVA and OLS Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../04-Statistics/08-predictive-stats.html">
-   15. Predictive Statistics
+   Predictive Statistics
   </a>
  </li>
 </ul>
@@ -236,18 +231,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../05-Maps-and-GIS/index.html">
-   17. Maps &amp; GIS
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../05-Maps-and-GIS/01-maps-intro.html">
-   18. Introduction to Maps and Spatial Data
+   Introduction to Maps and Spatial Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../05-Maps-and-GIS/02-mapping-schools.html">
-   19. Layered Maps
+   Layered Maps
   </a>
  </li>
 </ul>
@@ -265,6 +255,18 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../data-sources.html">
    Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About NYC Schools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about.html">
+   About Us
   </a>
  </li>
 </ul>
@@ -475,12 +477,12 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#total-enrollment-by-boro">
-   7.1. Total Enrollment by Boro
+   Total Enrollment by Boro
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-a-dict-of-aggregate-columns">
-   7.2. Using a
+   Using a
    <code class="docutils literal notranslate">
     <span class="pre">
      dict
@@ -491,12 +493,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resetting-the-index">
-   7.3. Resetting the index
+   Resetting the index
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#grouping-by-multiple-columns">
-   7.4. Grouping by Multiple Columns
+   Grouping by Multiple Columns
   </a>
  </li>
 </ul>
@@ -520,12 +522,12 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#total-enrollment-by-boro">
-   7.1. Total Enrollment by Boro
+   Total Enrollment by Boro
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-a-dict-of-aggregate-columns">
-   7.2. Using a
+   Using a
    <code class="docutils literal notranslate">
     <span class="pre">
      dict
@@ -536,12 +538,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resetting-the-index">
-   7.3. Resetting the index
+   Resetting the index
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#grouping-by-multiple-columns">
-   7.4. Grouping by Multiple Columns
+   Grouping by Multiple Columns
   </a>
  </li>
 </ul>
@@ -555,7 +557,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="groups-aggregates">
-<h1><span class="section-number">7. </span>Groups &amp; Aggregates<a class="headerlink" href="#groups-aggregates" title="Permalink to this headline">#</a></h1>
+<h1>Groups &amp; Aggregates<a class="headerlink" href="#groups-aggregates" title="Permalink to this headline">#</a></h1>
 <p>In this notebook we look at how to change the level that we use to analyze data by <strong>grouping</strong> multiple
 rows into a single row. This <code class="docutils literal notranslate"><span class="pre">groupby</span></code> function allows us to look at the school data by district,
 borough, or academic year. To group data, you specifiy the column name or column names for the group. All unique names or combinations will become a single row.</p>
@@ -570,7 +572,7 @@ borough, or academic year. To group data, you specifiy the column name or column
 </div>
 </div>
 <section id="total-enrollment-by-boro">
-<h2><span class="section-number">7.1. </span>Total Enrollment by Boro<a class="headerlink" href="#total-enrollment-by-boro" title="Permalink to this headline">#</a></h2>
+<h2>Total Enrollment by Boro<a class="headerlink" href="#total-enrollment-by-boro" title="Permalink to this headline">#</a></h2>
 <p>For this example, we create a simplified data set that only has 2 columns:
 <code class="docutils literal notranslate"><span class="pre">boro</span></code> and <code class="docutils literal notranslate"><span class="pre">total_enrollment</span></code>. We also limit it to only the 2020 academic year.</p>
 <p>We call the <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> function of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>and pass in “boro” as the column name for the group.
@@ -701,7 +703,7 @@ had the fewest (n=63824).</p>
 </div>
 </section>
 <section id="using-a-dict-of-aggregate-columns">
-<h2><span class="section-number">7.2. </span>Using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of aggregate columns<a class="headerlink" href="#using-a-dict-of-aggregate-columns" title="Permalink to this headline">#</a></h2>
+<h2>Using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> of aggregate columns<a class="headerlink" href="#using-a-dict-of-aggregate-columns" title="Permalink to this headline">#</a></h2>
 <p>Now, we might have a few more questions about this simple measure of school enrollment. For example, what was the average enrollment, and how many different schools are in each borough?</p>
 <p>We can answer these questions by running by adding more columns (namely <code class="docutils literal notranslate"><span class="pre">dbn</span></code>) to our data and using different aggregate functions. In this case we will use <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, and <code class="docutils literal notranslate"><span class="pre">max</span></code>.</p>
 <p>To accomplish this, we call the <code class="docutils literal notranslate"><span class="pre">agg</span></code> function on the results of the groupby and pass in a dictionary
@@ -809,7 +811,7 @@ as the value.</p>
 </div>
 </section>
 <section id="resetting-the-index">
-<h2><span class="section-number">7.3. </span>Resetting the index<a class="headerlink" href="#resetting-the-index" title="Permalink to this headline">#</a></h2>
+<h2>Resetting the index<a class="headerlink" href="#resetting-the-index" title="Permalink to this headline">#</a></h2>
 <p>In the results above, we say that the aggregate columns do not appear in the same row as the grouped column, boro. Also, there are 2 levels to the aggregate index because we have 4 columns for total_enrollment. Sometimes we want to convert these columnbs back into a flat index. This makes it easier to filter, merge, and sort the data and to access specific Series in the DataFrame. Unfortunately, we can’t simply call <code class="docutils literal notranslate"><span class="pre">reset_index()</span></code> like we did above.</p>
 <p>Here after we reset the index, we rename all of the columns with a new list of strings. The length of the new list musth match the number of columns.</p>
 <div class="cell docutils container">
@@ -905,7 +907,7 @@ as the value.</p>
 </div>
 </section>
 <section id="grouping-by-multiple-columns">
-<h2><span class="section-number">7.4. </span>Grouping by Multiple Columns<a class="headerlink" href="#grouping-by-multiple-columns" title="Permalink to this headline">#</a></h2>
+<h2>Grouping by Multiple Columns<a class="headerlink" href="#grouping-by-multiple-columns" title="Permalink to this headline">#</a></h2>
 <p>Sometimes we might want to pass in more than one column as the group by index. In this example we will group our data by borough and whether they are a charter school or not.</p>
 <p>Note a couple of things in this short example:</p>
 <ol class="simple">
@@ -1095,17 +1097,17 @@ as the value.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../01-Basics/04-calculating-columns.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">6. </span>Combining Data</p>
+            <p class="prev-next-title">Calculating New Columns</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="02-merge-and-join.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Merges &amp; Joins</p>
+        <p class="prev-next-title">Merges &amp; Joins</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

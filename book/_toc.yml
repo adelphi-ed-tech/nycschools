@@ -4,11 +4,13 @@
 format: jb-book
 root: intro.md
 parts:
-  - caption: Getting Started
+  - caption: Installing
     chapters:
+    - file: install-colab.md
     - file: install.md
+    - file: install-dev.md
 
-  - caption: School Data Basics
+  - caption: Getting Started
     chapters:
     - file: nb/01-Basics/01-loading-data.ipynb
     - file: nb/01-Basics/02-querying-data.ipynb

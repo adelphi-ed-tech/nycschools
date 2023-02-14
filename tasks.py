@@ -146,10 +146,13 @@ def install_dev(c):
     print(f"""To complete the installation, you can set the
 NYC_SCHOOLS_DATA_DIR environment variable to {data_dir} by
 adding the following line to your .bashrc or .zshrc file:
+
 export NYC_SCHOOLS_DATA_DIR={data_dir}
 
 Installation complete. Run 
+
 invoke --list 
+
 to see available tasks.
 """)
 

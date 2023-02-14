@@ -10,7 +10,7 @@
 # - changing the mouse over and mouse click data for interaction
 # 
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -28,7 +28,7 @@ from nycschools import schools, exams, ui, geo
 from IPython.display import display, HTML
 
 
-# In[2]:
+# In[3]:
 
 
 # load and clean the school demographics and school location data
@@ -44,7 +44,7 @@ districts = geo.load_districts()
 # 
 # In the cell below, we create a new figure and axis and then plot both the `districts` and the `schools` using `ax` -- the same axis. This makes a graph where schools are plotted on top of the districts.
 
-# In[3]:
+# In[4]:
 
 
 # create the plot
@@ -60,7 +60,7 @@ _ = df.plot(ax=ax,color="red")
 # -----------------------
 # We've seen how the `explore()` function generates an interactive, geographic [Folium](https://python-visualization.github.io/folium/) map. In this example we create an interactive district map where we specificy more of the styles for the map to give it a unique look. We save the map into the `district_map` variable because we're going to re-use it later.[link text](https://)
 
-# In[4]:
+# In[5]:
 
 
 district_map = districts.explore(
@@ -82,7 +82,7 @@ district_map
 # translation function from `nycschools.ui` that takes a standard
 # matplot lib color map and wraps it so that it returns hex colors.
 
-# In[5]:
+# In[6]:
 
 
 def school_pop(row):
@@ -123,7 +123,7 @@ def dist_map(x):
 # ---------------------
 # In the first example, we plotted schools on top of a district plot using `matplotlib`. We can use the same approach to make more complex, interactive Folium maps with the `explore()` function in our `GeoDataFrame`. In this example we merge the school geo dataframe with our demographic data, then get a reduced set of shared columns to plot in the map. When we call `explore()` we pass the `district_map` in as the `m` argument, making that the base map for our plot.
 
-# In[6]:
+# In[7]:
 
 
 # get the columns we need for our pop-up
