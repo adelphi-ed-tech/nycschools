@@ -130,8 +130,28 @@ def install_from_testpypi(c):
 
 @task
 def install_dev(c):
-    """Install the package in development mode."""
+    """Install a new development environment."""
+
+    print("Installing a new development environment.")
+
+    print("Installing nycschools in editable/development mode")
     c.run("pip install -e .[dev]")
+
+    print("Downloading data to local directory 'school-data'")
+    dataloader.download_archive("school-data")
+    pwd = os.getcwd()
+    data_dir = os.path.join(pwd, "school-data")
+    print("Writing .env file with NYC_SCHOOLS_DATA_DIR")
+    c.run(f"echo 'NYC_SCHOOLS_DATA_DIR={data_dir}' > .env")
+    print(f"""To complete the installation, you can set the
+NYC_SCHOOLS_DATA_DIR environment variable to {data_dir} by
+adding the following line to your .bashrc or .zshrc file:
+export NYC_SCHOOLS_DATA_DIR={data_dir}
+
+Installation complete. Run 
+invoke --list 
+to see available tasks.
+""")
 
 @task
 def tag(c):
