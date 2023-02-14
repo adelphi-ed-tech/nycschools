@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Loading Data" href="nb/01-Basics/01-loading-data.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="intro.html" />
+    <link rel="prev" title="NYC Schools Open Data Portal" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    <no title>
+                    NYC Schools Open Data Portal
                 </a>
             </li>
         </ul>
@@ -459,8 +459,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-for-development">
-   Installing for development
+  <a class="reference internal nav-link" href="#installing-with-invoke">
+   Installing with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     invoke
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-dev-install">
+   Manual dev install
   </a>
  </li>
 </ul>
@@ -505,8 +515,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-for-development">
-   Installing for development
+  <a class="reference internal nav-link" href="#installing-with-invoke">
+   Installing with
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     invoke
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-dev-install">
+   Manual dev install
   </a>
  </li>
 </ul>
@@ -559,7 +579,7 @@ title="Print to PDF"
 mkdir<span class="w"> </span>school-data
 
 <span class="c1"># install download and extract the 7z archive</span>
-wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp<span class="o">=</span>share_link
+
 7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
 </pre></div>
 </div>
@@ -569,36 +589,41 @@ wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgq
 programs by setting and ENV variable to the full path to the <code class="docutils literal notranslate"><span class="pre">data_dir</span></code></p>
 <p>For example:</p>
 <p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=/opt/data/nycschools</span></code></p>
+<p>If you are using the library in a Jupyter Notebook, you should set either export this var
+or set it in your Notebook using <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env">the <code class="docutils literal notranslate"><span class="pre">env</span></code> magic command</a>, like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">%env</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=~/Documents/mydataproject/school-data</span></code></p>
 </div>
 </section>
-<section id="installing-for-development">
-<h2>Installing for development<a class="headerlink" href="#installing-for-development" title="Permalink to this headline">#</a></h2>
-<p>First, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> for the project. Activate the <code class="docutils literal notranslate"><span class="pre">venv</span></code>.</p>
+<section id="installing-with-invoke">
+<h2>Installing with <code class="docutils literal notranslate"><span class="pre">invoke</span></code><a class="headerlink" href="#installing-with-invoke" title="Permalink to this headline">#</a></h2>
+<p>First, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> for the project using <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">python</a>,
+<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/commands/create.html">conda</a>,
+<a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/install.html">virtualenvwrapper</a>, or whichever manner you choose.</p>
+<p>Once it’s created, make sure your <code class="docutils literal notranslate"><span class="pre">venv</span></code> is active. This project uses the <a class="reference external" href="https://www.pyinvoke.org/">invoke</a> task runner to automate development tasks, and we’ll use it to establish your environment. At this time, the tasks are configured to work in a linux (and probably mac osx) environment.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the repository</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/adelphi-ed-tech/nycschools.git
 <span class="nb">cd</span><span class="w"> </span>nycschools
 
-<span class="c1"># install the development environment</span>
+<span class="c1"># install the development requirements</span>
 pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 
-<span class="c1"># get the data</span>
-mkdir<span class="w"> </span>school-data
-wget<span class="w"> </span>https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp<span class="o">=</span>share_link
-7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
-
-<span class="c1"># build the project</span>
-invoke<span class="w"> </span>build
-
-<span class="c1"># install `nycschools` in dev mode</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>dist/nycschools-latest.tar.gz
-
-<span class="c1"># build the docs</span>
-invoke<span class="w"> </span>docs<span class="w"> </span>-c
-
-<span class="c1"># run unit tests</span>
-invoke<span class="w"> </span><span class="nb">test</span>
+<span class="c1"># run the development install task</span>
+invoke<span class="w"> </span>install-dev
 </pre></div>
 </div>
+</section>
+<section id="manual-dev-install">
+<h2>Manual dev install<a class="headerlink" href="#manual-dev-install" title="Permalink to this headline">#</a></h2>
+<p>If <code class="docutils literal notranslate"><span class="pre">invoke</span></code> isn’t working for you or you are setting up on windows, you can get up and running with these steps:</p>
+<ol class="simple">
+<li><p>Get the repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/adelphi-ed-tech/nycschools.git</span></code></p></li>
+<li><p>Move into the project directory.</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">venv</span></code> for your project.</p></li>
+<li><p>Install the project requirements with <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>. These are found in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
+<li><p>Install the library from source in development mode: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">nycschools</span></code></p></li>
+<li><p>Download the data from: <a class="reference external" href="https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link">https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link</a></p></li>
+<li><p>Create a new folder called <code class="docutils literal notranslate"><span class="pre">nyc-schools</span></code> and extract the contents of  <code class="docutils literal notranslate"><span class="pre">nycschools-data.7z</span></code> into <code class="docutils literal notranslate"><span class="pre">nyc-schools</span></code></p></li>
+</ol>
 </section>
 </section>
 
@@ -633,7 +658,7 @@ invoke<span class="w"> </span><span class="nb">test</span>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">&lt;no title&gt;</p>
+            <p class="prev-next-title">NYC Schools Open Data Portal</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nb/01-Basics/01-loading-data.html" title="next page">
