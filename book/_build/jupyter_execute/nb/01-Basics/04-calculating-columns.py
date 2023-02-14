@@ -30,10 +30,10 @@ df = schools.load_school_demographics()
 # with "vectorization"
 # ---------------------
 
-# calcualte a new fields for the pct of school that is black or hispanic
+# calculate a new fields for the pct of school that is black or hispanic
 df["black_hispanic_n"] = df.black_n + df.hispanic_n
 
-# now calcluate that as a pct of the total enrollment
+# now calculate that as a pct of the total enrollment
 df["black_hispanic_pct"] = df.black_hispanic_n / df.total_enrollment
 
 df[ ["dbn","school_name","total_enrollment", "black_hispanic_n", "black_hispanic_pct"] ]
@@ -50,7 +50,7 @@ df[["dbn", "district", "special_district"]]
 # In[4]:
 
 
-# vectorization is the best way to create cols based on clacluations but can't handle more advanced logic
+# vectorization is the best way to create cols based on calculations but can't handle more advanced logic
 # here we use apply() to format total enrollment to make it easier to read
 # we'll call the new field total_enrollment_pp -- pp: pretty print
 
@@ -68,7 +68,7 @@ big_schools[["dbn","total_enrollment", "total_enrollment_pp"]].head()
 
 
 # since our function is so simple, it's a good candidate for a lambda function
-# lambdas in python are anonymsous functions that have a reduced syntax
+# lambdas in python are anonymous functions that have a reduced syntax
 # see examples here:
 # https://www.freecodecamp.org/news/python-lambda-function-explained/
 
@@ -81,15 +81,16 @@ data["black_pct_pp"] = data.black_pct.apply(lambda x: f"{x*100:.02f}%")
 data["black_pct_pp"]
 
 
-# In[6]:
+# In[9]:
 
 
 # we can put the whole thing in a loop, too
 # here we replace the original value with the formatted value
+data = df.copy()
 for c in data.columns:
     if c.endswith("_pct"):
-        data[c] = df[c].apply(lambda x: f"{x*100:.02f}%")
+        data[c] = data[c].apply(lambda x: f"{x*100:.02f}%")
 
 
-df[["dbn", "asian_pct", "black_pct", "hispanic_pct", "white_pct"]].head()
+data[["dbn", "asian_pct", "black_pct", "hispanic_pct", "white_pct"]].head()
 
