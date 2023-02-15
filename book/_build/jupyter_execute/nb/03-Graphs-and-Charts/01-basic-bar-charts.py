@@ -89,7 +89,7 @@ plt.style.use('dark_background')
 plt.style.available
 
 
-# In[6]:
+# In[8]:
 
 
 # sort the tabgle in descending order by school size -- this will order our bars

@@ -20,7 +20,7 @@
 # 
 # 
 
-# In[1]:
+# In[10]:
 
 
 import pandas as pd
@@ -33,7 +33,7 @@ from IPython.display import Markdown as md
 from nycschools import schools, exams, ui, geo
 
 
-# In[2]:
+# In[11]:
 
 
 # read the GeoJSON file directly from the download link
@@ -45,7 +45,7 @@ gdf = gdf.set_index("district")
 gdf
 
 
-# In[3]:
+# In[12]:
 
 
 # draw the basic map using the tab20b color map
@@ -53,7 +53,7 @@ gdf
 _ = gdf.plot(figsize=(16, 16), cmap="tab20b")
 
 
-# In[4]:
+# In[13]:
 
 
 # explore gives us an interactive map
@@ -61,7 +61,7 @@ _ = gdf.plot(figsize=(16, 16), cmap="tab20b")
 gdf.explore()
 
 
-# In[5]:
+# In[14]:
 
 
 # load the demographics
@@ -103,7 +103,7 @@ dist_map = dist_map[['geometry', 'total_enrollment', 'asian_pct',
 dist_map
 
 
-# In[6]:
+# In[15]:
 
 
 # make a plot that uses the poverty percent as a the value for the color map
@@ -128,7 +128,7 @@ dist_map.apply(label, axis=1)
 _ = dist_map.plot(legend="True", ax=ax, column="poverty_pct", cmap="coolwarm")
 
 
-# In[7]:
+# In[16]:
 
 
 # if we pass a different column, we can create a different plot
@@ -141,7 +141,7 @@ dist_map.plot(legend="True", ax=ax, column="total_enrollment", cmap="autumn_r")
 plt.show()
 
 
-# In[8]:
+# In[17]:
 
 
 # explore also has a column keyword

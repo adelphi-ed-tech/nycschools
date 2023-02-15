@@ -1,8 +1,10 @@
-```{image} res/wide-logo.png
+```{image} res/text-retro-wide.svg
 :alt: NYC Schools Open Data Portal
 :class: mb-1
 ```
 
+NYC Schools Open Data Portal
+============================
 The **mission** of the NYC Schools Open Data Portal is to make open data
 regarding public schools in New York available to everyone interested in
 improving our schools, regardless of their technical background or

@@ -107,7 +107,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    <no title>
+                    NYC Schools Open Data Portal
                 </a>
             </li>
         </ul>
@@ -129,11 +129,6 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/01-Basics/index.html">
-   Data Basics
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/01-Basics/01-loading-data.html">
    Loading Data
@@ -162,11 +157,6 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../nb/02-Combining-Data/index.html">
-   Combining Data
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../nb/02-Combining-Data/01-group-and-agg.html">
    Groups &amp; Aggregates
   </a>
@@ -184,13 +174,13 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../nb/03-Graphs-and-Charts/index.html">
-   Graphs &amp; Charts
+  <a class="reference internal" href="../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   Bar Charts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
-   Bar Charts
+  <a class="reference internal" href="../nb/03-Graphs-and-Charts/02-grouped-bar-chart.html">
+   Grouped Bar Charts
   </a>
  </li>
  <li class="toctree-l1">
@@ -205,11 +195,6 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/04-Statistics/index.html">
-   Statistics
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/04-Statistics/04-t_tests.html">
    T Tests
@@ -232,11 +217,6 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/05-Maps-and-GIS/index.html">
-   Maps &amp; GIS
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/05-Maps-and-GIS/01-maps-intro.html">
    Introduction to Maps and Spatial Data
@@ -274,11 +254,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../about.html">
    About Us
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../team.html">
-   Our Team
   </a>
  </li>
 </ul>
@@ -473,7 +448,8 @@ title="Open an issue"
 <span class="sd">&quot;&quot;&quot;</span>
 
     <span class="n">env_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NYC_SCHOOLS_DATA_DIR&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="n">local</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;school-data&quot;</span><span class="p">)</span>
+    <span class="n">pwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">local</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pwd</span><span class="p">,</span> <span class="s2">&quot;school-data&quot;</span><span class="p">)</span>
     <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">env_dir</span><span class="p">:</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">env_dir</span>
