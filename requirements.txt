@@ -10,6 +10,7 @@ mapclassify
 matplotlib
 networkx
 numpy
+openpyxl
 pandas
 pingouin
 py7zr
