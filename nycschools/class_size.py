@@ -19,7 +19,10 @@ import pandas as pd
 
 
 from . import config
+urls = config.urls
 
+def load_class_size():
+    pass
 
 def save_class_size():
     """Loads and cleans class size data for each year that it is available
@@ -33,6 +36,12 @@ def save_class_size():
         in the data portal
 
     """
+    years =[]
+    for url in urls.class_size.data_urls:
+        df = load_class_size(url.ay, url.url)
+        years.append(df)
+    df = pd.concat(years)
+    df.to_csv(os.path.join(config.data_dir, "class_size.csv"), index=False)
 
 def load_class_size(ay, url):
     df = pd.read_csv(url)
