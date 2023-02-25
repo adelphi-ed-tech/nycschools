@@ -24,6 +24,19 @@ urls = {
     "filename":"nycschools-data.7z",
     "desc": "Download the archive of clean school data from public Google Drive"
   },
+  "shsat_apps": {
+      "url": "https://data.cityofnewyork.us/browse?q=SHSAT%20Admissions%20Test%20Offers%20By%20Sending%20School&sortBy=relevance",
+      "filename": "shsat-applicants.csv",
+      "desc": "SHSAT Applicants by School",
+      "data_urls": {
+        "2015": "https://data.cityofnewyork.us/resource/xqx4-kdvp.csv?$limit=1000000",
+        "2016": "https://data.cityofnewyork.us/resource/8ws3-956v.csv?$limit=1000000",
+        "2017": "https://data.cityofnewyork.us/resource/vsgi-eeb5.csv?$limit=1000000",
+        "2018": "https://data.cityofnewyork.us/resource/uf53-ree9.csv?$limit=1000000",
+        "2019": "https://data.cityofnewyork.us/resource/xuij-x4t4.csv?$limit=1000000",
+        "2020": "https://data.cityofnewyork.us/resource/k8ah-28f4.csv?$limit=1000000"
+    }
+  },
   "demographics": {
     "url": "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000",
     "filename":"school-demographics.csv",
