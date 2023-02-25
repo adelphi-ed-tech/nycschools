@@ -1,5 +1,11 @@
-from nycschools import config, geo, dataloader
+from nycschools import config, geo, dataloader, schools
 
+
+def test_merge():
+    a = schools.load_school_demographics()
+    b = geo.load_school_locations()
+    c = b.merge(a, on="dbn", how="inner")
+    c.explore()
 
 def test_load_school_locations():
     df = geo.load_school_locations()
@@ -17,7 +23,7 @@ def test_load_districts():
 
 def test_get_points():
     urls = config.urls
-    df = geo.get_points(urls["school_geo"].url)
+    df = geo.get_points()
     assert len(df) > 1800, "Too few schools found"
     assert len(df) < 2400, "Seems like too many schools"
     expected_keys = ['dbn', 'zip', 'geo_district', 'district', 'x', 'y', 'geometry']
@@ -26,7 +32,7 @@ def test_get_points():
 
 def test_get_locations():
     urls = config.urls
-    df = geo.get_locations(urls["school_locations"].url)
+    df = geo.get_locations()
     assert len(df) > 1800, "Too few schools found"
     assert len(df) < 2400, "Seems like too many schools"
     expected_keys = [

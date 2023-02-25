@@ -36,6 +36,11 @@ def load_school_locations():
     return get_and_save_locations()
 
 
+def load_school_geo_points():
+    """Load only the school location points as a GeoDataFrame"""
+    df = load_school_locations()
+    return df[["dbn", "x", "y", "geometry"]]
+
 def get_and_save_locations(filename=school_location_file):
     points = get_points()
     locations = get_locations()
@@ -81,7 +86,6 @@ def get_locations(url=urls["school_locations"].url):
         'borough_block_lot',
         'census_tract',
         'community_district',
-        'community_district_1',
         'community_school_sup_name',
         'council_district',
         'fax_number',
@@ -112,6 +116,8 @@ def get_locations(url=urls["school_locations"].url):
 
     locations = locations[cols]
     locations.beds = locations.beds.astype("string")
+    locations.open_date = locations.open_date.astype("datetime64[ns]").dt.year
+    # locations.beds = locations.beds.astype("string")
     return locations
 
 

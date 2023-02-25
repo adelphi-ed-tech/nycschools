@@ -16,5 +16,5 @@ def test_load_admission_offers():
 def test_save_administration_offers():
     df = shsat.save_administration_offers()
     f = os.path.join(config.data_dir, config.urls["shsat_apps"].filename)
-    # assert os.path.exists(f), "File not found " + f
+    assert os.path.exists(f), "File not found " + f
 
