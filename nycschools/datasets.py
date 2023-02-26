@@ -45,7 +45,8 @@ urls = {
   "class_size": {
     "url": "https://data.cityofnewyork.us/browse?q=Average%20Class%20Size%20by%20School&sortBy=relevance",
     "data_urls": {
-        "2021": "https://data.cityofnewyork.us/resource/sgr7-hhwp.csv?$limit=1000000"
+        "2022": "https://infohub.nyced.org/docs/default-source/default-document-library/updated2023_avg_classsize_schl.xlsx",
+        "2021": "https://data.cityofnewyork.us/resource/sgr7-hhwp.csv?$limit=1000000",
     },
     "filename":"school-class-size.csv",
     "desc": "Average class size by school and academic year"

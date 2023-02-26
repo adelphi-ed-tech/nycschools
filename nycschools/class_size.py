@@ -24,7 +24,45 @@ urls = config.urls
 def load_class_size():
     pass
 
-def save_class_size():
+def get_class_22():
+
+
+    url = urls["class_size"].data_urls["2022"]
+    xls = pd.read_excel(url, sheet_name=None)
+    # first sheet is k-8
+    k8 = xls["K-8 Avg"]
+    hs = xls["MS HS Avg"]
+    ptr = xls["PTR"]
+
+    df = pd.concat([k8, hs], axis=0)
+    df["ay"] = 2022
+
+    df.columns = ['dbn', 'school_name', 'grade', 'program_type',
+                'students_n', 'classes_n', 'avg_class_size',
+                'min_class_size', 'max_class_size', 'dept', 'subject',
+                'ay']
+
+
+    def fix_rows(row):
+        if row.min_class_size == "<15":
+            row.min_class_size = row.students_n
+        if row.max_class_size == "<15":
+            row.max_class_size = row.students_n
+        if row.grade in ['K', 1, 2, 3, 4, 5,]:
+            row.subject = "Elementary"
+            row.dept = "Elementary"
+        if row.program_type == "ICT" and not row.dept:
+            row.dept = "ICT"
+        if row.program_type == "ICT" and not row.subject:
+            row.dept = "ICT"
+
+        return row
+
+    df = df.apply(fix_rows, axis=1)
+    return df, ptr
+
+
+def get_class_size():
     """Loads and cleans class size data for each year that it is available
     in the `datasets`. Currently data is available for each year from
     2009-2021 excluding the 2020-2021 school year.
