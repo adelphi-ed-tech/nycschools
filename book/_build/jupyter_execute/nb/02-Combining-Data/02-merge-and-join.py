@@ -5,7 +5,7 @@
 # ==============
 # Here, finally, we combine data sets together. I say finally because this is one of the _first_ things you will do when working with real world data. `nycschools` has already combined multiple data sets into its core DataFrames, but you will want to combine this data in new ways, make new DataFrames from your results, and pull in new data from the outside world.
 
-# In[21]:
+# In[1]:
 
 
 import pandas as pd
@@ -23,7 +23,7 @@ math = exams.load_math()
 # ----------------------
 # When two data sets have a shared key then combining them into a single dataframe is straightforward. Here we use the `merge()` function in `DataFrame` to combine the school demographcs and ela test results into a single data frame. We merge them "on" the `dbn` and `ay` columns because these cols represent a unique identifier for each row in both data sets. _Note_ that the result has only the intersecton of both datasets. If our demographic data has a DBN that's not in the test data set, that school's data will be dropped from the results.
 
-# In[18]:
+# In[2]:
 
 
 demo.merge(ela, on=["dbn", "ay"]).head()
@@ -33,7 +33,7 @@ demo.merge(ela, on=["dbn", "ay"]).head()
 # 
 # Because both columns _should_ contain the same data (because they have the save DBN for the same school year), in this case we can just drop one of the columns before the merge. We'll drop `school_name` from `ela` because the demographics data set should have our canoninical school names.
 
-# In[19]:
+# In[3]:
 
 
 ela2 = ela.drop(columns="school_name")
@@ -47,7 +47,7 @@ demo.merge(ela2, on=["dbn", "ay"]).head()
 # At the start of this notebook we loaded both the math and ela exam data. Note that they have exactly the same columns. When we _merge_ them, we're going to **suffix** the ela data with `_ela` and the math data with `_math`. We will drop `school_name` from one of the data sets and use `["dbn", "ay", "test_year", "grade", "category"]` to join the two.
 # 
 
-# In[32]:
+# In[4]:
 
 
 ela2 = ela.drop(columns="school_name")
@@ -57,7 +57,7 @@ wide.head()
 
 # Now that we have the wide data, we can easily compare math and ela results for the same set school/year/grade/category. Below we will calculate a new column called `test_delta` that shows the difference between math and ela results for the same cohort of students in the same school. This will let us see, for example, which if any schools are "unbalanced" in math and ELA. Later, we might correlate this to other demographic data such as high percentages of ELL or SWD students.
 
-# In[37]:
+# In[5]:
 
 
 wide["test_delta"] = wide.mean_scale_score_math - wide.mean_scale_score_ela
@@ -74,7 +74,7 @@ wide[["dbn","grade","ay","category","mean_scale_score_math", "mean_scale_score_e
 # 
 # In the example here we will add a new column, `test`, which will have the value of "ela" or "math". This column will let us know whether that row reports a math test or ela test result.
 
-# In[40]:
+# In[6]:
 
 
 math["test"] = "math"

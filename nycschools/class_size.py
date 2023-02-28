@@ -51,10 +51,7 @@ def get_class_22():
         if row.grade in ['K', 1, 2, 3, 4, 5,]:
             row.subject = "Elementary"
             row.dept = "Elementary"
-        if row.program_type == "ICT" and not row.dept:
-            row.dept = "ICT"
-        if row.program_type == "ICT" and not row.subject:
-            row.dept = "ICT"
+
 
         return row
 

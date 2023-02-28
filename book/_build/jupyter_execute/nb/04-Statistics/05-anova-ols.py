@@ -24,7 +24,7 @@
 # - ANOVA (analysis of variance)
 # - OLS (ordinary least squares) regression
 
-# In[32]:
+# In[1]:
 
 
 # load the demographic data
@@ -41,7 +41,7 @@ from IPython.display import Markdown as md
 from nycschools import schools, exams
 
 
-# In[19]:
+# In[2]:
 
 
 # load the demographic data and merge it with the ELA data
@@ -75,7 +75,7 @@ asian = df[df["category"] == "Asian"][["dbn", "mean_scale_score"]]
 # --------------------------------
 # Before running the ANOVA and further analysis, we will run a t-test between Black and White students to determine if there is a significant difference between their average test score.
 
-# In[20]:
+# In[3]:
 
 
 # calculate the mean test score and standard deviation for each group
@@ -107,7 +107,7 @@ We see that there is a statistically significance difference in test scores betw
 # ----------------
 # In the example below we calculate the f-statistic to see if there are significant differences in test scores based on racial/ethnic group of the test takers. We compare the four main groups in NYC Schools: Asian, Black, Hispanic, and White.
 
-# In[22]:
+# In[4]:
 
 
 # run a one way anova to test if there is significant difference between the
@@ -144,7 +144,7 @@ md(results)
 # 
 # Below we show the [pinguion ANOVA](https://pingouin-stats.org/generated/pingouin.anova.html#pingouin.anova).
 
-# In[25]:
+# In[5]:
 
 
 # pg.anova()
@@ -161,7 +161,7 @@ pg.anova(dv='mean_scale_score', between='category', data=data, detailed=True)
 # 
 # For this analysis we will look at the school demographics to analyze the mean ELA test score for All Students at the school.
 
-# In[46]:
+# In[6]:
 
 
 # first choose the "factors" from our data fields that we believe impact mean_scale_score
@@ -188,7 +188,7 @@ model = sm.OLS(y, X).fit()
 model.summary()
 
 
-# In[48]:
+# In[7]:
 
 
 # we can also pull specific data from the model

@@ -13,7 +13,7 @@
 # 
 # 
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -37,7 +37,7 @@ from IPython.display import Markdown as md
 from nycschools import schools, ui, exams
 
 
-# In[3]:
+# In[2]:
 
 
 # load the demographic data and merge it with the math data
@@ -76,7 +76,7 @@ math_df.head()
 # indicates a strong positive correlation and darker blue a strong negative correlation.
 # 
 
-# In[4]:
+# In[3]:
 
 
 # get just the 2019 test results for All Students
@@ -94,7 +94,7 @@ display(md("**Descriptive statistics for mean scale score**"))
 display(pd.DataFrame(dv_stats))
 
 
-# In[5]:
+# In[4]:
 
 
 data = data[["mean_scale_score"] + factors]
@@ -121,7 +121,7 @@ plt.show()
 # no predictive power and that including poverty_pct without eni_pct produces slightly
 # better predictions.
 
-# In[13]:
+# In[5]:
 
 
 model = LinearRegression()
@@ -171,7 +171,7 @@ show_predict(factors, "ENI without Poverty %" )
 # Partial Least Squares
 # ===================
 
-# In[14]:
+# In[6]:
 
 
 factors = ['total_enrollment', 'asian_pct','black_pct', 
@@ -198,7 +198,7 @@ md(f"""
 """)
 
 
-# In[15]:
+# In[7]:
 
 
 # fit both models with the full data and show the correlations
@@ -216,7 +216,7 @@ coef_table["ols-coef"] = [x for x in model.coef_]
 coef_table
 
 
-# In[16]:
+# In[8]:
 
 
 # compare sklearn and statsmodel OLS
@@ -236,7 +236,7 @@ ols_df = pd.DataFrame({"factor":params,"sm-coef":coefs,"p-values":pvalues})
 coef_table.merge(ols_df,on="factor", how="inner")
 
 
-# In[17]:
+# In[9]:
 
 
 # let's get p-values for the sklearn models

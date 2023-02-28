@@ -113,19 +113,29 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Getting Started
+  Installing
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../../install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../install.html">
-   Installation
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-dev.html">
+   Development Install
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  School Data Basics
+  Getting Started
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -428,6 +438,11 @@ title="Open an issue"
     <span class="k">return</span> <span class="n">get_and_save_locations</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="load_school_geo_points"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_school_geo_points">[docs]</a><span class="k">def</span> <span class="nf">load_school_geo_points</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load only the school location points as a GeoDataFrame&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">load_school_locations</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span></div>
+
 <div class="viewcode-block" id="get_and_save_locations"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.get_and_save_locations">[docs]</a><span class="k">def</span> <span class="nf">get_and_save_locations</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">school_location_file</span><span class="p">):</span>
     <span class="n">points</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">()</span>
     <span class="n">locations</span> <span class="o">=</span> <span class="n">get_locations</span><span class="p">()</span>
@@ -473,7 +488,6 @@ title="Open an issue"
         <span class="s1">&#39;borough_block_lot&#39;</span><span class="p">,</span>
         <span class="s1">&#39;census_tract&#39;</span><span class="p">,</span>
         <span class="s1">&#39;community_district&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;community_district_1&#39;</span><span class="p">,</span>
         <span class="s1">&#39;community_school_sup_name&#39;</span><span class="p">,</span>
         <span class="s1">&#39;council_district&#39;</span><span class="p">,</span>
         <span class="s1">&#39;fax_number&#39;</span><span class="p">,</span>
@@ -504,6 +518,8 @@ title="Open an issue"
 
     <span class="n">locations</span> <span class="o">=</span> <span class="n">locations</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
     <span class="n">locations</span><span class="o">.</span><span class="n">beds</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+    <span class="n">locations</span><span class="o">.</span><span class="n">open_date</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">open_date</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="c1"># locations.beds = locations.beds.astype(&quot;string&quot;)</span>
     <span class="k">return</span> <span class="n">locations</span></div>
 
 

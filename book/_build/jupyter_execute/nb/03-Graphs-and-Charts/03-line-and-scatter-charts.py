@@ -15,7 +15,7 @@
 # 
 # To work on these examples we will use the demographics and ELA/Math test score data.
 
-# In[20]:
+# In[1]:
 
 
 import matplotlib.pyplot as plt
@@ -60,14 +60,14 @@ sns.pairplot(df[factors], kind="scatter")
 pass
 
 
-# In[6]:
+# In[5]:
 
 
 sns.regplot(x=df["poverty_pct"], y=df["ell_pct"], line_kws={"color": "red"} )
 plt.show()
 
 
-# In[8]:
+# In[6]:
 
 
 g = sns.regplot(x=df["poverty_pct"], y=df["ell_pct"], line_kws={"color": "red"} )
@@ -91,7 +91,7 @@ display(md(report_r))
 plt.show()
 
 
-# In[9]:
+# In[7]:
 
 
 # plot highly correlated % poverty and economic need index -- both measures look at poverty in schools
@@ -108,7 +108,7 @@ plt.show()
 # For the next correlation, first we'll drop the outliers by computing z-scores. Outliers can distort the results of our correlations.
 # 
 
-# In[15]:
+# In[8]:
 
 
 outliers = df[["white_pct", "total_enrollment"]]

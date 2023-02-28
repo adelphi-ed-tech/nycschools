@@ -81,7 +81,7 @@ data["black_pct_pp"] = data.black_pct.apply(lambda x: f"{x*100:.02f}%")
 data["black_pct_pp"]
 
 
-# In[9]:
+# In[6]:
 
 
 # we can put the whole thing in a loop, too

@@ -3,8 +3,6 @@
 
 # Loading Data
 # ============
-# [[colab](https://colab.research.google.com/github/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb)] [[github](https://github.com/adelphi-ed-tech/nycschools/blob/main/docs-source/nb/01-Basics/01-loading-data.ipynb)]
-# 
 # This notebook loads the NYC School Demographic data.
 # Working with this dataset, we look at some basic
 # [Pandas](https://pandas.pydata.org/) operations.
@@ -22,7 +20,7 @@
 # 
 # 
 
-# In[2]:
+# In[5]:
 
 
 # import schools from the nycschool package
@@ -40,7 +38,7 @@ df = schools.load_school_demographics()
 # 
 # Comment/uncomment the different options to see how they work.
 
-# In[2]:
+# In[6]:
 
 
 df
@@ -49,7 +47,7 @@ df
 # df.tail()
 
 
-# In[3]:
+# In[7]:
 
 
 # The the `columns` property shows us the names of the cols in our `df`.
@@ -63,7 +61,7 @@ df.columns
 # of `poverty` that lets us see that the column contains string data, and not raw numbers
 # if the poverty level is too high or too low.
 
-# In[4]:
+# In[8]:
 
 
 # get just the poverty column
@@ -86,7 +84,7 @@ print(poverty.unique())
 # `df[ ["dbn", "school_name", "total_enrollment", "poverty_n" ] ]` returns a `DataFrame`
 # with 4 columns.
 
-# In[5]:
+# In[9]:
 
 
 df[ ["dbn", "school_name", "total_enrollment", "poverty_n" ] ]

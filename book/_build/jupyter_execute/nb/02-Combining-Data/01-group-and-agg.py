@@ -104,7 +104,7 @@ table
 # 
 # 
 
-# In[19]:
+# In[6]:
 
 
 # because we're adding data to our subset, we're going to call copy()

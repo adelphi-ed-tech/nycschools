@@ -13,7 +13,7 @@ from IPython.display import Markdown as md
 from nycschools import schools, exams
 
 
-# In[4]:
+# In[2]:
 
 
 demo = schools.load_school_demographics()
@@ -24,7 +24,7 @@ df = df.merge(demo, how="inner", on=["dbn", "ay"])
 df.head()
 
 
-# In[5]:
+# In[3]:
 
 
 # let's look at charter schools vs non-charter schools 
@@ -43,7 +43,7 @@ data = df[["mean_scale_score", "charter"]]
 data.corr()
 
 
-# In[10]:
+# In[4]:
 
 
 # split the data into two groups for the t test
@@ -57,7 +57,7 @@ t = scipy.stats.ttest_ind(charter.mean_scale_score, community.mean_scale_score)
 t
 
 
-# In[20]:
+# In[5]:
 
 
 # when reporting the results we care about these variables too
@@ -92,7 +92,7 @@ students in 3-8th grade student ELA and Math scores.
 # ------------------------
 # The [`pingouin` library](https://pingouin-stats.org/index.html) has a number of functions that "wrap" standard python stats functions to include additional information and nicer formatting out of the box. `ttest` is one of these functions. We can see in the output below that we get the t value, p value (like `scipy.stats`), but we also get degrees of freedom, confidence intervals, and more, without having to calculate these independently for each test.
 
-# In[27]:
+# In[6]:
 
 
 import pingouin as pg

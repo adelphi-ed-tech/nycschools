@@ -593,13 +593,13 @@ title="Print to PDF"
 <section id="module-nycschools.class_size">
 <span id="nycschools-class-size-module"></span><h2>nycschools.class_size module<a class="headerlink" href="#module-nycschools.class_size" title="Permalink to this headline">#</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="nycschools.class_size.load_class_size">
-<span class="sig-name descname"><span class="pre">load_class_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#load_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.load_class_size" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nycschools.class_size.get_class_22">
+<span class="sig-name descname"><span class="pre">get_class_22</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#get_class_22"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.get_class_22" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="nycschools.class_size.save_class_size">
-<span class="sig-name descname"><span class="pre">save_class_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#save_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.save_class_size" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nycschools.class_size.get_class_size">
+<span class="sig-name descname"><span class="pre">get_class_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#get_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.get_class_size" title="Permalink to this definition">#</a></dt>
 <dd><p>Loads and cleans class size data for each year that it is available
 in the <cite>datasets</cite>. Currently data is available for each year from
 2009-2021 excluding the 2020-2021 school year.</p>
@@ -613,6 +613,11 @@ in the data portal</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.load_class_size">
+<span class="sig-name descname"><span class="pre">load_class_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#load_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.load_class_size" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 <section id="module-nycschools.dataloader">
@@ -832,6 +837,12 @@ census tract, and police precinct.</p>
 <dt class="sig sig-object py" id="nycschools.geo.load_districts">
 <span class="sig-name descname"><span class="pre">load_districts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&amp;format=GeoJSON'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_districts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_districts" title="Permalink to this definition">#</a></dt>
 <dd><p>Get geo shape file for NYC school districts, indexed by district number.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.load_school_geo_points">
+<span class="sig-name descname"><span class="pre">load_school_geo_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_school_geo_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_school_geo_points" title="Permalink to this definition">#</a></dt>
+<dd><p>Load only the school location points as a GeoDataFrame</p>
 </dd></dl>
 
 <dl class="py function">
