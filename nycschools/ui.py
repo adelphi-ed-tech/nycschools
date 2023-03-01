@@ -30,6 +30,27 @@ def ul(t):
     return str("\n".join(items))
 
 
+def popup(cols, style={"min-width": "200px"}):
+    style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
+
+    def html(row):
+        items = "<br>".join([f"{nice_name(c)}: {fmt_num(c, row[c])}" for c in cols])
+        return f'<div style="{style_str}">{items}</div>'
+
+    return html
+
+
+def fmt_num(col, n):
+    if col.endswith("_pct"):
+        return pct(n)
+    try:
+        n = float(row[col])
+        if round(n) == n:
+            return f"{int(n):,}"
+        else:
+            return f"{n:,.2f}"
+    except:
+        return n
 
 def hexmap(cmap):
 
@@ -109,6 +130,10 @@ def edge_label(p, r):
     return f"{p}={round_f(r,2)}"
 
 def nice_name(n):
+    allcaps = ["dbn", "beds"]
+    if n in allcaps:
+        return n.upper()
+
     return n.replace("_", " ").title()
 
 def plot_model(model):
