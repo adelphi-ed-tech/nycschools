@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import seaborn as sns
 import networkx as nx
+import folium
 
 import math
 
@@ -28,6 +29,21 @@ def ul(t):
 
     items =  [f"- {i}" for i in t]
     return str("\n".join(items))
+
+
+def label_shapes(m, df, col, style={}):
+    """Create a function that will add the string of `col`
+    to the center of each shape specified by """
+    style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
+    def label(row):  
+        point = row.geometry.centroid
+        html=f"""<div style="{style_str}">{row[col]}</div>"""
+        folium.Marker(
+            location=(point.y, point.x), 
+            icon=folium.DivIcon(html=html)).add_to(m)
+    df.apply(label, axis=1)
+    return m
+    
 
 
 def popup(cols, style={"min-width": "200px"}):
