@@ -20,7 +20,18 @@
 # 
 # 
 
-# In[9]:
+# In[ ]:
+
+
+# uncomment and run if using Google Colab
+
+# !pip install geopandas
+# !pip install nycschools
+# from nycschools import dataloader
+# dataloader.download_data()
+
+
+# In[8]:
 
 
 import pandas as pd
@@ -30,26 +41,27 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from IPython.display import Markdown as md
 
-from nycschools import schools, geo
+from nycschools import schools, geo, ui
 
 
-# In[10]:
+# GeoDataFrame
+# ------------
+# `GeoDataFrame` adds geospatial data to a regular `pandas` `DataFrame`. The specially named `geometry` column is used to plot the spatial data on a map.
+
+# In[4]:
 
 
 # read the GeoJSON file directly from the download link
 gdf = geo.load_districts()
-# rename the columns
-# gdf.columns = ['district', 'area', 'length', 'geometry']
-# each shape in "geometry" represents a distict
+# each shape in "geometry" represents a district
 gdf = gdf.set_index("district")
-gdf
+gdf.head()
 
 
-# In[11]:
+# In[5]:
 
 
 # draw the basic map using the tab20b color map
-# the x and y axes are the lat/long coordinates of the shapes
 _ = gdf.plot(figsize=(16, 16), cmap="tab20b")
 
 
@@ -61,7 +73,10 @@ _ = gdf.plot(figsize=(16, 16), cmap="tab20b")
 gdf.explore()
 
 
-# In[13]:
+# Merging School Data with Geo Data
+# ---------------------------------
+
+# In[6]:
 
 
 # load the demographics
@@ -100,15 +115,20 @@ dist_map = dist_map.set_index("district")
 dist_map = dist_map[['geometry', 'total_enrollment', 'asian_pct',
        'black_pct', 'hispanic_pct', 'white_pct', 'swd_pct', 'ell_pct',
        'poverty_pct']]
-dist_map
+dist_map.head()
 
 
-# In[14]:
+# Use a column to color a choropleth
+# -----------------------------------
+# Choropleths use colored region to help visualize spatial data. The map below uses the average percent poverty in each of the 32 community school districts to help visual relative wealth of the different districts in NYC Schools. The area of each district is colored using a divergent cool-warm color map. Darkest blue districts have the lowest average poverty rate and darkest red have the highest rate.
+# 
+# ### Choropleth of school poverty
+
+# In[9]:
 
 
 # make a plot that uses the poverty percent as a the value for the color map
 # this is the `column` keyword argument for plot()
-
 
 fig, ax = plt.subplots(figsize=(16, 16))
 sns.set_context('talk')
@@ -128,7 +148,9 @@ dist_map.apply(label, axis=1)
 _ = dist_map.plot(legend="True", ax=ax, column="poverty_pct", cmap="coolwarm")
 
 
-# In[15]:
+# ### Choropleth of school district enrollment
+
+# In[13]:
 
 
 # if we pass a different column, we can create a different plot
@@ -137,15 +159,18 @@ sns.set_context('talk')
 plt.axis('off')
 fig.tight_layout()
 ax.set_title('School District Enrollments Levels (size)', pad=20)
-dist_map.plot(legend="True", ax=ax, column="total_enrollment", cmap="autumn_r")
+
+dist_map.plot(legend="True", ax=ax, column="total_enrollment", cmap="Purples")
 plt.show()
 
 
-# In[16]:
+# Chlorpleths in Folium
+# ----------------------
+# The geopandas `explore()` methos also has a column keyword that lets us draw a Folium map.
+# Below we show the districts by poverty level. Mouse over and you can see all of the demographic data for the district as a pop-up.
+
+# In[14]:
 
 
-# explore also has a column keyword
-# here we show the districts by poverty level
-# mouse over and you can see all of the demographic data for the district
 dist_map.explore(column="poverty_pct", cmap="coolwarm")
 

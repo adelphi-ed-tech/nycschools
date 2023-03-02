@@ -423,6 +423,7 @@ title="Open an issue"
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">folium</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -432,6 +433,42 @@ title="Open an issue"
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="label_shapes"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.label_shapes">[docs]</a><span class="k">def</span> <span class="nf">label_shapes</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{}):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a function that will add the string of `col`</span>
+<span class="sd">    to the center of each shape specified by &quot;&quot;&quot;</span>
+    <span class="n">style_str</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>  
+        <span class="n">point</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span>
+        <span class="n">html</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;div style=&quot;</span><span class="si">{</span><span class="n">style_str</span><span class="si">}</span><span class="s2">&quot;&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/div&gt;&quot;&quot;&quot;</span>
+        <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+            <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> 
+            <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">DivIcon</span><span class="p">(</span><span class="n">html</span><span class="o">=</span><span class="n">html</span><span class="p">))</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span></div>
+    
+
+
+<div class="viewcode-block" id="popup"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.popup">[docs]</a><span class="k">def</span> <span class="nf">popup</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;min-width&quot;</span><span class="p">:</span> <span class="s2">&quot;200px&quot;</span><span class="p">}):</span>
+    <span class="n">style_str</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nice_name</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fmt_num</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">[</span><span class="n">c</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">])</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;div style=&quot;</span><span class="si">{</span><span class="n">style_str</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">items</span><span class="si">}</span><span class="s1">&lt;/div&gt;&#39;</span>
+
+    <span class="k">return</span> <span class="n">html</span></div>
+
+
+<div class="viewcode-block" id="fmt_num"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.fmt_num">[docs]</a><span class="k">def</span> <span class="nf">fmt_num</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_pct&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pct</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span></div>
 
 <div class="viewcode-block" id="hexmap"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.hexmap">[docs]</a><span class="k">def</span> <span class="nf">hexmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
 
@@ -511,6 +548,10 @@ title="Open an issue"
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">round_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
 <div class="viewcode-block" id="nice_name"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.nice_name">[docs]</a><span class="k">def</span> <span class="nf">nice_name</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">allcaps</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;beds&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">allcaps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
     <span class="k">return</span> <span class="n">n</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="plot_model"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.ui.plot_model">[docs]</a><span class="k">def</span> <span class="nf">plot_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>

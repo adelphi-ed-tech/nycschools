@@ -487,6 +487,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.shsat">
+   nycschools.shsat module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#module-nycschools.tools">
    nycschools.tools module
   </a>
@@ -558,6 +563,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#module-nycschools.schools">
    nycschools.schools module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.shsat">
+   nycschools.shsat module
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1117,6 +1127,19 @@ Example: df[“economic_need_index”] = df.apply(lambda row: str_pct(row, “ec
 </dd></dl>
 
 </section>
+<section id="module-nycschools.shsat">
+<span id="nycschools-shsat-module"></span><h2>nycschools.shsat module<a class="headerlink" href="#module-nycschools.shsat" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.shsat.load_admission_offers">
+<span class="sig-name descname"><span class="pre">load_admission_offers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/shsat.html#load_admission_offers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.shsat.load_admission_offers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.shsat.save_administration_offers">
+<span class="sig-name descname"><span class="pre">save_administration_offers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/shsat.html#save_administration_offers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.shsat.save_administration_offers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-nycschools.tools">
 <span id="nycschools-tools-module"></span><h2>nycschools.tools module<a class="headerlink" href="#module-nycschools.tools" title="Permalink to this headline">#</a></h2>
 <dl class="py function">
@@ -1148,6 +1171,11 @@ Example: df[“economic_need_index”] = df.apply(lambda row: str_pct(row, “ec
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.fmt_num">
+<span class="sig-name descname"><span class="pre">fmt_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#fmt_num"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.fmt_num" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="nycschools.ui.fmt_pearson">
 <span class="sig-name descname"><span class="pre">fmt_pearson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#fmt_pearson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.fmt_pearson" title="Permalink to this definition">#</a></dt>
 <dd><p>Formats the Pearson’s R correlation table returned
@@ -1171,6 +1199,13 @@ The r is rounded to 2 decimals, and p is rounded to 3 decimals.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.label_shapes">
+<span class="sig-name descname"><span class="pre">label_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#label_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.label_shapes" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a function that will add the string of <cite>col</cite>
+to the center of each shape specified by</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="nycschools.ui.network_map">
 <span class="sig-name descname"><span class="pre">network_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#network_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.network_map" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1188,6 +1223,11 @@ The r is rounded to 2 decimals, and p is rounded to 3 decimals.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.ui.plot_model">
 <span class="sig-name descname"><span class="pre">plot_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#plot_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.plot_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.popup">
+<span class="sig-name descname"><span class="pre">popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'min-width':</span> <span class="pre">'200px'}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.popup" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

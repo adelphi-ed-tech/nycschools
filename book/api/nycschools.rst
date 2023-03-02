@@ -60,6 +60,14 @@ nycschools.schools module
    :undoc-members:
    :show-inheritance:
 
+nycschools.shsat module
+-----------------------
+
+.. automodule:: nycschools.shsat
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 nycschools.tools module
 -----------------------
 

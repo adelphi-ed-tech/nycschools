@@ -43,7 +43,6 @@ def test_get_locations():
         'borough_block_lot',
         'census_tract',
         'community_district',
-        'community_district_1',
         'community_school_sup_name',
         'council_district',
         'fax_number',
