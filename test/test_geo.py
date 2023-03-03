@@ -7,6 +7,15 @@ def test_merge():
     c = b.merge(a, on="dbn", how="inner")
     c.explore()
 
+
+def test_load_zipcodes():
+    df = geo.load_zipcodes()
+    a = set(schools.load_school_demographics().zip)
+    a.remove(0)
+    b = set(df.zip)
+    assert len(a.difference(b)) < 3, "Missing some zip codes we expected" + str(a.difference(b))
+
+
 def test_load_school_locations():
     df = geo.load_school_locations()
 

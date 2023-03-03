@@ -53,6 +53,10 @@ urls = {
         "2020": "https://data.cityofnewyork.us/resource/k8ah-28f4.csv?$limit=1000000"
     }
   },
+  "zipcodes": {
+    "filename":"zipcodes.geojson",
+    "desc": "Load the zipcode boundaries from NYC Open Data Portal (via USPS)"
+  },
   "demographics": {
     "url": "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000",
     "filename":"school-demographics.csv",

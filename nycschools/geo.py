@@ -23,6 +23,13 @@ from . import config
 urls = config.urls
 school_location_file = os.path.join(config.data_dir, "school_locations.geojson")
 
+
+def load_zipcodes():
+    """Load the NYC zip code boundaries as a GeoDataFrame from data_dir.
+    Zip codes are compiled from the NYC Data Portal via the US Post Office"""
+    df = gpd.read_file(os.path.join(config.data_dir,urls["zipcodes"].filename))
+    return df
+
 def load_school_locations():
     """Returns a GeoDataFrame with the school locations and location meta-data"""
 
