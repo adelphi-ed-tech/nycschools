@@ -419,3 +419,33 @@ def search(df, qry):
     results = t.sort_values(by=["match"], ascending=False)
 
     return results
+
+
+def load_hs_directory(ay=2021):
+    """Loads the NYC High School Directory data from the NYC Open Data
+    Portal. This is a thin wrapper around `pd.read_csv()` and
+    requires an internet connection. By default, the most recent directory
+    is returned. For a different academic year, pass the `ay` parameter.
+    Data is available for academic years 2013-2021. The data varies greatly
+    from year to year, so they are not compiled into a single DataFrame.
+
+    Parameters
+    -----------
+    ay : int , default 2021
+         the academic year for the directory data
+
+    Returns
+    --------
+    DataFrame
+        a pandas DataFrame holding the high school directory data
+
+    """
+    urls = config.urls["hs_directory"].data_urls
+    ay = str(ay)
+
+    if ay not in urls.keys():
+        raise ValueError(f"No data for academic year: {ay}")
+    url = urls[ay]
+    df = pd.read_csv(url)
+    df["ay"] = int(ay)
+    return df

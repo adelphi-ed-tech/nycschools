@@ -41,3 +41,15 @@ def test_save_demographics():
     expected_keys = schools.demo.default_cols
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
+
+
+def test_load_hs_directory():
+    def check_year(ay):
+        df = schools.load_hs_directory(ay)
+        assert df is not None, "HS directory data frame is null"
+        n = len(df)
+        assert n > 400, f"We should have about 400 rows, too few found ({n})"
+        assert "dbn" in df, "Missing dbn column"
+    
+    for ay in range(2013, 2021):
+        check_year(ay)

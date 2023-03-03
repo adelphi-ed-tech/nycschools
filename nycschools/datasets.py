@@ -24,6 +24,22 @@ urls = {
     "filename":"nycschools-data.7z",
     "desc": "Download the archive of clean school data from public Google Drive"
   },
+  "hs_directory": {
+    "url": "https://data.cityofnewyork.us/resource/97mf-9njv.csv?$limit=1000000",
+    "desc": "High School Directories",
+    "data_urls": {
+        "2013": "https://data.cityofnewyork.us/resource/u553-m549.csv?$limit=1000000",
+        "2014": "https://data.cityofnewyork.us/resource/n3p6-zve2.csv?$limit=1000000",
+        "2015": "https://data.cityofnewyork.us/resource/by6m-6zpb.csv?$limit=1000000",
+        "2016": "https://data.cityofnewyork.us/resource/7crd-d9xh.csv?$limit=1000000",
+        "2017": "https://data.cityofnewyork.us/resource/s3k6-pzi2.csv?$limit=1000000",
+        "2018": "https://data.cityofnewyork.us/resource/vw9i-7mzq.csv?$limit=1000000",
+        "2019": "https://data.cityofnewyork.us/resource/uq7m-95z8.csv?$limit=1000000",
+        "2020": "https://data.cityofnewyork.us/resource/23z9-6uk9.csv?$limit=1000000",
+        "2021": "https://data.cityofnewyork.us/resource/8b6c-7uty.csv?$limit=1000000"
+    }
+
+  },
   "shsat_apps": {
       "url": "https://data.cityofnewyork.us/browse?q=SHSAT%20Admissions%20Test%20Offers%20By%20Sending%20School&sortBy=relevance",
       "filename": "shsat-applicants.csv",
