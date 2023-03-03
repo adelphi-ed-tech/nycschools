@@ -24,6 +24,15 @@ urls = {
     "filename":"nycschools-data.7z",
     "desc": "Download the archive of clean school data from public Google Drive"
   },
+  "hs_admissions": {
+      "url": "https://data.cityofnewyork.us/browse?q=Selection%20Criteria%20for%20High%20School%20Admissions",
+    "data_urls": {
+        "2018": "",
+        "2019": "",
+        "2020": "",
+        "2021": "https://data.cityofnewyork.us/resource/9gs9-zhxw.csv?$limit=1000000"
+    }
+  },
   "hs_directory": {
     "url": "https://data.cityofnewyork.us/resource/97mf-9njv.csv?$limit=1000000",
     "desc": "High School Directories",
