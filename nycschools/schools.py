@@ -63,6 +63,7 @@ class demo():
         'short_name',
         'ay',
         'year',
+        'school_type',
         'total_enrollment',
         'grade_3k_pk_half_day_full',
         'grade_k',
@@ -341,8 +342,17 @@ def save_demographics(url=config.urls["demographics"].url):
     df["poverty"] = df.apply(lambda row: str_count(row, "poverty", "total_enrollment"), axis = 1)
     df["poverty_1"] = df.apply(lambda row: str_pct(row, "poverty_1", "total_enrollment"), axis = 1)
     df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
+    
     df = df.rename(columns=demo.default_map)
-
+    
+    # calculate school type based on district number
+    print("==================== calc school type====================================")
+    df["school_type"] = None
+    df.loc[(df.district > 0)  & (df.district < 33), "school_type"] = "community"
+    df.loc[df.district == 84, "school_type"] = "charter"
+    df.loc[df.district == 75, "school_type"] = "d75"
+    df.loc[df.district == 79, "school_type"] = "alternative"
+    print(df.school_type.value_counts())
     df = join_loc_data(df)
     df = df[demo.default_cols]
     df.to_csv(__demo_filename, index=False)
