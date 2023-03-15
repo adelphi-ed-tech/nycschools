@@ -175,3 +175,4 @@ school-data
 docs/_build
 *.pickle
 *.doctrees
+chromedriver
