@@ -426,7 +426,7 @@ title="Open an issue"
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
 
 
-<span class="n">__demo_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;school-demographics.csv&quot;</span><span class="p">)</span>
+<span class="n">__demo_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;demographics&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
 <div class="viewcode-block" id="demo"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.schools.demo">[docs]</a><span class="k">class</span> <span class="nc">demo</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The `demo` class bundles some common sets of column names</span>
@@ -465,6 +465,7 @@ title="Open an issue"
         <span class="s1">&#39;short_name&#39;</span><span class="p">,</span>
         <span class="s1">&#39;ay&#39;</span><span class="p">,</span>
         <span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;school_type&#39;</span><span class="p">,</span>
         <span class="s1">&#39;total_enrollment&#39;</span><span class="p">,</span>
         <span class="s1">&#39;grade_3k_pk_half_day_full&#39;</span><span class="p">,</span>
         <span class="s1">&#39;grade_k&#39;</span><span class="p">,</span>
@@ -743,8 +744,16 @@ title="Open an issue"
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poverty&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">str_count</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;poverty&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poverty_1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">str_pct</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;poverty_1&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;economic_need_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">str_pct</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;economic_need_index&quot;</span><span class="p">,</span> <span class="s2">&quot;total_enrollment&quot;</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">demo</span><span class="o">.</span><span class="n">default_map</span><span class="p">)</span>
-
+    
+    <span class="c1"># calculate school type based on district number</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">&lt;</span> <span class="mi">33</span><span class="p">),</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;community&quot;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">84</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;charter&quot;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">75</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;d75&quot;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">79</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;alternative&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">school_type</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">join_loc_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">demo</span><span class="o">.</span><span class="n">default_cols</span><span class="p">]</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">__demo_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -821,6 +830,36 @@ title="Open an issue"
     <span class="n">results</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;match&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="load_hs_directory"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.schools.load_hs_directory">[docs]</a><span class="k">def</span> <span class="nf">load_hs_directory</span><span class="p">(</span><span class="n">ay</span><span class="o">=</span><span class="mi">2021</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads the NYC High School Directory data from the NYC Open Data</span>
+<span class="sd">    Portal. This is a thin wrapper around `pd.read_csv()` and</span>
+<span class="sd">    requires an internet connection. By default, the most recent directory</span>
+<span class="sd">    is returned. For a different academic year, pass the `ay` parameter.</span>
+<span class="sd">    Data is available for academic years 2013-2021. The data varies greatly</span>
+<span class="sd">    from year to year, so they are not compiled into a single DataFrame.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    ay : int , default 2021</span>
+<span class="sd">         the academic year for the directory data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    DataFrame</span>
+<span class="sd">        a pandas DataFrame holding the high school directory data</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;hs_directory&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data_urls</span>
+    <span class="n">ay</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ay</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">urls</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No data for academic year: </span><span class="si">{</span><span class="n">ay</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="p">[</span><span class="n">ay</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ay</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
 </pre></div>
 
               </div>

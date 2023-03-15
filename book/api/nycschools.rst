@@ -4,6 +4,22 @@ nycschools package
 Submodules
 ----------
 
+nycschools.budgets module
+-------------------------
+
+.. automodule:: nycschools.budgets
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nycschools.cep module
+---------------------
+
+.. automodule:: nycschools.cep
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 nycschools.class\_size module
 -----------------------------
 

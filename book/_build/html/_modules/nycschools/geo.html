@@ -425,6 +425,13 @@ title="Open an issue"
 <span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span>
 <span class="n">school_location_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;school_locations.geojson&quot;</span><span class="p">)</span>
 
+
+<div class="viewcode-block" id="load_zipcodes"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_zipcodes">[docs]</a><span class="k">def</span> <span class="nf">load_zipcodes</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the NYC zip code boundaries as a GeoDataFrame from data_dir.</span>
+<span class="sd">    Zip codes are compiled from the NYC Data Portal via the US Post Office&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;zipcodes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
 <div class="viewcode-block" id="load_school_locations"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_school_locations">[docs]</a><span class="k">def</span> <span class="nf">load_school_locations</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a GeoDataFrame with the school locations and location meta-data&quot;&quot;&quot;</span>
 

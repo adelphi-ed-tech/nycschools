@@ -422,19 +422,29 @@ title="Open an issue"
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
 <span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span>
+<span class="n">__class_size_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">__ptr_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename_ptr</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">load_class_size</span><span class="p">():</span>
-    <span class="k">pass</span>
+<div class="viewcode-block" id="load_class_size"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.load_class_size">[docs]</a><span class="k">def</span> <span class="nf">load_class_size</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">__class_size_file</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="get_class_22"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.get_class_22">[docs]</a><span class="k">def</span> <span class="nf">get_class_22</span><span class="p">():</span>
+<div class="viewcode-block" id="load_ptr"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.load_ptr">[docs]</a><span class="k">def</span> <span class="nf">load_ptr</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">__ptr_file</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="get_class_22"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.get_class_22">[docs]</a><span class="k">def</span> <span class="nf">get_class_22</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read class size data for 2022 from</span>
+<span class="sd">       the DOE InfoHub Excel file format.</span>
+<span class="sd">       This data also contains pupil teacher ratios</span>
+<span class="sd">       which are saved in a separate file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data_urls</span><span class="p">[</span><span class="s2">&quot;2022&quot;</span><span class="p">]</span>
     <span class="n">xls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="c1"># first sheet is k-8</span>
     <span class="n">k8</span> <span class="o">=</span> <span class="n">xls</span><span class="p">[</span><span class="s2">&quot;K-8 Avg&quot;</span><span class="p">]</span>
     <span class="n">hs</span> <span class="o">=</span> <span class="n">xls</span><span class="p">[</span><span class="s2">&quot;MS HS Avg&quot;</span><span class="p">]</span>
     <span class="n">ptr</span> <span class="o">=</span> <span class="n">xls</span><span class="p">[</span><span class="s2">&quot;PTR&quot;</span><span class="p">]</span>
+    <span class="n">ptr</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dbn&#39;</span><span class="p">,</span> <span class="s1">&#39;school_name&#39;</span><span class="p">,</span> <span class="s1">&#39;ptr&#39;</span><span class="p">]</span>
+    <span class="n">ptr</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2022</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">k8</span><span class="p">,</span> <span class="n">hs</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2022</span>
@@ -444,7 +454,10 @@ title="Open an issue"
                 <span class="s1">&#39;min_class_size&#39;</span><span class="p">,</span> <span class="s1">&#39;max_class_size&#39;</span><span class="p">,</span> <span class="s1">&#39;dept&#39;</span><span class="p">,</span> <span class="s1">&#39;subject&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;ay&#39;</span><span class="p">]</span>
 
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">ptr</span></div>
 
+
+<div class="viewcode-block" id="get_class_size_year"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.get_class_size_year">[docs]</a><span class="k">def</span> <span class="nf">get_class_size_year</span><span class="p">(</span><span class="n">ay</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">fix_rows</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">min_class_size</span> <span class="o">==</span> <span class="s2">&quot;&lt;15&quot;</span><span class="p">:</span>
             <span class="n">row</span><span class="o">.</span><span class="n">min_class_size</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">students_n</span>
@@ -453,16 +466,31 @@ title="Open an issue"
         <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">grade</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,]:</span>
             <span class="n">row</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s2">&quot;Elementary&quot;</span>
             <span class="n">row</span><span class="o">.</span><span class="n">dept</span> <span class="o">=</span> <span class="s2">&quot;Elementary&quot;</span>
-
-
         <span class="k">return</span> <span class="n">row</span>
 
+    <span class="k">if</span> <span class="p">(</span><span class="n">ay</span> <span class="o">==</span> <span class="mi">2022</span><span class="p">):</span>
+        <span class="n">df</span><span class="p">,</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">get_class_22</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="n">ptr</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">__ptr_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dbn&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ay</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;number_of_students&quot;</span><span class="p">:</span> <span class="s2">&quot;students_n&quot;</span><span class="p">,</span> 
+            <span class="s2">&quot;grade_level&quot;</span><span class="p">:</span> <span class="s2">&quot;grade&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;number_of_classes&quot;</span><span class="p">:</span><span class="s2">&quot;classes_n&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;minimum_class_size&quot;</span><span class="p">:</span><span class="s2">&quot;min_class_size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;maximum_class_size&quot;</span><span class="p">:</span><span class="s2">&quot;max_class_size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;average_class_size&quot;</span><span class="p">:</span><span class="s2">&quot;avg_class_size&quot;</span>
+            <span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fix_rows</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">ptr</span></div>
+    <span class="k">return</span> <span class="n">df</span></div>
 
 
 <div class="viewcode-block" id="get_class_size"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.get_class_size">[docs]</a><span class="k">def</span> <span class="nf">get_class_size</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads and cleans class size data for each year that it is available</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get class size data from the web and cleans class </span>
+<span class="sd">    size data for each year that it is available</span>
 <span class="sd">    in the `datasets`. Currently data is available for each year from</span>
 <span class="sd">    2009-2021 excluding the 2020-2021 school year.</span>
 
@@ -474,22 +502,14 @@ title="Open an issue"
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">years</span> <span class="o">=</span><span class="p">[]</span>
-    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="o">.</span><span class="n">class_size</span><span class="o">.</span><span class="n">data_urls</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">load_class_size</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">ay</span><span class="p">,</span> <span class="n">url</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
-        <span class="n">years</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ay</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data_urls</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">get_class_size_year</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ay</span><span class="p">),</span> <span class="n">url</span><span class="p">)</span>
+        <span class="n">years</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;class_size.csv&quot;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="load_class_size"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.class_size.load_class_size">[docs]</a><span class="k">def</span> <span class="nf">load_class_size</span><span class="p">(</span><span class="n">ay</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-    <span class="n">boros</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;K&quot;</span><span class="p">:</span><span class="s2">&quot;Brooklyn&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span><span class="s2">&quot;Bronx&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="s2">&quot;Queens&quot;</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;Staten Island&quot;</span><span class="p">}</span>
-
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ay</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">demo</span><span class="o">.</span><span class="n">default_map</span><span class="p">)</span>
-
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">__class_size_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
+
+
 
 </pre></div>
 
