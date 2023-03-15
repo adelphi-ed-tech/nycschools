@@ -173,8 +173,8 @@ def full_release(c):
     print("Rebuilding the documentation.")
     rebuild_docs(c)
     
-    # print("Pushing to pypi.")
-    # push(c, production=True)
+    print("Pushing to pypi.")
+    push(c, production=True)
 
-    # print("Tagging the release.")
-    # tag(c)
+    print("Tagging the release.")
+    tag(c)
