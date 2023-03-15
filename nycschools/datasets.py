@@ -19,6 +19,17 @@
 # these are the URLs into the open data portals
 # update when new datasets are released
 urls = {
+  "galaxy": {
+    "url": "https://www.nycenet.edu/offices/d_chanc_oper/budget/dbor/galaxy/galaxyallocation/default.aspx",
+    "desc": "Galaxy Budget Summaries",
+    "url_stem": "https://www.nycenet.edu/offices/d_chanc_oper/budget/dbor/galaxy/galaxybudgetsummaryto/default.aspx?DDBSSS_INPUT=",
+    "filename": "galaxy-budget.csv"
+  },
+  "cep": {
+    "url": "https://www.iplanportal.com/",
+    "desc": "Capital Expenditure Plan",
+    "url_stem": "https://www.nycenet.edu/documents/oaosi/cep/2022-23/"
+  },
   "school-data-archive": {
     "url": "https://drive.google.com/uc?export=download&id=1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF",
     "filename":"nycschools-data.7z",
@@ -78,7 +89,8 @@ urls = {
         "2021": "https://data.cityofnewyork.us/resource/sgr7-hhwp.csv?$limit=1000000",
     },
     "filename":"school-class-size.csv",
-    "desc": "Average class size by school and academic year"
+    "filename_ptr":"ptr.csv",
+    "desc": "Average class size by school and academic year and pupil teacher ratio for 2022-23"
   },
   "school_geo": {
     "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
