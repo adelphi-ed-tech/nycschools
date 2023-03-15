@@ -24,7 +24,7 @@ from . import geo
 from . import config
 
 
-__demo_filename = os.path.join(config.data_dir, "school-demographics.csv")
+__demo_filename = os.path.join(config.data_dir, config.urls["demographics"].filename)
 
 class demo():
     """The `demo` class bundles some common sets of column names
@@ -346,7 +346,6 @@ def save_demographics(url=config.urls["demographics"].url):
     df = df.rename(columns=demo.default_map)
     
     # calculate school type based on district number
-    print("==================== calc school type====================================")
     df["school_type"] = None
     df.loc[(df.district > 0)  & (df.district < 33), "school_type"] = "community"
     df.loc[df.district == 84, "school_type"] = "charter"
