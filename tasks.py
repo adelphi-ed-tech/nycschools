@@ -28,12 +28,6 @@ def with_env(func):
     return wrapper
 
 
-@with_env
-def dummy(c, foo=None, bar=None):
-    """Dummy task."""
-    print("dummy task")
-
-
 @task
 def archive(c):
     """Create a .7z archive of all of the files in the data directory."""
@@ -104,25 +98,6 @@ def book(c, clean=False, docs=False):
         c.run("cp -r book/_build/html/* docs")
         c.run("touch docs/.nojekyll")
 
-
-@task
-def toc(c):
-    """Generate table of content files for each
-    folder in book/nb."""
-
-    sections = sorted(os.listdir("book/nb"))
-
-    for section in sections:
-        if not os.path.isdir(f"book/nb/{section}"):
-            continue
-        print(f"""
-  - caption: {section[3:].replace("-", " ")}
-    chapters:""")
-        files = os.listdir(f"book/nb/{section}")
-        files = ["index.mb"] + sorted([f for f in files if f.endswith(".ipynb") and f[0] not in "._"])
-        for f in files:
-            print(f"    - file: nb/{section}/{f}")
-
 @task
 def install_from_testpypi(c):
     """Install the package from testpypi but using real pypi for dependencies."""
@@ -169,3 +144,37 @@ def download_data(c):
     """Download the data from the NYC Open Data Portal."""
     print("Downloading data to local directory 'school-data'")
     dataloader.download_archive("school-data")
+
+
+@task
+def rebuild_docs(c):
+    """Rebuild the documentation."""
+    
+    print("Rebuilding the API docs.")
+    api(c, clean=True)
+    print("Rebuilding the documentation.")
+    book(c, clean=True, docs=True)
+
+
+@task
+def full_release(c):
+    """Perform a full release of the package."""
+    print("Performing a full release of the package.")
+
+    print("Running tests.")
+    test(c)
+
+    print("Building the package.")
+    build(c)
+
+    print("Creating archive with latest data.")
+    archive(c)
+
+    print("Rebuilding the documentation.")
+    rebuild_docs(c)
+    
+    # print("Pushing to pypi.")
+    # push(c, production=True)
+
+    # print("Tagging the release.")
+    # tag(c)
