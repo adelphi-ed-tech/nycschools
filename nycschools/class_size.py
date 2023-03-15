@@ -20,19 +20,29 @@ import pandas as pd
 
 from . import config
 urls = config.urls
+__class_size_file = os.path.join(config.data_dir, config.urls["class_size"].filename)
+__ptr_file = os.path.join(config.data_dir, config.urls["class_size"].filename_ptr)
 
 def load_class_size():
-    pass
+    return pd.read_csv(__class_size_file)
 
-def get_class_22():
+def load_ptr():
+    return pd.read_csv(__ptr_file)
 
+def get_class_22(url):
+    """Read class size data for 2022 from
+       the DOE InfoHub Excel file format.
+       This data also contains pupil teacher ratios
+       which are saved in a separate file.
+    """
 
-    url = urls["class_size"].data_urls["2022"]
     xls = pd.read_excel(url, sheet_name=None)
     # first sheet is k-8
     k8 = xls["K-8 Avg"]
     hs = xls["MS HS Avg"]
     ptr = xls["PTR"]
+    ptr.columns = ['dbn', 'school_name', 'ptr']
+    ptr["ay"] = 2022
 
     df = pd.concat([k8, hs], axis=0)
     df["ay"] = 2022
@@ -42,7 +52,10 @@ def get_class_22():
                 'min_class_size', 'max_class_size', 'dept', 'subject',
                 'ay']
 
+    return df, ptr
 
+
+def get_class_size_year(ay, url):
     def fix_rows(row):
         if row.min_class_size == "<15":
             row.min_class_size = row.students_n
@@ -51,16 +64,31 @@ def get_class_22():
         if row.grade in ['K', 1, 2, 3, 4, 5,]:
             row.subject = "Elementary"
             row.dept = "Elementary"
-
-
         return row
 
+    if (ay == 2022):
+        df, ptr = get_class_22(url)
+
+        ptr.to_csv(__ptr_file, index=False)
+    else:
+        df = pd.read_csv(url, dtype={'dbn': str})
+        df["ay"] = ay
+        df.rename(columns={
+            "number_of_students": "students_n", 
+            "grade_level": "grade",
+            "number_of_classes":"classes_n",
+            "minimum_class_size":"min_class_size",
+            "maximum_class_size":"max_class_size",
+            "average_class_size":"avg_class_size"
+            }, inplace=True)
+        
     df = df.apply(fix_rows, axis=1)
-    return df, ptr
+    return df
 
 
 def get_class_size():
-    """Loads and cleans class size data for each year that it is available
+    """Get class size data from the web and cleans class 
+    size data for each year that it is available
     in the `datasets`. Currently data is available for each year from
     2009-2021 excluding the 2020-2021 school year.
 
@@ -72,20 +100,12 @@ def get_class_size():
 
     """
     years =[]
-    for url in urls.class_size.data_urls:
-        df = load_class_size(url.ay, url.url)
-        years.append(df)
+    for ay, url in urls["class_size"].data_urls.items():
+        data = get_class_size_year(int(ay), url)
+        years.append(data)
     df = pd.concat(years)
-    df.to_csv(os.path.join(config.data_dir, "class_size.csv"), index=False)
-
-def load_class_size(ay, url):
-    df = pd.read_csv(url)
-
-    boros = {"K":"Brooklyn", "X":"Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
-
-    df["ay"] = ay
-
-    df = df.rename(columns=demo.default_map)
-
+    df.to_csv(__class_size_file, index=False)
     return df
+
+
 
