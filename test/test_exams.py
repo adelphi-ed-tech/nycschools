@@ -52,9 +52,26 @@ def test_load_math_ela_wide():
     assert len(ela_cols) > 0
     assert len(ela_cols) == len(math_cols)
 
+
+
+def check_regents(df):
+    expected_cols = {'dbn', 'school_type', 'school_level', 'regents_exam', 'year',
+                     'category', 'number_tested', 'mean_score', 'below_65_n', 'below_65_pct',
+                     'above_64_n', 'above_64_pct', 'above_79_n', 'above_79_pct',
+                     'college_ready_n', 'college_ready_pct', 'test_year', 'ay'}
+    assert df is not None, "data frame is null"
+    assert set(df.columns) == expected_cols, "missing expected columns"
+    assert len(df.regents_exam.unique()) > 8, "not enough regents exams"
+
+def test_load_regents_excel():
+    df = exams.load_regents_excel()
+    check_regents(df)
+
+
 def test_load_regents():
     df = exams.load_regents()
-    check_state_test(df)
+    check_regents(df)
+
 
 
 
