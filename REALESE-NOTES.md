@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+March 15: Version 1.14.1
+------------------------
+- bug fixes for regents exams
+- added new data file for regents to G Drive
+
 March 15: Version 1.14
 ----------------------
 - Added Data
