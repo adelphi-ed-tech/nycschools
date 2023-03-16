@@ -36,8 +36,7 @@ class demo():
 
     df = schools.load_school_demographics()
     basic = df[schools.demo.short_cols]
-    basic
-
+    basic.head()
     """
     raw_cols = [
        'dbn', 'school_name', 'year', 'total_enrollment',
@@ -168,7 +167,6 @@ class demo():
         'economic_need_index':'eni_pct'
     }
 
-
 def str_pct(row, pct_col, enroll_col):
     """generic function to take percentages represented as Strings and convert to real
     expects data to look like '84.33%', 'Above 95%', 'Below 5%'
@@ -177,6 +175,7 @@ def str_pct(row, pct_col, enroll_col):
     pct = row[pct_col][:-1]
     # just call the population size `n`
     n = row[enroll_col]
+
     try:
         pct = float(pct) / 100
     except:
@@ -186,6 +185,7 @@ def str_pct(row, pct_col, enroll_col):
             pct = n * .04 / n
         else:
             print(f"Exception in {col}: {row['dbn']} - {row['year']}. Value: {pct}")
+
     return float(pct)
 
 def str_count(row, col, enroll_col):
@@ -317,6 +317,7 @@ def save_demographics(url=config.urls["demographics"].url):
         in the data portal
 
     """
+
     df = pd.read_csv(url)
 
     boros = {"K":"Brooklyn", "X":"Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
@@ -351,7 +352,6 @@ def save_demographics(url=config.urls["demographics"].url):
     df.loc[df.district == 84, "school_type"] = "charter"
     df.loc[df.district == 75, "school_type"] = "d75"
     df.loc[df.district == 79, "school_type"] = "alternative"
-    print(df.school_type.value_counts())
     df = join_loc_data(df)
     df = df[demo.default_cols]
     df.to_csv(__demo_filename, index=False)
