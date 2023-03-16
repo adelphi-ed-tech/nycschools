@@ -20,7 +20,7 @@ import wget
 import os.path
 import zipfile
 
-from . import config
+from . import config, nysed
 urls = config.urls
 
 
@@ -102,7 +102,7 @@ def load_ela():
     no local file is available, itt will loads the Excel data file for from the
     NYC Data Portal and then cobmines the results with charter school data into
     a `DataFrame`. _This can be slow_.
-    @return `DataFrame`
+
     """
     filename = os.path.join(config.data_dir, urls["nyc_ela"].filename)
     try:
@@ -119,7 +119,6 @@ def load_math():
     no local file is available, itt will loads the Excel data file for from the
     NYC Data Portal and then cobmines the results with charter school data into
     a `DataFrame`. _This can be slow_.
-    @return `DataFrame`
     """
     filename = os.path.join(config.data_dir, urls["nyc_math"].filename)
     try:
@@ -134,20 +133,9 @@ def load_regents():
     Loads the New York State Regents exam scores for all categories.
     @return `DataFrame`
     """
-    filename = os.path.join(config.data_dir, urls["nyc_math"].filename)
-    try:
-        df = pd.read_csv(filename, low_memory=False)
-    except FileNotFoundError:
-        df = load_math_excel()
-    return df.sort_values(by=["dbn", "ay"])
-    if refresh:
-        return load_regents_excel()
+    filename = os.path.join(config.data_dir, urls["nyc_regents"].filename)
+    return pd.read_csv(filename, low_memory=False)
 
-    try:
-        # try to load it locally to save time
-        return pd.read_csv("regents-exams.csv")
-    except FileNotFoundError:
-        return load_regents_excel()
 
 # ==============================================================================
 
@@ -185,7 +173,7 @@ def charter_cols(data):
 
 
 def load_regents_excel():
-    url = ""
+    url = urls["nyc_regents"].url
     xls = pd.read_excel(url, sheet_name=None)
     cols = [
         'School DBN',
@@ -239,7 +227,40 @@ def load_regents_excel():
     df["test_year"] = df["year"]
     df["ay"] = df["year"] - 1
     df = df.sort_values(by=["dbn","ay","regents_exam","category"])
-    df.to_csv("regents-exams.csv", index=False)
+    filename = os.path.join(config.data_dir, urls["nyc_regents"].filename)
+    df.to_csv(filename, index=False)
+    return df
+
+
+def read_nys_exam_excel(url):
+    xls = pd.read_excel(url, sheet_name=None)
+    sheet_names = ['All', 'SWD', 'Ethnicity', 'Gender', 'Econ Status', 'ELL']
+
+    data = [xls[sheet] for sheet in sheet_names]
+    df = pd.concat(data, ignore_index=True)
+
+    cols = ['DBN', 'Grade', 'Year', 'Category', 'Number Tested', 'Mean Scale Score',
+            '# Level 1', '% Level 1', '# Level 2', '% Level 2', '# Level 3',
+            '% Level 3', '# Level 4', '% Level 4', '# Level 3+4', '% Level 3+4']
+
+    new_cols = ['dbn', 'grade', 'year', 'category', 'number_tested',
+                'mean_scale_score', 'level_1_n', 'level_1_pct', 'level_2_n', 'level_2_pct',
+                'level_3_n', 'level_3_pct', 'level_4_n', 'level_4_pct', 'level_3_4_n',
+                'level_3_4_pct']
+
+    df = df[cols]
+
+    df.columns = new_cols
+
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+        if col.endswith("pct"):
+            df[col] = df[col] / 100
+
+    df["test_year"] = df["year"]
+    df["ay"] = df["year"] - 1
+    del df["year"]
+    df["charter"] = 0
     return df
 
 
