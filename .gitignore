@@ -163,6 +163,12 @@ yarn-error.log*
 *.tar
 *.tgz
 *.rar
+*.csv
+*.xlsx
+*.xls
+*.gz
+*.bz2
+*.xz
 
 # nycschools data_dir
 school-data
