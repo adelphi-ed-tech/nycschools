@@ -172,6 +172,7 @@ yarn-error.log*
 
 # nycschools data_dir
 school-data
+_data
 
 # visual studio
 *.code-workspace
