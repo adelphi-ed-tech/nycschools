@@ -182,3 +182,4 @@ docs/_build
 *.pickle
 *.doctrees
 chromedriver
+/art
