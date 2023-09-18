@@ -1,5 +1,5 @@
 # NYC School Data
-# Copyright (C) 2022. Matthew X. Curinga
+# Copyright (C) 2022-2023. Matthew X. Curinga
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE as published by
@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # ==============================================================================
 import os
+import warnings
 import os.path
 from types import SimpleNamespace
 from .datasets import urls as __urls
@@ -65,8 +66,18 @@ To see and change these settings for your installation, run `python -m nycschool
         config["data_dir"] = local
     
     if not os.path.exists(config["data_dir"]):
-        os.mkdir(config["data_dir"])
-            
+        no_data = f"""The data directory {config["data_dir"]} does not exist.
+Run python -m nycschools.dataloader to download the data.
+Please visit documentation on how to download the data at:
+https://adelphi-ed-tech.github.io/nycschools/install.html
+
+If you have downloaded the data and are seeing this warning, you may
+need to set the environment variable NYC_SCHOOLS_DATA_DIR to the
+path to the data directory.
+"""
+
+        warnings.warn(no_data)
+
     config["urls"] = __read_urls()
 
     return SimpleNamespace(**config)

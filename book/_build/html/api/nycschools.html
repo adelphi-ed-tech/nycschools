@@ -857,8 +857,7 @@ category from the NYC Open Data Portal. Columns are re-named for consistency.</p
 If a local .csv data file exists, it will return results from that file. If
 no local file is available, itt will loads the Excel data file for from the
 NYC Data Portal and then cobmines the results with charter school data into
-a <cite>DataFrame</cite>. _This can be <a href="#id1"><span class="problematic" id="id2">slow_</span></a>.
-&#64;return <cite>DataFrame</cite></p>
+a <cite>DataFrame</cite>. _This can be <a href="#id1"><span class="problematic" id="id2">slow_</span></a>.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -876,8 +875,7 @@ data api.</p>
 If a local .csv data file exists, it will return results from that file. If
 no local file is available, itt will loads the Excel data file for from the
 NYC Data Portal and then cobmines the results with charter school data into
-a <cite>DataFrame</cite>. _This can be <a href="#id3"><span class="problematic" id="id4">slow_</span></a>.
-&#64;return <cite>DataFrame</cite></p>
+a <cite>DataFrame</cite>. _This can be <a href="#id3"><span class="problematic" id="id4">slow_</span></a>.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -916,6 +914,11 @@ data api.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.exams.load_regents_excel">
 <span class="sig-name descname"><span class="pre">load_regents_excel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_regents_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_regents_excel" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.read_nys_exam_excel">
+<span class="sig-name descname"><span class="pre">read_nys_exam_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#read_nys_exam_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.read_nys_exam_excel" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -1063,7 +1066,7 @@ to make it easier to work with the school demographic <cite>DataFrame</cite></p>
 <p>from nycschools import schools</p>
 <p>df = schools.load_school_demographics()
 basic = df[schools.demo.short_cols]
-basic</p>
+basic.head()</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nycschools.schools.demo.core_cols">
 <span class="sig-name descname"><span class="pre">core_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'beds',</span> <span class="pre">'district',</span> <span class="pre">'geo_district',</span> <span class="pre">'boro',</span> <span class="pre">'school_name',</span> <span class="pre">'ay',</span> <span class="pre">'total_enrollment',</span> <span class="pre">'female_n',</span> <span class="pre">'female_pct',</span> <span class="pre">'male_n',</span> <span class="pre">'male_pct',</span> <span class="pre">'asian_n',</span> <span class="pre">'asian_pct',</span> <span class="pre">'black_n',</span> <span class="pre">'black_pct',</span> <span class="pre">'hispanic_n',</span> <span class="pre">'hispanic_pct',</span> <span class="pre">'white_n',</span> <span class="pre">'white_pct',</span> <span class="pre">'swd_n',</span> <span class="pre">'swd_pct',</span> <span class="pre">'ell_n',</span> <span class="pre">'ell_pct',</span> <span class="pre">'poverty_n',</span> <span class="pre">'poverty_pct',</span> <span class="pre">'eni_pct']</span></em><a class="headerlink" href="#nycschools.schools.demo.core_cols" title="Permalink to this definition">#</a></dt>

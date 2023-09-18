@@ -401,7 +401,7 @@ title="Open an issue"
                 
   <h1>Source code for nycschools</h1><div class="highlight"><pre>
 <span></span><span class="c1"># NYC School Data</span>
-<span class="c1"># Copyright (C) 2022. Matthew X. Curinga</span>
+<span class="c1"># Copyright (C) 2022-2023. Matthew X. Curinga</span>
 <span class="c1">#</span>
 <span class="c1"># This program is free software: you can redistribute it and/or modify</span>
 <span class="c1"># it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE as published by</span>
@@ -417,6 +417,7 @@ title="Open an issue"
 <span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <span class="c1"># ==============================================================================</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
 <span class="kn">from</span> <span class="nn">.datasets</span> <span class="kn">import</span> <span class="n">urls</span> <span class="k">as</span> <span class="n">__urls</span>
@@ -467,8 +468,18 @@ title="Open an issue"
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">])</span>
-            
+        <span class="n">no_data</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;The data directory </span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> does not exist.</span>
+<span class="s2">Run python -m nycschools.dataloader to download the data.</span>
+<span class="s2">Please visit documentation on how to download the data at:</span>
+<span class="s2">https://adelphi-ed-tech.github.io/nycschools/install.html</span>
+
+<span class="s2">If you have downloaded the data and are seeing this warning, you may</span>
+<span class="s2">need to set the environment variable NYC_SCHOOLS_DATA_DIR to the</span>
+<span class="s2">path to the data directory.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">no_data</span><span class="p">)</span>
+
     <span class="n">config</span><span class="p">[</span><span class="s2">&quot;urls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">__read_urls</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span></div>

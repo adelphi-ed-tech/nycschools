@@ -574,14 +574,29 @@ title="Open an issue"
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show the path to the `data_dir` where school data is stored.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="si">{</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">80</span><span class="si">}</span>
-<span class="s2">Data directory:</span>
-<span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="si">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Default data directory: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">prompt_data</span><span class="p">():</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path to the data directory (or &lt;enter&gt; for default): &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+        <span class="c1"># check if it exists, if not create it, catch errors and re-prompt</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not create directory </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">prompt_data</span><span class="p">()</span>
+        <span class="c1"># check if it&#39;s writeable</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">W_OK</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot write to directory </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Either change file permissions or choose a different directory.&quot;</span><span class="p">)</span>
+            <span class="n">prompt_data</span><span class="p">()</span>
+    
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">prompt_data</span><span class="p">()</span>
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">download_archive</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data successfully saved to: </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<span class="s2">Change this by setting the environment variable:</span>
-<span class="s2">NYC_SCHOOLS_DATA_DIR</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

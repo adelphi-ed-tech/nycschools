@@ -438,8 +438,7 @@ title="Open an issue"
 
 <span class="sd">    df = schools.load_school_demographics()</span>
 <span class="sd">    basic = df[schools.demo.short_cols]</span>
-<span class="sd">    basic</span>
-
+<span class="sd">    basic.head()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">raw_cols</span> <span class="o">=</span> <span class="p">[</span>
        <span class="s1">&#39;dbn&#39;</span><span class="p">,</span> <span class="s1">&#39;school_name&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;total_enrollment&#39;</span><span class="p">,</span>
@@ -570,7 +569,6 @@ title="Open an issue"
         <span class="s1">&#39;economic_need_index&#39;</span><span class="p">:</span><span class="s1">&#39;eni_pct&#39;</span>
     <span class="p">}</span></div>
 
-
 <div class="viewcode-block" id="str_pct"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.schools.str_pct">[docs]</a><span class="k">def</span> <span class="nf">str_pct</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">pct_col</span><span class="p">,</span> <span class="n">enroll_col</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;generic function to take percentages represented as Strings and convert to real</span>
 <span class="sd">    expects data to look like &#39;84.33%&#39;, &#39;Above 95%&#39;, &#39;Below 5%&#39;</span>
@@ -579,6 +577,7 @@ title="Open an issue"
     <span class="n">pct</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">pct_col</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="c1"># just call the population size `n`</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">enroll_col</span><span class="p">]</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="n">pct</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">pct</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
     <span class="k">except</span><span class="p">:</span>
@@ -588,6 +587,7 @@ title="Open an issue"
             <span class="n">pct</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mf">.04</span> <span class="o">/</span> <span class="n">n</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception in </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;dbn&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">. Value: </span><span class="si">{</span><span class="n">pct</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">pct</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="str_count"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.schools.str_count">[docs]</a><span class="k">def</span> <span class="nf">str_count</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">enroll_col</span><span class="p">):</span>
@@ -719,6 +719,7 @@ title="Open an issue"
 <span class="sd">        in the data portal</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
     <span class="n">boros</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;K&quot;</span><span class="p">:</span><span class="s2">&quot;Brooklyn&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span><span class="s2">&quot;Bronx&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="s2">&quot;Queens&quot;</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;Staten Island&quot;</span><span class="p">}</span>
@@ -753,7 +754,6 @@ title="Open an issue"
     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">84</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;charter&quot;</span>
     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">75</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;d75&quot;</span>
     <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">district</span> <span class="o">==</span> <span class="mi">79</span><span class="p">,</span> <span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;alternative&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">school_type</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">join_loc_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">demo</span><span class="o">.</span><span class="n">default_cols</span><span class="p">]</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">__demo_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>

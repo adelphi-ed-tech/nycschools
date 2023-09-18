@@ -172,14 +172,29 @@ def main():
     """Show the path to the `data_dir` where school data is stored.
 
     """
-    print(f"""
-{"*"*80}
-Data directory:
-{config.data_dir}
+    print(f"Default data directory: {config.data_dir}")
+    
+    data_dir = ""
+    def prompt_data():
+        input("Enter the path to the data directory (or <enter> for default): ")
+        if len(data_dir) > 0:
+            config.data_dir = data_dir
+        # check if it exists, if not create it, catch errors and re-prompt
+        try:
+            os.makedirs(config.data_dir, exist_ok=True)
+        except:
+            print(f"Could not create directory {config.data_dir}")
+            prompt_data()
+        # check if it's writeable
+        if not os.access(config.data_dir, os.W_OK):
+            print(f"Cannot write to directory {config.data_dir}")
+            print("Either change file permissions or choose a different directory.")
+            prompt_data()
+    
+    data_dir = prompt_data()
+    data_dir = download_archive(data_dir)
+    print(f"Data successfully saved to: {data_dir}")
 
-Change this by setting the environment variable:
-NYC_SCHOOLS_DATA_DIR
-""")
 
 
 if __name__ == "__main__":

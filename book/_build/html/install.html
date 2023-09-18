@@ -424,12 +424,52 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-nycschools-from-pypi">
+   Install
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nycschools
+    </span>
+   </code>
+   from pypi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-variables">
+   Configure environment variables
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -441,6 +481,35 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-nycschools-from-pypi">
+   Install
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nycschools
+    </span>
+   </code>
+   from pypi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-variables">
+   Configure environment variables
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -451,29 +520,87 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="installing-locally">
 <h1>Installing Locally<a class="headerlink" href="#installing-locally" title="Permalink to this headline">#</a></h1>
 <p>You can install <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> for use in your own Python projects just as you would any other library, however this package also requires a local data directory to store data files.</p>
+<section id="install-nycschools-from-pypi">
+<h2>Install <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> from pypi<a class="headerlink" href="#install-nycschools-from-pypi" title="Permalink to this headline">#</a></h2>
 <p>First, optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install the package with <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nycschools
 </pre></div>
 </div>
-<p>Download the data files to your local project folder (where you will run you code from):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a local data dir</span>
-mkdir<span class="w"> </span>school-data
-
-<span class="c1"># install download and extract the 7z archive</span>
-
-7z<span class="w"> </span>x<span class="w"> </span>nycschools-data.7z<span class="w"> </span>-o./school-data/
+</section>
+<section id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<p>Download the data files by running the interactive setup script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>nycschools.dataloader
 </pre></div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can install the data in any directory available with read/write access to your python
-programs by setting and ENV variable to the full path to the <code class="docutils literal notranslate"><span class="pre">data_dir</span></code></p>
-<p>For example:</p>
-<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=/opt/data/nycschools</span></code></p>
-<p>If you are using the library in a Jupyter Notebook, you should set either export this var
-or set it in your Notebook using <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env">the <code class="docutils literal notranslate"><span class="pre">env</span></code> magic command</a>, like this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">%env</span> <span class="pre">NYC_SCHOOLS_DATA_DIR=~/Documents/mydataproject/school-data</span></code></p>
+</section>
+<section id="configure-environment-variables">
+<h2>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">#</a></h2>
+<p>You need to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable so
+that python knows where to find the data. Where the instructions
+say <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> replace it with the full path to the
+directory where you saved the data.</p>
+<p>For example, if your username is <code class="docutils literal notranslate"><span class="pre">mxc</span></code> and you saved it into a folder
+called<code class="docutils literal notranslate"><span class="pre">data</span></code> in your home folder, the full path would be something
+like <code class="docutils literal notranslate"><span class="pre">C:\Users\mxc\data\school-data</span></code> on Windows or
+<code class="docutils literal notranslate"><span class="pre">/Users/mxc/data/school-data</span></code> on Mac.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fb349410-a57e-4ba3-b8ef-dc47f2ee9eec" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab1" for="fb349410-a57e-4ba3-b8ef-dc47f2ee9eec">
+Mac</label><div class="sd-tab-content docutils">
+<p>On a Mac, you can set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment
+variable persistently by adding it to your
+<code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> file. Open a terminal window, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export NYC_SCHOOLS_DATA_DIR=/path/to/data&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+</pre></div>
 </div>
+<p>Load the new settings by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bash_profile
+</pre></div>
+</div>
+</div>
+<input id="370d12bc-599a-4a07-8eb9-3b8f12474b9f" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab2" for="370d12bc-599a-4a07-8eb9-3b8f12474b9f">
+Windows</label><div class="sd-tab-content docutils">
+<p>On Windows, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
+you must use the System Properties window. Here are the steps:</p>
+<ol class="simple">
+<li><p>Right-click on ‘This PC’ or ‘My Computer’ and choose ‘Properties’.</p></li>
+<li><p>Click on ‘Advanced system settings’.</p></li>
+<li><p>Click on the ‘Environment Variables’ button.</p></li>
+<li><p>Under the ‘System variables’ section, click ‘New…’ to create a new system-wide environment variable, or create a user environment variable under the “User variables” section.</p></li>
+<li><p>Set the ‘Variable name’ to <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> and the ‘Variable value’ to the path to your data directory (e.g., <code class="docutils literal notranslate"><span class="pre">C:\path\to\data</span></code>).</p></li>
+<li><p>Click ‘OK’ to close each window.</p></li>
+</ol>
+<p>This will set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable permanently for the system or user, depending on where you added it.</p>
+</div>
+<input id="bbf5b6cd-a0d1-4831-8061-6913c93c83ae" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab4" for="bbf5b6cd-a0d1-4831-8061-6913c93c83ae">
+Jupyter Notebook</label><div class="sd-tab-content docutils">
+<p>If you wish to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable
+directly in a Jupyter Notebook (either because Jupyter is not
+reading the system variable, or you want to set or change it for one Noteboo),
+you can do so using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env"><strong>env</strong> magic command</a>. At the top of your Notebook, in a code cell, run and execute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">NYC_SCHOOLS_DATA_DIR</span><span class="o">=~/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<input id="1ce202b2-8cad-447f-a85a-6fd07afcafda" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab3" for="1ce202b2-8cad-447f-a85a-6fd07afcafda">
+Linux</label><div class="sd-tab-content docutils">
+<p>On Linux, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
+you can add the export command to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> or <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file:</p>
+<p>To add it to .bashrc (for example), open a terminal window, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export NYC_SCHOOLS_DATA_DIR=/path/to/data&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>Load the new settings by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
