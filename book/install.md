@@ -26,12 +26,38 @@ directory where you saved the data.
 
 For example, if your username is `mxc` and you saved it into a folder
 called`data` in your home folder, the full path would be something
-like `C:\Users\mxc\data\school-data` on Windows or
-`/Users/mxc/data/school-data` on Mac.
+like `C:\Users\mxc\data\school-data` on Windows,
+`/Users/mxc/data/school-data` on Mac, and `/home/mxc/data/school-data` on GNU/Linux.
 
 ::::{tab-set}
-:::{tab-item} Mac
+:::{tab-item} Virtual Environment
 :sync: tab1
+The most reliable and recommended way to set the environment variable is
+to add it to the activation script of your virtual environment, and then
+use that venv for executing your python scripts or notebooks.
+
+To find the activation script launch a python shell or Jupyter Notebook and execute this code:
+
+```python
+import os
+
+venv_path = os.environ.get('VIRTUAL_ENV')
+if venv_path:
+    unix_path = os.path.join(venv_path, 'bin', 'activate')
+    win_path = os.path.join(venv_path)
+    print(f"The activation script is located at: {activation_script_path}")
+else:
+    print("Not running inside a virtual environment")
+```
+
+
+
+```bash
+source ~/.bashrc
+```
+:::
+:::{tab-item} Mac
+:sync: tab2
 On a Mac, you can set the `NYC_SCHOOLS_DATA_DIR` environment 
 variable persistently by adding it to your 
 `.bash_profile` file. Open a terminal window, then run:
@@ -44,7 +70,7 @@ source ~/.bash_profile
 ```
 :::
 :::{tab-item} Windows
-:sync: tab2
+:sync: tab3
 On Windows, to set the `NYC_SCHOOLS_DATA_DIR` environment variable persistently, 
 you must use the System Properties window. Here are the steps:
 
@@ -61,14 +87,15 @@ This will set the `NYC_SCHOOLS_DATA_DIR` environment variable permanently for th
 :sync: tab4
 If you wish to set the `NYC_SCHOOLS_DATA_DIR` environment variable
 directly in a Jupyter Notebook (either because Jupyter is not
-reading the system variable, or you want to set or change it for one Noteboo),
+reading the system variable, or you want to set or change it for one Notebook),
 you can do so using the [**env** magic command](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env). At the top of your Notebook, in a code cell, run and execute:
 ```python
 %env NYC_SCHOOLS_DATA_DIR=/path/to/data
 ```
+_Note: you will have to add this to each Notebook file._
 :::
 :::{tab-item} Linux
-:sync: tab3
+:sync: tab5
 On Linux, to set the `NYC_SCHOOLS_DATA_DIR` environment variable persistently, 
 you can add the export command to your `.bashrc` or `.profile` file:
 

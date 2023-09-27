@@ -29,9 +29,10 @@ If `invoke` isn't working for you or you are setting up on windows, you can get 
 2. Move into the project directory.
 3. Create a `venv` for your project.
 4. Install the project requirements with `pip` or `conda`. These are found in `requirements.txt`
-5. Install the library from source in development mode: `pip install -e nycschools`
+5. Install the library from source in development mode: `pip install -e .[dev]`
 6. Download the data from: <https://drive.google.com/file/d/1I35Wr1-UObcPm9CYSgqPUa8JOzOuAQBF/view?usp=share_link>
 7. Create a new folder called `nyc-schools` and extract the contents of  `nycschools-data.7z` into `nyc-schools`
+8. Follow the directions from the [regular install](install.md) to configure environment variables.
 
 
 
