@@ -17,9 +17,12 @@ import os
 import os.path
 import py7zr
 import requests
+import sys
+import warnings
+from yaspin import yaspin
+from yaspin.spinners import Spinners
 
 from . import config
-import warnings
 
 def get_data_dir():
     return config.data_dir
@@ -128,7 +131,7 @@ def contains_data_files(path):
     warnings.warn(f"""Some data files are missing from the data directory.
     Found files: {files.intersection(expected)}
     Missing files: {missing}
-You can download the data files by running: `nycschools.download_cache()`
+You can download the data files by running: `python -m nycschools.dataloader -d`
 For more information, see:
 https://adelphi-ed-tech.github.io/nycschools/""")
 
@@ -153,11 +156,18 @@ def download_archive(data_dir=None):
         str: the path to the downloaded file
     """
     if not data_dir:
+        print("no data dir")
         data_dir = config.data_dir
+    else:
+        config.data_dir = data_dir
+
+    print("using data dir", data_dir)
+
     url = config.urls["school-data-archive"].url
     filename = config.urls["school-data-archive"].filename
     data_dir = os.path.abspath(data_dir)
     archive = os.path.join(data_dir, filename)
+    print("7zip", archive)
     resp = requests.get(url)
     with open(archive, "wb") as f:
         f.write(resp.content)
@@ -168,34 +178,83 @@ def download_archive(data_dir=None):
     os.remove(archive)
     return data_dir
 
-def main():
-    """Show the path to the `data_dir` where school data is stored.
 
-    """
-    print(f"Default data directory: {config.data_dir}")
-    
+def get_venv_activate():
+
+    venv_path = os.environ.get('VIRTUAL_ENV')
+    if venv_path:
+        return os.path.join(venv_path, 'bin', 'activate')
+    return None
+
+def download_cache():
     data_dir = ""
+
     def prompt_data():
-        input("Enter the path to the data directory (or <enter> for default): ")
-        if len(data_dir) > 0:
-            config.data_dir = data_dir
+        path = input("Enter the path to the data directory (or <enter> for default): ")
         # check if it exists, if not create it, catch errors and re-prompt
         try:
-            os.makedirs(config.data_dir, exist_ok=True)
+            os.makedirs(path, exist_ok=True)
         except:
-            print(f"Could not create directory {config.data_dir}")
-            prompt_data()
+            print(f"Could not create directory {path}")
+            return prompt_data()
+        
         # check if it's writeable
-        if not os.access(config.data_dir, os.W_OK):
-            print(f"Cannot write to directory {config.data_dir}")
+        if not os.access(path, os.W_OK):
+            print(f"Cannot write to directory {path}")
             print("Either change file permissions or choose a different directory.")
-            prompt_data()
-    
+            return prompt_data()
+        return path
+
     data_dir = prompt_data()
-    data_dir = download_archive(data_dir)
+    print(f"Downloading school data to {data_dir}")
+
+    with yaspin(text="loading...", spinner=Spinners.bouncingBall) as sp:
+        sp.side = "right"
+        data_dir = download_archive(data_dir)
+        sp.ok("✔")
+
     print(f"Data successfully saved to: {data_dir}")
 
+    venv_path = get_venv_activate()
+    if venv_path:
+        print(f"""
+To use the NYC Schools data, you must set the NYC_SCHOOLS_DATA_DIR environment variable.
+You can set this in your virtual environment activation script 
+and then load the settings by executing the following commands:
+              
+echo 'export NYC_SCHOOLS_DATA_DIR={data_dir}' >> {venv_path}
+source {venv_path}
 
+""")
+    else:
+        print(f"""
+To use the NYC Schools data, you must set the NYC_SCHOOLS_DATA_DIR environment variable.
+- Linux/MacOS: export NYC_SCHOOLS_DATA_DIR={data_dir}
+- Windows: set NYC_SCHOOLS_DATA_DIR={data_dir}
+
+See the full documentation at:
+{config.urls["docbook"].url}
+
+""")
+
+def main():
+    """Show the path to the `data_dir` where school data is stored.
+To use the interactive downloader, run `python -m nycschools.dataloader -d`.
+    """
+    print(f"Current data directory: {config.data_dir}")
+
+    # read args if exists
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "-h" or sys.argv[1] == "--help":
+            print("docs", main.__doc__)
+            return
+        elif sys.argv[1] == "-d" or sys.argv[1] == "--download":
+            download_cache()
+            return
+        else:
+            print("Unrecognized argument. Run `python -m nycschools.dataloader --help` for help.")
+            return
+    
 
 if __name__ == "__main__":
     main()

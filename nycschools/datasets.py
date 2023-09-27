@@ -19,6 +19,9 @@
 # these are the URLs into the open data portals
 # update when new datasets are released
 urls = {
+  "docbook": {
+      "url": "https://adelphi-ed-tech.github.io/nycschools/install.html"
+  },
   "galaxy": {
     "url": "https://www.nycenet.edu/offices/d_chanc_oper/budget/dbor/galaxy/galaxyallocation/default.aspx",
     "desc": "Galaxy Budget Summaries",
