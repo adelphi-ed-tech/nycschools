@@ -781,12 +781,32 @@ the package configuration <cite>data_dir</cite> is used.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.download_cache">
 <span class="sig-name descname"><span class="pre">download_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#download_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.download_cache" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Download the data archive and save it to the local drive.
+This interactive terminal program prompts the user for
+the location to save the data files. Once the files
+are downloaded and expanded it attempts to write the path
+to the data files into the python configuration environment.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.download_data">
 <span class="sig-name descname"><span class="pre">download_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#download_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.download_data" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.find_config_file">
+<span class="sig-name descname"><span class="pre">find_config_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#find_config_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.find_config_file" title="Permalink to this definition">#</a></dt>
+<dd><p>Looks for virtual environment activation scripts
+or bash configuration files in known locations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the path to the configuration file or <cite>None</cite> if not found</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.find_data_dir">
@@ -814,7 +834,9 @@ of <cite>/content/gdrive</cite>.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.get_venv_activate">
 <span class="sig-name descname"><span class="pre">get_venv_activate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#get_venv_activate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.get_venv_activate" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Finds the activation script for a running virtual environment
+or <cite>None</cite> if not running a venv.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nycschools.dataloader.main">
@@ -829,6 +851,13 @@ To use the interactive downloader, run <cite>python -m nycschools.dataloader -d<
 <dd><p>Try to mount a google drive directory in colab
 and then search for the data directory by looking
 for a directory with the known name ‘nyc-schools-data’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.set_env_var">
+<span class="sig-name descname"><span class="pre">set_env_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#set_env_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.set_env_var" title="Permalink to this definition">#</a></dt>
+<dd><p>Attempts to set the NYC_SCHOOLS_DATA_DIR environment variable
+based on the user’s platform.</p>
 </dd></dl>
 
 </section>
