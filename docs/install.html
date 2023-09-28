@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Installing Locally &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development Install" href="install-dev.html" />
+    <link rel="prev" title="Installing in Google Colab" href="install-colab.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    NYC Schools Open Data Portal
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install-dev.html">
+   Development Install
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/01-Basics/01-loading-data.html">
+   Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/01-Basics/02-querying-data.html">
+   Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/01-Basics/03-basic-stats.html">
+   Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/01-Basics/04-calculating-columns.html">
+   Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/02-Combining-Data/01-group-and-agg.html">
+   Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/02-Combining-Data/02-merge-and-join.html">
+   Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/03-Graphs-and-Charts/02-grouped-bar-chart.html">
+   Grouped Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/04-Statistics/04-t_tests.html">
+   T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/04-Statistics/05-anova-ols.html">
+   ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/04-Statistics/08-predictive-stats.html">
+   Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/05-Maps-and-GIS/01-maps-intro.html">
+   Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nb/05-Maps-and-GIS/02-mapping-schools.html">
+   Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About NYC Schools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About Us
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2Finstall.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/install.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-nycschools-from-pypi">
+   Install
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nycschools
+    </span>
+   </code>
+   from pypi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-variables">
+   Configure environment variables
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Installing Locally</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-nycschools-from-pypi">
+   Install
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nycschools
+    </span>
+   </code>
+   from pypi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-data">
+   Load the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-variables">
+   Configure environment variables
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="installing-locally">
+<h1>Installing Locally<a class="headerlink" href="#installing-locally" title="Permalink to this headline">#</a></h1>
+<p>You can install <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> for use in your own Python projects just as you would any other library, however this package also requires a local data directory to store data files.</p>
+<section id="install-nycschools-from-pypi">
+<h2>Install <code class="docutils literal notranslate"><span class="pre">nycschools</span></code> from pypi<a class="headerlink" href="#install-nycschools-from-pypi" title="Permalink to this headline">#</a></h2>
+<p>First, optionally, create a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> then install the package with <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nycschools
+</pre></div>
+</div>
+</section>
+<section id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<p>Download the data (this might take a little bit) files by running the interactive setup script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>nycschools.dataloader<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>This script will ask you where to save the data. Make sure that you have read-write
+access to this directory.</p>
+<p>Once the data is downloaded, you will be prompted to configure environment variables.</p>
+</section>
+<section id="configure-environment-variables">
+<h2>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">#</a></h2>
+<p>You need to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable so
+that python knows where to find the data. Where the instructions
+say <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> replace it with the full path to the
+directory where you saved the data.</p>
+<p>For example, if your username is <code class="docutils literal notranslate"><span class="pre">mxc</span></code> and you saved it into a folder
+called<code class="docutils literal notranslate"><span class="pre">data</span></code> in your home folder, the full path would be something
+like <code class="docutils literal notranslate"><span class="pre">C:\Users\mxc\data\school-data</span></code> on Windows,
+<code class="docutils literal notranslate"><span class="pre">/Users/mxc/data/school-data</span></code> on Mac, and <code class="docutils literal notranslate"><span class="pre">/home/mxc/data/school-data</span></code> on GNU/Linux.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="27e4b17a-73e0-476b-b8c8-f1f332f4f016" name="6ed11d46-da32-4fbd-93f1-ddc9d3988881" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab1" for="27e4b17a-73e0-476b-b8c8-f1f332f4f016">
+Virtual Environment</label><div class="sd-tab-content docutils">
+<p>The most reliable and recommended way to set the environment variable is
+to add it to the activation script of your virtual environment, and then
+use that venv for executing your python scripts or notebooks.</p>
+<p>To find the activation script launch a python shell or Jupyter Notebook and execute this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">venv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;VIRTUAL_ENV&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">venv_path</span><span class="p">:</span>
+    <span class="n">unix_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">venv_path</span><span class="p">,</span> <span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;activate&#39;</span><span class="p">)</span>
+    <span class="n">win_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">venv_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The activation script is located at: </span><span class="si">{</span><span class="n">activation_script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not running inside a virtual environment&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</div>
+<input id="4edf98b4-737f-4540-94ea-6e061df5baf7" name="6ed11d46-da32-4fbd-93f1-ddc9d3988881" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab2" for="4edf98b4-737f-4540-94ea-6e061df5baf7">
+Mac</label><div class="sd-tab-content docutils">
+<p>On a Mac, you can set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment
+variable persistently by adding it to your
+<code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> file. Open a terminal window, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export NYC_SCHOOLS_DATA_DIR=/path/to/data&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+</pre></div>
+</div>
+<p>Load the new settings by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bash_profile
+</pre></div>
+</div>
+</div>
+<input id="cd1ec21c-2ddf-42ea-a921-9196010c7a51" name="6ed11d46-da32-4fbd-93f1-ddc9d3988881" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab3" for="cd1ec21c-2ddf-42ea-a921-9196010c7a51">
+Windows</label><div class="sd-tab-content docutils">
+<p>On Windows, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
+you must use the System Properties window. Here are the steps:</p>
+<ol class="simple">
+<li><p>Right-click on ‘This PC’ or ‘My Computer’ and choose ‘Properties’.</p></li>
+<li><p>Click on ‘Advanced system settings’.</p></li>
+<li><p>Click on the ‘Environment Variables’ button.</p></li>
+<li><p>Under the ‘System variables’ section, click ‘New…’ to create a new system-wide environment variable, or create a user environment variable under the “User variables” section.</p></li>
+<li><p>Set the ‘Variable name’ to <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> and the ‘Variable value’ to the path to your data directory (e.g., <code class="docutils literal notranslate"><span class="pre">C:\path\to\data</span></code>).</p></li>
+<li><p>Click ‘OK’ to close each window.</p></li>
+</ol>
+<p>This will set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable permanently for the system or user, depending on where you added it.</p>
+</div>
+<input id="ae59055e-e469-4acb-9eff-30b951ab0be4" name="6ed11d46-da32-4fbd-93f1-ddc9d3988881" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab4" for="ae59055e-e469-4acb-9eff-30b951ab0be4">
+Jupyter Notebook</label><div class="sd-tab-content docutils">
+<p>If you wish to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable
+directly in a Jupyter Notebook (either because Jupyter is not
+reading the system variable, or you want to set or change it for one Notebook),
+you can do so using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env"><strong>env</strong> magic command</a>. At the top of your Notebook, in a code cell, run and execute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">NYC_SCHOOLS_DATA_DIR</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span>
+</pre></div>
+</div>
+<p><em>Note: you will have to add this to each Notebook file.</em></p>
+</div>
+<input id="e9707b4e-521c-4797-9a89-9aa83c7da3fa" name="6ed11d46-da32-4fbd-93f1-ddc9d3988881" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab5" for="e9707b4e-521c-4797-9a89-9aa83c7da3fa">
+Linux</label><div class="sd-tab-content docutils">
+<p>On Linux, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
+you can add the export command to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> or <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file:</p>
+<p>To add it to .bashrc (for example), open a terminal window, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export NYC_SCHOOLS_DATA_DIR=/path/to/data&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>Load the new settings by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="install-colab.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Installing in Google Colab</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="install-dev.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development Install</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://adelphi-ed-tech.github.io/nycschools/">NYC Schools Open Data Portal</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> 
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

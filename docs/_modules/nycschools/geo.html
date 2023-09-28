@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nycschools.geo &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    NYC Schools Open Data Portal
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install-dev.html">
+   Development Install
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/01-loading-data.html">
+   Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/02-querying-data.html">
+   Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/03-basic-stats.html">
+   Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/01-Basics/04-calculating-columns.html">
+   Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/01-group-and-agg.html">
+   Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/02-Combining-Data/02-merge-and-join.html">
+   Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/02-grouped-bar-chart.html">
+   Grouped Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/04-t_tests.html">
+   T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/05-anova-ols.html">
+   ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/04-Statistics/08-predictive-stats.html">
+   Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/01-maps-intro.html">
+   Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nb/05-Maps-and-GIS/02-mapping-schools.html">
+   Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../api/nycschools.html">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About NYC Schools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about.html">
+   About Us
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2F_modules/nycschools/geo.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for nycschools.geo</h1><div class="highlight"><pre>
+<span></span><span class="c1"># NYC School Data</span>
+<span class="c1"># Copyright (C) 2022. Matthew X. Curinga</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU AFFERO GENERAL PUBLIC LICENSE (the &quot;License&quot;) as</span>
+<span class="c1"># published by the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="c1"># ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span>
+<span class="c1"># FOR A PARTICULAR PURPOSE.  See the License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the License along with this program.</span>
+<span class="c1"># If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">urls</span>
+<span class="n">school_location_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;school_locations.geojson&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="load_zipcodes"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_zipcodes">[docs]</a><span class="k">def</span> <span class="nf">load_zipcodes</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the NYC zip code boundaries as a GeoDataFrame from data_dir.</span>
+<span class="sd">    Zip codes are compiled from the NYC Data Portal via the US Post Office&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;zipcodes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="load_school_locations"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_school_locations">[docs]</a><span class="k">def</span> <span class="nf">load_school_locations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a GeoDataFrame with the school locations and location meta-data&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span>  <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">school_location_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># geopandas throws DriveError, but I don&#39;t know where to import it to catch it</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;&lt;class &#39;fiona.errors.DriverError&#39;&gt;&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span>
+
+    <span class="k">return</span> <span class="n">get_and_save_locations</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="load_school_geo_points"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_school_geo_points">[docs]</a><span class="k">def</span> <span class="nf">load_school_geo_points</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load only the school location points as a GeoDataFrame&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">load_school_locations</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span></div>
+
+<div class="viewcode-block" id="get_and_save_locations"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.get_and_save_locations">[docs]</a><span class="k">def</span> <span class="nf">get_and_save_locations</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">school_location_file</span><span class="p">):</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">get_points</span><span class="p">()</span>
+    <span class="n">locations</span> <span class="o">=</span> <span class="n">get_locations</span><span class="p">()</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">locations</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;dbn&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="get_points"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.get_points">[docs]</a><span class="k">def</span> <span class="nf">get_points</span><span class="p">(</span><span class="n">geojsonurl</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;school_geo&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the school location points and zipcodes from an Open Data Portal GeoJSON URL&quot;&quot;&quot;</span>
+    <span class="c1"># this is the API feed for the location points</span>
+    <span class="c1"># it&#39;s the best place to get zip codes</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">geojsonurl</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;xcoordinat&quot;</span><span class="p">:</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;ycoordinat&quot;</span><span class="p">:</span><span class="s2">&quot;y&quot;</span><span class="p">,})</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">ats_code</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;district&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">adimindist</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;geodistric&quot;</span><span class="p">:</span><span class="s2">&quot;geo_district&quot;</span><span class="p">})</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dbn&#39;</span><span class="p">,</span> <span class="s1">&#39;zip&#39;</span><span class="p">,</span> <span class="s1">&#39;geo_district&#39;</span><span class="p">,</span> <span class="s1">&#39;district&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">zip</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">zip</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="get_locations"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.get_locations">[docs]</a><span class="k">def</span> <span class="nf">get_locations</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;school_locations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">       Read school level data with many location-related columns: school x,y</span>
+<span class="sd">       coords, and data about the school locations including NYS BEDS ids,</span>
+<span class="sd">       census tract, and police precinct.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">locations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">locations</span><span class="p">[</span><span class="s2">&quot;dbn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">system_code</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;dbn&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;administrative_district_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;administrative_district_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;beds&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;borough_block_lot&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;census_tract&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;community_district&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;community_school_sup_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;council_district&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fax_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fiscal_year&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;geographical_district_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grades_final_text&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grades_text&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;highschool_network&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;highschool_network_location&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;highschool_network_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;location_category_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;location_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;location_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;location_type_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;managed_by_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nta&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nta_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;open_date&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;police_precinct&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;primary_building_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;principal_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;principal_phone_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;principal_title&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;state_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;status_descriptions&#39;</span><span class="p">]</span>
+
+    <span class="n">locations</span> <span class="o">=</span> <span class="n">locations</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+    <span class="n">locations</span><span class="o">.</span><span class="n">beds</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">beds</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+    <span class="n">locations</span><span class="o">.</span><span class="n">open_date</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">open_date</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="c1"># locations.beds = locations.beds.astype(&quot;string&quot;)</span>
+    <span class="k">return</span> <span class="n">locations</span></div>
+
+
+<div class="viewcode-block" id="load_districts"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.load_districts">[docs]</a><span class="k">def</span> <span class="nf">load_districts</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">urls</span><span class="p">[</span><span class="s2">&quot;district_geo&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get geo shape file for NYC school districts, indexed by district number.&quot;&quot;&quot;</span>
+    <span class="n">districts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="c1"># rename the columns</span>
+    <span class="n">districts</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;district&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+    <span class="n">districts</span><span class="o">.</span><span class="n">district</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">districts</span><span class="o">.</span><span class="n">district</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">districts</span> <span class="o">=</span> <span class="n">districts</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">districts</span></div>
+
+<div class="viewcode-block" id="add_labels"><a class="viewcode-back" href="../../api/nycschools.html#nycschools.geo.add_labels">[docs]</a><span class="k">def</span> <span class="nf">add_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://adelphi-ed-tech.github.io/nycschools/">NYC Schools Open Data Portal</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> 
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

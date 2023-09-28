@@ -1,0 +1,1530 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>nycschools package &#8212; NYC Schools Open Data Portal</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Sources" href="../data-sources.html" />
+    <link rel="prev" title="Layered Maps" href="../nb/05-Maps-and-GIS/02-mapping-schools.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NYC Schools Open Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    NYC Schools Open Data Portal
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install-colab.html">
+   Installing in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Installing Locally
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install-dev.html">
+   Development Install
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/01-Basics/01-loading-data.html">
+   Loading Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/01-Basics/02-querying-data.html">
+   Querying &amp; Selecting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/01-Basics/03-basic-stats.html">
+   Basic Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/01-Basics/04-calculating-columns.html">
+   Calculating New Columns
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Combining Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/02-Combining-Data/01-group-and-agg.html">
+   Groups &amp; Aggregates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/02-Combining-Data/02-merge-and-join.html">
+   Merges &amp; Joins
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphs and Charts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/03-Graphs-and-Charts/01-basic-bar-charts.html">
+   Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/03-Graphs-and-Charts/02-grouped-bar-chart.html">
+   Grouped Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/03-Graphs-and-Charts/03-line-and-scatter-charts.html">
+   Line &amp; Scatter Plots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/04-Statistics/04-t_tests.html">
+   T Tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/04-Statistics/05-anova-ols.html">
+   ANOVA and OLS Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/04-Statistics/08-predictive-stats.html">
+   Predictive Statistics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Maps and GIS
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/05-Maps-and-GIS/01-maps-intro.html">
+   Introduction to Maps and Spatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/05-Maps-and-GIS/02-mapping-schools.html">
+   Layered Maps
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   API Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../data-sources.html">
+   Data Sources
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About NYC Schools
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../about.html">
+   About Us
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/adelphi-ed-tech/nycschools/issues/new?title=Issue%20on%20page%20%2Fapi/nycschools.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/api/nycschools.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.budgets">
+   nycschools.budgets module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.cep">
+   nycschools.cep module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.class_size">
+   nycschools.class_size module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.dataloader">
+   nycschools.dataloader module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.datasets">
+   nycschools.datasets module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.exams">
+   nycschools.exams module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.geo">
+   nycschools.geo module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.nysed">
+   nycschools.nysed module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.schools">
+   nycschools.schools module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.shsat">
+   nycschools.shsat module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.tools">
+   nycschools.tools module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.ui">
+   nycschools.ui module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools">
+   Module contents
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>nycschools package</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.budgets">
+   nycschools.budgets module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.cep">
+   nycschools.cep module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.class_size">
+   nycschools.class_size module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.dataloader">
+   nycschools.dataloader module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.datasets">
+   nycschools.datasets module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.exams">
+   nycschools.exams module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.geo">
+   nycschools.geo module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.nysed">
+   nycschools.nysed module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.schools">
+   nycschools.schools module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.shsat">
+   nycschools.shsat module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.tools">
+   nycschools.tools module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools.ui">
+   nycschools.ui module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-nycschools">
+   Module contents
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="nycschools-package">
+<h1>nycschools package<a class="headerlink" href="#nycschools-package" title="Permalink to this headline">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-nycschools.budgets">
+<span id="nycschools-budgets-module"></span><h2>nycschools.budgets module<a class="headerlink" href="#module-nycschools.budgets" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.budgets.get_galaxy_budgets">
+<span class="sig-name descname"><span class="pre">get_galaxy_budgets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/budgets.html#get_galaxy_budgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.budgets.get_galaxy_budgets" title="Permalink to this definition">#</a></dt>
+<dd><p>Scrapes the ‘galaxy summary’ budget for all schools from the DOE website.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.budgets.get_galaxy_summary">
+<span class="sig-name descname"><span class="pre">get_galaxy_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/budgets.html#get_galaxy_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.budgets.get_galaxy_summary" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the ‘galaxy summary’ budget for a school from the DOE website.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbn</strong> (<em>str</em>) – The school’s DBN.</p></li>
+<li><p><strong>ay</strong> (<em>int</em>) – The school year, currently only the most recent school year (2022-2023) is available.</p></li>
+<li><p><strong>driver</strong> (<em>selenium.webdriver.chrome.webdriver.WebDriver</em>) – The Selenium webdriver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – A single DataFrame that combines all of the budget data scraped from the web
+for the school specified by <cite>dbn</cite> and <cite>ay</cite>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.budgets.load_galaxy_budgets">
+<span class="sig-name descname"><span class="pre">load_galaxy_budgets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/budgets.html#load_galaxy_budgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.budgets.load_galaxy_budgets" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the galaxy budgets from the local cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – A single DataFrame that combines all of the budget data scraped from the web
+for all schools in the database.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.budgets.open_webdriver">
+<span class="sig-name descname"><span class="pre">open_webdriver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/budgets.html#open_webdriver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.budgets.open_webdriver" title="Permalink to this definition">#</a></dt>
+<dd><p>Opens a Selenium webdriver using the Chrome/Chromium
+engine for Selenium. If the environment variables <cite>CHROME_PATH</cite>
+and <cite>CHROMEDRIVER_PATH</cite> are set, they will be used to
+initialize the webdriver. Otherwise, the webdriver will be
+initialized using the default installation.</p>
+</dd></dl>
+
+</section>
+<section id="module-nycschools.cep">
+<span id="nycschools-cep-module"></span><h2>nycschools.cep module<a class="headerlink" href="#module-nycschools.cep" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.cep.get_ceps">
+<span class="sig-name descname"><span class="pre">get_ceps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/cep.html#get_ceps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.cep.get_ceps" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools.class_size">
+<span id="nycschools-class-size-module"></span><h2>nycschools.class_size module<a class="headerlink" href="#module-nycschools.class_size" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.get_class_22">
+<span class="sig-name descname"><span class="pre">get_class_22</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#get_class_22"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.get_class_22" title="Permalink to this definition">#</a></dt>
+<dd><p>Read class size data for 2022 from
+the DOE InfoHub Excel file format.
+This data also contains pupil teacher ratios
+which are saved in a separate file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.get_class_size">
+<span class="sig-name descname"><span class="pre">get_class_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#get_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.get_class_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Get class size data from the web and cleans class
+size data for each year that it is available
+in the <cite>datasets</cite>. Currently data is available for each year from
+2009-2021 excluding the 2020-2021 school year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a pandas DataFrame holding school demographic data for all of the schools
+in the data portal</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.get_class_size_year">
+<span class="sig-name descname"><span class="pre">get_class_size_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#get_class_size_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.get_class_size_year" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.load_class_size">
+<span class="sig-name descname"><span class="pre">load_class_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#load_class_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.load_class_size" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.class_size.load_ptr">
+<span class="sig-name descname"><span class="pre">load_ptr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/class_size.html#load_ptr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.class_size.load_ptr" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools.dataloader">
+<span id="nycschools-dataloader-module"></span><h2>nycschools.dataloader module<a class="headerlink" href="#module-nycschools.dataloader" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.contains_data_files">
+<span class="sig-name descname"><span class="pre">contains_data_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#contains_data_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.contains_data_files" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks to see if the specified path contains
+the data files required by this application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – the path to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>True if the path contains the data files</dt><dd><p>required by this application, False otherwise</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.download_archive">
+<span class="sig-name descname"><span class="pre">download_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#download_archive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.download_archive" title="Permalink to this definition">#</a></dt>
+<dd><p>Downloads the school data archive to the local
+drive and saves it into <cite>data_dir</cite> then extracts
+the .7z archive. <cite>data_dir</cite> now contains the
+cleaned and compiled school data files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_dir</strong> (<em>str</em>) – the path to the directory where
+the data files should be saved. If not specified,
+the package configuration <cite>data_dir</cite> is used.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the path to the downloaded file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.download_cache">
+<span class="sig-name descname"><span class="pre">download_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#download_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.download_cache" title="Permalink to this definition">#</a></dt>
+<dd><p>Download the data archive and save it to the local drive.
+This interactive terminal program prompts the user for
+the location to save the data files. Once the files
+are downloaded and expanded it attempts to write the path
+to the data files into the python configuration environment.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.download_data">
+<span class="sig-name descname"><span class="pre">download_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#download_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.download_data" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.find_config_file">
+<span class="sig-name descname"><span class="pre">find_config_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#find_config_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.find_config_file" title="Permalink to this definition">#</a></dt>
+<dd><p>Looks for virtual environment activation scripts
+or bash configuration files in known locations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the path to the configuration file or <cite>None</cite> if not found</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.find_data_dir">
+<span class="sig-name descname"><span class="pre">find_data_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#find_data_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.find_data_dir" title="Permalink to this definition">#</a></dt>
+<dd><p>Tries to find an existing data directory populated
+with data, including searching through mounted
+google drive if the <cite>colab</cite> package is available
+and the g drive is mounted in the “standard” location
+of <cite>/content/gdrive</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the path to the data directory</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.get_data_dir">
+<span class="sig-name descname"><span class="pre">get_data_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#get_data_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.get_data_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.get_venv_activate">
+<span class="sig-name descname"><span class="pre">get_venv_activate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#get_venv_activate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.get_venv_activate" title="Permalink to this definition">#</a></dt>
+<dd><p>Finds the activation script for a running virtual environment
+or <cite>None</cite> if not running a venv.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.main" title="Permalink to this definition">#</a></dt>
+<dd><p>Show the path to the <cite>data_dir</cite> where school data is stored.
+To use the interactive downloader, run <cite>python -m nycschools.dataloader -d</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.mount_colab_data_dir">
+<span class="sig-name descname"><span class="pre">mount_colab_data_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#mount_colab_data_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.mount_colab_data_dir" title="Permalink to this definition">#</a></dt>
+<dd><p>Try to mount a google drive directory in colab
+and then search for the data directory by looking
+for a directory with the known name ‘nyc-schools-data’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.dataloader.set_env_var">
+<span class="sig-name descname"><span class="pre">set_env_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/dataloader.html#set_env_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.dataloader.set_env_var" title="Permalink to this definition">#</a></dt>
+<dd><p>Attempts to set the NYC_SCHOOLS_DATA_DIR environment variable
+based on the user’s platform.</p>
+</dd></dl>
+
+</section>
+<section id="module-nycschools.datasets">
+<span id="nycschools-datasets-module"></span><h2>nycschools.datasets module<a class="headerlink" href="#module-nycschools.datasets" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-nycschools.exams">
+<span id="nycschools-exams-module"></span><h2>nycschools.exams module<a class="headerlink" href="#module-nycschools.exams" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.charter_cols">
+<span class="sig-name descname"><span class="pre">charter_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#charter_cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.charter_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_charter_ela">
+<span class="sig-name descname"><span class="pre">load_charter_ela</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/resource/sgjd-xi99.csv?$limit=1000000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_charter_ela"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_charter_ela" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the charter school ELA exam results for the “All Students”
+category from the NYC Open Data Portal. Columns are re-named for consistency.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_charter_math">
+<span class="sig-name descname"><span class="pre">load_charter_math</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/resource/3xsw-bpuy.csv?$limit=1000000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_charter_math"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_charter_math" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the charter school Math exam results for the “All Students”
+category from the NYC Open Data Portal. Columns are re-named for consistency.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_charter_test">
+<span class="sig-name descname"><span class="pre">load_charter_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_charter_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_charter_test" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_ela">
+<span class="sig-name descname"><span class="pre">load_ela</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_ela"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_ela" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the New York State ELA grades 3-8 ELA exam results for all categories.
+If a local .csv data file exists, it will return results from that file. If
+no local file is available, itt will loads the Excel data file for from the
+NYC Data Portal and then cobmines the results with charter school data into
+a <cite>DataFrame</cite>. _This can be <a href="#id1"><span class="problematic" id="id2">slow_</span></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_ela_excel">
+<span class="sig-name descname"><span class="pre">load_ela_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/api/views/hvdr-xc2s/files/4db8f0e7-0150-4302-bed7-529c89efa225?download=true&amp;filename=school-ela-results-2013-2019-(public).xlsx'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_ela_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_ela_excel" title="Permalink to this definition">#</a></dt>
+<dd><p>Load NYS ELA test scores from the Excel workbook rather than the API. NYC DOE
+fails to release the demographic breakdowns for test results via its open
+data api.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_math">
+<span class="sig-name descname"><span class="pre">load_math</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_math"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_math" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the New York State Math grades 3-8 ELA exam results for all categories.
+If a local .csv data file exists, it will return results from that file. If
+no local file is available, itt will loads the Excel data file for from the
+NYC Data Portal and then cobmines the results with charter school data into
+a <cite>DataFrame</cite>. _This can be <a href="#id3"><span class="problematic" id="id4">slow_</span></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_math_ela_long">
+<span class="sig-name descname"><span class="pre">load_math_ela_long</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_math_ela_long"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_math_ela_long" title="Permalink to this definition">#</a></dt>
+<dd><p>Load a combined <cite>DataFrame</cite> with both math and ela test results
+in a “wide” data format.
+All of the math result columns have the suffix <cite>_math</cite>
+and the ELA columns have the suffix <cite>_ela</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_math_ela_wide">
+<span class="sig-name descname"><span class="pre">load_math_ela_wide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_math_ela_wide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_math_ela_wide" title="Permalink to this definition">#</a></dt>
+<dd><p>Load a combined <cite>DataFrame</cite> with both math and ela test results
+in a “wide” data format.
+All of the math result columns have the suffix <cite>_math</cite>
+and the ELA columns have the suffix <cite>_ela</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_math_excel">
+<span class="sig-name descname"><span class="pre">load_math_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/api/views/365g-7jtb/files/17910cb0-8a62-4037-84b5-f0b4c2b3f71f?download=true&amp;filename=school-math-results-2013-2019-(public).xlsx'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_math_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_math_excel" title="Permalink to this definition">#</a></dt>
+<dd><p>Load NYS Math test scores from the Excel workbook rather than the API. NYC DOE
+fails to release the demographic breakdowns for test results via its open
+data api.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_regents">
+<span class="sig-name descname"><span class="pre">load_regents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_regents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_regents" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the New York State Regents exam scores for all categories.
+&#64;return <cite>DataFrame</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.load_regents_excel">
+<span class="sig-name descname"><span class="pre">load_regents_excel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#load_regents_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.load_regents_excel" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.exams.read_nys_exam_excel">
+<span class="sig-name descname"><span class="pre">read_nys_exam_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/exams.html#read_nys_exam_excel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.exams.read_nys_exam_excel" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools.geo">
+<span id="nycschools-geo-module"></span><h2>nycschools.geo module<a class="headerlink" href="#module-nycschools.geo" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#add_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.add_labels" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.get_and_save_locations">
+<span class="sig-name descname"><span class="pre">get_and_save_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/opt/nycschools/school_locations.geojson'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#get_and_save_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.get_and_save_locations" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.get_locations">
+<span class="sig-name descname"><span class="pre">get_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#get_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.get_locations" title="Permalink to this definition">#</a></dt>
+<dd><p>Read school level data with many location-related columns: school x,y
+coords, and data about the school locations including NYS BEDS ids,
+census tract, and police precinct.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.get_points">
+<span class="sig-name descname"><span class="pre">get_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geojsonurl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#get_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.get_points" title="Permalink to this definition">#</a></dt>
+<dd><p>Read the school location points and zipcodes from an Open Data Portal GeoJSON URL</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.load_districts">
+<span class="sig-name descname"><span class="pre">load_districts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&amp;format=GeoJSON'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_districts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_districts" title="Permalink to this definition">#</a></dt>
+<dd><p>Get geo shape file for NYC school districts, indexed by district number.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.load_school_geo_points">
+<span class="sig-name descname"><span class="pre">load_school_geo_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_school_geo_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_school_geo_points" title="Permalink to this definition">#</a></dt>
+<dd><p>Load only the school location points as a GeoDataFrame</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.load_school_locations">
+<span class="sig-name descname"><span class="pre">load_school_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_school_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_school_locations" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a GeoDataFrame with the school locations and location meta-data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.geo.load_zipcodes">
+<span class="sig-name descname"><span class="pre">load_zipcodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/geo.html#load_zipcodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.geo.load_zipcodes" title="Permalink to this definition">#</a></dt>
+<dd><p>Load the NYC zip code boundaries as a GeoDataFrame from data_dir.
+Zip codes are compiled from the NYC Data Portal via the US Post Office</p>
+</dd></dl>
+
+</section>
+<section id="module-nycschools.nysed">
+<span id="nycschools-nysed-module"></span><h2>nycschools.nysed module<a class="headerlink" href="#module-nycschools.nysed" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.calc_all_grades">
+<span class="sig-name descname"><span class="pre">calc_all_grades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nysed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#calc_all_grades"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.calc_all_grades" title="Permalink to this definition">#</a></dt>
+<dd><p>NYSED data doesn’t include All Grades like NYC schools, so this function
+adds an “All Grades” category with aggregate data for each school.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.download_and_extract">
+<span class="sig-name descname"><span class="pre">download_and_extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#download_and_extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.download_and_extract" title="Permalink to this definition">#</a></dt>
+<dd><p>Download and extract the .zip archives from NYSED</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.fix_cols">
+<span class="sig-name descname"><span class="pre">fix_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#fix_cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.fix_cols" title="Permalink to this definition">#</a></dt>
+<dd><p>Fixes the columns in the dataframe so that each NYSED year is consistent
+with the other years’ columns and column name/formats match other  NYC DOE
+columns in the data portal.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.fix_data">
+<span class="sig-name descname"><span class="pre">fix_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#fix_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.fix_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Cleans data in the dataframe so that row-level data is
+consistent across test years and matches NYC math/ela data sets:
+- student categories are consistent
+- counts and percents are consistent
+- exam category is consistent</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.load_nyc_nysed">
+<span class="sig-name descname"><span class="pre">load_nyc_nysed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#load_nyc_nysed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.load_nyc_nysed" title="Permalink to this definition">#</a></dt>
+<dd><p>Load the subset set of the <cite>load_nys_nysed</cite> data for schools in the
+New York City Department of Education school demographics data set.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.load_nys_nysed">
+<span class="sig-name descname"><span class="pre">load_nys_nysed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#load_nys_nysed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.load_nys_nysed" title="Permalink to this definition">#</a></dt>
+<dd><p>Load the grades 3-8 math and ela exam results for all schools and distrcicts
+in New York State, in a long data format. This is the only data set that has
+demographic test results for charter schools in NYC. This data has all of
+the same columns as the NYC <cite>load_math_ela_long</cite>. Note that NYS does not
+report the same demographic categories as New York City. In particular, the
+two groups handle ENL students differently. NYC has 3 categories (current
+ell, ever ell, never ell) where NYS only has ELL and Non-ELL.</p>
+<p>The NYSED data includes categories that are not part of the NYC data such as
+homelessness, foster care, and parents in armed services.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.load_nysed_ela_math_archives">
+<span class="sig-name descname"><span class="pre">load_nysed_ela_math_archives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['https://data.nysed.gov/files/assessment/20-21/3-8-2020-21.zip',</span> <span class="pre">'https://data.nysed.gov/files/assessment/18-19/3-8-2018-19.zip',</span> <span class="pre">'https://data.nysed.gov/files/assessment/17-18/3-8-2017-18.zip',</span> <span class="pre">'https://data.nysed.gov/files/assessment/16-17/3-8-2016-17.zip',</span> <span class="pre">'https://data.nysed.gov/files/assessment/15-16/3-8-2015-16.zip']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#load_nysed_ela_math_archives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.load_nysed_ela_math_archives" title="Permalink to this definition">#</a></dt>
+<dd><p>Downloads all of the zip archives listed in the urls configuraiton. Extract
+the archives into a temp folder and read them as dataframes. Concats the
+dataframes into a single df and return.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.map_nysed_nyc">
+<span class="sig-name descname"><span class="pre">map_nysed_nyc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nysed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#map_nysed_nyc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.map_nysed_nyc" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.nysed.read_nysed_exam">
+<span class="sig-name descname"><span class="pre">read_nysed_exam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/nysed.html#read_nysed_exam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.nysed.read_nysed_exam" title="Permalink to this definition">#</a></dt>
+<dd><p>Read the Excel file that has all test scores for all schools and districts
+in New York State.</p>
+</dd></dl>
+
+</section>
+<section id="module-nycschools.schools">
+<span id="nycschools-schools-module"></span><h2>nycschools.schools module<a class="headerlink" href="#module-nycschools.schools" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.clean_name">
+<span class="sig-name descname"><span class="pre">clean_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#clean_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.clean_name" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a simplified school name that is easier to search/index</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nycschools.schools.demo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">demo</span></span><a class="reference internal" href="../_modules/nycschools/schools.html#demo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.demo" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The <cite>demo</cite> class bundles some common sets of column names
+to make it easier to work with the school demographic <cite>DataFrame</cite></p>
+<p>from nycschools import schools</p>
+<p>df = schools.load_school_demographics()
+basic = df[schools.demo.short_cols]
+basic.head()</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nycschools.schools.demo.core_cols">
+<span class="sig-name descname"><span class="pre">core_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'beds',</span> <span class="pre">'district',</span> <span class="pre">'geo_district',</span> <span class="pre">'boro',</span> <span class="pre">'school_name',</span> <span class="pre">'ay',</span> <span class="pre">'total_enrollment',</span> <span class="pre">'female_n',</span> <span class="pre">'female_pct',</span> <span class="pre">'male_n',</span> <span class="pre">'male_pct',</span> <span class="pre">'asian_n',</span> <span class="pre">'asian_pct',</span> <span class="pre">'black_n',</span> <span class="pre">'black_pct',</span> <span class="pre">'hispanic_n',</span> <span class="pre">'hispanic_pct',</span> <span class="pre">'white_n',</span> <span class="pre">'white_pct',</span> <span class="pre">'swd_n',</span> <span class="pre">'swd_pct',</span> <span class="pre">'ell_n',</span> <span class="pre">'ell_pct',</span> <span class="pre">'poverty_n',</span> <span class="pre">'poverty_pct',</span> <span class="pre">'eni_pct']</span></em><a class="headerlink" href="#nycschools.schools.demo.core_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nycschools.schools.demo.default_cols">
+<span class="sig-name descname"><span class="pre">default_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'beds',</span> <span class="pre">'district',</span> <span class="pre">'geo_district',</span> <span class="pre">'boro',</span> <span class="pre">'school_name',</span> <span class="pre">'short_name',</span> <span class="pre">'ay',</span> <span class="pre">'year',</span> <span class="pre">'school_type',</span> <span class="pre">'total_enrollment',</span> <span class="pre">'grade_3k_pk_half_day_full',</span> <span class="pre">'grade_k',</span> <span class="pre">'grade_1',</span> <span class="pre">'grade_2',</span> <span class="pre">'grade_3',</span> <span class="pre">'grade_4',</span> <span class="pre">'grade_5',</span> <span class="pre">'grade_6',</span> <span class="pre">'grade_7',</span> <span class="pre">'grade_8',</span> <span class="pre">'grade_9',</span> <span class="pre">'grade_10',</span> <span class="pre">'grade_11',</span> <span class="pre">'grade_12',</span> <span class="pre">'female_n',</span> <span class="pre">'female_pct',</span> <span class="pre">'male_n',</span> <span class="pre">'male_pct',</span> <span class="pre">'asian_n',</span> <span class="pre">'asian_pct',</span> <span class="pre">'black_n',</span> <span class="pre">'black_pct',</span> <span class="pre">'hispanic_n',</span> <span class="pre">'hispanic_pct',</span> <span class="pre">'multi_racial_n',</span> <span class="pre">'multi_racial_pct',</span> <span class="pre">'native_american_n',</span> <span class="pre">'native_american_pct',</span> <span class="pre">'white_n',</span> <span class="pre">'white_pct',</span> <span class="pre">'missing_race_ethnicity_data_n',</span> <span class="pre">'missing_race_ethnicity_data_pct',</span> <span class="pre">'swd_n',</span> <span class="pre">'swd_pct',</span> <span class="pre">'ell_n',</span> <span class="pre">'ell_pct',</span> <span class="pre">'poverty_n',</span> <span class="pre">'poverty_pct',</span> <span class="pre">'eni_pct',</span> <span class="pre">'clean_name',</span> <span class="pre">'zip']</span></em><a class="headerlink" href="#nycschools.schools.demo.default_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nycschools.schools.demo.default_map">
+<span class="sig-name descname"><span class="pre">default_map</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'asian':</span> <span class="pre">'asian_n',</span> <span class="pre">'asian_1':</span> <span class="pre">'asian_pct',</span> <span class="pre">'black':</span> <span class="pre">'black_n',</span> <span class="pre">'black_1':</span> <span class="pre">'black_pct',</span> <span class="pre">'economic_need_index':</span> <span class="pre">'eni_pct',</span> <span class="pre">'english_language_learners':</span> <span class="pre">'ell_n',</span> <span class="pre">'english_language_learners_1':</span> <span class="pre">'ell_pct',</span> <span class="pre">'female':</span> <span class="pre">'female_n',</span> <span class="pre">'female_1':</span> <span class="pre">'female_pct',</span> <span class="pre">'hispanic':</span> <span class="pre">'hispanic_n',</span> <span class="pre">'hispanic_1':</span> <span class="pre">'hispanic_pct',</span> <span class="pre">'male':</span> <span class="pre">'male_n',</span> <span class="pre">'male_1':</span> <span class="pre">'male_pct',</span> <span class="pre">'missing_race_ethnicity_data':</span> <span class="pre">'missing_race_ethnicity_data_n',</span> <span class="pre">'missing_race_ethnicity_data_1':</span> <span class="pre">'missing_race_ethnicity_data_pct',</span> <span class="pre">'multi_racial':</span> <span class="pre">'multi_racial_n',</span> <span class="pre">'multi_racial_1':</span> <span class="pre">'multi_racial_pct',</span> <span class="pre">'native_american':</span> <span class="pre">'native_american_n',</span> <span class="pre">'native_american_1':</span> <span class="pre">'native_american_pct',</span> <span class="pre">'poverty':</span> <span class="pre">'poverty_n',</span> <span class="pre">'poverty_1':</span> <span class="pre">'poverty_pct',</span> <span class="pre">'students_with_disabilities':</span> <span class="pre">'swd_n',</span> <span class="pre">'students_with_disabilities_1':</span> <span class="pre">'swd_pct',</span> <span class="pre">'white':</span> <span class="pre">'white_n',</span> <span class="pre">'white_1':</span> <span class="pre">'white_pct'}</span></em><a class="headerlink" href="#nycschools.schools.demo.default_map" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nycschools.schools.demo.raw_cols">
+<span class="sig-name descname"><span class="pre">raw_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'school_name',</span> <span class="pre">'year',</span> <span class="pre">'total_enrollment',</span> <span class="pre">'grade_3k_pk_half_day_full',</span> <span class="pre">'grade_k',</span> <span class="pre">'grade_1',</span> <span class="pre">'grade_2',</span> <span class="pre">'grade_3',</span> <span class="pre">'grade_4',</span> <span class="pre">'grade_5',</span> <span class="pre">'grade_6',</span> <span class="pre">'grade_7',</span> <span class="pre">'grade_8',</span> <span class="pre">'grade_9',</span> <span class="pre">'grade_10',</span> <span class="pre">'grade_11',</span> <span class="pre">'grade_12',</span> <span class="pre">'female',</span> <span class="pre">'female_1',</span> <span class="pre">'male',</span> <span class="pre">'male_1',</span> <span class="pre">'asian',</span> <span class="pre">'asian_1',</span> <span class="pre">'black',</span> <span class="pre">'black_1',</span> <span class="pre">'hispanic',</span> <span class="pre">'hispanic_1',</span> <span class="pre">'multi_racial',</span> <span class="pre">'multi_racial_1',</span> <span class="pre">'native_american',</span> <span class="pre">'native_american_1',</span> <span class="pre">'white',</span> <span class="pre">'white_1',</span> <span class="pre">'missing_race_ethnicity_data',</span> <span class="pre">'missing_race_ethnicity_data_1',</span> <span class="pre">'students_with_disabilities',</span> <span class="pre">'students_with_disabilities_1',</span> <span class="pre">'english_language_learners',</span> <span class="pre">'english_language_learners_1',</span> <span class="pre">'poverty',</span> <span class="pre">'poverty_1',</span> <span class="pre">'economic_need_index']</span></em><a class="headerlink" href="#nycschools.schools.demo.raw_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nycschools.schools.demo.short_cols">
+<span class="sig-name descname"><span class="pre">short_cols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['dbn',</span> <span class="pre">'school_name',</span> <span class="pre">'short_name',</span> <span class="pre">'clean_name',</span> <span class="pre">'ay']</span></em><a class="headerlink" href="#nycschools.schools.demo.short_cols" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.join_loc_data">
+<span class="sig-name descname"><span class="pre">join_loc_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#join_loc_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.join_loc_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Join NYS BEDS id, zip code, and other location data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.load_hs_directory">
+<span class="sig-name descname"><span class="pre">load_hs_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2021</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#load_hs_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.load_hs_directory" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the NYC High School Directory data from the NYC Open Data
+Portal. This is a thin wrapper around <cite>pd.read_csv()</cite> and
+requires an internet connection. By default, the most recent directory
+is returned. For a different academic year, pass the <cite>ay</cite> parameter.
+Data is available for academic years 2013-2021. The data varies greatly
+from year to year, so they are not compiled into a single DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ay</strong> (<em>int</em><em> , </em><em>default 2021</em>) – the academic year for the directory data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pandas DataFrame holding the high school directory data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.load_school_demographics">
+<span class="sig-name descname"><span class="pre">load_school_demographics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#load_school_demographics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.load_school_demographics" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads the NYC school-level demographic data from the
+open data portal and create a dataframe.</p>
+<p>Adds new columns to the data:</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><dl>
+<dt>short_name: the best guess for the common name of the school (e.g. PS 9)</dt><dd><blockquote>
+<div><blockquote>
+<div><p>or “” if none exists</p>
+</div></blockquote>
+<dl class="simple">
+<dt>district: the school district number [1..32, 75, 79, 84]</dt><dd><p>boro: borough code string [“M”,”B”,”X”,”Q”,”R”]</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>boro_name: string of the full borough name</dt><dd><dl class="simple">
+<dt>year: the academic year as an integer representing the calendar</dt><dd><p>year in the fall of the school year</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>white_asian: combined number of white and asian students</dt><dd><p>non_white: total number of non white students</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>non_white_asian: total number of non white or asian students</dt><dd><dl>
+<dt>black_hispanic: total number of black and hispanic students</dt><dd><blockquote>
+<div><dl class="simple">
+<dt>charter: 1 for charter schools, 0 for community public schools</dt><dd><dl class="simple">
+<dt>beds: the New York State BEDS code for the school</dt><dd><p>zip: school zip code</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>geo_district: the geographic school district where the school is located</dt><dd><p>will differ for schools where district is &gt; 32</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a pandas DataFrame holding school demographic data for all of the schools
+in the data portal</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.save_demographics">
+<span class="sig-name descname"><span class="pre">save_demographics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#save_demographics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.save_demographics" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads and cleans school demographic data from a NYC Open Data
+Portal URL. The data is joined with some location data to make it
+more easily merged with other data sets. A local copy of the data
+is saved as a .csv in the <cite>nycschools</cite> data directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em><em> , </em><em>default loads the url from config.urls with the 'demographics' key</em>) – the URL to the most recent NYC school demographics</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pandas DataFrame holding school demographic data for all of the schools
+in the data portal</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.school_type">
+<span class="sig-name descname"><span class="pre">school_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">school</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#school_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.school_type" title="Permalink to this definition">#</a></dt>
+<dd><p>Any school that serves middle school kids is considered a middle school here.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.search">
+<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.search" title="Permalink to this definition">#</a></dt>
+<dd><p>Search a DataFrame for a school using fuzzy logic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>DataFrame</em>) – a pandas DataFrame containing school data, such as the
+data returned from <cite>load_school_demographics()</cite></p></li>
+<li><p><strong>qry</strong> (<em>the school name</em><em> or </em><em>search term to look for in the data set</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the schools that match the <cite>qry</cite> or an empty DataFrame
+if no matches were found</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.short_name">
+<span class="sig-name descname"><span class="pre">short_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#short_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.short_name" title="Permalink to this definition">#</a></dt>
+<dd><p>Attempts to guess the common “short name” for a school.
+For example, the full name might be “P.S. 015 Roberto Clemente”.
+This school is probably commonly referred to as PS 15.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.str_count">
+<span class="sig-name descname"><span class="pre">str_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enroll_col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#str_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.str_count" title="Permalink to this definition">#</a></dt>
+<dd><p>generic function to take whole number counts represented as Strings and convert to integers
+expects data to look like ‘246’, ‘Above 95%’, ‘Below 5%’
+Example: df[“poverty”] = df.apply(lambda row: str_count(row, “poverty”, “total_enrollment”), axis = 1)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.schools.str_pct">
+<span class="sig-name descname"><span class="pre">str_pct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enroll_col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/schools.html#str_pct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.schools.str_pct" title="Permalink to this definition">#</a></dt>
+<dd><p>generic function to take percentages represented as Strings and convert to real
+expects data to look like ‘84.33%’, ‘Above 95%’, ‘Below 5%’
+Example: df[“economic_need_index”] = df.apply(lambda row: str_pct(row, “economic_need_index”, “total_enrollment”), axis = 1)</p>
+</dd></dl>
+
+</section>
+<section id="module-nycschools.shsat">
+<span id="nycschools-shsat-module"></span><h2>nycschools.shsat module<a class="headerlink" href="#module-nycschools.shsat" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.shsat.load_admission_offers">
+<span class="sig-name descname"><span class="pre">load_admission_offers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/shsat.html#load_admission_offers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.shsat.load_admission_offers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.shsat.save_administration_offers">
+<span class="sig-name descname"><span class="pre">save_administration_offers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/shsat.html#save_administration_offers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.shsat.save_administration_offers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools.tools">
+<span id="nycschools-tools-module"></span><h2>nycschools.tools module<a class="headerlink" href="#module-nycschools.tools" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.tools.quick_merge">
+<span class="sig-name descname"><span class="pre">quick_merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dbn'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/tools.html#quick_merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.tools.quick_merge" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools.ui">
+<span id="nycschools-ui-module"></span><h2>nycschools.ui module<a class="headerlink" href="#module-nycschools.ui" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.commas">
+<span class="sig-name descname"><span class="pre">commas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#commas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.commas" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.counter">
+<span class="sig-name descname"><span class="pre">counter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#counter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.counter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.draw_model">
+<span class="sig-name descname"><span class="pre">draw_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pnodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#draw_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.draw_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.edge_label">
+<span class="sig-name descname"><span class="pre">edge_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#edge_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.edge_label" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.fmt_num">
+<span class="sig-name descname"><span class="pre">fmt_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#fmt_num"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.fmt_num" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.fmt_pearson">
+<span class="sig-name descname"><span class="pre">fmt_pearson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#fmt_pearson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.fmt_pearson" title="Permalink to this definition">#</a></dt>
+<dd><p>Formats the Pearson’s R correlation table returned
+from <cite>pengouin.corr</cite> in the format r(df)={r}, p={p}.
+The r is rounded to 2 decimals, and p is rounded to 3 decimals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.fmt_table">
+<span class="sig-name descname"><span class="pre">fmt_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#fmt_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.fmt_table" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.hexmap">
+<span class="sig-name descname"><span class="pre">hexmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#hexmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.hexmap" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.infinite">
+<span class="sig-name descname"><span class="pre">infinite</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#infinite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.infinite" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.label_shapes">
+<span class="sig-name descname"><span class="pre">label_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#label_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.label_shapes" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a function that will add the string of <cite>col</cite>
+to the center of each shape specified by</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.network_map">
+<span class="sig-name descname"><span class="pre">network_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#network_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.network_map" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.nice_name">
+<span class="sig-name descname"><span class="pre">nice_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#nice_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.nice_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.pct">
+<span class="sig-name descname"><span class="pre">pct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#pct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.pct" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.plot_model">
+<span class="sig-name descname"><span class="pre">plot_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#plot_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.plot_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.popup">
+<span class="sig-name descname"><span class="pre">popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'min-width':</span> <span class="pre">'200px'}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.popup" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.round_f">
+<span class="sig-name descname"><span class="pre">round_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">places</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#round_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.round_f" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.ui.ul">
+<span class="sig-name descname"><span class="pre">ul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools/ui.html#ul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.ui.ul" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-nycschools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nycschools" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools.html#get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.get_config" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialize the configuration settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A namespace object with the following attributes:
+- data_dir : str</p>
+<blockquote>
+<div><p>The path to the data directory.</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>urls<span class="classifier">dict</span></dt><dd><p>A dictionary of URLs to download data if the local cache should be re-built.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>SimpleNamespace</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The location for local data files is determined by first looking for an environment variable called <cite>NYC_SCHOOLS_DATA_DIR</cite>. If this environment variable is not set, the data files are stored in a directory called <cite>school-data</cite> in the current directory. If this directory does not exist, it will be created.</p>
+<p>To see and change these settings for your installation, run <cite>python -m nycschools.dataloader</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nycschools.get_version">
+<span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nycschools.html#get_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nycschools.get_version" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the version of the nycschools package</p>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../nb/05-Maps-and-GIS/02-mapping-schools.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Layered Maps</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../data-sources.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Sources</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matthew X. Curinga, Taye Johnson, Kavindra Sahabir, Robert Wilcox<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://adelphi-ed-tech.github.io/nycschools/">NYC Schools Open Data Portal</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> 
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
