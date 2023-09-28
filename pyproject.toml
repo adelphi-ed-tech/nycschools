@@ -59,7 +59,8 @@ dependencies = [
   "thefuzz",
   "toml",
   "twine",
-  "wget"
+  "wget",
+  "yaspin"
 ]
 
 [project.urls]
