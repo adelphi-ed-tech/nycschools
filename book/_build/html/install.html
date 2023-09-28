@@ -529,10 +529,13 @@ title="Print to PDF"
 </section>
 <section id="load-the-data">
 <h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
-<p>Download the data files by running the interactive setup script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>nycschools.dataloader
+<p>Download the data (this might take a little bit) files by running the interactive setup script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>nycschools.dataloader<span class="w"> </span>-d
 </pre></div>
 </div>
+<p>This script will ask you where to save the data. Make sure that you have read-write
+access to this directory.</p>
+<p>Once the data is downloaded, you will be prompted to configure environment variables.</p>
 </section>
 <section id="configure-environment-variables">
 <h2>Configure environment variables<a class="headerlink" href="#configure-environment-variables" title="Permalink to this headline">#</a></h2>
@@ -542,11 +545,33 @@ say <code class="docutils literal notranslate"><span class="pre">/path/to/data</
 directory where you saved the data.</p>
 <p>For example, if your username is <code class="docutils literal notranslate"><span class="pre">mxc</span></code> and you saved it into a folder
 called<code class="docutils literal notranslate"><span class="pre">data</span></code> in your home folder, the full path would be something
-like <code class="docutils literal notranslate"><span class="pre">C:\Users\mxc\data\school-data</span></code> on Windows or
-<code class="docutils literal notranslate"><span class="pre">/Users/mxc/data/school-data</span></code> on Mac.</p>
+like <code class="docutils literal notranslate"><span class="pre">C:\Users\mxc\data\school-data</span></code> on Windows,
+<code class="docutils literal notranslate"><span class="pre">/Users/mxc/data/school-data</span></code> on Mac, and <code class="docutils literal notranslate"><span class="pre">/home/mxc/data/school-data</span></code> on GNU/Linux.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="fb349410-a57e-4ba3-b8ef-dc47f2ee9eec" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tab1" for="fb349410-a57e-4ba3-b8ef-dc47f2ee9eec">
+<input checked="checked" id="92b2f07f-7fd4-4d97-962c-593359c2ddf1" name="760b9586-c7a6-4e6c-9dd8-7589f78603bf" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab1" for="92b2f07f-7fd4-4d97-962c-593359c2ddf1">
+Virtual Environment</label><div class="sd-tab-content docutils">
+<p>The most reliable and recommended way to set the environment variable is
+to add it to the activation script of your virtual environment, and then
+use that venv for executing your python scripts or notebooks.</p>
+<p>To find the activation script launch a python shell or Jupyter Notebook and execute this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">venv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;VIRTUAL_ENV&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">venv_path</span><span class="p">:</span>
+    <span class="n">unix_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">venv_path</span><span class="p">,</span> <span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;activate&#39;</span><span class="p">)</span>
+    <span class="n">win_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">venv_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The activation script is located at: </span><span class="si">{</span><span class="n">activation_script_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not running inside a virtual environment&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</div>
+<input id="a1ba8b1c-07b6-4d48-a901-85837cc900ba" name="760b9586-c7a6-4e6c-9dd8-7589f78603bf" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab2" for="a1ba8b1c-07b6-4d48-a901-85837cc900ba">
 Mac</label><div class="sd-tab-content docutils">
 <p>On a Mac, you can set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment
 variable persistently by adding it to your
@@ -559,8 +584,8 @@ variable persistently by adding it to your
 </pre></div>
 </div>
 </div>
-<input id="370d12bc-599a-4a07-8eb9-3b8f12474b9f" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tab2" for="370d12bc-599a-4a07-8eb9-3b8f12474b9f">
+<input id="e1caf37a-070d-4d70-b728-5867132ab850" name="760b9586-c7a6-4e6c-9dd8-7589f78603bf" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab3" for="e1caf37a-070d-4d70-b728-5867132ab850">
 Windows</label><div class="sd-tab-content docutils">
 <p>On Windows, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
 you must use the System Properties window. Here are the steps:</p>
@@ -574,19 +599,20 @@ you must use the System Properties window. Here are the steps:</p>
 </ol>
 <p>This will set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable permanently for the system or user, depending on where you added it.</p>
 </div>
-<input id="bbf5b6cd-a0d1-4831-8061-6913c93c83ae" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tab4" for="bbf5b6cd-a0d1-4831-8061-6913c93c83ae">
+<input id="891003a7-e139-493f-96af-9155c6d45453" name="760b9586-c7a6-4e6c-9dd8-7589f78603bf" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab4" for="891003a7-e139-493f-96af-9155c6d45453">
 Jupyter Notebook</label><div class="sd-tab-content docutils">
 <p>If you wish to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable
 directly in a Jupyter Notebook (either because Jupyter is not
-reading the system variable, or you want to set or change it for one Noteboo),
+reading the system variable, or you want to set or change it for one Notebook),
 you can do so using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-env"><strong>env</strong> magic command</a>. At the top of your Notebook, in a code cell, run and execute:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">NYC_SCHOOLS_DATA_DIR</span><span class="o">=~/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">NYC_SCHOOLS_DATA_DIR</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span>
 </pre></div>
 </div>
+<p><em>Note: you will have to add this to each Notebook file.</em></p>
 </div>
-<input id="1ce202b2-8cad-447f-a85a-6fd07afcafda" name="789667b0-1b8a-4ed2-96e4-dbcf641c1fb8" type="radio">
-</input><label class="sd-tab-label" data-sync-id="tab3" for="1ce202b2-8cad-447f-a85a-6fd07afcafda">
+<input id="3143810d-9c14-49a4-bfcf-1c701659e8fb" name="760b9586-c7a6-4e6c-9dd8-7589f78603bf" type="radio">
+</input><label class="sd-tab-label" data-sync-id="tab5" for="3143810d-9c14-49a4-bfcf-1c701659e8fb">
 Linux</label><div class="sd-tab-content docutils">
 <p>On Linux, to set the <code class="docutils literal notranslate"><span class="pre">NYC_SCHOOLS_DATA_DIR</span></code> environment variable persistently,
 you can add the export command to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> or <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file:</p>

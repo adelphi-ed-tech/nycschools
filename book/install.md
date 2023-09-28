@@ -15,8 +15,14 @@ Load the data
 Download the data (this might take a little bit) files by running the interactive setup script:
 
 ```bash
-python -m nycschools.dataloader
+python -m nycschools.dataloader -d
 ```
+
+This script will ask you where to save the data. Make sure that you have read-write
+access to this directory.
+
+Once the data is downloaded, you will be prompted to configure environment variables.
+
 Configure environment variables
 -------------------------------
 You need to set the `NYC_SCHOOLS_DATA_DIR` environment variable so
