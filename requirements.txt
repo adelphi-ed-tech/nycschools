@@ -27,3 +27,4 @@ thefuzz
 toml
 twine
 wget
+yaspin
