@@ -19,6 +19,9 @@ import py7zr
 import requests
 import sys
 import warnings
+import platform
+import subprocess
+
 from yaspin import yaspin
 from yaspin.spinners import Spinners
 
@@ -167,7 +170,6 @@ def download_archive(data_dir=None):
     filename = config.urls["school-data-archive"].filename
     data_dir = os.path.abspath(data_dir)
     archive = os.path.join(data_dir, filename)
-    print("7zip", archive)
     resp = requests.get(url)
     with open(archive, "wb") as f:
         f.write(resp.content)
@@ -180,13 +182,72 @@ def download_archive(data_dir=None):
 
 
 def get_venv_activate():
+    """Finds the activation script for a running virtual environment
+    or `None` if not running a venv."""
 
     venv_path = os.environ.get('VIRTUAL_ENV')
     if venv_path:
         return os.path.join(venv_path, 'bin', 'activate')
     return None
 
+
+def find_config_file():
+    """Looks for virtual environment activation scripts
+    or bash configuration files in known locations.
+    
+    Returns:
+        str: the path to the configuration file or `None` if not found
+    """
+    paths = [
+        get_venv_activate(),
+        os.path.expanduser("~/.bashrc"),
+        os.path.expanduser("~/.bash_profile"),
+        os.path.expanduser("~/.profile")
+    ] 
+    
+    for path in paths:
+        if path and os.path.exists(path):
+            return path
+    
+    warnings.warn(f"""Could not find a venv or bash configuration file to edit.
+You should manually set the NYC_SCHOOLS_DATA_DIR environment variable.
+See the full documentation at: {config.urls["docbook"].url}""")
+    
+    return None
+    
+
+
+def set_env_var(data_dir):
+    """Attempts to set the NYC_SCHOOLS_DATA_DIR environment variable
+    based on the user's platform."""
+
+    # This will return 'Windows', 'Linux', or 'Darwin' (for macOS)
+    os_type = platform.system()
+
+    if os_type == "Windows":
+        subprocess.run(["setx", "NYC_SCHOOLS_DATA_DIR", data_dir])
+    elif os_type in ["Linux", "Darwin"]:
+        config_path = find_config_file()
+        if not config_path:
+            return
+        print("Writing env var to", config_path)
+        with open(config_path, "a") as f:
+            f.write(f"export NYC_SCHOOLS_DATA_DIR={data_dir}\n")
+        print(f"""To access the data files in your current terminal session,
+you must run the following command:
+source {config_path}
+""")
+
+
+
 def download_cache():
+    """Download the data archive and save it to the local drive.
+    This interactive terminal program prompts the user for
+    the location to save the data files. Once the files
+    are downloaded and expanded it attempts to write the path
+    to the data files into the python configuration environment.
+    """
+    print("Default data location:", config.data_dir)
     data_dir = ""
 
     def prompt_data():
@@ -214,28 +275,14 @@ def download_cache():
         sp.ok("✔")
 
     print(f"Data successfully saved to: {data_dir}")
-
-    venv_path = get_venv_activate()
-    if venv_path:
-        print(f"""
-To use the NYC Schools data, you must set the NYC_SCHOOLS_DATA_DIR environment variable.
-You can set this in your virtual environment activation script 
-and then load the settings by executing the following commands:
-              
-echo 'export NYC_SCHOOLS_DATA_DIR={data_dir}' >> {venv_path}
-source {venv_path}
-
-""")
+    auto_config = input("Automatically set environment variable? [Y/n]: ")
+    if auto_config.lower() == "y" or len(auto_config) == 0:
+        set_env_var(data_dir)
+        print("Environment variable set.")
     else:
-        print(f"""
-To use the NYC Schools data, you must set the NYC_SCHOOLS_DATA_DIR environment variable.
-- Linux/MacOS: export NYC_SCHOOLS_DATA_DIR={data_dir}
-- Windows: set NYC_SCHOOLS_DATA_DIR={data_dir}
+        print("""You must configure the NYC_SCHOOLS_DATA_DIR environment variable.
+See the full documentation at: {config.urls["docbook"].url}""")
 
-See the full documentation at:
-{config.urls["docbook"].url}
-
-""")
 
 def main():
     """Show the path to the `data_dir` where school data is stored.
