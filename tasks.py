@@ -1,7 +1,10 @@
 import os
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import toml
 from functools import wraps
 from dotenv import load_dotenv
+
+
 
 from nycschools import config, dataloader
 from invoke import task
@@ -99,6 +102,17 @@ def book(c, clean=False, docs=False):
         c.run("touch docs/.nojekyll")
 
 @task
+def serve_docs(c):
+    """Serve the documentation locally."""
+    print("Starting jupyter book server at http://localhost:8000")
+    c.run("python -m http.server --directory book/_build/html")
+    # run server from python
+    # os.chdir("book/_build/html")
+    # server_address = ('', 8000)
+    # httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    # httpd.serve_forever()
+
+@task
 def install_from_testpypi(c):
     """Install the package from testpypi but using real pypi for dependencies."""
     c.run("python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple nycschools")
@@ -113,21 +127,11 @@ def install_dev(c):
     c.run("pip install -e .[dev]")
 
     print("Downloading data to local directory 'school-data'")
-    dataloader.download_archive("school-data")
-    pwd = os.getcwd()
-    data_dir = os.path.join(pwd, "school-data")
-    print("Writing .env file with NYC_SCHOOLS_DATA_DIR")
-    c.run(f"echo 'NYC_SCHOOLS_DATA_DIR={data_dir}' > .env")
-    print(f"""To complete the installation, you can set the
-NYC_SCHOOLS_DATA_DIR environment variable to {data_dir} by
-adding the following line to your .bashrc or .zshrc file:
-
-export NYC_SCHOOLS_DATA_DIR={data_dir}
-
+    dataloader.download_data("school-data")
+    dataloader.set_env_var("NYC_SCHOOLS_DATA_DIR", "school-data")
+    print(f"""
 Installation complete. Run 
-
 invoke --list 
-
 to see available tasks.
 """)
 
