@@ -1,6 +1,12 @@
 Release Notes
 =============
 
+XXXX: Version 1.15
+------------------
+- added interactive installer script
+- added missing libraries to pip requirements
+
+
 March 15: Version 1.14.1
 ------------------------
 - bug fixes for regents exams
