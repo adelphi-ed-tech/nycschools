@@ -19,6 +19,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import WebDriverException
 
 from . import config, schools
 
@@ -44,28 +45,48 @@ def load_galaxy_budgets():
 
     return pd.read_csv(__galaxyfile)
 
+
 def open_webdriver():
-    """Opens a Selenium webdriver using the Chrome/Chromium 
-engine for Selenium. If the environment variables `CHROME_PATH` 
-and `CHROMEDRIVER_PATH` are set, they will be used to 
-initialize the webdriver. Otherwise, the webdriver will be 
-initialized using the default installation."""
+    """Opens a Selenium webdriver using either Firefox, Chrome, or Edge.
+    
+    Raises
+    ------
+    WebDriverException
+        If no suitable webdriver can be found.
 
-    # don't launch the browser GUI
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
+    Returns
+    -------
+    driver : selenium.webdriver.chrome.webdriver.WebDriver
+        The Selenium webdriver with the --headless option.
+    """
+    # Define the possible browser driver classes
+    drivers = [webdriver.Firefox, webdriver.Chrome,  webdriver.Edge]
 
-    # if the environment variables are set, use them
-    chrome_path = os.environ.get("CHROME_PATH", None)
-    chromedriver_path = os.environ.get("CHROMEDRIVER_PATH", None)
+    # Iterate through the browser driver classes and attempt to load each one
+    for Driver in drivers:
+        try:
+            opt = None
+            if Driver == webdriver.Chrome or Driver == webdriver.Edge:
+                opt = webdriver.ChromeOptions()
+            elif Driver == webdriver.Firefox:
+                opt = webdriver.FirefoxOptions()
 
-    if chrome_path:
-        chrome_options.binary_location = chrome_path
-    if chromedriver_path:
-        s = Service(chromedriver_path)
-        return webdriver.Chrome(service=s, options=chrome_options)
+            opt.add_argument("--headless")
+            driver = Driver(options=opt)
 
-    return webdriver.Chrome(options=chrome_options)
+            return driver
+        except WebDriverException as ex:
+            print(ex)
+            continue
+
+    # If no drivers could be loaded, raise an error
+    raise WebDriverException("""No suitable WebDriver could be found. 
+Make sure that the latest Chrome or Firefox browser is installed.
+Update the selenium package with:
+pip install -U selenium""")
+
+
+
 
 def __fix_cols(data, sections, dbn):
     """normalizes column names from scraped data."""
