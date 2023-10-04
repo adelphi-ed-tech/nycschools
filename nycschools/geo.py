@@ -34,7 +34,10 @@ def load_school_locations():
     """Returns a GeoDataFrame with the school locations and location meta-data"""
 
     try:
-        df =  gpd.read_file(school_location_file)
+        df = gpd.read_file(school_location_file)
+        # convert df.open_date to an int
+        df.open_date = df.open_date.apply(lambda x: x.year)
+        df.open_date = df.open_date.fillna(0).astype(int)
         return df
     except Exception as e: # geopandas throws DriveError, but I don't know where to import it to catch it
         if e.type != "<class 'fiona.errors.DriverError'>":
@@ -62,6 +65,7 @@ def get_points(geojsonurl=urls["school_geo"].url):
     # it's the best place to get zip codes
 
     df = gpd.read_file(geojsonurl)
+    df = df.drop_duplicates()
 
     df = df.rename(columns={"xcoordinat":"x","ycoordinat":"y",})
     df.x = pd.to_numeric(df.x, errors='coerce')
@@ -84,6 +88,7 @@ def get_locations(url=urls["school_locations"].url):
     """
 
     locations = pd.read_csv(url)
+    locations = locations.drop_duplicates()
     locations["dbn"] = locations.system_code
     cols = [
         'dbn',
@@ -123,8 +128,6 @@ def get_locations(url=urls["school_locations"].url):
 
     locations = locations[cols]
     locations.beds = locations.beds.astype("string")
-    locations.open_date = locations.open_date.astype("datetime64[ns]").dt.year
-    # locations.beds = locations.beds.astype("string")
     return locations
 
 
