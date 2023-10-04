@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 
-from nycschools import config, dataloader
+from nycschools import config, dataloader, geo
 from invoke import task
 
 
@@ -106,11 +106,7 @@ def serve_docs(c):
     """Serve the documentation locally."""
     print("Starting jupyter book server at http://localhost:8000")
     c.run("python -m http.server --directory book/_build/html")
-    # run server from python
-    # os.chdir("book/_build/html")
-    # server_address = ('', 8000)
-    # httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    # httpd.serve_forever()
+
 
 @task
 def install_from_testpypi(c):
@@ -159,6 +155,32 @@ def rebuild_docs(c):
     print("Rebuilding the documentation.")
     book(c, clean=True, docs=True)
 
+@task 
+def load_data(c, all=False, data=None):
+    """Download and save data from source URLs.
+Use the --all flag to download all data.
+Use the --data flag to download a single data sets.
+Possible values for --data are:
+- schools
+- exams
+- geo
+- budgets
+- nysed
+- class_size
+
+Usage:
+invoke load-data --all
+invoke load-data --data schools
+    """
+    if not all and not data:
+        print("You must specify either --all or --data")
+        # print the docstring for this function
+        print(load_data.__doc__)
+        return
+    
+    if all or data == "geo":
+        print("Downloading geo data.")
+        geo.get_and_save_locations()
 
 @task
 def full_release(c):
