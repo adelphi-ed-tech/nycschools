@@ -1,11 +1,12 @@
 from nycschools import config, geo, dataloader, schools
+import warnings
 
 
 def test_merge():
     a = schools.load_school_demographics()
     b = geo.load_school_locations()
     c = b.merge(a, on="dbn", how="inner")
-    c.explore()
+    assert hasattr(c, "explore"), "The merged dataframe should be a GeoDataFrame with explore()"
 
 
 def test_load_zipcodes():
@@ -13,11 +14,21 @@ def test_load_zipcodes():
     a = set(schools.load_school_demographics().zip)
     a.remove(0)
     b = set(df.zip)
-    assert len(a.difference(b)) < 3, "Missing some zip codes we expected" + str(a.difference(b))
-
+    missing = a.difference(b)
+    assert len(missing) < 3, "Missing some zip codes we expected" + str(a.difference(b))
+    if len(missing) > 0:
+        print(f"Missing some zip codes from the zip code data set: {missing}""")
 
 def test_load_school_locations():
     df = geo.load_school_locations()
+    assert len(df) > 1800, "Too few schools found"
+    assert len(df) < 2400, "Seems like too many schools"
+    a = len(df)
+    b = len(df.drop_duplicates(subset="dbn"))
+    assert a == b, "Duplicate dbn values found"
+
+    assert all(df.open_date.apply(lambda x: int(x) == x)), "open_date should be an integer"
+
 
 def test_load_districts():
     df = geo.load_districts()
@@ -35,6 +46,9 @@ def test_get_points():
     df = geo.get_points()
     assert len(df) > 1800, "Too few schools found"
     assert len(df) < 2400, "Seems like too many schools"
+    a = len(df)
+    b = len(df.drop_duplicates(subset="dbn"))
+    assert a == b, "Duplicate dbn values found"
     expected_keys = ['dbn', 'zip', 'geo_district', 'district', 'x', 'y', 'geometry']
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
@@ -44,6 +58,12 @@ def test_get_locations():
     df = geo.get_locations()
     assert len(df) > 1800, "Too few schools found"
     assert len(df) < 2400, "Seems like too many schools"
+    a = len(df)
+    b = len(df.drop_duplicates(subset="dbn"))
+    assert a == b, "Duplicate dbn values found"
+
+    assert all(df.open_date.apply(lambda x: int(x) == x)), "open_date should be an integer"
+
     expected_keys = [
         'dbn',
         'administrative_district_code',
