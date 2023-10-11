@@ -40,7 +40,7 @@ class demo():
     """
     raw_cols = [
        'dbn', 'school_name', 'year', 'total_enrollment',
-       'grade_3k_pk_half_day_full', 'grade_k', 'grade_1', 'grade_2', 'grade_3',
+       'grade_pk', 'grade_k', 'grade_1', 'grade_2', 'grade_3',
        'grade_4', 'grade_5', 'grade_6', 'grade_7', 'grade_8', 'grade_9',
        'grade_10', 'grade_11', 'grade_12', 'female', 'female_1', 'male',
        'male_1', 'asian', 'asian_1', 'black', 'black_1', 'hispanic',
@@ -64,7 +64,7 @@ class demo():
         'year',
         'school_type',
         'total_enrollment',
-        'grade_3k_pk_half_day_full',
+        'grade_pk',
         'grade_k',
         'grade_1',
         'grade_2',
@@ -102,7 +102,7 @@ class demo():
         'ell_pct',
         'poverty_n',
         'poverty_pct',
-        'eni_pct',
+        'eni',
         'clean_name',
         'zip'
     ]
@@ -134,7 +134,7 @@ class demo():
         'ell_pct',
         'poverty_n',
         'poverty_pct',
-        'eni_pct'
+        'eni'
     ]
 
     short_cols = ["dbn","school_name", "short_name", "clean_name", "ay"]
@@ -144,6 +144,7 @@ class demo():
         'female_1':'female_pct',
         'male':'male_n',
         'male_1':'male_pct',
+        'neither_female_nor_male_1': 'neither_female_nor_male_pct',
         'asian':'asian_n',
         'asian_1':'asian_pct',
         'black':'black_n',
@@ -164,27 +165,37 @@ class demo():
         'english_language_learners_1':'ell_pct',
         'poverty':'poverty_n',
         'poverty_1':'poverty_pct',
-        'economic_need_index':'eni_pct'
+        'economic_need_index':'eni'
     }
+
 
 def str_pct(row, pct_col, enroll_col):
     """generic function to take percentages represented as Strings and convert to real
-    expects data to look like '84.33%', 'Above 95%', 'Below 5%'
+    expects data to look like '84.33%' or .8433, 'Above 95%', 'Below 5%'
     Example: df["economic_need_index"] = df.apply(lambda row: str_pct(row, "economic_need_index", "total_enrollment"), axis = 1)
     """
-    pct = row[pct_col][:-1]
+
     # just call the population size `n`
     n = row[enroll_col]
 
+    # get the percentage as a string
+    pct = str(row[pct_col])
+    if pct.endswith("%"):
+        pct = pct[:-1]
+    if "Above" in pct:
+        pct = n * .96 / n
+    elif "Below" in pct:
+        pct = n * .04 / n
+
     try:
-        pct = float(pct) / 100
-    except:
-        if "Above" in pct:
-            pct = n * .96 / n
-        elif "Below" in pct:
-            pct = n * .04 / n
-        else:
-            print(f"Exception in {col}: {row['dbn']} - {row['year']}. Value: {pct}")
+        pct = float(pct)
+    except Exception as ex:
+        print(
+            f"Exception in {pct_col}: {row['dbn']} - {row['year']}. Value: {pct}")
+        raise ex
+    # some percentages are whole numbers 0..100, others are real numbers 0..1
+    if pct >= 1:
+        pct = pct / 100
 
     return float(pct)
 
@@ -299,26 +310,20 @@ def load_school_demographics():
     df.beds = df.beds.fillna(0).astype("int64")
     return df
 
-def save_demographics(url=config.urls["demographics"].url):
-    """Loads and cleans school demographic data from a NYC Open Data
-    Portal URL. The data is joined with some location data to make it
-    more easily merged with other data sets. A local copy of the data
-    is saved as a .csv in the `nycschools` data directory.
+def get_demographics(df):
+    """Loads and cleans school demographic data from a pandas DataFrame.
+    The initial data is joined with location data to make it
+    more easily merged with other data sets.
 
     Parameters
     -----------
-    url : str , default loads the url from config.urls with the 'demographics' key
-          the URL to the most recent NYC school demographics
+    df : DataFrame, a "raw" DataFrame of school demographic data from NYC Schools or Open Data Portal
 
     Returns
     -------
     DataFrame
         a pandas DataFrame holding school demographic data for all of the schools
-        in the data portal
-
     """
-
-    df = pd.read_csv(url)
 
     boros = {"K":"Brooklyn", "X":"Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
 
@@ -330,7 +335,7 @@ def save_demographics(url=config.urls["demographics"].url):
     df["charter"] = df.district.apply(lambda x: 1 if x == 84 else 0)
 
     # figure out what grades they teach
-    df["pk"] = df["grade_3k_pk_half_day_full"] > 0
+    df["pk"] = df["grade_pk"] > 0
     df["elementary"] = df["grade_2"] > 0
     df["middle"] = df["grade_7"] > 0
     df["hs"] = df["grade_10"] > 0
@@ -354,14 +359,58 @@ def save_demographics(url=config.urls["demographics"].url):
     df.loc[df.district == 79, "school_type"] = "alternative"
     df = join_loc_data(df)
     df = df[demo.default_cols]
-    df.to_csv(__demo_filename, index=False)
+
 
     return df
 
+def save_demographics():
+
+    demo_2016 = pd.read_csv(config.urls["demographics"].data_urls["2016"])
+    demo_2016 = demo_2016[demo_2016.year == "2016-17"]
+    # make the columns match the most recent data set
+    demo_2016.rename(columns={"grade_3k_pk_half_day_full":"grade_pk"}, inplace=True)
+    demo_2016["neither_female_nor_male"] = 0
+    demo_2016["neither_female_nor_male_pct"] = 0
+    demo_2016 = get_demographics(demo_2016)
+
+    # read the latest data from excel
+    demo_2022 = get_2022_demo_xls()
+    # join the two data frames
+    df = pd.concat([demo_2016, demo_2022])
+
+    df.to_csv(__demo_filename, index=False)
+    return df
+
+
+def get_2022_demo_xls():
+    """Read the latest demographic data from an Excel download"""
+    def xls_cols(col):
+        d = {
+            "multi-racial": "multi_racial",
+            "multi-racial_1": "multi_racial_1",
+            "grade_pk_(half_day_&_full_day)": "grade_pk",
+            "missing_race/ethnicity_data": "missing_race_ethnicity_data",
+            "missing_race/ethnicity_data_1": "missing_race_ethnicity_data_1"
+
+        }
+        col_name = col.lower().replace(" ", "_")
+        if col_name[0] == "%":
+            col_name = col_name[2:] + "_1"
+        elif col_name[0] == "#":
+            col_name = col_name[2:]
+        if col_name in d:
+            return d[col_name]
+        return col_name
+
+    xls = pd.read_excel(
+        config.urls["demographics"].data_urls["2022"], sheet_name=None)
+    df = xls["School"]
+    df.rename(columns=xls_cols, inplace=True)
+    df = get_demographics(df)
+    return df
 
 def join_loc_data(df):
     """Join NYS BEDS id, zip code, and other location data.
-
     """
     school_loc = geo.load_school_locations()
     # with the left join, we might be missing zip and beds for some schools

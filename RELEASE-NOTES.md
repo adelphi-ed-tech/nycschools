@@ -5,6 +5,13 @@ XXXX: Version 1.15
 ------------------
 - added interactive installer script
 - added missing libraries to pip requirements
+- removed duplicate rows in school locations
+- changed open_date in school locations to an integer to work around folium issue mapping DateTime
+- updated school demographics with the latest data set
+- updated data files on G drive
+- added syntax to ui.popup to put sections in popup info for explore()
+- **breaking change**: renamed eni_pct to eni
+
 
 
 March 15: Version 1.14.1

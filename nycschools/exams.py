@@ -15,12 +15,12 @@
 # ==============================================================================
 import pandas as pd
 import numpy as np
-import wget
 
 import os.path
-import zipfile
+from concurrent.futures import ThreadPoolExecutor
 
-from . import config, nysed
+
+from . import config
 urls = config.urls
 
 
@@ -105,10 +105,7 @@ def load_ela():
 
     """
     filename = os.path.join(config.data_dir, urls["nyc_ela"].filename)
-    try:
-        df = pd.read_csv(filename, low_memory=False)
-    except FileNotFoundError:
-        df = load_ela_excel()
+    df = pd.read_csv(filename, low_memory=False)
     return df.sort_values(by=["dbn", "ay"])
 
 
@@ -117,14 +114,12 @@ def load_math():
     Loads the New York State Math grades 3-8 ELA exam results for all categories.
     If a local .csv data file exists, it will return results from that file. If
     no local file is available, itt will loads the Excel data file for from the
-    NYC Data Portal and then cobmines the results with charter school data into
+    NYC Data Portal and then combines the results with charter school data into
     a `DataFrame`. _This can be slow_.
     """
     filename = os.path.join(config.data_dir, urls["nyc_math"].filename)
-    try:
-        df = pd.read_csv(filename, low_memory=False)
-    except FileNotFoundError:
-        df = load_math_excel()
+    df = pd.read_csv(filename, low_memory=False)
+
     return df.sort_values(by=["dbn", "ay"])
 
 
@@ -232,11 +227,31 @@ def load_regents_excel():
     return df
 
 
+
+
 def read_nys_exam_excel(url):
+    """Reads the NYS exam results from an Excel file.
+    The Excel file contains multiple sheets, each of which
+    contains a different demographic breakdown of the exam.
+    The excel files contain more recent data than the data portal
+    or NYSED downloads, however they do not contain demographic
+    breakdowns for charter schools.
+
+    Note this function can take more than 120 seconds to run.
+    
+    Parameters:
+        url (str): the URL of the Excel file
+    Returns:
+        `DataFrame`
+    """
+
     xls = pd.read_excel(url, sheet_name=None)
+    
+    # these are the known sheet names that we care about
     sheet_names = ['All', 'SWD', 'Ethnicity', 'Gender', 'Econ Status', 'ELL']
 
     data = [xls[sheet] for sheet in sheet_names]
+
     df = pd.concat(data, ignore_index=True)
 
     cols = ['DBN', 'Grade', 'Year', 'Category', 'Number Tested', 'Mean Scale Score',
@@ -260,7 +275,7 @@ def read_nys_exam_excel(url):
     df["test_year"] = df["year"]
     df["ay"] = df["year"] - 1
     del df["year"]
-    df["charter"] = 0
+    df["charter"] = df["dbn"].str.startswith("84")
     return df
 
 

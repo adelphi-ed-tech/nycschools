@@ -1,13 +1,12 @@
 import pytest
-from nycschools import config, exams
+from nycschools import config, exams, schools
 
 
-@pytest.mark.skip(reason="too slow for normal testing")
 def test_load_ela_excel():
     df = exams.load_ela_excel()
     check_state_test(df)
 
-@pytest.mark.skip(reason="too slow for normal testing")
+
 def test_load_math_excel():
     df = exams.load_math_excel()
     check_state_test(df)
@@ -51,7 +50,6 @@ def test_load_math_ela_wide():
     assert len(math_cols) > 0
     assert len(ela_cols) > 0
     assert len(ela_cols) == len(math_cols)
-
 
 
 def check_regents(df):

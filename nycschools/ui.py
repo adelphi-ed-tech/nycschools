@@ -48,9 +48,15 @@ def label_shapes(m, df, col, style={}):
 
 def popup(cols, style={"min-width": "200px"}):
     style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
+    # cols = map(cols, lambda x: "<hr>" if x == "----" else x)
 
     def html(row):
-        items = "<br>".join([f"{nice_name(c)}: {fmt_num(c, row[c])}" for c in cols])
+        def content(c):
+            if c == "----":
+                return """<hr style="padding: 0;margin:0; margin-bottom: .25em; border: none; border-top: 2px solid black;">"""
+            return f"{nice_name(c)}: {fmt_num(c, row[c])}<br>"
+        
+        items = "".join([content(c) for c in cols])
         return f'<div style="{style_str}">{items}</div>'
 
     return html

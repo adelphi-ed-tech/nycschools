@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 
-from nycschools import config, dataloader, geo
+from nycschools import config, dataloader, geo, schools, exams, budgets, class_size
 from invoke import task
 
 
@@ -178,9 +178,20 @@ invoke load-data --data schools
         print(load_data.__doc__)
         return
     
+    if all or data == "schools":
+        print("Downloading school data.")
+        schools.save_demographics()
+    
+    if all or data == "exams":
+        print("Downloading NYC math exam data.")
+        exams.load_math_excel()
+        print("Downloading NYC ELA exam data.")
+        exams.load_ela_excel()
+
     if all or data == "geo":
         print("Downloading geo data.")
         geo.get_and_save_locations()
+
 
 @task
 def full_release(c):
