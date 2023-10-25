@@ -43,7 +43,33 @@ def label_shapes(m, df, col, style={}):
             icon=folium.DivIcon(html=html)).add_to(m)
     df.apply(label, axis=1)
     return m
+
+def map_footer(m, file_path, html):
+    """Add the html to the bottom of the map html file"""
+    m.save(file_path)
+
+    # open the map html and insert the footer at the bottom of page
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    with open(file_path, 'w') as file:
+        file.write(content.replace('</body>', f"{html}</body>"))
     
+    return file_path
+
+def map_header(m, file_path, html):
+    """Add the html to the top of the map html file"""
+    m.save(file_path)
+
+    # open the map html and insert the header at the top of page
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    with open(file_path, 'w') as file:
+        file.write(content.replace('<body>', f"<body>{html}"))
+    
+    return file_path
+
 
 
 def popup(cols, style={"min-width": "200px"}):
