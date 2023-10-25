@@ -71,6 +71,46 @@ def map_header(m, file_path, html):
     return file_path
 
 
+def create_layer(m, data, name, style={"color": "blue", "weight": 0, "opacity": 0},tooltip=None,radius=2):
+    """Create a folium layer from the data. A new CircleMarker is created for
+    each row in the DataFrame and added to map `m`.
+    Parameters
+    ----------
+    m: folium.Map
+        The map to add the layer to
+    data: GeoDataFrame
+        The data to plot
+    name: str
+        The name of the layer
+    style: dict
+        The style of the layer. Default is {"color": "blue", "weight": 0, "opacity": 0}
+    tooltip: str
+        The column name to use for the tooltip. Default is None.
+    radius: int
+        The radius of the circle markers. Default is 2.
+
+    Returns
+    -------
+    folium.FeatureGroup
+        The layer created from the data
+    """
+    layer = folium.FeatureGroup(name=name)
+
+    def marker(row):
+        tool = row[tooltip] if tooltip else False
+        return folium.CircleMarker(
+            location=(row['geometry'].y, row['geometry'].x),
+            radius=radius,
+            style=style,
+            fill=True,
+            popup=tool
+        )
+    data.apply(lambda row: marker(row).add_to(layer), axis=1)
+
+    layer.add_to(m)
+
+    return layer
+
 
 def popup(cols, style={"min-width": "200px"}):
     style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
@@ -83,6 +123,8 @@ def popup(cols, style={"min-width": "200px"}):
             return f"{nice_name(c)}: {fmt_num(c, row[c])}<br>"
         
         items = "".join([content(c) for c in cols])
+        items[0] = f"<strong>{items[0]}</strong>"
+        items = "".join(items)
         return f'<div style="{style_str}">{items}</div>'
 
     return html
