@@ -33,7 +33,7 @@ def ul(t):
 
 def label_shapes(m, df, col, style={}):
     """Create a function that will add the string of `col`
-    to the center of each shape specified by """
+    to the center of each shape in df """
     style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
     def label(row):  
         point = row.geometry.centroid
@@ -43,6 +43,35 @@ def label_shapes(m, df, col, style={}):
             icon=folium.DivIcon(html=html)).add_to(m)
     df.apply(label, axis=1)
     return m
+
+def map_layers(m, df):
+
+    def create_layer(df, name, color="color", popup="popup", radius=5):
+        layer = folium.FeatureGroup(name=name)
+
+        def marker(row):
+            return folium.CircleMarker(
+                location=(row['geometry'].y, row['geometry'].x),
+                radius=radius,
+                color=row["color"],
+                fill=True,
+                fill_color=row[color],
+                fill_opacity=1,
+                opacity=1,
+                popup=row[popup]
+            )
+        df.apply(lambda row: marker(row).add_to(layer), axis=1)
+
+        layer.add_to(m)
+
+        return layer
+
+    groups = df.groupby("layer")
+    for name, group in groups:
+        create_layer(group, name)
+    
+    return m
+
 
 def map_footer(m, file_path, html):
     """Add the html to the bottom of the map html file"""
