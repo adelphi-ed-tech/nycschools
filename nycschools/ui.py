@@ -44,7 +44,7 @@ def label_shapes(m, df, col, style={}):
     df.apply(label, axis=1)
     return m
 
-def map_layers(m, df):
+def map_layers(m, df, radius=5):
 
     def create_layer(df, name, color="color", popup="popup", radius=5):
         layer = folium.FeatureGroup(name=name)
@@ -58,7 +58,8 @@ def map_layers(m, df):
                 fill_color=row[color],
                 fill_opacity=1,
                 opacity=1,
-                popup=row[popup]
+                popup=row[popup],
+                className=f"layer-{name} zoomable"
             )
         df.apply(lambda row: marker(row).add_to(layer), axis=1)
 
@@ -68,7 +69,7 @@ def map_layers(m, df):
 
     groups = df.groupby("layer")
     for name, group in groups:
-        create_layer(group, name)
+        create_layer(group, name, radius=radius)
     
     return m
 
