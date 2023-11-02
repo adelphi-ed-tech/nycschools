@@ -74,6 +74,31 @@ def map_layers(m, df, radius=5):
     return m
 
 
+def map_js(m, file_path, js):
+    """Add the custom javascript to the map
+    that will load after the body is rendered
+    and all other map elements are ready.
+    Do not wrap js in <script> tags."""
+    m.save(file_path)
+
+    html = """
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {""" + js + """
+
+    });
+    </script>
+    """
+
+    # open the map html and insert the footer at the bottom of page
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    with open(file_path, 'w') as file:
+        file.write(content.replace('</html>', f"{html}</html>"))
+    
+    return file_path
+
+
 def map_footer(m, file_path, html):
     """Add the html to the bottom of the map html file"""
     m.save(file_path)
