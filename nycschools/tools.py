@@ -15,17 +15,16 @@
 # ==============================================================================
 
 
-# demo_cols = set(demo.columns)
-# geo_cols = set(df.columns)
-# demo_cols.intersection(geo_cols)
-
-def quick_merge(a, b, on="dbn"):
-    
-    diff = list(a.columns.intersection(b))
-
-    diff.remove(on)
-    a = a.copy()
-    a.drop
+import warnings
+import functools
 
 
-    return a[diff].merge(b,how="inner",on=on)
+def suppress_warnings(warning_category=RuntimeWarning):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", category=warning_category)
+                return func(*args, **kwargs)
+        return wrapper
+    return decorator

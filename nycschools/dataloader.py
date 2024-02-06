@@ -21,11 +21,15 @@ import sys
 import warnings
 import platform
 import subprocess
+import time
+import datetime
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 
 from yaspin import yaspin
 from yaspin.spinners import Spinners
 
-from . import config
+from . import config, schools, exams, budgets, geo, nysed, shsat
+from .tools import suppress_warnings
 
 def get_data_dir():
     return config.data_dir
@@ -39,6 +43,38 @@ def download_file(url, local_filename):
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
     return local_filename
+
+@suppress_warnings(UserWarning)
+def download_source():
+    """Downloads all of the source data and recreates the local cache. Be patient..."""
+    
+    start = time.time()
+    print("Downloading geo data...")
+    # requires geolocation first
+    geo.get_and_save_locations()
+    print("...Geolocation data downloaded")
+
+
+
+    with ProcessPoolExecutor() as executor:
+        # Submit all tasks to the executor
+        tasks = [
+            # executor.submit(schools.save_demographics),
+            executor.submit(exams.load_charter_ela),
+            # executor.submit(exams.load_charter_math),
+            # executor.submit(exams.load_regents_excel),
+            # executor.submit(exams.load_math_excel),
+            # executor.submit(exams.load_ela_excel),
+            # executor.submit(nysed.load_nysed_ela_math_archives)
+        ]
+
+        # Process tasks as they complete
+        for future in as_completed(tasks):
+            future.result() 
+    end = time.time()
+    delta = datetime.timedelta(seconds=int(end-start))
+    print()
+    print(f"Total download time: {delta}")
 
 def download_data():
     path = find_data_dir(config)
@@ -261,8 +297,11 @@ def download_cache():
 
     def prompt_data():
         path = input("Enter the path to the data directory (or <enter> for default): ")
+        if path == "":
+            path = config.data_dir
         # check if it exists, if not create it, catch errors and re-prompt
         try:
+            print("Creating data cache: ", path)
             os.makedirs(path, exist_ok=True)
         except:
             print(f"Could not create directory {path}")
@@ -314,3 +353,4 @@ To use the interactive downloader, run `python -m nycschools.dataloader -d`.
 
 if __name__ == "__main__":
     main()
+

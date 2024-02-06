@@ -15,6 +15,7 @@
 # ==============================================================================
 import pandas as pd
 from IPython.display import Markdown as md
+from IPython.display import display
 from decimal import *
 
 import matplotlib.pyplot as plt
@@ -50,6 +51,10 @@ def map_layers(m, df, radius=5):
         layer = folium.FeatureGroup(name=name)
 
         def marker(row):
+            if popup in row:
+                info = row[popup]
+            else:
+                info = ""
             return folium.CircleMarker(
                 location=(row['geometry'].y, row['geometry'].x),
                 radius=radius,
@@ -58,7 +63,7 @@ def map_layers(m, df, radius=5):
                 fill_color=row[color],
                 fill_opacity=1,
                 opacity=1,
-                popup=row[popup],
+                popup=info,
                 className=f"layer-{name} zoomable"
             )
         df.apply(lambda row: marker(row).add_to(layer), axis=1)
@@ -234,6 +239,9 @@ def fmt_table(df, col_map=None, pct_cols=[], num_cols=[]):
         result = result.rename(columns=col_map)
     return result
 
+
+def show_md(s):
+    display(md(s))
 
 def infinite():
     n = 0

@@ -36,6 +36,7 @@ dependencies = [
   "invoke",
   "folium",
   "geopandas",
+  "geopy",
   "html5lib",
   "ipython",
   "lxml",
