@@ -98,6 +98,10 @@ urls = {
         "filename_ptr": "ptr.csv",
         "desc": "Average class size by school and academic year and pupil teacher ratio for 2022-23"
     },
+    "doe_school_wwww": {
+        "url": "https://www.schools.nyc.gov/schools/",
+        "desc": "this is the root URL part for DOE official school websites"
+    },
     "school_geo": {
         "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
         "filename": "school-zipcodes.geojson",

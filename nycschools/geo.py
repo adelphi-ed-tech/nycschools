@@ -15,7 +15,8 @@
 # ==============================================================================
 import pandas as pd
 import geopandas as gpd
-import folium
+from bs4 import BeautifulSoup
+import requests
 import os
 import os.path
 
@@ -140,9 +141,17 @@ def load_districts(url=urls["district_geo"].url):
     districts = districts.to_crs(epsg=4326)
     return districts
 
-def add_labels(ax, df, col, fontsize=14):
-    def label(row):
-        xy=row.geometry.centroid.coords[0]
-        ax.annotate(row[col], xy=xy, ha='center', fontsize=fontsize)
 
-    df.apply(label, axis=1)
+def get_address(dbn):
+    url = f"https://www.schools.nyc.gov/schools/{dbn[2:]}"
+    try:
+        html = requests.get(url).text
+        soup = BeautifulSoup(html, 'html.parser')
+        links = soup.select('a[href^="https://maps.google.com"]')
+        return links[0].text
+    except:
+        print(f"Error: {dbn}")
+        return None
+
+def scrape_addresses(base_url=urls["doe_school_wwww"].url):
+    pass

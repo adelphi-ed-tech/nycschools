@@ -1,8 +1,10 @@
 arrow
+beautifulsoup4
 build
 invoke
 folium
 geopandas
+geopy
 html5lib
 ipython
 lxml

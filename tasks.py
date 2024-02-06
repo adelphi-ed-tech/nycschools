@@ -155,8 +155,8 @@ def rebuild_docs(c):
     print("Rebuilding the documentation.")
     book(c, clean=True, docs=True)
 
-@task 
-def load_data(c, all=False, data=None):
+@with_env 
+def load_source(c, all=False, data=None):
     """Download and save data from source URLs.
 Use the --all flag to download all data.
 Use the --data flag to download a single data sets.
@@ -175,9 +175,14 @@ invoke load-data --data schools
     if not all and not data:
         print("You must specify either --all or --data")
         # print the docstring for this function
-        print(load_data.__doc__)
+        print(load_source.__doc__)
         return
     
+    if all:
+        print("Downloading all data.")
+        dataloader.download_source()
+        return
+
     if all or data == "schools":
         print("Downloading school data.")
         schools.save_demographics()

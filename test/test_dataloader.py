@@ -17,6 +17,9 @@ def test_read_urls():
         assert r.status_code == 200
 
 
+def test_download_source():
+    loader.download_source()
+
 def test_contains_data_files():
 
     assert loader.contains_data_files(config.data_dir), "data files should be present in the default data directory"

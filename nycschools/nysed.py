@@ -39,7 +39,7 @@ def load_nyc_nysed():
 
 def load_nys_nysed():
     """
-    Load the grades 3-8 math and ela exam results for all schools and distrcicts
+    Load the grades 3-8 math and ela exam results for all schools and districts
     in New York State, in a long data format. This is the only data set that has
     demographic test results for charter schools in NYC. This data has all of
     the same columns as the NYC `load_math_ela_long`. Note that NYS does not
@@ -51,12 +51,10 @@ def load_nys_nysed():
     homelessness, foster care, and parents in armed services.
     """
 
-    try:
-        # try to load it locally to save time
-        feather = os.path.join(config.data_dir, "nysed-exams.feather")
-        return pd.read_feather(feather)
-    except FileNotFoundError:
-        return load_nysed_ela_math_archives()
+    # try to load it locally to save time
+    feather = os.path.join(config.data_dir, "nysed-exams.feather")
+    return pd.read_feather(feather)
+
 
 def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
     """
