@@ -23,8 +23,12 @@ import matplotlib as mpl
 import seaborn as sns
 import networkx as nx
 import folium
-
+import numpy as np
+import random
 import math
+from shapely import Point
+from functools import partial
+
 
 def ul(t):
 
@@ -43,6 +47,71 @@ def label_shapes(m, df, col, style={}):
             location=(point.y, point.x), 
             icon=folium.DivIcon(html=html)).add_to(m)
     df.apply(label, axis=1)
+    return m
+
+def add_legend(m, items, title="", style={}):
+    """Create a legend for the map with the items listed
+    in the order they are passed in. The items should be a list
+    of tuples with the first element being the label and the second
+    being the html color. The style is a dictionary of css properties
+    to apply to the legend. Style properties will replace default
+    properties. The title is the title of the legend.
+
+    Parameters
+    ----------
+    m: folium.Map the map to add the legend to
+    items: list of tuples
+        The items to include in the legend in the format (label, color)
+        they will be displayed in the order they are passed in.
+        For example: [("label1", "red"), ("label2", "blue"), ("label3", "#00ff00")]
+    title: str
+        The title of the legend, appears at the top of the legend (default is "").
+    style: dict
+        The style of the legend. Default is an empty dictionary. These styles
+        will be applied to the <div> element that contains the legend.
+        This div also has the css class "MapLegend" which you
+        can use to style all of the elements in the legend by adding a custom
+        header to the map html file wit the `map_header()` function.
+    
+    Returns
+    -------
+    folium.Map
+        The map with the legend added to it.
+    """
+
+    css = {
+        "padding": "6px",
+        "font-size": "14px",
+        "background-color": "rgba(255, 255, 255, 0.8)",
+        "border-radius": "5px",
+        "border": "1px solid #ccc",
+        "z-index": "1000",
+        "position": "fixed",
+        "top": "10px",
+        "right": "10px",
+        "max-height": "400px",
+        "overflow-y": "auto"
+    }
+    for k, v in style.items():
+        css[k] = v
+    style_str = ";".join([f"{k}:{v}" for k,v in css.items()])
+    
+    def legend_item(label, color):
+        return f"""
+        <div style="display: flex; align-items: start; margin-bottom: .5em;">
+          <div style="background:{color}; width: 14px; height: 14px">&nbsp;</div>
+          <div style="line-height: 14px; padding-left: .25em; font-size: 12px;"><strong>{label}</strong></div>
+        </div>
+"""
+    
+    html = f"""
+<div style="{style_str}">
+  <h4><strong>{title}</strong></h4>
+  {"".join([legend_item(label, color) for label, color in items])}
+</div>
+"""
+
+    m.get_root().html.add_child(folium.Element(html))
     return m
 
 def map_layers(m, df, radius=5):
@@ -78,6 +147,51 @@ def map_layers(m, df, radius=5):
     
     return m
 
+
+def rand_points(geometry, n, max_conflicts=100):
+    """
+    Create n random points within the bounds of the geometry.
+    
+    Parameters
+    ----------
+    geometry: shapely.geometry
+        The geometry to create points within
+    n: int
+        The number of points to create
+
+    Returns
+    -------
+    GeoDataFrame
+        A GeoDataFrame with n random points within the geometry
+
+    """
+    minx, miny, maxx, maxy = geometry.bounds
+
+    occupied = set()
+    conflicts = 0
+
+    def is_occupied(p):
+        if p in occupied:
+            conflicts += 1
+            return True or conflicts > max_conflicts
+        occupied.add(p)
+        return False
+
+    def rand_point():
+
+        x = random.uniform(minx, maxx)
+        y = random.uniform(miny, maxy)
+        p = Point(x, y)
+        if p.within(geometry):
+            return p
+        return rand_point()
+
+    points = [rand_point() for i in range(n)]
+    if conflicts > 0:
+        print(f"Conflicts in plotting {n} points:", conflicts)
+    # create a GeoDataFrame from the points
+    points = pd.DataFrame({"geometry": points})
+    return points
 
 def map_js(m, file_path, js):
     """Add the custom javascript to the map
@@ -172,15 +286,17 @@ def create_layer(m, data, name, style={"color": "blue", "weight": 0, "opacity": 
     return layer
 
 
-def popup(cols, style={"min-width": "200px"}):
+def popup(cols, style={"min-width": "200px"}, fmt_funcs={}):
     style_str = ";".join([f"{k}:{v}" for k,v in style.items()])
-    # cols = map(cols, lambda x: "<hr>" if x == "----" else x)
 
     def html(row):
         def content(c):
             if c == "----":
                 return """<hr style="padding: 0;margin:0; margin-bottom: .25em; border: none; border-top: 2px solid black;">"""
-            return f"{nice_name(c)}: {fmt_num(c, row[c])}<br>"
+            # make a partial of fmt_num that includes the column name
+
+            f = fmt_funcs.get(c, partial(fmt_num, c))
+            return f"{nice_name(c)}: {f(row[c])}<br>"
         
         items = [content(c) for c in cols]
         items[0] = f"<strong>{items[0]}</strong>"
@@ -194,7 +310,7 @@ def fmt_num(col, n):
     if col.endswith("_pct"):
         return pct(n)
     try:
-        n = float(row[col])
+        n = float(n)
         if round(n) == n:
             return f"{int(n):,}"
         else:
