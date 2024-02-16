@@ -13,17 +13,19 @@
 # You should have received a copy of the License along with this program.
 # If not, see <http://www.gnu.org/licenses/>.
 # ==============================================================================
+from nycschools import datasets
 import pandas as pd
 import geopandas as gpd
 from bs4 import BeautifulSoup
 import requests
 import os
 import os.path
+from datetime import datetime
+
 
 from . import config
 urls = config.urls
 school_location_file = os.path.join(config.data_dir, "school_locations.geojson")
-
 
 def load_zipcodes():
     """Load the NYC zip code boundaries as a GeoDataFrame from data_dir.
@@ -72,10 +74,12 @@ def get_points(geojsonurl=urls["school_geo"].url):
     df.x = pd.to_numeric(df.x, errors='coerce')
     df.y = pd.to_numeric(df.y, errors='coerce')
     df = df[df.x > 0]
+    df.bbl = df.bbl.astype(str)
+    df.bbl = df.bbl.str.replace(".0", "")
     df["dbn"] = df.ats_code
     df["district"] = df.adimindist.astype(int)
     df = df.rename(columns={"geodistric":"geo_district"})
-    cols = ['dbn', 'zip', 'geo_district', 'district', 'x','y', 'geometry']
+    cols = ['dbn', 'zip', 'geo_district', 'district', 'x','y', 'bbl', 'geometry']
 
     df = df[cols]
     df.zip = df.zip.astype("string")
@@ -131,6 +135,33 @@ def get_locations(url=urls["school_locations"].url):
     locations.beds = locations.beds.astype("string")
     return locations
 
+def load_school_footprints():
+    gdf = gpd.read_file(urls["building_footprints"].school_footprints_file)
+    return gdf
+
+def load_city_footprints():
+    gdf = gpd.read_file(urls["building_footprints"].city_footprints_feather)
+    return gdf
+
+
+def get_school_footprints():
+    """Load all building footprints from the NYC Dept of Buildings
+    Open Data Portal. Merge these shapes with school locations
+    and save the footprints"""
+    print("Getting footprints from URL")
+    url=urls["building_footprints"].url
+    foot = gpd.read_file(url)
+    foot["bbl"] = foot.base_bbl.astype(str)
+    foot.mpluto_bbl = foot.mpluto_bbl.astype(str)
+    # saving local feather
+    foot.to_feather(urls["building_footprints"].city_footprints_feather)
+
+    # merging with point locations for dbn
+    school_loc = get_points()
+    school_foot = foot.merge(school_loc[["dbn","bbl"]], on="bbl", how="inner")
+    # saving to data dir
+    school_foot.to_file(urls["building_footprints"].school_footprints_file, driver="GeoJSON")
+    return school_foot
 
 def load_districts(url=urls["district_geo"].url):
     """Get geo shape file for NYC school districts, indexed by district number."""
@@ -141,17 +172,3 @@ def load_districts(url=urls["district_geo"].url):
     districts = districts.to_crs(epsg=4326)
     return districts
 
-
-def get_address(dbn):
-    url = f"https://www.schools.nyc.gov/schools/{dbn[2:]}"
-    try:
-        html = requests.get(url).text
-        soup = BeautifulSoup(html, 'html.parser')
-        links = soup.select('a[href^="https://maps.google.com"]')
-        return links[0].text
-    except:
-        print(f"Error: {dbn}")
-        return None
-
-def scrape_addresses(base_url=urls["doe_school_wwww"].url):
-    pass

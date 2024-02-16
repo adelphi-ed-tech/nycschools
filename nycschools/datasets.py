@@ -102,6 +102,12 @@ urls = {
         "url": "https://www.schools.nyc.gov/schools/",
         "desc": "this is the root URL part for DOE official school websites"
     },
+    "building_footprints": {
+        "url": "https://data.cityofnewyork.us/api/geospatial/nqwf-w8eh?method=export&format=GeoJSON",
+        "city_footprints_feather": "nyc-footprints.feather",
+        "school_footprints_file": "school-building-footprints.geojson",
+        "desc": "NYC GEOJSON file with all building footprints"
+    },
     "school_geo": {
         "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
         "filename": "school-zipcodes.geojson",

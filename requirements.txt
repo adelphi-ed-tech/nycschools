@@ -6,6 +6,7 @@ folium
 geopandas
 geopy
 html5lib
+humanize
 ipython
 lxml
 mapclassify
