@@ -40,10 +40,29 @@ def test_load_districts():
         assert k in df, f"Missing expected key: {k}"
 
 
+def test_load_school_footprints():
+    print("loading school footprints")
+    df = geo.load_school_footprints()
+    print(df.columns)
+    # dbn = schools.load_school_demographics().dbn
+    # missing = set(dbn).difference(set(df.dbn))
+    # print("missing school footprints:", len(missing))
+    # for dbn in missing:
+    #     print(dbn)
+
+
+def test_get_school_footprints():
+    df = geo.get_school_footprints()
+    assert len(df) > 1800, "Too few schools found"
+    assert len(df) < 2400, "Seems like too many schools"
+    expected_keys = ['dbn', 'geometry']
+    for k in expected_keys:
+        assert k in df, f"Missing expected key: {k}"
 
 def test_get_points():
     urls = config.urls
     df = geo.get_points()
+    print(df.columns)
     assert len(df) > 1800, "Too few schools found"
     assert len(df) < 2400, "Seems like too many schools"
     a = len(df)

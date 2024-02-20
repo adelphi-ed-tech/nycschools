@@ -49,7 +49,7 @@ def label_shapes(m, df, col, style={}):
     df.apply(label, axis=1)
     return m
 
-def add_legend(m, items, title="", style={}):
+def map_legend(m, items, title="", style={}):
     """Create a legend for the map with the items listed
     in the order they are passed in. The items should be a list
     of tuples with the first element being the label and the second

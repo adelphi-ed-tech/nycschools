@@ -3,8 +3,9 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 import toml
 from functools import wraps
 from dotenv import load_dotenv
+import datetime
 
-
+import humanize
 
 from nycschools import config, dataloader, geo, schools, exams, budgets, class_size
 from invoke import task
@@ -197,6 +198,71 @@ invoke load-data --data schools
         print("Downloading geo data.")
         geo.get_and_save_locations()
 
+
+
+@task 
+def data_index(c):
+    """Make an index.html of all of the data files in `school-data`"""
+    files = os.listdir(config.data_dir)
+    # make a list of tuples (filename, size, data modified)
+    links = []
+    for f in sorted(files):
+        path = os.path.join(config.data_dir, f)
+        size = humanize.naturalsize(os.path.getsize(path))
+        mod = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+        mod = mod.strftime('%Y-%m-%d %H:%M:%S')
+        html = f"""<div><a href='{f}'>{f}</a></div><div>[{size}]</div><div>[{mod}]</div>
+"""
+        links.append(html)
+        
+    style = """
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  max-width: 640px;
+}
+
+h1, li {
+    font-family: system-ui, -apple-system, "Segoe UI", 
+    Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", 
+    Arial, sans-serif, "Apple Color Emoji", 
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+body {
+    padding: 2em;
+}
+"""
+
+    html = f"""
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NYC Schools Open Data Portal: Data Files</title>
+    <style>{style}</style>
+  </head>
+  <body>
+    <h1>NYC Schools Open Data Portal: Data Files</h1>
+    <div class="grid">{"".join(links)}</div>
+  </body>
+</html>
+"""
+    with open(os.path.join(config.data_dir, "index.html"), "w") as f:
+        f.write(html)
+    
+@task
+def start_firebase(c):
+    """Start the firebase server."""
+    c.run("firebase emulators:start")
+
+@task 
+def push_firebase(c):
+    """Push to firebase."""
+    c.run("firebase deploy")
 
 @task
 def full_release(c):
