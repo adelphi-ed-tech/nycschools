@@ -136,11 +136,13 @@ def get_locations(url=urls["school_locations"].url):
     return locations
 
 def load_school_footprints():
-    gdf = gpd.read_file(urls["building_footprints"].school_footprints_file)
+    path = os.path.join(config.data_dir, urls["building_footprints"].school_footprints_file)
+    gdf = gpd.read_file(path)
     return gdf
 
 def load_city_footprints():
-    gdf = gpd.read_file(urls["building_footprints"].city_footprints_feather)
+    path = os.path.join(config.data_dir, urls["building_footprints"].city_footprints_feather)
+    gdf = gpd.read_file(path)
     return gdf
 
 
@@ -154,13 +156,15 @@ def get_school_footprints():
     foot["bbl"] = foot.base_bbl.astype(str)
     foot.mpluto_bbl = foot.mpluto_bbl.astype(str)
     # saving local feather
-    foot.to_feather(urls["building_footprints"].city_footprints_feather)
+    city_path = os.path.join(config.data_dir, urls["building_footprints"].city_footprints_feather)
+    foot.to_feather(city_path)
 
     # merging with point locations for dbn
     school_loc = get_points()
     school_foot = foot.merge(school_loc[["dbn","bbl"]], on="bbl", how="inner")
     # saving to data dir
-    school_foot.to_file(urls["building_footprints"].school_footprints_file, driver="GeoJSON")
+    school_path = os.path.join(config.data_dir, urls["building_footprints"].school_footprints_file)
+    school_foot.to_file(school_path, driver="GeoJSON")
     return school_foot
 
 def load_districts(url=urls["district_geo"].url):
