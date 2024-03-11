@@ -143,6 +143,7 @@ def load_school_footprints():
 def load_city_footprints():
     path = os.path.join(config.data_dir, urls["building_footprints"].city_footprints_feather)
     gdf = gpd.read_file(path)
+
     return gdf
 
 

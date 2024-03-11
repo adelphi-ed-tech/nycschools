@@ -79,39 +79,51 @@ def map_legend(m, items, title="", style={}):
         The map with the legend added to it.
     """
 
-    css = {
-        "padding": "6px",
-        "font-size": "14px",
-        "background-color": "rgba(255, 255, 255, 0.8)",
-        "border-radius": "5px",
-        "border": "1px solid #ccc",
-        "z-index": "1000",
-        "position": "fixed",
-        "top": "10px",
-        "right": "10px",
-        "max-height": "400px",
-        "overflow-y": "auto"
-    }
-    for k, v in style.items():
-        css[k] = v
-    style_str = ";".join([f"{k}:{v}" for k,v in css.items()])
+    css = """
+.MapLegend {
+    padding: 6px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    max-height: 400px;
+    overflow-y: auto
+}
+.LegendMarker {
+    display: flex; 
+    align-items: start; 
+    margin-bottom: .5em;
+}
+.LegendLabel {
+    line-height: 14px; 
+    padding-left: .25em; 
+    font-size: 12px;
+}
+    """
     
     def legend_item(label, color):
         return f"""
-        <div style="display: flex; align-items: start; margin-bottom: .5em;">
-          <div style="background:{color}; width: 14px; height: 14px">&nbsp;</div>
-          <div style="line-height: 14px; padding-left: .25em; font-size: 12px;"><strong>{label}</strong></div>
+        <div class="">
+          <div class="LegendMarker" style="background:{color};">&nbsp;</div>
+          <div class="LegendLabel"><strong>{label}</strong></div>
         </div>
 """
     
     html = f"""
-<div style="{style_str}">
+<div class="MapLegend">
   <h4><strong>{title}</strong></h4>
   {"".join([legend_item(label, color) for label, color in items])}
 </div>
 """
 
-    m.get_root().html.add_child(folium.Element(html))
+    # m.get_root().html.add_child(folium.Element(html))
+    folium.Marker(
+    location=("bottomright"), 
+    icon=folium.DivIcon(html=html)).add_to(m)
     return m
 
 def map_layers(m, df, radius=5):
@@ -124,9 +136,9 @@ def map_layers(m, df, radius=5):
                 info = row[popup]
             else:
                 info = ""
-            return folium.CircleMarker(
+            return folium.Circle(
                 location=(row['geometry'].y, row['geometry'].x),
-                radius=radius,
+                radius=50,
                 color=row["color"],
                 fill=True,
                 fill_color=row[color],
@@ -144,7 +156,8 @@ def map_layers(m, df, radius=5):
     groups = df.groupby("layer")
     for name, group in groups:
         create_layer(group, name, radius=radius)
-    
+        # print(name, len(group), group["color"].unique())
+    # folium.LayerControl().add_to(m)
     return m
 
 
