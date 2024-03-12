@@ -49,7 +49,7 @@ def label_shapes(m, df, col, style={}):
     df.apply(label, axis=1)
     return m
 
-def map_legend(m, items, title="", style={}):
+def map_legend(m, items, title="", style={}, position="bottomright"):
     """Create a legend for the map with the items listed
     in the order they are passed in. The items should be a list
     of tuples with the first element being the label and the second
@@ -81,23 +81,30 @@ def map_legend(m, items, title="", style={}):
 
     css = """
 .MapLegend {
-    padding: 6px;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    z-index: 1000;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    max-height: 400px;
-    overflow-y: auto
+  position: absolute;
+  top: 10px;
+  left: 80px;
+  width: 200px;
+  max-height: 600px;
+  background: rgba(255,255,255,.8);
+  z-index: 1000;
+  padding: 1em;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 14px;
+  font-weight: bold;
 }
-.LegendMarker {
+.LegendItem {
     display: flex; 
     align-items: start; 
     margin-bottom: .5em;
 }
+.LegendMarker {
+    width: 12px;
+    height: 12px;
+}
+
 .LegendLabel {
     line-height: 14px; 
     padding-left: .25em; 
@@ -107,7 +114,7 @@ def map_legend(m, items, title="", style={}):
     
     def legend_item(label, color):
         return f"""
-        <div class="">
+        <div class="LegendItem">
           <div class="LegendMarker" style="background:{color};">&nbsp;</div>
           <div class="LegendLabel"><strong>{label}</strong></div>
         </div>
@@ -115,15 +122,13 @@ def map_legend(m, items, title="", style={}):
     
     html = f"""
 <div class="MapLegend">
+  <style>{css}</style>
   <h4><strong>{title}</strong></h4>
   {"".join([legend_item(label, color) for label, color in items])}
 </div>
 """
 
-    # m.get_root().html.add_child(folium.Element(html))
-    folium.Marker(
-    location=("bottomright"), 
-    icon=folium.DivIcon(html=html)).add_to(m)
+    m.get_root().html.add_child(folium.Element(html))
     return m
 
 def map_layers(m, df, radius=5):
@@ -138,7 +143,7 @@ def map_layers(m, df, radius=5):
                 info = ""
             return folium.Circle(
                 location=(row['geometry'].y, row['geometry'].x),
-                radius=50,
+                radius=20,
                 color=row["color"],
                 fill=True,
                 fill_color=row[color],
