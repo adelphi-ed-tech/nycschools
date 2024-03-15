@@ -84,6 +84,8 @@ urls = {
         "data_urls": {
             "2022": "https://infohub.nyced.org/docs/default-source/default-document-library/demographic-snapshot-2018-19-to-2022-23-(public).xlsx",
             "2016": "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000",
+            "2013": "https://data.cityofnewyork.us/resource/s52a-8aq6.csv?$limit=1000000",
+            "2006": "https://data.cityofnewyork.us/resource/ihfw-zy9j.csv?$limit=1000000",
         },
         "filename": "school-demographics.csv",
         "desc": "School demographic data from NYC Open Data Portal"
