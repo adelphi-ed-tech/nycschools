@@ -27,7 +27,7 @@ classifiers = [
     'Framework :: Jupyter',
     'Topic :: Education',
 ]
-keywords=["opendata, schools, newyorkcity"]
+keywords=["opendata, schools, newyorkcity, maps"]
 
 dependencies = [
   "arrow",
@@ -61,6 +61,7 @@ dependencies = [
   "toml",
   "twine",
   "wget",
+  "xyzservices",
   "yaspin"
 ]
 

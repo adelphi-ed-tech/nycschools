@@ -3,12 +3,17 @@ Release Notes
 
 XXXX: Version 1.15
 ------------------
+- local data_dir no longer needed, can load from data.mixi.nyc
+- updated data sets
+- added seg package (alpha) for running D and H segregation indices
+- added snapshot package with additional data
+- map UI functions in ui package
 - added interactive installer script
 - added missing libraries to pip requirements
 - removed duplicate rows in school locations
 - changed open_date in school locations to an integer to work around folium issue mapping DateTime
 - updated school demographics with the latest data set
-- updated data files on G drive
+- no longer using Google Drive for data
 - added syntax to ui.popup to put sections in popup info for explore()
 - **breaking change**: renamed eni_pct to eni
 
