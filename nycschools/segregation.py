@@ -58,7 +58,6 @@ def mutual_information(df, group="g", unit="u", n="n"):
     data['p_u'] = data[unit].map(p_u)
     data['p_g'] = data[group].map(p_g)
     M = np.sum(data['p_ug'] * np.log(data['p_ug'] / (data['p_u'] * data['p_g'])))
-    # E = -np.sum(p_g * np.log(p_g))
     E = entropy(p_g)
     H = M / E
     return M, H
