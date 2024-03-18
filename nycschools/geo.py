@@ -24,30 +24,26 @@ from datetime import datetime
 
 
 from . import config
+from nycschools.dataloader import load
+
 urls = config.urls
-school_location_file = os.path.join(config.data_dir, "school_locations.geojson")
+school_location_file = os.path.join(config.data_dir, urls["school_locations"].filename)
 
 def load_zipcodes():
     """Load the NYC zip code boundaries as a GeoDataFrame from data_dir.
     Zip codes are compiled from the NYC Data Portal via the US Post Office"""
-    df = gpd.read_file(os.path.join(config.data_dir,urls["zipcodes"].filename))
+    df = load(urls["zipcodes"].filename)
     return df
 
 def load_school_locations():
     """Returns a GeoDataFrame with the school locations and location meta-data"""
 
     try:
-        df = gpd.read_file(school_location_file)
-        # convert df.open_date to an int
-        df.open_date = df.open_date.apply(lambda x: x.year)
-        df.open_date = df.open_date.fillna(0).astype(int)
+        df = load(urls["school_locations"].filename)
         return df
     except Exception as e: # geopandas throws DriveError, but I don't know where to import it to catch it
         if e.type != "<class 'fiona.errors.DriverError'>":
             raise e
-
-    return get_and_save_locations()
-
 
 def load_school_geo_points():
     """Load only the school location points as a GeoDataFrame"""
@@ -57,9 +53,12 @@ def load_school_geo_points():
 def get_and_save_locations(filename=school_location_file):
     points = get_points()
     locations = get_locations()
-    points = points.merge(locations, on="dbn", how="left")
-    df = gpd.GeoDataFrame(points)
-    df.to_file(filename, driver="GeoJSON")
+    df = points.merge(locations, on="dbn", how="left")
+    # df = gpd.GeoDataFrame(points)
+    df.open_year = df.open_year.fillna(0)
+    df.open_year = df.open_year.astype(int)
+    out = df.copy()
+    out.to_file(filename, driver="GeoJSON")
     return df
 
 def get_points(geojsonurl=urls["school_geo"].url):
@@ -133,12 +132,13 @@ def get_locations(url=urls["school_locations"].url):
 
     locations = locations[cols]
     locations.beds = locations.beds.astype("string")
-    locations.open_date = locations.open_date.apply(lambda x: int(str(x).split('-')[0]))
+    locations.open_date = locations.open_date.fillna(0)
+    locations.open_date = locations.open_date.apply(lambda x: int(str(x).split('-')[0] if x != 0 else 0))
+    locations.rename(columns={"open_date": "open_year"}, inplace=True)
     return locations
 
 def load_school_footprints():
-    path = os.path.join(config.data_dir, urls["building_footprints"].school_footprints_file)
-    gdf = gpd.read_file(path)
+    gdf = load(urls["building_footprints"].school_footprints_file)
     return gdf
 
 def load_city_footprints():

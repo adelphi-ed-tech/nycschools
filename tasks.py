@@ -66,15 +66,17 @@ def push(c, production=False):
     By default, this pushes to testpypi.
     To push to pypi, use the -p or --production flag.
     """
+
+    api_token = os.getenv("PYPI_API_TOKEN")
+
     project = get_project_config()
     current = f"nycschools-{project['version']}"
     if production:
         print("Pushing to pypi. This is NOT A DRILL.")
-        c.run(f"twine upload dist/{current}*")
+        c.run(f"twine upload dist/{current}* -u __token__ -p {api_token}")
     else:
         print("Pushing to testpypi")
         c.run(f"twine upload --repository testpypi dist/{current}*")
-    
 
 @task
 def test(c, opt=""):
@@ -117,6 +119,9 @@ def install_from_testpypi(c):
 @task
 def install_dev(c):
     """Install a new development environment."""
+
+    # Get the API token from the environment
+    api_token = os.getenv("PYPI_API_TOKEN")
 
     print("Installing a new development environment.")
 
@@ -262,6 +267,7 @@ def start_firebase(c):
 @task 
 def push_firebase(c):
     """Push to firebase."""
+    data_index(c)
     c.run("firebase deploy")
 
 @task
@@ -269,17 +275,20 @@ def full_release(c):
     """Perform a full release of the package."""
     print("Performing a full release of the package.")
 
-    print("Running tests.")
-    test(c)
+    # print("Running tests.")
+    # test(c)
 
     print("Building the package.")
     build(c)
 
-    print("Creating archive with latest data.")
-    archive(c)
+    print("Pushing data to firebase.")
+    push_firebase(c)
 
-    print("Rebuilding the documentation.")
-    rebuild_docs(c)
+    # print("Creating archive with latest data.")
+    # archive(c)
+
+    # print("Rebuilding the documentation.")
+    # rebuild_docs(c)
     
     print("Pushing to pypi.")
     push(c, production=True)

@@ -1,8 +1,13 @@
 Release Notes
 =============
 
-XXXX: Version 1.15
-------------------
+March 18, 2024: Version 1.15.3
+------------------------------
+- fixed bug in local data loading
+- removed noisy print statements
+
+March 18, 2024: Version 1.15
+-----------------------------
 - local data_dir no longer needed, can load from data.mixi.nyc
 - updated data sets
 - added seg package (alpha) for running D and H segregation indices

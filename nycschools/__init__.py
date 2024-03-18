@@ -77,6 +77,7 @@ path to the data directory.
 """
 
         warnings.warn(no_data)
+        config["data_dir"] = ""
 
     config["urls"] = __read_urls()
 

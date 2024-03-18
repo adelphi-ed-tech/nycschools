@@ -19,7 +19,7 @@ import numpy as np
 import os.path
 from concurrent.futures import ThreadPoolExecutor
 
-
+from .dataloader import load
 from . import config
 urls = config.urls
 
@@ -46,7 +46,7 @@ def load_charter_ela(url=urls["charter_ela"].url):
     Loads the charter school ELA exam results for the "All Students"
     category from the NYC Open Data Portal. Columns are re-named for consistency.
     """
-    filename = os.path.join(config.data_dir, urls["charter_ela"].filename)
+    filename = urls["charter_ela"].filename
     return load_charter_test(url, filename)
 
 def load_charter_math(url=urls["charter_math"].url):
@@ -54,18 +54,19 @@ def load_charter_math(url=urls["charter_math"].url):
     Loads the charter school Math exam results for the "All Students"
     category from the NYC Open Data Portal. Columns are re-named for consistency.
     """
-    filename = os.path.join(config.data_dir, urls["charter_math"].filename)
+    filename = urls["charter_math"].filename
     return load_charter_test(url, filename)
 
 def load_charter_test(url, filename):
     try:
-        return pd.read_csv(filename)
+        return load(filename)
     except FileNotFoundError:
         pass
 
     df = pd.read_csv(url)
     df = charter_cols(df)
-    df.to_csv(filename, index=False)
+    out = os.path.join(config.data_dir, filename)
+    df.to_csv(out, index=False)
 
     return df
 
@@ -104,8 +105,9 @@ def load_ela():
     a `DataFrame`. _This can be slow_.
 
     """
-    filename = os.path.join(config.data_dir, urls["nyc_ela"].filename)
-    df = pd.read_csv(filename, low_memory=False)
+    # filename = os.path.join(config.data_dir, urls["nyc_ela"].filename)
+    # df = pd.read_csv(filename, low_memory=False)
+    df = load(urls["nyc_ela"].filename)
     return df.sort_values(by=["dbn", "ay"])
 
 
@@ -117,8 +119,9 @@ def load_math():
     NYC Data Portal and then combines the results with charter school data into
     a `DataFrame`. _This can be slow_.
     """
-    filename = os.path.join(config.data_dir, urls["nyc_math"].filename)
-    df = pd.read_csv(filename, low_memory=False)
+    # filename = os.path.join(config.data_dir, urls["nyc_math"].filename)
+    # df = pd.read_csv(filename, low_memory=False)
+    df = load(urls["nyc_math"].filename)
 
     return df.sort_values(by=["dbn", "ay"])
 
@@ -128,8 +131,7 @@ def load_regents():
     Loads the New York State Regents exam scores for all categories.
     @return `DataFrame`
     """
-    filename = os.path.join(config.data_dir, urls["nyc_regents"].filename)
-    return pd.read_csv(filename, low_memory=False)
+    return load(urls["nyc_regents"].filename)
 
 
 # ==============================================================================

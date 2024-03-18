@@ -44,7 +44,7 @@ def load_galaxy_budgets():
         A single DataFrame that combines all of the budget data scraped from the web
         for all schools in the database."""   
 
-    return pd.read_csv(__galaxyfile)
+    return load(config.urls["galaxy"].filename)
 
 
 def open_webdriver():

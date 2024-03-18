@@ -65,15 +65,17 @@ def write_file(df, path):
 
 def load(path):
     remote_path = config.urls["datasite"].url + path
-    # if config.data_dir is None or config.data_dir == "":
-    #     local_path = os.path.join(config.data_dir, path)
-    #     if os.path.exists(local_path):
-    #         return local_path
-    #     else:
-    #         df = read_file(remote_path)
-    #         write_file(df, local_path)
-    #         return df
-    return read_file(remote_path)
+    if config.data_dir is None or config.data_dir == "":
+        return read_file(remote_path)
+    
+    local_path = os.path.join(config.data_dir, path)
+    if os.path.exists(local_path):
+        return read_file(local_path)
+
+    df = read_file(remote_path)
+    write_file(df, local_path)
+    return df
+
 
 def download_file(url, local_filename):
     """Optimize file download using requests library."""

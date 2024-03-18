@@ -21,6 +21,7 @@ import os.path
 import zipfile
 
 from . import schools
+from .dataloader import load
 from . import config
 import shutil
 
@@ -52,8 +53,9 @@ def load_nys_nysed():
     """
 
     # try to load it locally to save time
-    feather = os.path.join(config.data_dir, "nysed-exams.feather")
-    return pd.read_feather(feather)
+    # feather = os.path.join(config.data_dir, "nysed-exams.feather")
+    # return pd.read_feather(feather)
+    return load(urls["nysed_math_ela"].filename)
 
 
 def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
@@ -89,7 +91,7 @@ def load_nysed_ela_math_archives(urls=urls["nysed_math_ela"].urls):
     df.to_csv(out, index=False)
 
     # this is a big file, so save as feather for internal use
-    out = os.path.join(config.data_dir, "nysed-exams.feather")
+    out = os.path.join(config.data_dir, urls["nysed_math_ela"].filename)
     df.to_feather(out)
     # delete the temp folder
     shutil.rmtree(tmp, ignore_errors=True)

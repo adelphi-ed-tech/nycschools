@@ -121,7 +121,7 @@ urls = {
     },
     "school_locations": {
         "url": "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000",
-        "filename": "school-locations.csv",
+        "filename": "school_locations.geojson",
         "desc": "x,y geolocations and location meta data"
     },
     "district_geo": {
@@ -166,7 +166,7 @@ urls = {
             "https://data.nysed.gov/files/assessment/16-17/3-8-2016-17.zip",
             "https://data.nysed.gov/files/assessment/15-16/3-8-2015-16.zip"
         ],
-        "filename": "nysed-exams.csv",
+        "filename": "nysed-exams.feather",
         "desc": "NYS grades 3-8 ELA and Math test in a .zip archive"
     }
 }

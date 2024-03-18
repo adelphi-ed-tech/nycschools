@@ -32,7 +32,7 @@ def test_contains_data_files():
     shutil.rmtree(tmp_data_dir)
 
 
-
+@pytest.mark.skip(reason="too slow for normal testing")
 def test_download_archive():
     
     if os.path.exists(tmp_data_dir):

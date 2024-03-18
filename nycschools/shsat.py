@@ -18,14 +18,11 @@ import os.path
 
 import pandas as pd
 
-
+from .dataloader import load
 from . import config
 
 def load_admission_offers():
-    filename = os.path.join(config.data_dir, config.urls["shsat_apps"].filename)
-    if not os.path.exists(filename):
-        return save_administration_offers()
-    return pd.read_csv(filename)
+    return load(config.urls["shsat_apps"].filename)
 
 
 def save_administration_offers():

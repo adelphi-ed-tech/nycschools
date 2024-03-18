@@ -1,6 +1,7 @@
 import pytest
 from nycschools import config, geo, dataloader, schools
 import warnings
+import geopandas as gpd
 
 
 def test_merge():
@@ -28,7 +29,7 @@ def test_load_school_locations():
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"
 
-    assert all(df.open_date.apply(lambda x: int(x) == x)), "open_date should be an integer"
+    assert all(df.open_year.apply(lambda x: int(x) == x)), "open_year should be an integer"
 
 
 def test_load_districts():
@@ -59,6 +60,18 @@ def test_get_school_footprints():
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
 
+
+def test_get_and_save_locations():
+    df = geo.get_and_save_locations()
+    assert isinstance(df, gpd.GeoDataFrame) and 'geometry' in df.columns, "expected a GeoDataFrame with geometry column"
+    assert len(df) > 1800, "Too few schools found"
+    assert len(df) < 2400, "Seems like too many schools"
+    a = len(df)
+    b = len(df.drop_duplicates(subset="dbn"))
+    assert a == b, "Duplicate dbn values found"
+    assert len(df[df.open_year.isna()]) == 0, "There should be no missing open_year values"
+    # assert all(df.open_year.apply(lambda x: int(x) == x)), "open_year should be an integer"
+
 def test_get_points():
     urls = config.urls
     df = geo.get_points()
@@ -81,7 +94,7 @@ def test_get_locations():
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"
 
-    assert all(df.open_date.apply(lambda x: int(x) == x)), "open_date should be an integer"
+    assert all(df.open_year.apply(lambda x: int(x) == x)), "open_date should be an integer"
 
     expected_keys = [
         'dbn',
@@ -110,7 +123,7 @@ def test_get_locations():
         'managed_by_name',
         'nta',
         'nta_name',
-        'open_date',
+        'open_year',
         'police_precinct',
         'primary_building_code',
         'principal_name',

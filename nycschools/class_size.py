@@ -17,17 +17,17 @@ import os.path
 
 import pandas as pd
 
-
+from .dataloader import load
 from . import config
 urls = config.urls
 __class_size_file = os.path.join(config.data_dir, config.urls["class_size"].filename)
 __ptr_file = os.path.join(config.data_dir, config.urls["class_size"].filename_ptr)
 
 def load_class_size():
-    return pd.read_csv(__class_size_file)
+    return load(config.urls["class_size"].filename)
 
 def load_ptr():
-    return pd.read_csv(__ptr_file)
+    return load(config.urls["class_size"].filename_ptr)
 
 def get_class_22(url):
     """Read class size data for 2022 from
