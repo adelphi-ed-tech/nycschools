@@ -22,6 +22,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
 
 from . import config, schools
+from .dataloader import load
 
 import dotenv
 dotenv.load_dotenv()

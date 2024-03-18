@@ -18,6 +18,10 @@
 # these are the URLs into the open data portals
 # update when new datasets are released
 urls = {
+    "datasite": {
+        "url": "https://data.mixi.nyc/",
+        "desc": "online data portal for nycschools"
+    },
     "docbook": {
         "url": "https://adelphi-ed-tech.github.io/nycschools/install.html"
     },

@@ -25,15 +25,55 @@ import time
 import datetime
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 
+import pandas as pd
+import geopandas as gpd
+
 from yaspin import yaspin
 from yaspin.spinners import Spinners
 
-from . import config, schools, exams, budgets, geo, nysed, shsat
+# from . import config, schools, exams, budgets, geo, nysed, shsat
+from . import config
 from .tools import suppress_warnings
+
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def get_data_dir():
     return config.data_dir
 
+
+def read_file(path):
+    if path.endswith(".geojson"):
+        return gpd.read_file(path)
+    elif path.endswith(".csv"):
+        return pd.read_csv(path)
+    elif path.endswith(".feather"):
+        return pd.read_feather(path)
+    else:
+        raise ValueError(f"Unknown file type: {path}")
+
+def write_file(df, path):
+    if path.endswith(".geojson"):
+        df.to_file(path, driver="GeoJSON")
+    elif path.endswith(".csv"):
+        df.to_csv(path, index=False)
+    elif path.endswith(".feather"):
+        df.to_feather(path)
+    else:
+        raise ValueError(f"Unknown file type: {path}")
+
+def load(path):
+    remote_path = config.urls["datasite"].url + path
+    # if config.data_dir is None or config.data_dir == "":
+    #     local_path = os.path.join(config.data_dir, path)
+    #     if os.path.exists(local_path):
+    #         return local_path
+    #     else:
+    #         df = read_file(remote_path)
+    #         write_file(df, local_path)
+    #         return df
+    return read_file(remote_path)
 
 def download_file(url, local_filename):
     """Optimize file download using requests library."""
@@ -43,38 +83,6 @@ def download_file(url, local_filename):
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
     return local_filename
-
-@suppress_warnings(UserWarning)
-def download_source():
-    """Downloads all of the source data and recreates the local cache. Be patient..."""
-    
-    start = time.time()
-    print("Downloading geo data...")
-    # requires geolocation first
-    geo.get_and_save_locations()
-    print("...Geolocation data downloaded")
-
-
-
-    with ProcessPoolExecutor() as executor:
-        # Submit all tasks to the executor
-        tasks = [
-            # executor.submit(schools.save_demographics),
-            executor.submit(exams.load_charter_ela),
-            # executor.submit(exams.load_charter_math),
-            # executor.submit(exams.load_regents_excel),
-            # executor.submit(exams.load_math_excel),
-            # executor.submit(exams.load_ela_excel),
-            # executor.submit(nysed.load_nysed_ela_math_archives)
-        ]
-
-        # Process tasks as they complete
-        for future in as_completed(tasks):
-            future.result() 
-    end = time.time()
-    delta = datetime.timedelta(seconds=int(end-start))
-    print()
-    print(f"Total download time: {delta}")
 
 def download_data():
     path = find_data_dir(config)

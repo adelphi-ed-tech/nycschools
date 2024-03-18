@@ -15,6 +15,7 @@
 # ==============================================================================
 import os.path
 import math
+import numpy as np
 import re
 
 import pandas as pd
@@ -22,6 +23,8 @@ from thefuzz import fuzz
 
 from . import geo
 from . import config
+
+from nycschools.dataloader import load
 
 
 __demo_filename = os.path.join(config.data_dir, config.urls["demographics"].filename)
@@ -186,6 +189,8 @@ def str_pct(row, pct_col, enroll_col):
         pct = n * .96 / n
     elif "Below" in pct:
         pct = n * .04 / n
+    elif pct == "No Data":
+        return 0
 
     try:
         pct = float(pct)
@@ -305,7 +310,8 @@ def load_school_demographics():
     """
 
     # try to load it locally to save time
-    df = pd.read_csv(__demo_filename)
+    path = config.urls["demographics"].filename
+    df = load(path)
     df.zip = df.zip.fillna(0).astype("int32")
     df.beds = df.beds.fillna(0).astype("int64")
     return df
@@ -363,26 +369,149 @@ def get_demographics(df):
 
     return df
 
-def save_demographics():
 
+def get_demo_2006():
+    """Load the 2006 demographic data from the NYC Open Data Portal"""
+    df = pd.read_csv(config.urls["demographics"].data_urls["2006"])
+    def map_col(c):
+        if c.startswith("grade"):
+            return f"grade_{c[len('grade'):]}"
+        if c == "sped_percent":
+            return "swd_pct"
+        if c == "sped_num":
+            return "swd_n"
+        if c == "prek":
+            return "grade_pk"
+        if c == "k":
+            return f"grade_{c}"
+        if c.endswith("_num"):
+            return c.replace("_num", "_n")
+        if c.endswith("_percent"):
+            return c.replace("_percent", "_pct")
+        if c.endswith("_per"):
+            return c.replace("_per", "_pct")
+        if c == "name":
+            return "school_name"
+        return c
+
+    df = df.rename(columns=map_col)
+
+    # parse AY and year
+    df["ay"] = df.schoolyear // 10000
+    df["year"] = df.ay.apply(lambda x: f"{x}-{((x % 10) + 1):02}")
+
+    # make percentages real
+    def check(n):
+        if pd.isna(n) or pd.isnull(n):
+            return 0
+        try:
+            float(n)
+            return float(n)
+        except:
+            return 0
+    # fill missing free lunch data
+    df.fl_pct = df.fl_pct.apply(check)
+    df.frl_pct = df.frl_pct.apply(check)
+
+    # fix the grades and percentages
+    for c in df.columns:
+        if c.startswith("grade_"):
+            df[c] = pd.to_numeric(df[c], downcast='integer', errors='coerce')
+        if c.endswith("_pct"):
+            df[c] = np.round(df[c] / 100, 4)
+
+    df["poverty_pct"] = np.maximum(df.fl_pct, df.frl_pct)
+    df["poverty_n"] = np.floor(df.poverty_pct * df.total_enrollment).astype(int)
+
+    df["district"] = df["dbn"].apply(lambda dbn: int(dbn[:2]))
+
+    boros = {"K": "Brooklyn", "X": "Bronx", "M": "Manhattan", "Q": "Queens", "R": "Staten Island"}
+    df["boro"] = df["dbn"].apply(lambda dbn: boros[dbn[2]])
+    df["school_num"] = df.dbn.apply(lambda dbn: int(dbn[3:]))
+    df["charter"] = 0
+
+
+    # figure out what grades they teach
+    df["pk"] = df["grade_pk"] > 0
+    df["elementary"] = df["grade_2"] > 0
+    df["middle"] = df["grade_7"] > 0
+    df["hs"] = df["grade_10"] > 0
+
+    # make it easier to look up schools
+    df["school_type"] = df.apply(school_type, axis=1)
+    df["clean_name"] = df.apply(lambda row: clean_name(row.school_name), axis=1)
+    df["short_name"] = df.apply(short_name, axis=1)
+
+    df['eni'] = 0
+    df['missing_race_ethnicity_data_n'] = 0
+    df['missing_race_ethnicity_data_pct'] = 0
+    df['multi_racial_n'] = 0
+    df['multi_racial_pct'] = 0
+    df['native_american_n'] = 0
+    df['native_american_pct'] = 0
+
+    df = join_loc_data(df)
+    return df[demo.default_cols]
+
+
+def get_demo_2013():
+    def map_col(c):
+        if c.endswith("_1") and not c.startswith("grade"):
+            return c.replace("_1", "")
+        if c.endswith("_2") and not c.startswith("grade"):
+            return c.replace("_2", "_1")
+        if c == "grade_pk_half_day_full_day":
+            return "grade_3k_pk_half_day_full"
+        return c
+
+    df13 = pd.read_csv(config.urls["demographics"].data_urls["2013"])
+
+    df13 = df13.rename(columns=map_col)
+    df13["multi_racial"] = df13['multiple_race_categories_not_represented']
+    df13["multi_racial_1"] = df13['multiple_race_categories_not_represented_1']
+    df13['missing_race_ethnicity_data'] = 0
+    df13['missing_race_ethnicity_data_1'] = 0
+    df13['native_american'] = 0
+    df13['native_american_1'] = 0
+
+    df13.rename(columns={"grade_3k_pk_half_day_full": "grade_pk"}, inplace=True)
+    df13["neither_female_nor_male"] = 0
+    df13["neither_female_nor_male_pct"] = 0
+    df13 = get_demographics(df13)
+    # fix the percentages
+    for c in df13.columns:
+        if c.startswith("grade_"):
+            df13[c] = pd.to_numeric(df13[c], downcast='integer', errors='coerce')
+        if c.endswith("_pct"):
+            df13[c] = np.round(df13[c] / 100, 4)
+
+    # the other data set has 2016 data, don't duplicate it
+    return df13[df13.ay.isin([2013, 2014, 2015, 2017])]
+
+
+def get_demo_2016():
     demo_2016 = pd.read_csv(config.urls["demographics"].data_urls["2016"])
     demo_2016 = demo_2016[demo_2016.year == "2016-17"]
     # make the columns match the most recent data set
-    demo_2016.rename(columns={"grade_3k_pk_half_day_full":"grade_pk"}, inplace=True)
+    demo_2016.rename(
+        columns={"grade_3k_pk_half_day_full": "grade_pk"}, inplace=True)
     demo_2016["neither_female_nor_male"] = 0
     demo_2016["neither_female_nor_male_pct"] = 0
-    demo_2016 = get_demographics(demo_2016)
+    return get_demographics(demo_2016)
 
-    # read the latest data from excel
-    demo_2022 = get_2022_demo_xls()
-    # join the two data frames
-    df = pd.concat([demo_2016, demo_2022])
+def save_demographics():
+    demo_2006 = get_demo_2006()
+    demo_2013 = get_demo_2013()
+    demo_2016 = get_demo_2016()
+    demo_2022 = get_demo_2022()
+    # join the dataframes
+    df = pd.concat([demo_2006, demo_2013, demo_2016, demo_2022])
 
     df.to_csv(__demo_filename, index=False)
     return df
 
 
-def get_2022_demo_xls():
+def get_demo_2022():
     """Read the latest demographic data from an Excel download"""
     def xls_cols(col):
         d = {
@@ -391,7 +520,6 @@ def get_2022_demo_xls():
             "grade_pk_(half_day_&_full_day)": "grade_pk",
             "missing_race/ethnicity_data": "missing_race_ethnicity_data",
             "missing_race/ethnicity_data_1": "missing_race_ethnicity_data_1"
-
         }
         col_name = col.lower().replace(" ", "_")
         if col_name[0] == "%":
@@ -402,8 +530,7 @@ def get_2022_demo_xls():
             return d[col_name]
         return col_name
 
-    xls = pd.read_excel(
-        config.urls["demographics"].data_urls["2022"], sheet_name=None)
+    xls = pd.read_excel( config.urls["demographics"].data_urls["2022"], sheet_name=None)
     df = xls["School"]
     df.rename(columns=xls_cols, inplace=True)
     df = get_demographics(df)
@@ -421,8 +548,6 @@ def join_loc_data(df):
     # df.zip = df.zip.fillna(0).astype("int32")
     df.beds = pd.to_numeric(df.beds , downcast='integer', errors='coerce')
     df.beds = df.beds.fillna(0).astype("int64")
-
-    # df.beds = df.beds.fillna(0).astype("int64")
 
     def get_geo(row):
         d = row.district
