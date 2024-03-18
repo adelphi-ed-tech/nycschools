@@ -1,5 +1,8 @@
 from nycschools import class_size
+import ssl
 
+# Temporarily disable SSL certificate verification
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def test_get_class_size():
     df = class_size.get_class_size()

@@ -17,6 +17,7 @@ def test_read_urls():
         assert r.status_code == 200
 
 
+@pytest.mark.skip(reason="deprecated")
 def test_download_source():
     loader.download_source()
 

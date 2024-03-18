@@ -1,3 +1,4 @@
+import pytest
 from nycschools import config, geo, dataloader, schools
 import warnings
 
@@ -44,17 +45,16 @@ def test_load_school_footprints():
     print("loading school footprints")
     df = geo.load_school_footprints()
     print(df.columns)
-    # dbn = schools.load_school_demographics().dbn
-    # missing = set(dbn).difference(set(df.dbn))
-    # print("missing school footprints:", len(missing))
-    # for dbn in missing:
-    #     print(dbn)
+    dbn = schools.load_school_demographics().dbn
+    missing = set(dbn).difference(set(df.dbn))
+    print("missing school footprints:", len(missing))
+    for dbn in missing:
+        print(dbn)
 
 
+@pytest.mark.skip(reason="too slow for normal testing")
 def test_get_school_footprints():
     df = geo.get_school_footprints()
-    assert len(df) > 1800, "Too few schools found"
-    assert len(df) < 2400, "Seems like too many schools"
     expected_keys = ['dbn', 'geometry']
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"

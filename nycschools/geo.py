@@ -133,6 +133,7 @@ def get_locations(url=urls["school_locations"].url):
 
     locations = locations[cols]
     locations.beds = locations.beds.astype("string")
+    locations.open_date = locations.open_date.apply(lambda x: int(str(x).split('-')[0]))
     return locations
 
 def load_school_footprints():
