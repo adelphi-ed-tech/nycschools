@@ -482,7 +482,7 @@ def get_demo_2013():
     for c in df13.columns:
         if c.startswith("grade_"):
             df13[c] = pd.to_numeric(df13[c], downcast='integer', errors='coerce')
-        if c.endswith("_pct"):
+        if c.endswith("_pct")and not c == "poverty_pct":
             df13[c] = np.round(df13[c] / 100, 4)
 
     # the other data set has 2016 data, don't duplicate it

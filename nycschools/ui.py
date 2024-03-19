@@ -35,6 +35,33 @@ def ul(t):
     items =  [f"- {i}" for i in t]
     return str("\n".join(items))
 
+def label_plot(ax, df, col):
+    """
+    Add labels onto a matplotlib map at the center
+    of each shape in the GeoDataFrame.
+
+    Parameters
+    ----------
+    ax: matplotlib.Axes
+        The axes to add the labels to
+    df: GeoDataFrame
+        The data to add labels from. It **must** have
+        "geometry" column and a column that matches
+        the `col` argument.
+    col: str
+        The column to use for the labels
+
+    Returns
+    -------
+    matplotlib.Axes with labels added
+    """
+    
+    def label(row):
+        xy = row.geometry.centroid.coords[0]
+        ax.annotate(row[col], xy=xy, ha='center', fontsize=8)
+
+    df.apply(label, axis=1)
+    return ax
 
 def label_shapes(m, df, col, style={}):
     """Create a function that will add the string of `col`
@@ -72,7 +99,7 @@ def map_legend(m, items, title="", position="topleft"):
         The title of the legend, appears at the top of the legend (default is "").
     position: string
         topleft | topright | bottomleft | bottomright (default is "topleft")
-        Where to position the legend on the map.
+        Where to position the legend on the map. Not implemented yet.
     
     Returns
     -------
@@ -114,18 +141,34 @@ def map_legend(m, items, title="", position="topleft"):
 .MapLegend .clickable {
     cursor: pointer;
 }
-    """
+.dim {
+    opacity: .2;
+}
+"""
+
+    js = """
+function toggleMarkers(color) {
+  console.log("toggling markers with color", color);
+  const markers = document.querySelectorAll('path.leaflet-interactive');
+  console.log(markers);
+  const toggle = document.querySelectorAll('path.leaflet-interactive[stroke="'+color+'"]');
+  console.log(toggle);
+  markers.forEach(marker => marker.classList.add("dim"));
+  toggle.forEach(marker => marker.classList.remove("dim"));
+}
+"""
+
     
     def legend_item(label, color, layer=None):
         onclick = ""
         clickable = ""
         if layer:
-            onclick = f"toggleLayer('{layer}')"
+            onclick = f"toggleMarkers('{color}')"
             clickable = " clickable"
         return f"""
         <div class="LegendItem">
-          <div class="LegendMarker{clickable}" {onclick} style="background:{color};">&nbsp;</div>
-          <div class="LegendLabel{clickable}" {onclick}><strong>{label}</strong></div>
+          <div class="LegendMarker{clickable}" onclick="{onclick}" style="background:{color};">&nbsp;</div>
+          <div class="LegendLabel{clickable}" onclick="{onclick}"><strong>{label}</strong></div>
         </div>
 """
     
@@ -139,6 +182,7 @@ def map_legend(m, items, title="", position="topleft"):
     html = f"""
 <div class="MapLegend">
   <style>{css}</style>
+  <script>{js}</script>
   <h4><strong>{title}</strong></h4>
   {legend_items}
 </div>
@@ -149,13 +193,13 @@ def map_legend(m, items, title="", position="topleft"):
 
 def map_layers(m, df, radius=5):
 
-    def create_layer(df, name, color="color", popup="popup", radius=5):
+    def create_layer(df, name, color="color", popup="popup",title="title", radius=5):
         layer = folium.FeatureGroup(name=name)
         def marker(row):
-            if popup in row:
-                info = row[popup]
-            else:
-                info = ""
+            
+            info = row[popup] if popup in row else None
+            tooltip = row[title] if title in row else None
+
             return folium.Circle(
                 location=(row['geometry'].y, row['geometry'].x),
                 radius=20,
@@ -165,6 +209,7 @@ def map_layers(m, df, radius=5):
                 fill_opacity=1,
                 opacity=1,
                 popup=info,
+                tooltip=tooltip,
                 className=f"layer-marker layer-{name} zoomable"
             )
         df.apply(lambda row: marker(row).add_to(layer), axis=1)

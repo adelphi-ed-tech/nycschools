@@ -13,18 +13,8 @@
 # You should have received a copy of the License along with this program.
 # If not, see <http://www.gnu.org/licenses/>.
 # ==============================================================================
-import pandas as pd
-import numpy as np
-import wget
-
-import os.path
-import zipfile
-
-from . import schools
 from . import config
-import shutil
-
-urls = config.urls
+from nycschools.dataloader import load
 
 
 def load_snapshots():
@@ -33,5 +23,5 @@ def load_snapshots():
     This data contains core columns only for all "school types"
     mainly focusing on school demographics and teacher demographics.
     """
-    path = os.path.join(config.data_dir, "nysed-exams.feather")
-    return pd.read_feather(path)
+    filename = config.urls["snapshots"].filename
+    return load(filename)

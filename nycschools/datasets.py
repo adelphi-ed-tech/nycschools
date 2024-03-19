@@ -25,6 +25,10 @@ urls = {
     "docbook": {
         "url": "https://adelphi-ed-tech.github.io/nycschools/install.html"
     },
+    "snapshots": {
+        "desc": "school snapshots scraped from DOE portal",
+        "filename": "snapshot.csv"
+    },
     "galaxy": {
         "url": "https://www.nycenet.edu/offices/d_chanc_oper/budget/dbor/galaxy/galaxyallocation/default.aspx",
         "desc": "Galaxy Budget Summaries",
