@@ -212,6 +212,8 @@ def data_index(c):
     # make a list of tuples (filename, size, data modified)
     links = []
     for f in sorted(files):
+        if f == "index.html":
+            continue
         path = os.path.join(config.data_dir, f)
         size = humanize.naturalsize(os.path.getsize(path))
         mod = datetime.datetime.fromtimestamp(os.path.getmtime(path))
