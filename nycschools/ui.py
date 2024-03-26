@@ -203,7 +203,7 @@ def map_layers(m, df, radius=5):
             return folium.Circle(
                 location=(row['geometry'].y, row['geometry'].x),
                 radius=20,
-                color=row["color"],
+                color=row[color],
                 fill=True,
                 fill_color=row[color],
                 fill_opacity=1,
@@ -226,7 +226,7 @@ def map_layers(m, df, radius=5):
     return m
 
 
-def rand_points(geometry, n, max_conflicts=100):
+def rand_points(geometry, n, max_conflicts=0):
     """
     Create n random points within the bounds of the geometry.
     
@@ -245,14 +245,14 @@ def rand_points(geometry, n, max_conflicts=100):
     """
     minx, miny, maxx, maxy = geometry.bounds
 
-    occupied = set()
+    plotted_points = set()
     conflicts = 0
 
-    def is_occupied(p):
-        if p in occupied:
+    def occupied(p):
+        if p in plotted_points:
             conflicts += 1
             return True or conflicts > max_conflicts
-        occupied.add(p)
+        plotted_points.add(p)
         return False
 
     def rand_point():
@@ -260,7 +260,7 @@ def rand_points(geometry, n, max_conflicts=100):
         x = random.uniform(minx, maxx)
         y = random.uniform(miny, maxy)
         p = Point(x, y)
-        if p.within(geometry):
+        if p.within(geometry) and not occupied(p):
             return p
         return rand_point()
 
@@ -269,6 +269,65 @@ def rand_points(geometry, n, max_conflicts=100):
         print(f"Conflicts in plotting {n} points:", conflicts)
     # create a GeoDataFrame from the points
     points = pd.DataFrame({"geometry": points})
+    return points
+
+
+def dot_density(gdf, scale=100, count_col='n', radius=5, column=None, color="blue", cmap=None,   title=None, popup=None):
+    """
+    Create a dot density map from the data in gdf. The map will
+    have a layer for each unique value in the "layer" column of the
+    DataFrame. The "color" column will be used to color the dots.
+    The "title" column will be used for the tooltip, and the "popup"
+    column will be used for the popup.
+
+    Parameters
+    ----------
+    m: folium.Map
+        The map to add the dot density map to
+    gdf: GeoDataFrame
+        The data to plot
+    count_col: str
+        The column to use for the dot density (i.e. plot `n` items for each geometry)
+    scale: int
+        Each dot represents `n` items; `count_col` is divided by `scale` to get the number of dots
+
+    radius: int
+        The radius of the dots
+    color: str
+        The column to use for the color of the dots
+    title: str
+        The column to use for the tooltip
+    popup: str
+        The column to use for the popup
+
+    Returns
+    -------
+    folium.Map
+        The map with the dot density map added
+    """
+    results = []
+
+    def fill_space(geometry):
+        def make_rand_points(row):
+            num_points = row[count_col] // scale
+            points = rand_points(row.geometry, num_points)
+            if color in row and cmap:
+                points["color"] = hexmap(cmap)(row[color])
+            elif color in row:
+                points["color"] = row[color]
+            else:
+                points["color"] = color
+
+            results.append(points)
+
+        gdf[gdf.geometry == geometry].apply(make_rand_points, axis=1)
+    
+    for geometry in gdf.geometry:
+        fill_space(geometry)
+
+
+    points = pd.concat(results)
+
     return points
 
 def map_js(m, file_path, js):

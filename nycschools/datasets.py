@@ -125,6 +125,18 @@ urls = {
     },
     "school_locations": {
         "url": "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000",
+        "desc": "https://data.cityofnewyork.us/Education/2019-2020-School-Locations/wg9x-4ke6/about_data",
+        "years": {
+            2019:"https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000",
+            2018: "https://data.cityofnewyork.us/resource/9ck8-hj3u.csv?$limit=1000000",
+            2017: "https://data.cityofnewyork.us/resource/p6h4-mpyy.csv?$limit=1000000",
+            2016: "https://data.cityofnewyork.us/resource/ahjc-fdu3.csv?$limit=1000000",
+            2015: "https://data.cityofnewyork.us/resource/i4ni-6qin.csv?$limit=1000000",
+            2014: "https://data.cityofnewyork.us/resource/fxs2-faah.csv?$limit=1000000",
+            2013: "https://data.cityofnewyork.us/resource/ac4n-c5re.csv?$limit=1000000",
+            2012: "https://data.cityofnewyork.us/resource/emnd-d8ba.csv?$limit=1000000",
+
+        },
         "filename": "school_locations.geojson",
         "desc": "x,y geolocations and location meta data"
     },
@@ -132,6 +144,13 @@ urls = {
         "url": "https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&format=GeoJSON",
         "filename": "district-shapes.geojson",
         "desc": "shape file for school districts"
+    },
+    "neighborhoods": {
+        "url": "https://data.cityofnewyork.us/api/geospatial/99bc-9p23?method=export&format=GeoJSON",
+        "desc":"based on NYT map?: https://data.cityofnewyork.us/City-Government/Neighborhood-Names-GIS/99bc-9p23",
+        "filename": "neighborhood-names.geojson",
+        "districts_filename": "district-neighborhoods.csv",
+        "desc": "point data with neighborhood names"
     },
     "charter_ela": {
         "url": "https://data.cityofnewyork.us/resource/sgjd-xi99.csv?$limit=1000000",

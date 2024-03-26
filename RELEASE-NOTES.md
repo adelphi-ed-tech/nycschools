@@ -1,6 +1,18 @@
 Release Notes
 =============
 
+March 26, 2024: Version 1.17
+----------------------------
+- added neighborhood names to geo
+- added plotly to requirements
+- fixed bug in random point color
+- updated school snapshots
+
+March 18, 2024: Version 1.16
+----------------------------
+- added snapshot data
+- added interactive legend to `ui`
+
 March 18, 2024: Version 1.15.3
 ------------------------------
 - fixed bug in local data loading

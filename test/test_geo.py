@@ -96,41 +96,15 @@ def test_get_locations():
 
     assert all(df.open_year.apply(lambda x: int(x) == x)), "open_date should be an integer"
 
-    expected_keys = [
-        'dbn',
-        'administrative_district_code',
-        'administrative_district_name',
-        'beds',
-        'borough_block_lot',
-        'census_tract',
-        'community_district',
-        'community_school_sup_name',
-        'council_district',
-        'fax_number',
-        'fiscal_year',
-        'geographical_district_code',
-        'grades_final_text',
-        'grades_text',
-        'highschool_network',
-        'highschool_network_location',
-        'highschool_network_name',
-        'latitude',
-        'location_category_description',
-        'location_code',
-        'location_name',
-        'location_type_description',
-        'longitude',
-        'managed_by_name',
-        'nta',
-        'nta_name',
-        'open_year',
-        'police_precinct',
-        'primary_building_code',
-        'principal_name',
-        'principal_phone_number',
-        'principal_title',
-        'state_code',
-        'status_descriptions']
+    expected_keys = ['dbn', 'administrative_district_code', 'administrative_district_name',
+                     'beds', 'borough_block_lot', 'census_tract', 'community_district',
+                     'community_school_sup_name', 'council_district', 'fax_number',
+                     'fiscal_year', 'geographical_district_code', 'grades_final_text',
+                     'grades_text', 'highschool_network', 'highschool_network_location',
+                     'highschool_network_name', 'latitude', 'location_category_description',
+                     'location_code', 'location_name', 'location_type_description',
+                     'longitude', 'managed_by_name', 'nta', 'nta_name', 'open_year',
+                     'state_code', 'status_descriptions']
 
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"

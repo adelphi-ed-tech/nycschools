@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nycschools"
-version = "0.1.16"
+version = "0.1.17"
 authors = [
   { name="Matthew X. Curinga", email="matt@curinga.com" },
 ]
@@ -44,9 +44,11 @@ dependencies = [
   "mapclassify",
   "matplotlib",
   "networkx",
+  "nbformat",
   "numpy",
   "openpyxl",
   "pandas",
+  "plotly",
   "pingouin",
   "py7zr",
   "pyarrow",

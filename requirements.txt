@@ -57,6 +57,7 @@ matplotlib-inline
 mdurl
 more-itertools
 multivolumefile
+nbformat
 nest-asyncio
 networkx
 nh3
@@ -75,6 +76,7 @@ Pillow
 pingouin
 pkginfo
 platformdirs
+plotly
 pluggy
 prompt-toolkit
 psutil

@@ -35,6 +35,29 @@ def load_zipcodes():
     df = load(urls["zipcodes"].filename)
     return df
 
+
+def load_school_footprints():
+    """Get the shapes for school building footprints"""
+    gdf = load(urls["building_footprints"].school_footprints_file)
+    return gdf
+
+def load_city_footprints():
+    """Get the shapes for all building footprints in the New York City."""
+    path = load(urls["building_footprints"].city_footprints_feather)
+    gdf = gpd.read_file(path)
+
+    return gdf
+
+def load_district_neighborhoods():
+    """Loads district number and neighborhood names"""
+    df = load(urls["neighborhoods"].districts_filename)
+    return df
+
+def load_neighborhoods():
+    """Load point data with neighborhood names"""
+    df = load(urls["neighborhoods"].filename)
+    return df
+
 def load_school_locations():
     """Returns a GeoDataFrame with the school locations and location meta-data"""
 
@@ -49,6 +72,37 @@ def load_school_geo_points():
     """Load only the school location points as a GeoDataFrame"""
     df = load_school_locations()
     return df[["dbn", "x", "y", "geometry"]]
+
+
+def merge_districts(names):
+    """Merge district number and neighborhood names"""
+    districts = load_districts()
+
+    def get_names(district):
+        d = districts[districts.district == district]
+        t = names[names.geometry.within(d.geometry.iloc[0])]
+        t = ", ".join(t.neighborhood)
+        return (district, t)
+
+    df = pd.DataFrame(columns=["district", "neighborhood"], data=[ get_names(d) for d in districts.district])
+    return df
+
+
+def get_neighborhoods(geojsonurl=urls["neighborhoods"].url):
+    """Read NYC neighborhood names from the Open Data Portal GeoJSON URL"""
+
+    df = gpd.read_file(geojsonurl)
+    df = df.rename(columns={"name": "neighborhood", "borough": "boro"})
+    df = df[["neighborhood", "boro", "geometry"]]
+    path = os.path.join(config.data_dir, urls["neighborhoods"].filename)
+    df.to_file(path, driver="GeoJSON")
+    dist_names = merge_districts(df)
+
+    path = os.path.join(config.data_dir, urls["neighborhoods"].districts_filename)
+    dist_names.to_csv(path, index=False)
+    
+    return df
+
 
 def get_and_save_locations(filename=school_location_file):
     points = get_points()
@@ -122,11 +176,6 @@ def get_locations(url=urls["school_locations"].url):
         'nta',
         'nta_name',
         'open_date',
-        'police_precinct',
-        'primary_building_code',
-        'principal_name',
-        'principal_phone_number',
-        'principal_title',
         'state_code',
         'status_descriptions']
 
@@ -136,16 +185,6 @@ def get_locations(url=urls["school_locations"].url):
     locations.open_date = locations.open_date.apply(lambda x: int(str(x).split('-')[0] if x != 0 else 0))
     locations.rename(columns={"open_date": "open_year"}, inplace=True)
     return locations
-
-def load_school_footprints():
-    gdf = load(urls["building_footprints"].school_footprints_file)
-    return gdf
-
-def load_city_footprints():
-    path = os.path.join(config.data_dir, urls["building_footprints"].city_footprints_feather)
-    gdf = gpd.read_file(path)
-
-    return gdf
 
 
 def get_school_footprints():
