@@ -27,7 +27,9 @@ urls = {
     },
     "snapshots": {
         "desc": "school snapshots scraped from DOE portal",
-        "filename": "snapshot.csv"
+        "filename": "snapshot.feather",
+        "rank_filename": "school-rankings.csv",
+        "raw_snapshot": "snapshot-raw.csv"
     },
     "galaxy": {
         "url": "https://www.nycenet.edu/offices/d_chanc_oper/budget/dbor/galaxy/galaxyallocation/default.aspx",

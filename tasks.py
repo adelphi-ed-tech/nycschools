@@ -120,8 +120,6 @@ def install_from_testpypi(c):
 def install_dev(c):
     """Install a new development environment."""
 
-    # Get the API token from the environment
-    api_token = os.getenv("PYPI_API_TOKEN")
 
     print("Installing a new development environment.")
 
@@ -129,8 +127,9 @@ def install_dev(c):
     c.run("pip install -e .[dev]")
 
     print("Downloading data to local directory 'school-data'")
-    dataloader.download_data("school-data")
-    dataloader.set_env_var("NYC_SCHOOLS_DATA_DIR", "school-data")
+    # dataloader.download_data("school-data")
+    pwd = os.getcwd()
+    dataloader.set_env_var(os.path.join(pwd,"school-data"))
     print(f"""
 Installation complete. Run 
 invoke --list 

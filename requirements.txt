@@ -89,10 +89,14 @@ pycparser
 pycryptodomex
 Pygments
 pyodbc
+geosnap
+pandana
 pyparsing
 pyppmd
 pyproj
 pyproject_hooks
+pysal
+libpysal
 PySocks
 pytest
 python-dateutil
@@ -111,6 +115,7 @@ scikit-learn
 scipy
 seaborn
 SecretStorage
+segregation
 selenium
 shapely
 six

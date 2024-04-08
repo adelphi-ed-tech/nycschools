@@ -43,10 +43,10 @@ def load_school_footprints():
 
 def load_city_footprints():
     """Get the shapes for all building footprints in the New York City."""
-    path = load(urls["building_footprints"].city_footprints_feather)
-    gdf = gpd.read_file(path)
+    df = load(config.urls["building_footprints"].city_footprints_feather)
+    all_feet = gpd.GeoDataFrame(df, geometry="geometry", crs="EPSG:4326")
 
-    return gdf
+    return all_feet
 
 def load_district_neighborhoods():
     """Loads district number and neighborhood names"""
