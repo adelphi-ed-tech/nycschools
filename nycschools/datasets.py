@@ -92,7 +92,9 @@ urls = {
     "demographics": {
         "url": "https://infohub.nyced.org/reports/students-and-schools/school-quality/information-and-data-overview",
         "data_urls": {
-            "2022": "https://infohub.nyced.org/docs/default-source/default-document-library/demographic-snapshot-2018-19-to-2022-23-(public).xlsx",
+            "2023": "https://infohub.nyced.org/docs/default-source/default-document-library/demographic-snapshot-2019-20-to-2023-24-public.xlsx",
+            # "2022": "https://infohub.nyced.org/docs/default-source/default-document-library/demographic-snapshot-2018-19-to-2022-23-(public).xlsx",
+            "2022": "https://data.cityofnewyork.us/api/views/c7ru-d68s/files/7619cd06-7db2-4c98-9d9e-abfe186c169d?download=true&filename=Demographic%20Snapshot%202017-18%20to%202021-22%20(Public).xlsx",
             "2016": "https://data.cityofnewyork.us/resource/vmmu-wj3w.csv?$limit=1000000",
             "2013": "https://data.cityofnewyork.us/resource/s52a-8aq6.csv?$limit=1000000",
             "2006": "https://data.cityofnewyork.us/resource/ihfw-zy9j.csv?$limit=1000000",
