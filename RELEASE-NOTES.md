@@ -1,6 +1,24 @@
 Release Notes
 =============
 
+
+Version 1.19
+-------------
+
+
+
+
+Mar 17, 2025: Version 1.18
+---------------------------
+- updated school locations
+- removed x,y columns from school point locations
+- loading zipcodes from tigerline rather than open data
+- missing district shapefile on open data / recreated shapes and cliped to water boundary
+  - new district file only has district [1..32] and geometry columns
+- updated school demographics with latest data
+  - new grade_3k
+  - new nonbinary gender data
+
 March 26, 2024: Version 1.17
 ----------------------------
 - added neighborhood names to geo

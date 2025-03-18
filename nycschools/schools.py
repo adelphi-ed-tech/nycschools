@@ -317,6 +317,9 @@ def load_school_demographics():
     df = load(path)
     df.zip = df.zip.fillna(0).astype("int32")
     df.beds = df.beds.fillna(0).astype("int64")
+    for c in df.columns:
+        if c.startswith("grade_"):
+            df[c] = pd.to_numeric(df[c], downcast='integer', errors='coerce')
     return df
 
 def get_demographics(df):

@@ -16,7 +16,7 @@ def check_school_data(df):
     assert df is not None, "Demo data frame is null"
     n = len(df)
     assert n > 28000, f"We should have about 28k rows, too few found ({n})"
-    assert n < 30000, f"We should have about 28k rows, too many found ({n})"
+    assert n < 32000, f"We should have about 28k rows, too many found ({n})"
     expected_keys = schools.demo.default_cols
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"

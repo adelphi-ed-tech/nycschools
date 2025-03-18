@@ -14,8 +14,10 @@ def test_merge():
 def test_load_zipcodes():
     df = geo.load_zipcodes()
     a = set(schools.load_school_demographics().zip)
+    
+    # zero indicates missing zipcode
     a.remove(0)
-    b = set(df.zip)
+    b = set(df.zip.astype(int))
     missing = a.difference(b)
     assert len(missing) < 3, "Missing some zip codes we expected" + str(a.difference(b))
     if len(missing) > 0:
@@ -24,7 +26,7 @@ def test_load_zipcodes():
 def test_load_school_locations():
     df = geo.load_school_locations()
     assert len(df) > 1800, "Too few schools found"
-    assert len(df) < 2400, "Seems like too many schools"
+    assert len(df) < 3300, "Seems like too many schools"
     a = len(df)
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"
@@ -35,9 +37,8 @@ def test_load_school_locations():
 def test_load_districts():
     df = geo.load_districts()
 
-    assert len(df) > 32, "Not enough districts represented"
-    assert len(df) < 40, "Seems like too many school districts for NYC, expcted 1-32,75, etc"
-    expected_keys = ['district', 'area', 'length', 'geometry']
+    assert len(df) == 32, "Expected 32 geo districts"
+    expected_keys = ['district', 'geometry']
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
 
@@ -49,8 +50,8 @@ def test_load_school_footprints():
     dbn = schools.load_school_demographics().dbn
     missing = set(dbn).difference(set(df.dbn))
     print("missing school footprints:", len(missing))
-    for dbn in missing:
-        print(dbn)
+    # for dbn in missing:
+    #     print(dbn)
 
 
 @pytest.mark.skip(reason="too slow for normal testing")
@@ -65,7 +66,7 @@ def test_get_and_save_locations():
     df = geo.get_and_save_locations()
     assert isinstance(df, gpd.GeoDataFrame) and 'geometry' in df.columns, "expected a GeoDataFrame with geometry column"
     assert len(df) > 1800, "Too few schools found"
-    assert len(df) < 2400, "Seems like too many schools"
+    assert len(df) < 3300, "Seems like too many schools"
     a = len(df)
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"
@@ -77,11 +78,11 @@ def test_get_points():
     df = geo.get_points()
     print(df.columns)
     assert len(df) > 1800, "Too few schools found"
-    assert len(df) < 2400, "Seems like too many schools"
+    assert len(df) < 3300, "Seems like too many schools"
     a = len(df)
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"
-    expected_keys = ['dbn', 'zip', 'geo_district', 'district', 'x', 'y', 'geometry']
+    expected_keys = ['dbn', 'zip', 'geo_district', 'district', 'geometry']
     for k in expected_keys:
         assert k in df, f"Missing expected key: {k}"
 
@@ -89,7 +90,7 @@ def test_get_locations():
     urls = config.urls
     df = geo.get_locations()
     assert len(df) > 1800, "Too few schools found"
-    assert len(df) < 2400, "Seems like too many schools"
+    assert len(df) < 3300, "Seems like too many schools"
     a = len(df)
     b = len(df.drop_duplicates(subset="dbn"))
     assert a == b, "Duplicate dbn values found"

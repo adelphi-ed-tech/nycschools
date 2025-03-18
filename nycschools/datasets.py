@@ -123,8 +123,8 @@ urls = {
         "desc": "NYC GEOJSON file with all building footprints"
     },
     "school_geo": {
-        "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
-        "filename": "school-zipcodes.geojson",
+        "url": "https://data.cityofnewyork.us/download/jfju-ynrr/application%2Fx-zip-compressed",
+        # "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
         "desc": "location points with zipcodes"
     },
     "school_locations": {
@@ -145,8 +145,9 @@ urls = {
         "desc": "x,y geolocations and location meta data"
     },
     "district_geo": {
-        "url": "https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&format=GeoJSON",
-        "filename": "district-shapes.geojson",
+        # open data no longer hosts this?!
+        # "url": "https://data.cityofnewyork.us/api/geospatial/r8nu-ymqj?method=export&format=GeoJSON",
+        "filename": "nyc-school-districts.geojson",
         "desc": "shape file for school districts"
     },
     "neighborhoods": {
