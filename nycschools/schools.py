@@ -279,12 +279,15 @@ This school is probably commonly referred to as PS 15."""
     if "I. S." in sn or "I.S." in sn:
         return f"IS {row.school_num}"
 
-    return f"{row.school_type} {row.school_num}"
+    return f"{row.school_num}"
 
 
 
 def set_school_level(data):
     df = data.copy()
+    if "grade_3k" not in df.columns:
+        df["grade_3k"] = 0
+
     df["school_type"] = None
     df.loc[(df.district > 0) & (df.district < 33), "school_type"] = "community"
     df.loc[df.district == 84, "school_type"] = "charter"
@@ -439,9 +442,9 @@ def get_demographics(df):
 
     # figure out what grades they teach
     df["pk"] = df["grade_pk"] > 0
-    df["elementary"] = df["grade_2"] > 0
+    df["elementary"] = df[["grade_2", "grade_3", "grade_4"]].sum(axis=1) > 0
     df["middle"] = df["grade_7"] > 0
-    df["hs"] = df["grade_10"] > 0
+    df["hs"] = df[["grade_10", "grade_11", "grade_12"]].sum(axis=1) > 0
 
     # make it easier to look up schools
     df["clean_name"] = df.apply(lambda row: clean_name(row.school_name), axis=1)

@@ -2,9 +2,11 @@ Release Notes
 =============
 
 
-Version 1.19
--------------
-
+March 19, 2025Version 1.18.1
+----------------------------
+- added `school_level` to demographics
+- changed the short_name for schools.search()
+- changed `school_type` in demographics to make it consistent
 
 
 
