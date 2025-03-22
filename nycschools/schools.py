@@ -67,6 +67,7 @@ class demo():
         'year',
         'school_type',
         'total_enrollment',
+        'grade_3k',
         'grade_pk',
         'grade_k',
         'grade_1',
@@ -81,6 +82,8 @@ class demo():
         'grade_10',
         'grade_11',
         'grade_12',
+        'non_binary_n',
+        'non_binary_pct',
         'female_n',
         'female_pct',
         'male_n',
@@ -314,6 +317,9 @@ def load_school_demographics():
     df = load(path)
     df.zip = df.zip.fillna(0).astype("int32")
     df.beds = df.beds.fillna(0).astype("int64")
+    for c in df.columns:
+        if c.startswith("grade_"):
+            df[c] = pd.to_numeric(df[c], downcast='integer', errors='coerce')
     return df
 
 def get_demographics(df):
@@ -364,9 +370,15 @@ def get_demographics(df):
     df.loc[df.district == 75, "school_type"] = "d75"
     df.loc[df.district == 79, "school_type"] = "alternative"
     df = join_loc_data(df)
+    return get_default_cols(df)
+
+
+def get_default_cols(df):
+    missing = set(demo.default_cols) - set(df.columns)
+    print(df.ay.unique(), missing)
+    for c in missing:
+        df[c] = np.nan
     df = df[demo.default_cols]
-
-
     return df
 
 
@@ -451,7 +463,7 @@ def get_demo_2006():
     df['native_american_pct'] = 0
 
     df = join_loc_data(df)
-    return df[demo.default_cols]
+    return get_default_cols(df)
 
 
 def get_demo_2013():
@@ -499,17 +511,6 @@ def get_demo_2016():
     demo_2016["neither_female_nor_male_pct"] = 0
     return get_demographics(demo_2016)
 
-def save_demographics():
-    demo_2006 = get_demo_2006()
-    demo_2013 = get_demo_2013()
-    demo_2016 = get_demo_2016()
-    demo_2022 = get_demo_2022()
-    # join the dataframes
-    df = pd.concat([demo_2006, demo_2013, demo_2016, demo_2022])
-
-    df.to_csv(__demo_filename, index=False)
-    return df
-
 
 def get_demo_2022():
     """Read the latest demographic data from an Excel download"""
@@ -534,7 +535,50 @@ def get_demo_2022():
     df = xls["School"]
     df.rename(columns=xls_cols, inplace=True)
     df = get_demographics(df)
+
     return df
+
+def get_demo_2023():
+    """Read the latest demographic data from an Excel download"""
+    def xls_cols(col):
+        d = {
+            "multi-racial": "multi_racial",
+            "multi-racial_1": "multi_racial_1",
+            "grade_pk_(half_day_&_full_day)": "grade_pk",
+            "neither_female_nor_male": "non_binary_n",
+            "neither_female_nor_male_1": "non_binary_pct",
+            "missing_race/ethnicity_data": "missing_race_ethnicity_data",
+            "missing_race/ethnicity_data_1": "missing_race_ethnicity_data_1"
+        }
+        col_name = col.lower().replace(" ", "_")
+        if col_name[0] == "%":
+            col_name = col_name[2:] + "_1"
+        elif col_name[0] == "#":
+            col_name = col_name[2:]
+        if col_name in d:
+            return d[col_name]
+        return col_name
+    xls = pd.read_excel( config.urls["demographics"].data_urls["2023"], sheet_name=None)
+    df = xls["School"]
+    df.rename(columns=xls_cols, inplace=True)
+    df = get_demographics(df)
+    return df
+
+
+def save_demographics():
+    demo_2006 = get_demo_2006()
+    demo_2013 = get_demo_2013()
+    demo_2016 = get_demo_2016()
+    demo_2022 = get_demo_2022()
+    demo_2023 = get_demo_2023()
+    df = demo_2023.copy()
+    # join the dataframes, but don't add any academic year 2x
+    for data in [demo_2022, demo_2016, demo_2013, demo_2006]:
+        df = pd.concat([df, data[~data.ay.isin(df.ay)]], ignore_index=True)
+
+    df.to_csv(__demo_filename, index=False)
+    return df
+
 
 def join_loc_data(df):
     """Join NYS BEDS id, zip code, and other location data.

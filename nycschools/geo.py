@@ -16,15 +16,15 @@
 from nycschools import datasets
 import pandas as pd
 import geopandas as gpd
-from bs4 import BeautifulSoup
-import requests
 import os
 import os.path
 from datetime import datetime
 
+from requests import Session
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from . import config
-from nycschools.dataloader import load
+from . import config, schools
+from .dataloader import load
 
 urls = config.urls
 school_location_file = os.path.join(config.data_dir, urls["school_locations"].filename)
@@ -108,7 +108,6 @@ def get_and_save_locations(filename=school_location_file):
     points = get_points()
     locations = get_locations()
     df = points.merge(locations, on="dbn", how="left")
-    # df = gpd.GeoDataFrame(points)
     df.open_year = df.open_year.fillna(0)
     df.open_year = df.open_year.astype(int)
     out = df.copy()
@@ -120,23 +119,26 @@ def get_points(geojsonurl=urls["school_geo"].url):
     # this is the API feed for the location points
     # it's the best place to get zip codes
 
-    df = gpd.read_file(geojsonurl)
-    df = df.drop_duplicates()
+    points = gpd.read_file(geojsonurl)
+    cols = {
+        'ATS': "dbn",
+        'Geographic': "geo_district",
+        'geometry': 'geometry'
+    }
+    points.rename(columns=cols, inplace=True)
+    points = points[cols.values()]
+    points["district"] = points.dbn.apply(lambda x: int(x[0:2]))
 
-    df = df.rename(columns={"xcoordinat":"x","ycoordinat":"y",})
-    df.x = pd.to_numeric(df.x, errors='coerce')
-    df.y = pd.to_numeric(df.y, errors='coerce')
-    df = df[df.x > 0]
-    df.bbl = df.bbl.astype(str)
-    df.bbl = df.bbl.str.replace(".0", "")
-    df["dbn"] = df.ats_code
-    df["district"] = df.adimindist.astype(int)
-    df = df.rename(columns={"geodistric":"geo_district"})
-    cols = ['dbn', 'zip', 'geo_district', 'district', 'x','y', 'bbl', 'geometry']
 
-    df = df[cols]
-    df.zip = df.zip.astype("string")
-    return df
+    zips = load_zipcodes()
+    points.to_crs(zips.crs, inplace=True)
+    points = gpd.sjoin(points, zips, how='left', predicate='within')
+
+
+    points.drop(columns=['index_right'], inplace=True)
+    points.zip = points.zip.astype(int)
+    return points
+
 
 def get_locations(url=urls["school_locations"].url):
     """
@@ -180,6 +182,7 @@ def get_locations(url=urls["school_locations"].url):
         'status_descriptions']
 
     locations = locations[cols]
+    locations["bbl"] = locations.borough_block_lot.apply(lambda x: str(x).split(".")[0])
     locations.beds = locations.beds.astype("string")
     locations.open_date = locations.open_date.fillna(0)
     locations.open_date = locations.open_date.apply(lambda x: int(str(x).split('-')[0] if x != 0 else 0))
@@ -208,12 +211,11 @@ def get_school_footprints():
     school_foot.to_file(school_path, driver="GeoJSON")
     return school_foot
 
-def load_districts(url=urls["district_geo"].url):
+def load_districts(url="foo"):
     """Get geo shape file for NYC school districts, indexed by district number."""
-    districts = gpd.read_file(url)
-    # rename the columns
-    districts.columns = ['district', 'area', 'length', 'geometry']
-    districts.district = pd.to_numeric(districts.district, downcast='integer', errors='coerce')
+    # districts = gpd.read_file(url)
+    districts = load(urls["district_geo"].filename)
+    districts.district = districts.district.astype(int)
     districts = districts.to_crs(epsg=4326)
     return districts
 
