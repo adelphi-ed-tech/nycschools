@@ -66,6 +66,7 @@ class demo():
         'ay',
         'year',
         'school_type',
+        'school_level',
         'total_enrollment',
         'grade_3k',
         'grade_pk',
@@ -278,7 +279,100 @@ This school is probably commonly referred to as PS 15."""
     if "I. S." in sn or "I.S." in sn:
         return f"IS {row.school_num}"
 
-    return f"{row.school_type} {row.school_num}"
+    return f"{row.school_num}"
+
+
+
+def set_school_level(data):
+    df = data.copy()
+    if "grade_3k" not in df.columns:
+        df["grade_3k"] = 0
+
+    df["school_type"] = None
+    df.loc[(df.district > 0) & (df.district < 33), "school_type"] = "community"
+    df.loc[df.district == 84, "school_type"] = "charter"
+    df.loc[df.district == 75, "school_type"] = "d75"
+    df.loc[df.district == 79, "school_type"] = "transfer"
+
+    pk = ["grade_pk", "grade_3k"]
+    elem = ["grade_k", "grade_1", "grade_2", "grade_3", "grade_4", "grade_5"]
+    middle = ["grade_6", "grade_7", "grade_8"]
+    high = ["grade_9", "grade_10", "grade_11", "grade_12"]
+
+    df["school_level"] = "other"
+
+    df.loc[(df[elem].sum(axis=1) > 0) & (df[middle].sum(axis=1) > 0)
+        & (df[high].sum(axis=1) > 0), "school_level"] = "K-12"
+
+    df.loc[(df.grade_k > 0) & (df.grade_3 > 0) & (df.grade_5 > 0)
+        & (df.grade_6 > 0) & (df.grade_7 > 0)
+        & (df.grade_8 > 0) & (df[high].sum(axis=1) == 0), "school_level"] = "K-8"
+
+    df.loc[(df.grade_k > 0) & (df.grade_3 > 0) & (df.grade_5 > 0)
+        & (df.grade_6 > 0) & (df.grade_7 > 0)
+        & (df.grade_8 == 0) & (df[high].sum(axis=1) == 0), "school_level"] = "K-7"
+
+    df.loc[(df.grade_k > 0) & (df.grade_3 > 0) & (df.grade_5 > 0) & (df.grade_6 > 0)
+        & (df[["grade_7", "grade_8"] + high].sum(axis=1) == 0), "school_level"] = "K-6"
+
+    df.loc[(df[["grade_6"] + elem].sum(axis=1) == 0)
+        & (df.grade_6 == 0) & (df.grade_7 > 0) & (df.grade_8 > 0)
+        & (df.grade_9 > 0) & (df.grade_10 > 0) & (df.grade_11 > 0) & (df.grade_12 > 0),
+        "school_level"] = "7-12"
+
+    df.loc[(df[elem].sum(axis=1) == 0)
+        & (df.grade_6 > 0) & (df.grade_7 > 0) & (df.grade_8 > 0)
+        & (df.grade_9 > 0) & (df.grade_10 == 0) & (df.grade_11 == 0) & (df.grade_12 == 0),
+        "school_level"] = "6-9"
+
+    df.loc[(df[elem].sum(axis=1) == 0)
+        & (df.grade_6 > 0) & (df.grade_7 > 0) & (df.grade_8 > 0)
+        & (df.grade_9 > 0) & (df.grade_10 > 0) & (df.grade_11 > 0) & (df.grade_12 > 0),
+        "school_level"] = "6-12"
+
+    df.loc[(df[elem[:-1]].sum(axis=1) == 0)
+        & (df.grade_5 > 0) & (df.grade_6 > 0) & (df.grade_7 > 0) & (df.grade_8 > 0)
+        & (df.grade_9 > 0) & (df.grade_10 > 0) & (df.grade_11 > 0) & (df.grade_12 > 0),
+        "school_level"] = "5-12"
+
+    df.loc[(df[elem + middle[:-1]].sum(axis=1) == 0)
+        & (df.grade_8 > 0)
+        & (df.grade_9 > 0) & (df.grade_10 > 0) & (df.grade_11 > 0) & (df.grade_12 > 0),
+        "school_level"] = "8-12"
+
+    df.loc[(df.grade_5 > 0)
+        & (df.grade_6 > 0)
+        & (df.grade_7 > 0)
+        & (df.grade_8 > 0)
+        & (df[elem[:-1] + high].sum(axis=1) == 0), "school_level"] = "5-8"
+
+    df.loc[(df.grade_4 > 0)
+        & (df.grade_5 > 0)
+        & (df.grade_6 > 0)
+        & (df.grade_7 > 0)
+        & (df.grade_8 > 0)
+        & (df[elem[:-2] + high].sum(axis=1) == 0), "school_level"] = "4-8"
+
+    df.loc[(df.grade_3 > 0)
+        & (df.grade_4 > 0)
+        & (df.grade_5 > 0)
+        & (df.grade_6 > 0)
+        & (df.grade_7 > 0)
+        & (df.grade_8 > 0)
+        & (df[elem[:-3] + high].sum(axis=1) == 0), "school_level"] = "3-8"
+
+
+    df.loc[(df[pk].sum(axis=1) > 0) & (
+        df[elem + middle + high].sum(axis=1) < 3), "school_level"] = "prek"
+
+    df.loc[(df[elem].sum(axis=1) > 0) & (
+        df[middle + high].sum(axis=1) < 3), "school_level"] = "elementary"
+    df.loc[(df[middle].sum(axis=1) > 0) & (
+        df[elem + high].sum(axis=1) < 3), "school_level"] = "middle"
+    df.loc[(df[high].sum(axis=1) > 0) & (
+        df[elem + middle].sum(axis=1) < 3), "school_level"] = "high"
+
+    return df
 
 
 def load_school_demographics():
@@ -348,12 +442,11 @@ def get_demographics(df):
 
     # figure out what grades they teach
     df["pk"] = df["grade_pk"] > 0
-    df["elementary"] = df["grade_2"] > 0
+    df["elementary"] = df[["grade_2", "grade_3", "grade_4"]].sum(axis=1) > 0
     df["middle"] = df["grade_7"] > 0
-    df["hs"] = df["grade_10"] > 0
+    df["hs"] = df[["grade_10", "grade_11", "grade_12"]].sum(axis=1) > 0
 
     # make it easier to look up schools
-    df["school_type"] = df.apply(school_type, axis=1)
     df["clean_name"] = df.apply(lambda row: clean_name(row.school_name), axis=1)
     df["short_name"] = df.apply(short_name, axis=1)
 
@@ -363,12 +456,8 @@ def get_demographics(df):
     
     df = df.rename(columns=demo.default_map)
     
-    # calculate school type based on district number
-    df["school_type"] = None
-    df.loc[(df.district > 0)  & (df.district < 33), "school_type"] = "community"
-    df.loc[df.district == 84, "school_type"] = "charter"
-    df.loc[df.district == 75, "school_type"] = "d75"
-    df.loc[df.district == 79, "school_type"] = "alternative"
+    # set the school_type and school_level columns
+    df = set_school_level(df)
     df = join_loc_data(df)
     return get_default_cols(df)
 
@@ -450,7 +539,6 @@ def get_demo_2006():
     df["hs"] = df["grade_10"] > 0
 
     # make it easier to look up schools
-    df["school_type"] = df.apply(school_type, axis=1)
     df["clean_name"] = df.apply(lambda row: clean_name(row.school_name), axis=1)
     df["short_name"] = df.apply(short_name, axis=1)
 
@@ -462,6 +550,8 @@ def get_demo_2006():
     df['native_american_n'] = 0
     df['native_american_pct'] = 0
 
+
+    df = set_school_level(df)
     df = join_loc_data(df)
     return get_default_cols(df)
 
