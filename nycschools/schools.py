@@ -375,6 +375,27 @@ def set_school_level(data):
     return df
 
 
+# def get_campuses():
+#     """ Calculates all of the school campus locations
+#     based on the data from school locations and demographics.
+#     The campuses GeoDataFrame calculates total counts
+#     and percent for demographic categories and contains
+#     point geometry for the campus location.
+#     """
+
+
+#     loc = geo.load_school_locations()
+#     demos = load_school_demographics()
+
+#     demos = demos[demos.ay == demos.ay.max()]
+#     loc.drop(columns=["geo_district", "district", "zip", "beds"], inplace=True)
+#     df = loc.merge(demos, on='dbn', how='inner')
+#     campuses = pd.DataFrame()
+#     campuses["geometry"] = loc.geometry.unique()
+#     campuses["campus_id"] = campuses.index + 1
+
+
+
 def load_school_demographics():
     """ Loads the NYC school-level demographic data from the
     open data portal and create a dataframe.
