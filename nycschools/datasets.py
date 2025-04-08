@@ -125,7 +125,7 @@ urls = {
     "school_geo": {
         "url": "https://data.cityofnewyork.us/download/jfju-ynrr/application%2Fx-zip-compressed",
         # "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
-        "desc": "location points with zipcodes"
+        "desc": "location points with zipcodes: https://data.cityofnewyork.us/Education/School-Point-Locations/jfju-ynrr/about_data"
     },
     "school_locations": {
         "url": "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000",

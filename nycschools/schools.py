@@ -671,8 +671,11 @@ def get_demo_2023():
         return col_name
     xls = pd.read_excel( config.urls["demographics"].data_urls["2023"], sheet_name=None)
     df = xls["School"]
+    a = len(df)
     df.rename(columns=xls_cols, inplace=True)
     df = get_demographics(df)
+    b = len(df)
+    assert a == b, "lost some schools in the merge"
     return df
 
 
