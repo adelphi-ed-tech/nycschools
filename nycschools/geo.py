@@ -43,7 +43,8 @@ def load_school_footprints():
 
 def load_city_footprints():
     """Get the shapes for all building footprints in the New York City."""
-    df = load(config.urls["building_footprints"].city_footprints_feather)
+    path = config.urls["building_footprints"].city_footprints_feather
+    df = load(path, gdf=True)
     all_feet = gpd.GeoDataFrame(df, geometry="geometry", crs="EPSG:4326")
 
     return all_feet
@@ -193,10 +194,12 @@ def get_locations(url=urls["school_locations"].url):
 def get_school_footprints():
     """Load all building footprints from the NYC Dept of Buildings
     Open Data Portal. Merge these shapes with school locations
-    and save the footprints"""
+    and save the footprints. Because of the size of the DOB data,
+    a compressed (.feather) version is loaded from local or data.mixi.nyc.
+    If this file is not found, the method fails."""
     print("Getting footprints from URL")
     url=urls["building_footprints"].url
-    foot = gpd.read_file(url)
+    foot = load(url)
     foot["bbl"] = foot.base_bbl.astype(str)
     foot.mpluto_bbl = foot.mpluto_bbl.astype(str)
     # saving local feather
