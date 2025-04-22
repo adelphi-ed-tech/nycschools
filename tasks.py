@@ -209,9 +209,10 @@ def data_index(c):
     """Make an index.html of all of the data files in `school-data`"""
     files = os.listdir(config.data_dir)
     # make a list of tuples (filename, size, data modified)
-    links = []
+    data_links = []
+    map_links = []
     for f in sorted(files):
-        if f == "index.html":
+        if f == "index.html" or f.startswith("_"):
             continue
         path = os.path.join(config.data_dir, f)
         size = humanize.naturalsize(os.path.getsize(path))
@@ -219,8 +220,11 @@ def data_index(c):
         mod = mod.strftime('%Y-%m-%d %H:%M:%S')
         html = f"""<div><a href='{f}'>{f}</a></div><div>[{size}]</div><div>[{mod}]</div>
 """
-        links.append(html)
-        
+        if f.endswith(".html"):
+            map_links.append(html)
+        else:
+            data_links.append(html)
+
     style = """
 
 .grid {
@@ -228,15 +232,16 @@ def data_index(c):
   grid-template-columns: auto auto auto;
   grid-gap: 10px;
   padding: 10px;
-  max-width: 640px;
+  max-width: 720px;
 }
 
-h1, li {
+h1, h2, li {
     font-family: system-ui, -apple-system, "Segoe UI", 
     Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", 
     Arial, sans-serif, "Apple Color Emoji", 
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+h1, h2 { font-weight: bold; }
 body {
     padding: 2em;
 }
@@ -252,8 +257,11 @@ body {
     <style>{style}</style>
   </head>
   <body>
-    <h1>NYC Schools Open Data Portal: Data Files</h1>
-    <div class="grid">{"".join(links)}</div>
+    <h1>NYC Schools Open Data Portal</h1>
+    <h2>Maps &amp; visualizations</h2>
+    <div class="grid">{"".join(map_links)}</div>
+    <h2>Data Files</h2>
+    <div class="grid">{"".join(data_links)}</div>
   </body>
 </html>
 """
