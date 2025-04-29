@@ -44,13 +44,14 @@ def get_data_dir():
 
 
 def read_file(path, gdf=False):
-    if path.endswith(".parquet"):
+    check_path = path[:path.find("?")] if "?" in path else path
+    if check_path.endswith(".parquet"):
         return gpd.read_parquet(path)
-    if path.endswith(".geojson"):
+    if check_path.endswith(".geojson"):
         return gpd.read_file(path)
-    elif path.endswith(".csv"):
+    elif check_path.endswith(".csv"):
         return pd.read_csv(path)
-    elif path.endswith(".feather"):
+    elif check_path.endswith(".feather"):
         if gdf:
             return gpd.read_feather(path)
         return pd.read_feather(path)
@@ -68,7 +69,10 @@ def write_file(df, path):
         raise ValueError(f"Unknown file type: {path}")
 
 def load(path, gdf=False):
-    remote_path = config.urls["datasite"].url + path
+    if path.startswith("http"):
+        remote_path = path
+    else:
+        remote_path = config.urls["datasite"].url + path
     if config.data_dir is None or config.data_dir == "":
         return read_file(remote_path, gdf=gdf)
     

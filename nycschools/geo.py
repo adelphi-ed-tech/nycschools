@@ -199,7 +199,8 @@ def get_school_footprints():
     If this file is not found, the method fails."""
     print("Getting footprints from URL")
     url=urls["building_footprints"].url
-    foot = load(url)
+    foot = load(url, gdf=True)
+    foot.columns = [c.lowercase() for c in foot.columns]
     foot["bbl"] = foot.base_bbl.astype(str)
     foot.mpluto_bbl = foot.mpluto_bbl.astype(str)
     # saving local feather

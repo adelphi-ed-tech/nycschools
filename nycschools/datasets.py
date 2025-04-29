@@ -117,7 +117,8 @@ urls = {
         "desc": "this is the root URL part for DOE official school websites"
     },
     "building_footprints": {
-        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?$limit=1000000",
+        "url": "nyc-building-footprints.csv",
+        # "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?$limit=1000000",
         "city_footprints_feather": "nyc-footprints.feather",
         "school_footprints_file": "school-building-footprints.geojson",
         "desc_url": "https://data.cityofnewyork.us/City-Government/Building-Footprints/5zhs-2jue/about_data",
