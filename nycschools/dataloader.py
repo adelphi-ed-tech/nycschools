@@ -69,6 +69,7 @@ def write_file(df, path):
         raise ValueError(f"Unknown file type: {path}")
 
 def load(path, gdf=False):
+    print("loading:", path)
     if path.startswith("http"):
         remote_path = path
     else:
