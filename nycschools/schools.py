@@ -690,6 +690,7 @@ def save_demographics():
     for data in [demo_2022, demo_2016, demo_2013, demo_2006]:
         df = pd.concat([df, data[~data.ay.isin(df.ay)]], ignore_index=True)
 
+    print("saving to:", __demo_filename)
     df.to_csv(__demo_filename, index=False)
     return df
 
