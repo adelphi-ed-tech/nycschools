@@ -172,58 +172,42 @@ def charter_cols(data):
 def load_regents_excel():
     url = urls["nyc_regents"].url
     xls = pd.read_excel(url, sheet_name=None)
-    cols = [
-        'School DBN',
-        'School Type',
-        'School Level',
-        'Regents Exam',
-        'Year',
-        'Category',
-        'Total Tested',
-        'Mean Score',
-        'Number Scoring Below 65',
-        'Percent Scoring Below 65',
-        'Number Scoring 65 or Above',
-        'Percent Scoring 65 or Above',
-        'Number Scoring 80 or Above',
-        'Percent Scoring 80 or Above',
-        'Number Scoring CR',
-        'Percent Scoring CR']
-
-    new_cols = [
-        'dbn',
-        'school_type',
-        'school_level',
-        'regents_exam',
-        'year',
-        'category',
-        'number_tested',
-        'mean_score',
-        'below_65_n',
-        'below_65_pct',
-        'above_64_n',
-        'above_64_pct',
-        'above_79_n',
-        'above_79_pct',
-        'college_ready_n',
-        'college_ready_pct']
+    cols = {
+        'School DBN': 'dbn',
+        'School Name': 'school_name',
+        'School Type': 'school_type',
+        'School Level': 'school_level',
+        'Regents Exam': 'regents_exam',
+        'Year': 'test_year',
+        'Category': 'category',
+        'Total Tested': 'number_tested',
+        'Mean Score': 'mean_score',
+        'Number Scoring Below 65': 'below_65_n',
+        'Percent Scoring Below 65': 'below_65_pct',
+        'Number Scoring 65 or Above': 'above_64_n',
+        'Percent Scoring 65 or Above': 'above_64_pct',
+        'Number Scoring 80 or Above': 'above_79_n',
+        'Percent Scoring 80 or Above': 'above_79_pct',
+        'Number meeting CUNY proficiency requirmenets': 'college_ready_n',
+        'Percent meeting CUNY proficiency requirmenets': 'college_ready_pct',
+    }
 
     sheet_names = ['All Students',
-        'By Gender',
-        'By Ethnicity',
-        'By ELL Status',
-        'By SWD Status']
+                   'By Gender',
+                   'By Ethnicity',
+                   'By ELL Status',
+                   'By SWD Status']
 
     data = [xls[sheet] for sheet in sheet_names]
     df = pd.concat(data, ignore_index=True)
-    df = df[cols]
-    df.columns = new_cols
-    numeric_cols = new_cols[6:]
+    df = df[cols.keys()]
+    df.rename(columns=cols, inplace=True)
+    numeric_cols = list(cols.values())[7:]
     for col in numeric_cols:
         df[col] = pd.to_numeric(df[col], errors='coerce')
-    df["test_year"] = df["year"]
-    df["ay"] = df["year"] - 1
-    df = df.sort_values(by=["dbn","ay","regents_exam","category"])
+
+    df["ay"] = df["test_year"] - 1
+    df = df.sort_values(by=["dbn", "ay", "regents_exam", "category"])
     filename = os.path.join(config.data_dir, urls["nyc_regents"].filename)
     df.to_csv(filename, index=False)
     return df

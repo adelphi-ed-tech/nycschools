@@ -183,7 +183,8 @@ urls = {
         "desc": "excel file with non-charter school math test results with demographic categories"
     },
     "nyc_regents": {
-        "url": "https://data.cityofnewyork.us/api/views/2h3w-9uj9/files/ae520e30-953f-47a0-9654-c77900232236?download=true&filename=2014-15-to-2018-19-nyc-regents-overall-and-by-category---public%20(1).xlsx",
+        "url": "https://infohub.nyced.org/docs/default-source/default-document-library/2014-15-to-2022-23-nyc-regents-overall-and-by-category---public.xlsx",
+        "_url": "https://data.cityofnewyork.us/api/views/2h3w-9uj9/files/ae520e30-953f-47a0-9654-c77900232236?download=true&filename=2014-15-to-2018-19-nyc-regents-overall-and-by-category---public%20(1).xlsx",
         "filename": "nyc-regents.csv",
         "desc": "regents exam results"
     },
