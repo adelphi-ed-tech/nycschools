@@ -4,7 +4,8 @@ import toml
 from functools import wraps
 from dotenv import load_dotenv
 import datetime
-
+import requests
+from bs4 import BeautifulSoup
 import humanize
 
 from nycschools import config, dataloader, geo, schools, exams, budgets, class_size
@@ -150,6 +151,24 @@ def download_data(c):
     print("Downloading data to local directory 'school-data'")
     dataloader.download_archive("school-data")
 
+
+@task
+def pull_data(c):
+    """Pull all of the data from https://data.mixi.nyc"""
+    url = "https://data.mixi.nyc/"
+    html = requests.get(url).text
+    soup = BeautifulSoup(html)
+    links = soup.find_all('a')
+    for link in links:
+        href = link.get('href')
+        if href:
+            print(f"Downloading {href}")
+            # download the url with wget
+            cmd = f"wget -P{config.data_dir} {url}/{href}"
+            try:
+                c.run(cmd)
+            except:
+                print("failed to get ", href)
 
 @task
 def rebuild_docs(c):
