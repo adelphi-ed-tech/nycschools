@@ -7,6 +7,7 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 import humanize
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from nycschools import config, dataloader, geo, schools, exams, budgets, class_size
 from invoke import task
@@ -153,22 +154,46 @@ def download_data(c):
 
 
 @task
-def pull_data(c):
-    """Pull all of the data from https://data.mixi.nyc"""
+def pull_data(c, max_workers=5):
+    """Pull all of the data from https://data.mixi.nyc
+
+    Args:
+        max_workers: Maximum number of concurrent downloads (default: 5)
+    """
     url = "https://data.mixi.nyc/"
     html = requests.get(url).text
     soup = BeautifulSoup(html)
     links = soup.find_all('a')
-    for link in links:
-        href = link.get('href')
-        if href:
-            print(f"Downloading {href}")
-            # download the url with wget
-            cmd = f"wget -P{config.data_dir} {url}/{href}"
-            try:
-                c.run(cmd)
-            except:
-                print("failed to get ", href)
+
+    hrefs = [link.get('href') for link in links if link.get('href')]
+
+    print(f"Found {len(hrefs)} files to download")
+
+    def download_file(href):
+        print(f"Downloading {href}")
+        cmd = f"wget -P{config.data_dir} {url}/{href}"
+        try:
+            c.run(cmd)
+            return (href, True, None)
+        except Exception as e:
+            return (href, False, str(e))
+
+    # Download files in parallel using ThreadPoolExecutor
+    completed = 0
+    failed = 0
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(download_file, href) for href in hrefs]
+        for future in as_completed(futures):
+            href, success, error = future.result()
+            completed += 1
+            if success:
+                print(f"[{completed}/{len(hrefs)}] Successfully downloaded {href}")
+            else:
+                failed += 1
+                print(f"[{completed}/{len(hrefs)}] Failed to download {href}: {error}")
+
+    print(f"\nDownload complete: {completed - failed} successful, {failed} failed")
 
 @task
 def rebuild_docs(c):

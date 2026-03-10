@@ -50,6 +50,7 @@ def read_file(path, gdf=False):
     if check_path.endswith(".geojson"):
         return gpd.read_file(path)
     elif check_path.endswith(".csv"):
+        print(path)
         return pd.read_csv(path)
     elif check_path.endswith(".feather"):
         if gdf:

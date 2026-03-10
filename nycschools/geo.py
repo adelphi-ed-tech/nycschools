@@ -13,7 +13,7 @@
 # You should have received a copy of the License along with this program.
 # If not, see <http://www.gnu.org/licenses/>.
 # ==============================================================================
-from nycschools import datasets
+from nycschools import datasets, dataloader
 import pandas as pd
 import geopandas as gpd
 import os
@@ -223,3 +223,99 @@ def load_districts(url="foo"):
     districts = districts.to_crs(epsg=4326)
     return districts
 
+def merge_campus_id(df):
+    """Merges the campus_id into an DataFrame that has a 'dbn' column."""
+    campus_dbn_file = urls["campus"].merge_filename
+    # campus_dbn_file = os.path.join(config.data_dir, campus_dbn_file)
+    # campus_dbn = dataloader.read_file(campus_dbn_file)
+    campus_dbn = load(campus_dbn_file)
+    df = df.merge(campus_dbn, on="dbn", how="left")
+    df.campus_id = df.campus_id.astype("Int64")
+    return df
+
+def get_campuses():
+    """Get the school campus data"""
+    campus_file = urls["campus"].filename
+    return load(campus_file)
+    # campus_file = os.path.join(config.data_dir, urls["campus"].filename)
+    # return dataloader.read_file(campus_file)
+
+def create_campuses():
+    """Create school campuses with deomgraphic data.
+       A campus is a school building/location that houses one
+       or more school. School campuses are only for the most
+       recent academic year.
+    """
+
+    loc = load_school_locations()
+    demos = schools.load_school_demographics()
+    # join demographics to our locations for the most recent year
+    demos = demos[demos.ay == demos.ay.max()]
+    loc.drop(columns=["geo_district", "district", "zip", "beds"], inplace=True)
+    loc = loc.merge(demos, on='dbn', how='inner')
+
+
+    # let's find all the colocated schools by matching schools with the same point
+    campuses = pd.DataFrame()
+    # give each location an id
+    campuses["geometry"] = loc.geometry.unique()
+    campuses["campus_id"] = campuses.index + 1
+    # give each location a campus id
+    df = loc.merge(campuses, on="geometry", how="inner")
+    # sort locations by size (descending) so the largest school on each campus appears "first"
+    df = df.sort_values(by=["campus_id", "open_year"], ascending=True)
+    campuses = df.groupby("campus_id").agg(
+        num_schools=("dbn", "count"),
+        campus=("school_name", "first"),
+        open_year=("open_year", "first"),
+        total_enrollment=("total_enrollment", "sum"),
+        female_n=("female_n", "sum"),
+        male_n=("male_n", "sum"),
+        asian_n=("asian_n", "sum"),
+        black_n=("black_n", "sum"),
+        hispanic_n=("hispanic_n", "sum"),
+        white_n=("white_n", "sum"),
+        max_white_pct=("white_pct", "max"),
+        min_white_pct=("white_pct", "min"),
+        swd_n=("swd_n", "sum"),
+        ell_n=("ell_n", "sum"),
+        max_ell_pct=("ell_pct", "max"),
+        min_ell_pct=("ell_pct", "min"),
+        poverty_n=("poverty_n", "sum"),
+        max_poverty_pct=("poverty_pct", "max"),
+        min_poverty_pct=("poverty_pct", "min"),
+        geometry=("geometry", "first")
+    ).reset_index()
+
+    campuses["white_diff"] = campuses.max_white_pct - campuses.min_white_pct
+    campuses["ell_diff"] = campuses.max_ell_pct - campuses.min_ell_pct
+    campuses["poverty_diff"] = campuses.max_white_pct - campuses.min_white_pct
+
+
+    campuses['female_pct'] = campuses['female_n'] / campuses['total_enrollment']
+    campuses['male_pct'] = campuses['male_n'] / campuses['total_enrollment']
+    campuses['asian_pct'] = campuses['asian_n'] / campuses['total_enrollment']
+    campuses['black_pct'] = campuses['black_n'] / campuses['total_enrollment']
+    campuses['hispanic_pct'] = campuses['hispanic_n'] / campuses['total_enrollment']
+    campuses['white_pct'] = campuses['white_n'] / campuses['total_enrollment']
+    campuses['swd_pct'] = campuses['swd_n'] / campuses['total_enrollment']
+    campuses['ell_pct'] = campuses['ell_n'] / campuses['total_enrollment']
+    campuses['poverty_pct'] = campuses['poverty_n'] / campuses['total_enrollment']
+
+    campuses["plurality"] = campuses[['asian_n', 'black_n', 'hispanic_n', 'white_n']].idxmax(axis=1)
+    campuses.plurality = campuses.plurality.str.replace("_n", "")
+
+    campuses = gpd.GeoDataFrame(campuses, geometry="geometry")
+    campuses.set_crs(loc.crs, inplace=True)
+
+    # save the data files for later use
+    campus_file = urls["campus"].filename
+    campus_file = os.path.join(config.data_dir, urls["campus"].filename)
+    dataloader.write_file(campuses, campus_file)
+    
+    campus_dbn = df[["campus_id", "dbn"]]
+    campus_dbn_file = urls["campus"].merge_filename
+    campus_dbn_file = os.path.join(config.data_dir, campus_dbn_file)
+    dataloader.write_file(campus_dbn, campus_dbn_file)
+    
+    return campuses

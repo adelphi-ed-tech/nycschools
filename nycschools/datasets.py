@@ -130,6 +130,11 @@ urls = {
         # "url": "https://data.cityofnewyork.us/resource/a3nt-yts4.geojson?$limit=1000000",
         "desc": "location points with zipcodes: https://data.cityofnewyork.us/Education/School-Point-Locations/jfju-ynrr/about_data"
     },
+    "campus": {
+        "filename": "school-campuses.geojson",
+        "merge_filename": "school-campuses-dbn.csv",
+        "desc": "Point locations and demographics at the building/campus level"
+    },
     "school_locations": {
         "url": "https://data.cityofnewyork.us/resource/wg9x-4ke6.csv?$limit=1000000",
         "desc": "https://data.cityofnewyork.us/Education/2019-2020-School-Locations/wg9x-4ke6/about_data",
